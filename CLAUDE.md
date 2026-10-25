@@ -14,7 +14,7 @@ Team: Dane, Jewell, Marco (Baylor ENT 3315 venture project). Marco owns the GitH
 
 ## Hard rules
 
-- **Only touch this repo** (`Apollorracing/owntwofeet`). Never clone, edit or push to Marco's other repositories.
+- **Only touch this repo** (`m-melchor/owntwofeet`). Never clone, edit or push to Marco's other repositories.
 - **Never invent** testimonials, partners, impact stats, credentials, dates or prices. Plans are labeled as plans ("Coming soon", "Preview", "Planned").
 - **Keep the top notice exactly:** "Own Two Feet is in development. Join our interest list for launch and pilot updates."
 - **The form must never pretend to send.** It stays labeled as not connected until a real service is wired up.

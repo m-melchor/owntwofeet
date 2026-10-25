@@ -2,7 +2,7 @@
 
 Website for **Own Two Feet**, live, in-person life-skills workshops for boys and young men in grades 3–8, run with schools and community groups.
 
-**Live site:** https://apollorracing.github.io/owntwofeet/
+**Live site:** https://m-melchor.github.io/owntwofeet/
 
 Built by Dane, Jewell and Marco (ENT 3315 venture project, Baylor University).
 
@@ -12,6 +12,8 @@ Built by Dane, Jewell and Marco (ENT 3315 venture project, Baylor University).
 |---|---|
 | `index.html` | The whole site in one file: HTML, CSS and JavaScript |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
+| `og-image.png` | The 1200x630 picture shown when the link is shared |
+| `apple-touch-icon.png` | The icon for "Add to Home Screen" on iPhone |
 | `CLAUDE.md` | Project notes and rules for Claude Code when editing this repo |
 | `README.md` | This file |
 
