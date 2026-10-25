@@ -22,7 +22,10 @@
 /* Layout: friendly rounded soft-tint panels floating on warm paper, alternating with open white space; serif display, clean sans body, one forest accent. Single light look by design. */
 :root{
   color-scheme:light;
-  --bg:#F6F4EF; --paper:#FCFBF8; --surface:#FFFFFF; --surface-2:#EEEBE4; --ink:#16211C; --ink-2:#56615B; --ink-3:#8A928D; --line:#E2DED5;
+  /* footprints used as masks for progress marks: one print, and a left-right pair that repeats along a track */
+  --print:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/svg%3E");
+  --steps:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 20'%3E%3Cg transform='translate(1 0) scale(.62)'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/g%3E%3Cg transform='translate(25 10) scale(.62)'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/g%3E%3C/svg%3E");
+  --bg:#F6F4EF; --paper:#FCFBF8; --surface:#FFFFFF; --surface-2:#EEEBE4; --ink:#16211C; --ink-2:#56615B; --ink-3:#5F6862; --line:#E2DED5;
   --sage:#D9E6D8; --mist:#DDE7F0; --sand:#F2E6D3; --butter:#F4EDCF; --peach:#F5E0D3;
   --accent:#2F6450; --accent-soft:#D9E9DF;
   --ok:#2F6450; --ok-soft:#DCEDE2; --bad:#A2412F; --bad-soft:#F7E2DC; --focus:#2C5E8A;
@@ -120,8 +123,11 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 .hero{padding-top:clamp(28px,4vw,48px)}
 .hero-card{border-radius:calc(var(--r-lg) + 8px);background:var(--sage);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:min(640px,78vh)}
 .hero-copy{padding:clamp(32px,5.5vw,80px);display:flex;flex-direction:column;justify-content:center;gap:26px}
+.hero-copy h1{font-size:clamp(46px,5.4vw,84px)}
 .hero-copy h1 em{font-style:normal;color:var(--accent)}
 .hero-copy .acts{display:flex;flex-wrap:wrap;gap:10px}
+.hero-price{display:grid;gap:4px;padding-top:20px;border-top:1px solid rgba(22,33,28,.14);font-size:15px;line-height:1.5;color:#46504A;max-width:46ch}
+.hero-price b{font:400 19px/1 var(--serif);color:var(--ink);letter-spacing:-.01em}
 .hero-meta{display:flex;gap:8px;flex-wrap:wrap}
 .stage-hero{position:relative;margin:14px 14px 14px 0;border-radius:var(--r-lg);overflow:hidden;background:radial-gradient(120% 90% at 40% 25%,#FBF8F2 0%,#F1E8D8 60%,#E7DCC8 100%);min-height:360px}
 .stage-hero canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
@@ -144,25 +150,18 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 .problem{text-align:center;display:grid;justify-items:center;gap:22px}
 .problem .big{font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);line-height:1.18;letter-spacing:-.02em;max-width:24ch}
 .problem .big em{font-style:normal;color:var(--accent)}
-.gaps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(28px,4vw,48px);text-align:left;width:100%}
-.gap-card{border-radius:var(--r-lg);padding:clamp(24px,3vw,34px);display:grid;gap:12px;align-content:start;min-height:230px}
-.gap-card:nth-child(1){background:var(--peach)} .gap-card:nth-child(2){background:var(--mist)} .gap-card:nth-child(3){background:var(--butter)}
-.gap-card .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.75);display:grid;place-items:center}
-.gap-card .ic svg{width:22px;height:22px}
-.gap-card h3{font-size:24px;margin-top:auto}
-.gap-card p{color:#4B544F;font-size:15.5px}
-@media (max-width:860px){.gaps{grid-template-columns:1fr}.gap-card{min-height:0}.gap-card h3{margin-top:6px}}
+.problem .why{max-width:58ch;color:var(--ink-2);font-size:clamp(16px,1.3vw,18px);line-height:1.6;text-wrap:pretty}
 
 /* ===== CURRICULUM EXPLORER ===== */
 .cx{display:grid;grid-template-columns:290px minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
 .cx-index{display:grid;gap:6px;position:sticky;top:100px}
 .cx-tab{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:56px;padding:0 14px 0 10px;border:0;border-radius:16px;background:rgba(255,255,255,.45);text-align:left;cursor:pointer;color:var(--ink-2);font:500 15.5px var(--sans);transition:background .25s,color .2s}
-.cx-tab .ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.7)}
+.cx-tab .ic{width:24px;height:24px;display:grid;place-items:center;color:var(--ink-2)}
 .cx-tab .ic svg{width:18px;height:18px}
 .cx-tab .st{font:500 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
 .cx-tab:hover{background:rgba(255,255,255,.75);color:var(--ink)}
 .cx-tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
-.cx-tab[aria-selected="true"] .ic{background:var(--accent);color:#fff}
+.cx-tab[aria-selected="true"] .ic{color:var(--accent)}
 .cx-panel{background:var(--surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
 .cx-head{padding:clamp(24px,3.4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
 .cx-head h3{font-size:clamp(32px,3.6vw,48px)}
@@ -185,7 +184,7 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 .icon-btn:hover{border-color:var(--ink)}
 .icon-btn svg{width:18px;height:18px}
 .cx-nav{display:flex;gap:8px}
-@media (max-width:980px){.cx{grid-template-columns:1fr}.cx-index{position:static;display:flex;overflow-x:auto;gap:8px;scrollbar-width:none;padding:2px 2px 6px;margin-inline:-2px}.cx-index::-webkit-scrollbar{display:none}.cx-tab{flex:none;grid-template-columns:30px auto;min-height:48px;border-radius:999px;padding:0 18px 0 8px;font-size:15px}.cx-tab .ic{width:30px;height:30px}.cx-tab .st{display:none}}
+@media (max-width:980px){.cx{grid-template-columns:1fr}.cx-index{position:static;display:flex;overflow-x:auto;gap:8px;scrollbar-width:none;padding:2px 2px 6px;margin-inline:-2px}.cx-index::-webkit-scrollbar{display:none}.cx-tab{flex:none;grid-template-columns:30px auto;min-height:48px;border-radius:999px;padding:0 18px 0 8px;font-size:15px}.cx-tab .ic{width:22px;height:22px}.cx-tab .st{display:none}}
 @media (max-width:760px){.cx-body{grid-template-columns:1fr}.cx-head{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){.cx-panel.swap .cx-head,.cx-panel.swap .cx-body{animation:fade .45s var(--ease) both}.cx-panel.swap .cx-body{animation-delay:.05s}}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -221,16 +220,6 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 @media (max-width:700px){.vq{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){.vq.swap figure{animation:fade .5s var(--ease) both}}
 
-/* ===== HOSTS ===== */
-.hosts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.host{border-radius:var(--r-lg);padding:clamp(26px,3vw,36px);display:grid;gap:12px;align-content:start;min-height:280px}
-.host:nth-child(1){background:var(--sage)} .host:nth-child(2){background:var(--mist)} .host:nth-child(3){background:var(--sand)}
-.host .ic{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.75);display:grid;place-items:center}
-.host .ic svg{width:24px;height:24px}
-.host h3{font-size:clamp(24px,2.2vw,28px);margin-top:auto}
-.host p{color:#4B544F;font-size:15.5px}
-@media (max-width:860px){.hosts{grid-template-columns:1fr}.host{min-height:0}.host h3{margin-top:6px}}
-
 /* ===== ACTIVITY TEASER ===== */
 .teaser{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:16px}
 .tcard{position:relative;border-radius:var(--r-lg);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;background:var(--surface);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
@@ -249,14 +238,15 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 @media (max-width:560px){.teaser{grid-template-columns:1fr}}
 
 /* ===== FOUNDERS ===== */
-.founders{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,80px);align-items:center}
-.founders .big{font-family:var(--serif);font-size:clamp(28px,3.2vw,42px);line-height:1.2;letter-spacing:-.02em}
-.founders .copy{display:grid;gap:18px;color:#4B544F;font-size:17px;max-width:54ch}
-.team{display:flex;gap:8px;flex-wrap:wrap}
-.team span{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.75);border-radius:999px;padding:6px 16px 6px 6px;font-weight:500;font-size:15px}
-.team i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 12px var(--sans);font-style:normal;background:var(--sage)}
-.team span:nth-child(2) i{background:var(--mist)} .team span:nth-child(3) i{background:var(--peach)}
-@media (max-width:860px){.founders{grid-template-columns:1fr}}
+.band{background:var(--ink);color:var(--paper);padding-block:clamp(64px,9vw,128px)}
+.founders{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px);align-items:end}
+.founders figure{margin:0;display:grid;gap:22px}
+.founders .big{margin:0;font-family:var(--serif);font-size:clamp(30px,3.6vw,50px);line-height:1.16;letter-spacing:-.02em;text-wrap:balance}
+.founders figcaption{color:#C8CFCA;font-size:15px}
+.founders .copy{display:grid;gap:18px;color:#DCE1DD;font-size:17px;line-height:1.6;max-width:46ch}
+.btn-paper{background:var(--paper);color:var(--ink)}
+.btn-paper:hover{background:#fff}
+@media (max-width:860px){.founders{grid-template-columns:1fr;align-items:start}}
 
 /* ===== FAQ ===== */
 .faqwrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(24px,5vw,80px)}
@@ -313,7 +303,9 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* ===== SUBPAGES ===== */
 .phead{padding-block:clamp(28px,4vw,48px) 0}
-.phead .panel{display:grid;gap:22px}
+.phead .panel{display:grid;gap:22px;position:relative}
+.phead-art{display:none}
+@media (min-width:1000px){.phead .with-art{padding-right:clamp(320px,30vw,460px)}.phead-art{display:block;position:absolute;right:clamp(40px,5vw,80px);top:50%;width:clamp(240px,22vw,320px);height:auto;transform:translateY(-50%);overflow:visible}}
 .phead h1{max-width:16ch}
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
@@ -321,13 +313,15 @@ fieldset.field{border:0;margin:0;padding:0}
 .tier{border-radius:var(--r-lg);padding:clamp(26px,3vw,34px);display:grid;gap:14px;align-content:start;background:var(--surface)}
 .tier h3{font-size:28px}
 .tier p{color:var(--ink-2);font-size:15.5px}
+.tier .price{font:400 40px/1 var(--serif);color:var(--ink)}
+.tier .price small{font:500 14px/1 var(--sans);color:var(--ink-2)}
 .tier ul{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:10px;font-size:15px}
 .tier li{display:flex;gap:10px}
 .tier li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:8px}
 .tint-1{background:var(--sage)!important} .tint-2{background:var(--mist)!important} .tint-3{background:var(--sand)!important} .tint-4{background:var(--peach)!important}
 @media (max-width:900px){.formats{grid-template-columns:1fr}}
 .roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.role{background:var(--surface);border-radius:var(--r-lg);padding:28px;display:grid;gap:10px}
+.role{background:var(--surface);border-radius:var(--r-lg);padding:28px;display:grid;gap:10px;align-content:start}
 .role h3{font-size:24px}
 .role p{color:var(--ink-2);font-size:15.5px}
 @media (max-width:860px){.roles{grid-template-columns:1fr}}
@@ -348,9 +342,9 @@ fieldset.field{border:0;margin:0;padding:0}
 
 /* ===== ACTIVITIES ===== */
 .act-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.act-nav a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px 0 8px;border-radius:999px;background:var(--surface);text-decoration:none;font-weight:500;font-size:15px;transition:box-shadow .2s}
+.act-nav a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px 0 16px;border-radius:999px;background:var(--surface);text-decoration:none;font-weight:500;font-size:15px;transition:box-shadow .2s}
 .act-nav a:hover{box-shadow:var(--shadow)}
-.act-nav a i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.act-nav a i{display:grid;place-items:center;font-style:normal;color:var(--accent)}
 .act-nav a i svg{width:16px;height:16px}
 .activity{background:var(--surface);border-radius:calc(var(--r-lg) + 4px);overflow:hidden;margin-top:24px}
 .act-head{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;padding:clamp(24px,3vw,40px) clamp(22px,3vw,40px) clamp(18px,2vw,24px)}
@@ -366,9 +360,11 @@ fieldset.field{border:0;margin:0;padding:0}
 .modes::-webkit-scrollbar{display:none}
 .mode{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:transparent;color:var(--ink-2);font:500 14.5px var(--sans);cursor:pointer;white-space:nowrap;transition:background .25s,color .25s}
 .mode[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(22,33,28,.14)}
-.prog{display:flex;gap:4px;flex:none}
-.prog i{width:22px;height:5px;border-radius:5px;background:var(--surface-2);transition:background .3s}
-.prog i.fdone{background:var(--accent)}
+.prog{display:flex;align-items:center;gap:4px;height:18px;flex:none}
+.prog i{width:18px;height:9px;background:rgba(22,33,28,.2);-webkit-mask:var(--print) center/contain no-repeat;mask:var(--print) center/contain no-repeat;transition:background .3s}
+.prog i:nth-child(odd){transform:translateY(-3px)}
+.prog i:nth-child(even){transform:translateY(3px)}
+.prog i.done{background:var(--accent)}
 .prog i.cur{background:var(--ink)}
 .bench{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:12px;align-items:stretch}
 @media (max-width:1000px){.bench{grid-template-columns:1fr}}
@@ -483,6 +479,7 @@ footer.site ul a{text-decoration:none;display:inline-block;padding:6px 0;font-we
 footer.site ul a:hover{color:var(--accent)}
 footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:22px;margin-top:12px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 @media (max-width:760px){footer.site .inner{grid-template-columns:1fr 1fr}footer.site .inner>div:first-child{grid-column:1/-1}}
+@media (max-width:700px){footer.site{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
 
 /* ===== premium motion layer ===== */
 :root{--ease-out:cubic-bezier(.16,1,.3,1)}
@@ -494,14 +491,11 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:
 .problem .big .w{opacity:.18;transition:opacity .35s ease}
 .problem .big .w.on{opacity:1}
 .stage-hero,.hero-copy{will-change:transform}
-.pulse{position:relative;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:1px}
-.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(47,100,80,.45);animation:pulse 2.4s var(--ease-out) infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,100,80,.45)}70%{box-shadow:0 0 0 10px rgba(47,100,80,0)}100%{box-shadow:0 0 0 0 rgba(47,100,80,0)}}
 .btn-ink{box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 8px 20px -12px rgba(22,33,28,.6)}
 .btn-ink:hover{transform:translateY(-1px)}
 .tcard .art{transition:transform .8s var(--ease-out)}
-.host,.gap-card,.path,.value,.tier{transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
-.host:hover,.gap-card:hover,.path:hover{transform:translateY(-4px);box-shadow:0 22px 44px -30px rgba(22,33,28,.35)}
+.path,.value,.tier{transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
+.path:hover{transform:translateY(-4px);box-shadow:0 22px 44px -30px rgba(22,33,28,.35)}
 /* scroll-driven session */
 .ses-pin{position:relative}
 @media (min-width:901px){
@@ -510,16 +504,17 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:
   .ses-pin.on .sec-head{margin-bottom:clamp(24px,3vw,40px)}
 }
 .ses-track{display:flex;align-items:center;gap:12px;margin-top:18px;color:var(--ink-3);font-size:13.5px}
-.ses-track .bar{flex:1;height:2px;background:rgba(22,33,28,.1);border-radius:2px;overflow:hidden}
+.ses-track .bar{flex:1;height:20px;background:rgba(22,33,28,.16);overflow:hidden;-webkit-mask:var(--steps) 0 50%/48px 20px repeat-x;mask:var(--steps) 0 50%/48px 20px repeat-x}
 .ses-track .bar i{display:block;height:100%;width:0;background:var(--ink);transform-origin:0 50%}
 @media (max-width:900px){.ses-track{display:none}}
-@media (prefers-reduced-motion:reduce){.ses-pin.on{height:auto}.ses-pin.on .ses-stick{position:static}.ses-track{display:none}.js .stg.pre>*{opacity:1;transform:none}.problem .big .w{opacity:1}.pulse::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.ses-pin.on{height:auto}.ses-pin.on .ses-stick{position:static}.ses-track{display:none}.js .stg.pre>*{opacity:1;transform:none}.problem .big .w{opacity:1}}
 
 /* ===== help chat (preset answers) ===== */
 .hc-fab{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 20px 0 8px;border-radius:999px;border:0;background:var(--ink);color:var(--paper);font:500 15px var(--sans);cursor:pointer;box-shadow:0 18px 40px -18px rgba(22,33,28,.6);transition:transform .4s var(--ease-out),opacity .3s}
 .hc-fab:hover{transform:translateY(-2px)}
 .hc-fab svg{width:42px;height:42px}
 .hc-fab[aria-expanded="true"]{opacity:0;pointer-events:none;transform:scale(.9)}
+@media (max-width:700px){.hc-fab.tuck{opacity:0;pointer-events:none;transform:translateY(calc(100% + 24px))}}
 .hc{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:85;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100vh - 120px));background:var(--paper);border-radius:28px;box-shadow:0 30px 80px -30px rgba(22,33,28,.55),0 0 0 1px rgba(22,33,28,.06);display:flex;flex-direction:column;overflow:hidden;transform-origin:100% 100%;transition:opacity .35s var(--ease-out),transform .45s var(--ease-out)}
 .hc[hidden]{display:flex!important;opacity:0;transform:translateY(16px) scale(.96);pointer-events:none;visibility:hidden}
 .hc-head{display:flex;align-items:center;gap:12px;padding:16px 16px 14px 18px;background:var(--sage)}
@@ -563,6 +558,8 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal.pre{opacity:1;transform:none}}
 </style>
+<!-- Visit counter (GoatCounter: free, no cookies). Each page view is counted by the router below, so #workshops etc. show up as their own pages. -->
+<script data-goatcounter="https://owntwofeet.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -584,7 +581,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 <div class="sprog" id="sprog" aria-hidden="true"></div>
 
 <div class="notice" role="region" aria-label="Site status">
-  <div class="wrap"><span><b>Own Two Feet is in development.</b> Join our interest list for launch and pilot updates.</span><a href="#interest">Join the list</a></div>
+  <div class="wrap"><span><b>Own Two Feet is in development.</b> No workshops are running yet. Join our interest list for launch updates.</span><a href="#interest">Join the list</a></div>
 </div>
 
 <header class="site" id="siteHeader">
@@ -614,19 +611,19 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     <div class="wrap">
       <div class="hero-card">
         <div class="hero-copy">
-          <span class="label dot">Live, in-person life-skills workshops</span>
           <h1 class="h-xl" tabindex="-1" data-focus>Skills for life, taught <em>side by side.</em></h1>
           <p class="lede" style="color:#46504A">Hands-on workshops for schools and community groups. Boys and young men learn everyday skills by actually doing them, with a mentor right there to help.</p>
           <div class="acts">
             <a class="btn btn-ink" href="#interest">Join the Interest List</a>
             <a class="btn btn-line" href="#activities">Explore Activities</a>
           </div>
+          <p class="hero-price"><span>Planned for grades 3 to 8, up to 30 students.</span> <span><b>$350</b> for 50 minutes or <b>$500</b> for 90 minutes, per session. Not booking yet.</span></p>
         </div>
         <div class="stage-hero" id="heroStage" role="img" aria-label="Rendered hand tools resting on a workbench: hammer, screwdrivers, wrench, tape measure and level">
           <div class="fallback" id="heroFallback" aria-hidden="true">
             <svg viewBox="0 0 600 420"><g transform="translate(40 40)"><use href="#t-hammer" width="120" height="320"/></g><g transform="translate(160 70) rotate(-8 40 120)"><use href="#t-phillips" width="90" height="260"/></g><g transform="translate(250 50)"><use href="#t-tape" width="120" height="300"/></g><g transform="translate(370 60) rotate(6 40 120)"><use href="#t-wrench" width="90" height="280"/></g><g transform="translate(470 30)"><use href="#t-level" width="100" height="340"/></g></svg>
           </div>
-          <div class="float f1" aria-hidden="true"><b><span class="pulse"></span>Grades 3–8</b><span>Elementary &amp; middle school</span></div>
+          <div class="float f1" aria-hidden="true"><b>Grades 3–8</b><span>Elementary &amp; middle school</span></div>
           <div class="float f2" aria-hidden="true"><b>Learn by doing</b><span>Every session is hands-on</span></div>
         </div>
       </div>
@@ -635,12 +632,22 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
   <section class="sec" aria-labelledby="prob-h">
     <div class="wrap problem reveal">
-      <span class="label" id="prob-h">Why it matters</span>
-      <p class="big">Young men are expected to fix things, stay safe online and handle money. <em>Many were never shown how.</em></p>
-      <div class="stg gaps">
-        <div class="gap-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 9l4 2-4 2z"/><path d="M8 21h8"/></svg></span><h3>Videos only go so far</h3><p>A video shows the steps. It can’t tell you what you did wrong or when to stop.</p></div>
-        <div class="gap-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Parents are busy</h3><p>Parents working long hours can’t be there for every little lesson. That’s not their fault.</p></div>
-        <div class="gap-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/></svg></span><h3>Asking is hard</h3><p>Boys are often told to tough it out, so they figure things out alone.</p></div>
+      <h2 class="big" id="prob-h">Young men are expected to fix things, stay safe online and handle money. <em>Many were never shown how.</em></h2>
+      <p class="why">A video shows the steps, but it can’t tell you what you did wrong or when to stop. Parents working long hours can’t be there for every little lesson, and that’s not their fault. And boys are often told to tough it out, so they figure things out alone.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="fou-h">
+    <div class="wrap founders reveal">
+      <figure>
+        <h2 class="sr-only" id="fou-h">Why we started</h2>
+        <blockquote class="big">“I was working to make sure my kids had what they needed, but I couldn’t always be there to teach them every little thing.”</blockquote>
+        <figcaption>Marco’s mom, a single mother who at times worked three jobs</figcaption>
+      </figure>
+      <div class="copy">
+        <p>We’re Dane, Jewell and Marco, three college students who kept getting asked to fix phones, paint walls, fix cabinets and deal with car trouble. Usually nobody had shown us how.</p>
+        <p>This isn’t about parents who didn’t care. It’s about families doing everything they can, and kids who just need someone to take the time to teach them.</p>
+        <div><a class="btn btn-paper btn-sm" href="#story">Read our story <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
     </div>
   </section>
@@ -649,13 +656,13 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     <div class="wrap">
       <div class="panel sage reveal">
         <div class="sec-head">
-          <span class="label">What we teach</span>
+          
           <h2 class="h-lg" id="cur-h">Eight topics for everyday life</h2>
           <p class="lede" style="color:#46504A">Schools pick the topics that fit their students. Every lesson includes a demo, hands-on practice, and when to ask for help.</p>
         </div>
         <div class="cx">
           <div class="cx-index" role="tablist" aria-label="Topics" aria-orientation="vertical" id="cxTabs"><button class="cx-tab" role="tab" id="cxt-home" aria-controls="cxPanel" aria-selected="true" tabindex="0" data-i="0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"></path></svg></span><span>Home &amp; tools</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-tech" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></span><span>Tech &amp; online safety</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-care" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"></path></svg></span><span>Personal care</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-cook" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h14v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 12h4M7 7c0-1.5 1-1.5 1-3M11 7c0-1.5 1-1.5 1-3"></path></svg></span><span>Simple cooking</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-money" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"></rect><path d="M16 12.5h2.5M2.5 10h19"></path></svg></span><span>Money</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-comm" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="5"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"></path></svg></span><span>Communication</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-help" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="6"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.5v.5"></path></svg></span><span>Knowing when to ask</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-car" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16V12l2-5h12l2 5v4M4 16h16M4 16v3M20 16v3"></path><circle cx="7.5" cy="13.5" r=".9"></circle><circle cx="16.5" cy="13.5" r=".9"></circle></svg></span><span>Vehicle basics</span><span class="st">Later</span></button></div>
-          <div class="cx-panel" role="tabpanel" id="cxPanel" tabindex="0"><div class="cx-head"><div><span class="label">Topic</span><h3 style="margin-top:12px">Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip " style="background:var(--bg)">Grades 3–8</span></div></div>
+          <div class="cx-panel" role="tabpanel" id="cxPanel" tabindex="0"><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div></div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span><div class="lesson"><span class="n">1</span><b>Meet your toolbox</b><span class="ds">What each common hand tool is for, and how to hold it.</span></div><div class="lesson"><span class="n">2</span><b>Small fixes</b><span class="ds">Tighten a loose handle, hang something level, change a light bulb.</span></div><div class="lesson"><span class="n">3</span><b>When water goes wrong</b><span class="ds">Find the shutoff valve and what to do first during a leak.</span></div></div>
   <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>A practice board with screws, nails, a level and a shutoff valve.</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.</p></div></div></div>
   <div class="cx-foot"><span class="muted" style="font-size:14.5px">1 of 8. Schools can pick any topics, in any order.</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="Previous topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><button class="icon-btn" type="button" data-cx="1" aria-label="Next topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div></div></div>
@@ -667,13 +674,13 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   <section class="sec ses-pin" id="sesPin" aria-labelledby="ses-h">
     <div class="wrap ses-stick">
       <div class="sec-head center reveal">
-        <span class="label">Inside a session</span>
+        
         <h2 class="h-lg" id="ses-h">One class period, four parts</h2>
-        <p class="lede">About 50 minutes, so it fits in a class period or after school. Scroll or tap a part to see what happens.</p>
+        <p class="lede">Here’s the 50-minute version, which fits in a class period or after school. The 90-minute one adds more practice time. Scroll or tap a part to see what happens.</p>
       </div>
       <div class="session reveal">
         <div class="sbar" id="sbar" role="group" aria-label="Session parts"><button class="seg" type="button" data-i="0" aria-pressed="false" style="flex:5"><span>Open</span><small>5 min</small></button><button class="seg" type="button" data-i="1" aria-pressed="false" style="flex:10"><span>Show</span><small>10 min</small></button><button class="seg" type="button" data-i="2" aria-pressed="true" style="flex: 33 1 0%;"><span>Practice</span><small>25 min</small></button><button class="seg" type="button" data-i="3" aria-pressed="false" style="flex:10"><span>Debrief</span><small>10 min</small></button></div>
-        <div class="sdetail" id="sdetail" aria-live="polite"><div><span class="label">Practice · 25 minutes</span><h3>Try it yourself</h3></div><p>Students practice in small groups with real tools and materials while mentors help. Mistakes are expected.</p></div>
+        <div class="sdetail" id="sdetail" aria-live="polite"><div><span class="label">25 minutes</span><h3>Try it yourself</h3></div><p>Students practice in small groups with real tools and materials while mentors help. Mistakes are expected.</p></div>
         <div class="ses-track" aria-hidden="true"><span>0 min</span><span class="bar"><i id="sesBar"></i></span><span>50 min</span></div>
       </div>
     </div>
@@ -682,7 +689,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   <section aria-labelledby="voi-h">
     <div class="wrap">
       <div class="panel sand reveal">
-        <span class="label" id="voi-h">What we heard</span>
+        <h2 class="h-md" id="voi-h">What we heard</h2>
         <div class="vq" id="vq" style="margin-top:28px">
           <figure style="margin:0" aria-live="polite"><blockquote id="vqText">Sometimes YouTube videos don’t explain it fully, and then you have to go to a totally different video. It’s not a relationship, and it’s really confusing.</blockquote><figcaption id="vqWho"><i>J</i><span><b>Joseph P.</b>, interviewed by Jewell</span></figcaption></figure>
           <div class="ctrl">
@@ -696,65 +703,33 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="host-h">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="label">For schools &amp; community groups</span>
-        <h2 class="h-lg" id="host-h">Ready to run, easy to host</h2>
-        <p class="lede">Counselors and youth leaders already have a lot on their plate. We bring the lesson plan, the supplies and the people to run it.</p>
-      </div>
-      <div class="stg hosts reveal">
-        <article class="host"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>We bring everything</h3><p>Lesson plans, tools, supplies and take-home cards. Your staff doesn’t have to prep anything.</p></article>
-        <article class="host"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></svg></span><h3>Pick the topics</h3><p>Choose one topic or several, in any order, for the grades you work with.</p></article>
-        <article class="host"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><h3>Families can join</h3><p>Students take what they learn home, and we’re planning family workshop days too.</p></article>
-      </div>
-    </div>
-  </section>
-
   <section aria-labelledby="try-h">
     <div class="wrap">
       <div class="panel mist reveal">
         <div class="sec-head">
-          <span class="label">Try it now</span>
+          
           <h2 class="h-lg" id="try-h">Try an activity</h2>
           <p class="lede" style="color:#46504A">Three short activities that give you a feel for what students do in a workshop.</p>
         </div>
         <div class="stg teaser">
-          <a class="tcard" href="#tools"><span class="art" style="background:radial-gradient(110% 80% at 50% 0%,#FBF8F2 0%,#ECE3D3 100%)"><svg viewBox="0 0 520 300" aria-hidden="true"><g transform="translate(40 10)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(120 20)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(195 10)"><use href="#t-tape" width="100" height="270"/></g><g transform="translate(285 15)"><use href="#t-wrench" width="80" height="260"/></g><g transform="translate(360 20)"><use href="#t-flat" width="80" height="250"/></g><g transform="translate(430 5)"><use href="#t-level" width="80" height="285"/></g></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><span class="chip live" style="justify-self:start">3 rounds</span><h3>Tool Time</h3><p>Check out six hand tools in 3D, match them to jobs, then decide when to call for help.</p></span></a>
-          <a class="tcard" href="#budget"><span class="art" style="background:var(--butter)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="40" width="220" height="140" rx="22" fill="#fff"/><text x="64" y="90" font-family="Geist,system-ui,sans-serif" font-size="13" fill="#8A928D">Left to spend</text><text x="64" y="134" font-family="Young Serif,Georgia,serif" font-size="42" fill="#16211C">$6</text><rect x="64" y="150" width="172" height="10" rx="5" fill="#EEEBE4"/><rect x="64" y="150" width="130" height="10" rx="5" fill="#2F6450"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><span class="chip">Money</span><h3>Saturday on $25</h3><p>Cover needs, keep a promise, stay on budget.</p></span></a>
-          <a class="tcard" href="#scams"><span class="art" style="background:var(--sage)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><rect x="88" y="56" width="110" height="34" rx="16" fill="#F6F4EF"/><rect x="88" y="100" width="124" height="44" rx="16" fill="#F2E2A6"/><rect x="100" y="114" width="70" height="6" rx="3" fill="#16211C" opacity=".5"/><rect x="100" y="126" width="90" height="6" rx="3" fill="#16211C" opacity=".3"/><rect x="88" y="156" width="80" height="26" rx="13" fill="#F6F4EF"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><span class="chip">Online safety</span><h3>Scam or Safe?</h3><p>Read six messages and spot what gives a scam away.</p></span></a>
+          <a class="tcard" href="#tools"><span class="art" style="background:radial-gradient(110% 80% at 50% 0%,#FBF8F2 0%,#ECE3D3 100%)"><svg viewBox="0 0 520 300" aria-hidden="true"><g transform="translate(40 10)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(120 20)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(195 10)"><use href="#t-tape" width="100" height="270"/></g><g transform="translate(285 15)"><use href="#t-wrench" width="80" height="260"/></g><g transform="translate(360 20)"><use href="#t-flat" width="80" height="250"/></g><g transform="translate(430 5)"><use href="#t-level" width="80" height="285"/></g></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Tool Time</h3><p>Check out six hand tools in 3D, match them to jobs, then decide when to call for help.</p></span></a>
+          <a class="tcard" href="#budget"><span class="art" style="background:var(--butter)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="40" width="220" height="140" rx="22" fill="#fff"/><text x="64" y="90" font-family="Geist,system-ui,sans-serif" font-size="13" fill="#8A928D">Left to spend</text><text x="64" y="134" font-family="Young Serif,Georgia,serif" font-size="42" fill="#16211C">$6</text><rect x="64" y="150" width="172" height="10" rx="5" fill="#EEEBE4"/><rect x="64" y="150" width="130" height="10" rx="5" fill="#2F6450"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Saturday on $25</h3><p>Cover needs, keep a promise, stay on budget.</p></span></a>
+          <a class="tcard" href="#scams"><span class="art" style="background:var(--sage)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><rect x="88" y="56" width="110" height="34" rx="16" fill="#F6F4EF"/><rect x="88" y="100" width="124" height="44" rx="16" fill="#F2E2A6"/><rect x="100" y="114" width="70" height="6" rx="3" fill="#16211C" opacity=".5"/><rect x="100" y="126" width="90" height="6" rx="3" fill="#16211C" opacity=".3"/><rect x="88" y="156" width="80" height="26" rx="13" fill="#F6F4EF"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Scam or Safe?</h3><p>Read six messages and spot what gives a scam away.</p></span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="fou-h">
-    <div class="wrap founders reveal">
-      <div>
-        <span class="label" id="fou-h">Why we started</span>
-        <p class="big" style="margin-top:22px">“I was working to make sure my kids had what they needed, but I couldn’t always be there to teach them every little thing.”</p>
-        <p class="muted" style="margin-top:18px;font-size:15px">Marco’s mom, a single mother who at times worked three jobs</p>
-      </div>
-      <div class="panel peach" style="padding:clamp(26px,3.4vw,44px)">
-        <div class="copy">
-          <p>We’re three college students who kept getting asked to fix phones, paint walls, fix cabinets and deal with car trouble. Usually nobody had shown us how.</p>
-          <p>This isn’t about parents who didn’t care. It’s about families doing everything they can, and kids who just need someone to take the time to teach them.</p>
-          <div class="team" aria-label="Founding team"><span><i>D</i>Dane</span><span><i>J</i>Jewell</span><span><i>M</i>Marco</span></div>
-          <div><a class="btn btn-ink btn-sm" href="#story">Read our story <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" style="padding-top:0" aria-labelledby="faq-h" id="faq">
+  <section class="sec" aria-labelledby="faq-h" id="faq">
     <div class="wrap faqwrap">
-      <div><span class="label">Questions</span><h2 class="h-lg" id="faq-h" style="margin-top:18px">Good to know</h2></div>
+      <div><h2 class="h-lg" id="faq-h">Good to know</h2></div>
       <div class="stg faq">
-        <details><summary>Are workshops running yet?</summary><div class="ans">Not yet. We’re still building it and talking with schools and community groups about first pilots. Join the interest list and we’ll let you know when they start.</div></details>
+        <details><summary>Are workshops running yet?</summary><div class="ans">Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.</div></details>
         <details><summary>Who are the workshops for?</summary><div class="ans">Boys and young men in elementary and middle school. Activities are matched to their age. Topics for older students, like car basics, come later.</div></details>
         <details><summary>Couldn’t students just watch a video?</summary><div class="ans">Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.</div></details>
         <details><summary>How do you keep sessions safe?</summary><div class="ans">Everything is supervised and right for their age. Students never work on electrical, gas or other dangerous repairs, and every topic covers when to get an adult or a pro.</div></details>
-        <details><summary>What will it cost?</summary><div class="ans">We haven’t set prices yet. We’ll figure that out with our first pilot schools.</div></details>
+        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</div></details>
+        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. They’re not ready yet. The three activities on this site are free to try now.</div></details>
       </div>
     </div>
   </section>
@@ -763,45 +738,45 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     <div class="wrap">
       <div class="panel sage cta reveal">
         <div class="side">
-          <span class="label">Interest list</span>
+          
           <h2 class="h-lg" id="interest-h">Bring Own Two Feet to your students</h2>
           <p>For adults: teachers, counselors, community leaders, parents and guardians.</p>
           <div class="note">
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>We’ll only email about pilots and launch</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>We’ll only email about our launch</div>
             <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Your feedback shapes what we teach</div>
           </div>
         </div>
         <div id="formSlotHome"><div id="formHolder">
-<form class="interest" id="interestForm" novalidate aria-label="Interest list form" onsubmit="return false">
-  <div class="demo-flag" role="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>Heads up:</b> this form isn’t hooked up yet. Nothing you type is sent or saved.</span></div>
+<form class="interest" id="interestForm" novalidate aria-label="Interest list form" action="https://formspree.io/f/mgaaaeyp" method="POST">
+  <input type="hidden" name="_subject" value="Own Two Feet interest list">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
   <div class="frow">
     <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
     <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
   </div>
   <div class="frow">
-    <div class="field"><label for="f-org">Organization <span class="opt">· optional for parents</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
+    <div class="field"><label for="f-org">Organization <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
     <div class="field"><label for="f-role">Your role</label>
-      <select id="f-role" name="role" aria-describedby="e-role"><option value="">Select</option><option>School counselor</option><option>Teacher or school staff</option><option>School administrator</option><option>Community or youth organization</option><option>Faith community leader</option><option>Parent or guardian</option><option>Mentor or volunteer</option><option>Other</option></select><span class="err" id="e-role"></span></div>
+      <select id="f-role" name="role" aria-describedby="e-role"><option value="">Select</option><option>School staff (counselor, teacher, admin)</option><option>Community, youth or faith group</option><option>Parent or guardian</option><option>Mentor or volunteer</option><option>Other</option></select><span class="err" id="e-role"></span></div>
   </div>
   <fieldset class="field" aria-describedby="e-int">
     <legend>I’m interested in</legend>
     <div class="checks">
-      <label class="check"><input type="checkbox" name="interest" value="pilot"><span class="bx"></span>Hosting a pilot</label>
-      <label class="check"><input type="checkbox" name="interest" value="community"><span class="bx"></span>Community workshops</label>
+      <label class="check"><input type="checkbox" name="interest" value="workshops"><span class="bx"></span>Workshops for my students</label>
       <label class="check"><input type="checkbox" name="interest" value="family"><span class="bx"></span>Family days</label>
       <label class="check"><input type="checkbox" name="interest" value="mentor"><span class="bx"></span>Volunteering</label>
-      <label class="check"><input type="checkbox" name="interest" value="updates"><span class="bx"></span>Launch updates</label>
+      <label class="check"><input type="checkbox" name="interest" value="updates"><span class="bx"></span>Just launch updates</label>
     </div>
     <span class="err" id="e-int"></span>
   </fieldset>
-  <div class="field"><label for="f-msg">Anything we should know? <span class="opt">· optional</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
+  <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
   <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
-  <div class="form-foot"><small>Students: ask a parent, teacher or counselor to sign up for you.</small><button class="btn btn-ink" type="submit">Join the Interest List</button></div>
+  <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
+  <div class="form-foot"><small>Students: ask a parent, teacher or counselor to sign up for you.</small><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
 </form>
 <div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
-  <span class="chip soon" style="justify-self:start">Not sent</span>
-  <h3>Looks good. Nothing was sent.</h3>
-  <p class="muted">This form isn’t connected yet, so your info wasn’t sent or saved. Here’s what you filled in.</p>
+  <h3>You’re on the list. Thank you.</h3>
+  <p class="muted">We’ll email you when Own Two Feet launches. Here’s what you sent us.</p>
   <dl id="formSummary"></dl>
   <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">Start over</button>
 </div>
@@ -814,51 +789,50 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 <!-- ================= WORKSHOPS ================= -->
 <div class="view" data-view="workshops" id="workshops" hidden>
   <section class="phead"><div class="wrap"><div class="panel mist">
-    <span class="label dot">Workshops</span>
     <h1 class="h-xl" tabindex="-1" data-focus>Hands-on sessions, led in person</h1>
-    <p class="lede" style="color:#46504A">Each workshop covers one topic with hands-on practice. Here’s how we plan to run them once pilots start.</p>
+    <p class="lede" style="color:#46504A">Each workshop covers one topic with hands-on practice. Here’s how we plan to run them once we launch. Nothing is running or booking yet.</p>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><span class="label">Planned formats</span><h2 class="h-lg">Built around your schedule</h2><p class="lede">We’ll lock these in with our first pilot schools. Nothing is booking yet.</p></div>
+    <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</p></div>
     <div class="stg formats">
-      <article class="tier tint-1"><span class="chip soon" style="justify-self:start">Planned</span><h3>Single workshop</h3><p>One topic, one session. The easiest way to try Own Two Feet with a small group.</p></article>
-      <article class="tier tint-2"><span class="chip soon" style="justify-self:start">Planned</span><h3>Workshop series</h3><p>Several topics over a few weeks, picked by your team.</p></article>
-      <article class="tier tint-4"><span class="chip soon" style="justify-self:start">Planned</span><h3>Family day</h3><p>Students and their families learn together, then practice at home.</p></article>
+      <article class="tier tint-1"><span class="chip soon" style="justify-self:start">Planned</span><h3>50-minute workshop</h3><p class="price">$350 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></article>
+      <article class="tier tint-2"><span class="chip soon" style="justify-self:start">Planned</span><h3>90-minute workshop</h3><p class="price">$500 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></article>
+      <article class="tier tint-4"><span class="chip soon" style="justify-self:start">Planned</span><h3>Series or family day</h3><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></article>
     </div>
   </div></section>
 
   <section><div class="wrap"><div class="panel sand">
-    <div class="sec-head"><span class="label">By grade</span><h2 class="h-lg">Matched to their age</h2><p class="lede" style="color:#46504A">Same topics, adjusted to what each age can safely do.</p></div>
+    <div class="sec-head"><h2 class="h-lg">Matched to their age</h2><p class="lede" style="color:#46504A">Same topics, adjusted to what each age can safely do.</p></div>
     <div class="stg formats">
-      <article class="tier"><span class="chip" style="justify-self:start">Grades 3–5</span><h3>Elementary</h3><p>Short, simple tasks with lots of moving around.</p><ul><li>Name tools and what they’re for</li><li>Spot a “you won a prize” message</li><li>Practice asking for help, out loud</li></ul></article>
-      <article class="tier"><span class="chip" style="justify-self:start">Grades 6–8</span><h3>Middle school</h3><p>More on their own, and more real-life decisions.</p><ul><li>Tighten a screw, hang something level</li><li>Lock down an account</li><li>Plan and track a weekend budget</li></ul></article>
-      <article class="tier"><span class="chip soon" style="justify-self:start">Preview</span><h3>Older students</h3><p>Planned for later. Not part of the first pilots.</p><ul><li>Vehicle basics with an adult</li><li>Budgeting a first paycheck</li><li>Workplace communication</li></ul></article>
+      <article class="tier"><h3>Elementary, grades 3 to 5</h3><p>Short, simple tasks with lots of moving around.</p><ul><li>Name tools and what they’re for</li><li>Spot a “you won a prize” message</li><li>Practice asking for help, out loud</li></ul></article>
+      <article class="tier"><h3>Middle school, grades 6 to 8</h3><p>More on their own, and more real-life decisions.</p><ul><li>Tighten a screw, hang something level</li><li>Lock down an account</li><li>Plan and track a weekend budget</li></ul></article>
+      <article class="tier"><span class="chip soon" style="justify-self:start">Preview</span><h3>Older students</h3><p>Planned for later, after we launch for grades 3 to 8.</p><ul><li>Vehicle basics with an adult</li><li>Budgeting a first paycheck</li><li>Workplace communication</li></ul></article>
     </div>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><span class="label">Roles</span><h2 class="h-lg">Who does what</h2></div>
+    <div class="sec-head"><h2 class="h-lg">Who does what</h2></div>
     <div class="stg roles">
-      <div class="role"><span class="label">The host provides</span><h3>Room and students</h3><p>A room with tables, a group of students, and an adult who knows them and stays for the session.</p></div>
-      <div class="role"><span class="label">We bring</span><h3>Plan and materials</h3><p>Lesson plans, tools, supplies, safety rules and take-home cards.</p></div>
-      <div class="role"><span class="label">We lead</span><h3>Running it</h3><p>Our team runs the session with your staff in the room.</p></div>
+      <div class="role"><h3>The host provides</h3><p>A room with tables, a group of students, and an adult who knows them and stays for the session.</p></div>
+      <div class="role"><h3>We bring</h3><p>Lesson plans, tools, supplies, safety rules and take-home cards.</p></div>
+      <div class="role"><h3>We lead</h3><p>Our team runs the session with your staff in the room.</p></div>
     </div>
   </div></section>
 
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Interested in hosting a pilot?</h2><p class="muted">Tell us about your students and we’ll reach out when pilots start.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#activities">Explore Activities</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#activities">Explore Activities</a></div></div></div></section>
 </div>
 
 <!-- ================= ACTIVITIES ================= -->
 <div class="view" data-view="activities" id="activities" hidden>
-  <section class="phead"><div class="wrap"><div class="panel butter">
-    <span class="label dot">Activities</span>
+  <section class="phead"><div class="wrap"><div class="panel butter with-art">
+    <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 22) rotate(-14 45 135)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(124 6)"><use href="#t-level" width="80" height="285"/></g><g transform="translate(206 22) rotate(12 40 130)"><use href="#t-wrench" width="80" height="260"/></g></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>Practice a little right now</h1>
     <p class="lede" style="color:#46504A">Three short activities you can try now. More are on the way further down the page.</p>
     <nav class="act-nav" aria-label="Jump to an activity">
-      <a href="#tools"><i style="background:var(--sand)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></i>Tool Time</a>
-      <a href="#budget"><i style="background:var(--mist)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/></svg></i>Saturday on $25</a>
-      <a href="#scams"><i style="background:var(--sage)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg></i>Scam or Safe?</a>
+      <a href="#tools"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></i>Tool Time</a>
+      <a href="#budget"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/></svg></i>Saturday on $25</a>
+      <a href="#scams"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg></i>Scam or Safe?</a>
       <a href="#previews"><i style="background:var(--peach)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg></i>Coming soon</a>
     </nav>
   </div></div></section>
@@ -866,12 +840,12 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   <section><div class="wrap">
     <article class="activity" id="tools" aria-labelledby="tools-h">
       <div class="act-head">
-        <div class="t"><span class="chip live" style="justify-self:start">Home &amp; tools</span><h2 id="tools-h">Tool Time</h2><p>Learn six hand tools, match each one to a job, then practice knowing when to stop and get help.</p></div>
+        <div class="t"><h2 id="tools-h">Tool Time</h2><p>Learn six hand tools, match each one to a job, then practice knowing when to stop and get help.</p></div>
         <div class="act-tools">
           <div class="modes" role="tablist" aria-label="Tool Time modes" id="ttModes">
-            <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">1 · Explore</button>
-            <button class="mode" role="tab" aria-selected="false" data-mode="match" id="m-match" tabindex="-1">2 · Match the job</button>
-            <button class="mode" role="tab" aria-selected="false" data-mode="pro" id="m-pro" tabindex="-1">3 · Fix or call?</button>
+            <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">Explore</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="match" id="m-match" tabindex="-1">Match the job</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="pro" id="m-pro" tabindex="-1">Fix or call?</button>
           </div>
           <button class="reset" type="button" id="ttReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
         </div>
@@ -882,7 +856,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
             <div class="wall" id="wall"><div class="fb2d" id="fb2d"><button type="button" data-tool="hammer" aria-label="Claw hammer" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-hammer"></use></svg></button><button type="button" data-tool="phillips" aria-label="Phillips screwdriver" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-phillips"></use></svg></button><button type="button" data-tool="tape" aria-label="Tape measure" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-tape"></use></svg></button><button type="button" data-tool="wrench" aria-label="Adjustable wrench" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-wrench"></use></svg></button><button type="button" data-tool="flat" aria-label="Flathead screwdriver" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-flat"></use></svg></button><button type="button" data-tool="level" aria-label="Level" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-level"></use></svg></button></div><span class="hint" id="wallHint">Click a tool to pick it up</span></div>
             <div class="tray" id="tray" role="group" aria-label="Tools"><button type="button" data-tool="hammer">Hammer</button><button type="button" data-tool="phillips">Phillips</button><button type="button" data-tool="tape">Tape measure</button><button type="button" data-tool="wrench">Wrench</button><button type="button" data-tool="flat">Flathead</button><button type="button" data-tool="level">Level</button></div>
           </div>
-          <div class="side-card" id="ttSide" aria-live="polite"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">Explore · 0 of 6</span><div class="prog" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div><h3>Pick up a tool to learn about it.</h3><p>Click any tool on the wall or in the row below. Check out all six, then try the challenge.</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to the challenge</button></div></div>
+          <div class="side-card" id="ttSide" aria-live="polite"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">0 of 6 explored</span><div class="prog" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div><h3>Pick up a tool to learn about it.</h3><p>Click any tool on the wall or in the row below. Check out all six, then try the challenge.</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to the challenge</button></div></div>
         </div>
         <div class="pro" id="proWrap" hidden>
           <div class="scene" id="proScene"></div>
@@ -893,15 +867,15 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="budget" aria-labelledby="budget-h">
       <div class="act-head">
-        <div class="t"><span class="chip live" style="justify-self:start">Money</span><h2 id="budget-h">Saturday on $25</h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
+        <div class="t"><h2 id="budget-h">Saturday on $25</h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
         <div class="act-tools"><button class="reset" type="button" id="budReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body budget">
         <form id="budForm" onsubmit="return false">
-          <fieldset class="bgroup"><legend class="label">Getting there · need</legend><div class="items" id="bNeeds"><label class="item"><input type="checkbox" value="bus" id="b-bus"><span class="nm">Round-trip bus fare<small>Rec center and back</small></span><span class="pr">$4</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">Lunch · choose one</legend><div class="items" id="bLunch"><label class="item"><input type="radio" name="lunch" value="taco" id="b-taco"><span class="nm">Taco truck lunch<small>Two tacos and a drink</small></span><span class="pr">$7</span></label><label class="item"><input type="radio" name="lunch" value="packed" id="b-packed"><span class="nm">Packed lunch from home<small>Sandwich, fruit, water</small></span><span class="pr">$2</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">Getting there (needed)</legend><div class="items" id="bNeeds"><label class="item"><input type="checkbox" value="bus" id="b-bus"><span class="nm">Round-trip bus fare<small>Rec center and back</small></span><span class="pr">$4</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">Lunch (pick one)</legend><div class="items" id="bLunch"><label class="item"><input type="radio" name="lunch" value="taco" id="b-taco"><span class="nm">Taco truck lunch<small>Two tacos and a drink</small></span><span class="pr">$7</span></label><label class="item"><input type="radio" name="lunch" value="packed" id="b-packed"><span class="nm">Packed lunch from home<small>Sandwich, fruit, water</small></span><span class="pr">$2</span></label></div></fieldset>
           <fieldset class="bgroup"><legend class="label">A promise you made</legend><div class="items" id="bPromise"><label class="item"><input type="checkbox" value="gift" id="b-gift"><span class="nm">Card and small gift<small>Your sister’s birthday is Sunday</small></span><span class="pr">$8</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">Wants · optional</legend><div class="items" id="bWants"><label class="item"><input type="checkbox" value="movie" id="b-movie"><span class="nm">Movie ticket<small>Matinee with friends</small></span><span class="pr">$9</span></label><label class="item"><input type="checkbox" value="snack" id="b-snack"><span class="nm">Movie snacks<small>Popcorn and a drink</small></span><span class="pr">$6</span></label><label class="item"><input type="checkbox" value="arcade" id="b-arcade"><span class="nm">Arcade tokens<small>About 20 minutes of games</small></span><span class="pr">$5</span></label><label class="item"><input type="checkbox" value="case" id="b-case"><span class="nm">New phone case<small>Yours still works fine</small></span><span class="pr">$12</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">Wants (optional)</legend><div class="items" id="bWants"><label class="item"><input type="checkbox" value="movie" id="b-movie"><span class="nm">Movie ticket<small>Matinee with friends</small></span><span class="pr">$9</span></label><label class="item"><input type="checkbox" value="snack" id="b-snack"><span class="nm">Movie snacks<small>Popcorn and a drink</small></span><span class="pr">$6</span></label><label class="item"><input type="checkbox" value="arcade" id="b-arcade"><span class="nm">Arcade tokens<small>About 20 minutes of games</small></span><span class="pr">$5</span></label><label class="item"><input type="checkbox" value="case" id="b-case"><span class="nm">New phone case<small>Yours still works fine</small></span><span class="pr">$12</span></label></div></fieldset>
         </form>
         <aside class="wallet" aria-label="Your budget">
           <div class="row"><span class="muted">Spent</span><b id="bSpent">$0</b></div>
@@ -917,7 +891,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="scams" aria-labelledby="scam-h">
       <div class="act-head">
-        <div class="t"><span class="chip live" style="justify-self:start">Online safety</span><h2 id="scam-h">Scam or Safe?</h2><p>Read each message and make the call. Then see the clues.</p></div>
+        <div class="t"><h2 id="scam-h">Scam or Safe?</h2><p>Read each message and make the call. Then see the clues.</p></div>
         <div class="act-tools"><div class="prog" id="scamProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><button class="reset" type="button" id="scamReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body scam">
@@ -939,7 +913,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     </article>
 
     <section id="previews" class="sec tight" aria-labelledby="prev-h" style="padding-bottom:0">
-      <div class="sec-head"><span class="label">Coming soon</span><h2 class="h-lg" id="prev-h">More activities coming</h2><p class="lede">These are planned for workshops. You can’t play them yet.</p></div>
+      <div class="sec-head"><h2 class="h-lg" id="prev-h">More activities coming</h2><p class="lede">These are planned for workshops. You can’t play them yet.</p></div>
       <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="label">Tech &amp; online safety</span><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 1;"><div class="top"><span class="label">Personal care</span><span class="chip soon">Coming soon</span></div><h3>Laundry Sort-Out</h3><p>Sort a real pile of clothes and decode the care-label symbols.</p><details><summary>What students practice</summary><ul><li>Darks, lights and towels</li><li>Wash and dry symbols</li><li>Measuring detergent with an adult</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="label">Simple cooking</span><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="label">Communication</span><span class="chip soon">Coming soon</span></div><h3>Make the Call</h3><p>Role-play calling a front desk to ask a question or reschedule.</p><details><summary>What students practice</summary><ul><li>A clear introduction</li><li>Planning what to say</li><li>Confirming details before you hang up</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="label">Home &amp; tools</span><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 5;"><div class="top"><span class="label">Vehicle basics</span><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div>
     </section>
   </div></section>
@@ -948,7 +922,6 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 <!-- ================= STORY ================= -->
 <div class="view" data-view="story" id="story" hidden>
   <section class="phead"><div class="wrap"><div class="panel peach">
-    <span class="label dot">Our Story</span>
     <h1 class="h-xl" tabindex="-1" data-focus>We learned by doing. It shouldn’t be that hard.</h1>
   </div></div></section>
   <section class="sec tight"><div class="wrap split">
@@ -957,10 +930,10 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
       <p>Some of us grew up without a dad around much. All of us watched parents and relatives work long hours to keep things going. <strong>A busy parent isn’t a missing parent.</strong> Sometimes everyone’s just busy, and a kid steps up and figures it out alone.</p>
       <p>So we asked a simple question: how many other boys are in the same spot? The problem isn’t that they can’t learn. It’s that someone may never have had the time to teach them.</p>
     </div>
-    <div class="panel sage" style="padding:clamp(26px,3vw,40px);display:grid;gap:14px"><span class="chip soon" style="justify-self:start">Where we are</span><h3 style="font-size:30px">Still building</h3><p class="muted">We’re putting together our first workshops and talking with schools and community groups about running pilots.</p><a class="btn btn-ink btn-sm" href="#interest" style="justify-self:start;margin-top:6px">Join the Interest List</a></div>
+    <div class="panel sage" style="padding:clamp(26px,3vw,40px);display:grid;gap:14px"><h2 class="h-md">Still building</h2><p class="muted">Own Two Feet is a student venture. We’re writing our first workshops and manuals now. No workshops are running yet, and we’re not booking any.</p><a class="btn btn-ink btn-sm" href="#interest" style="justify-self:start;margin-top:6px">Join the Interest List</a></div>
   </div></section>
   <section><div class="wrap"><div class="panel sand">
-    <div class="sec-head"><span class="label">What we heard</span><h2 class="h-lg">Our interviews shaped the plan</h2><p class="lede" style="color:#46504A">We talked to parents, mentors and young men about growing up and learning this stuff.</p></div>
+    <div class="sec-head"><h2 class="h-lg">Our interviews shaped the plan</h2><p class="lede" style="color:#46504A">We talked to parents, mentors and young men about growing up and learning this stuff.</p></div>
     <div class="stg values">
       <div class="value"><h3>Videos help, but they don’t stick</h3><p>Stuff you learn alone from a video is easy to forget. Learning from a real person sticks.</p></div>
       <div class="value"><h3>Kids don’t want to bother busy parents</h3><p>A lot of boys figure things out on their own so they don’t add to their parents’ stress.</p></div>
@@ -969,7 +942,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     </div>
   </div></div></section>
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><span class="label">What we believe</span><h2 class="h-lg">Four commitments</h2></div>
+    <div class="sec-head"><h2 class="h-lg">Four commitments</h2></div>
     <div class="stg values">
       <div class="value tint-1"><h3>Support families, never replace them</h3><p>We work alongside parents, counselors and mentors, and send skills home with students.</p></div>
       <div class="value tint-2"><h3>Practice beats watching</h3><p>Students learn by doing, with someone nearby to answer questions and catch mistakes.</p></div>
@@ -982,20 +955,20 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 <!-- ================= GET INVOLVED ================= -->
 <div class="view" data-view="involved" id="involved" hidden>
   <section class="phead"><div class="wrap"><div class="panel sage">
-    <span class="label dot">Get Involved</span>
     <h1 class="h-xl" tabindex="-1" data-focus>Help bring workshops to more students</h1>
     <p class="lede" style="color:#46504A">We’re just getting started, and the people who join now help decide what we build.</p>
   </div></div></section>
   <section class="sec tight"><div class="wrap">
+    <h2 class="sr-only">Ways to help</h2>
     <div class="stg paths">
-      <div class="path"><span class="chip live" style="justify-self:start">Looking for pilot schools</span><h3>Schools &amp; counselors</h3><p>Try a first workshop with a small group of students and tell us what works.</p><button class="btn btn-ink btn-sm" type="button" data-interest="pilot">I’m interested in a pilot</button></div>
-      <div class="path"><span class="chip" style="justify-self:start">Community</span><h3>Community organizations</h3><p>Youth programs, churches, rec centers and nonprofits that serve boys and young men.</p><button class="btn btn-ink btn-sm" type="button" data-interest="community">Host in our community</button></div>
-      <div class="path"><span class="chip" style="justify-self:start">Families</span><h3>Parents &amp; guardians</h3><p>Stay in the loop, suggest skills you’d like covered, and hear about family days.</p><button class="btn btn-ink btn-sm" type="button" data-interest="family">Keep me updated</button></div>
-      <div class="path"><span class="chip soon" style="justify-self:start">Coming later</span><h3>Mentors &amp; volunteers</h3><p>Adults who are handy and care about kids. We’ll share details once pilots start.</p><button class="btn btn-ink btn-sm" type="button" data-interest="mentor">I’d like to volunteer</button></div>
+      <div class="path"><h3>Schools &amp; counselors</h3><p>Tell us you’d want workshops for your students and which topics matter most. We’ll email you when we launch.</p><button class="btn btn-ink btn-sm" type="button" data-interest="workshops">I’d want this at my school</button></div>
+      <div class="path"><h3>Community organizations</h3><p>Youth programs, churches, rec centers and nonprofits that serve boys and young men.</p><button class="btn btn-ink btn-sm" type="button" data-interest="workshops">Host in our community</button></div>
+      <div class="path"><h3>Parents &amp; guardians</h3><p>Stay in the loop, suggest skills you’d like covered, and hear about family days.</p><button class="btn btn-ink btn-sm" type="button" data-interest="family">Keep me updated</button></div>
+      <div class="path"><span class="chip soon" style="justify-self:start">Coming later</span><h3>Mentors &amp; volunteers</h3><p>Adults who are handy and care about kids. We’ll share details when we launch.</p><button class="btn btn-ink btn-sm" type="button" data-interest="mentor">I’d like to volunteer</button></div>
     </div>
   </div></section>
   <section><div class="wrap"><div class="panel white cta">
-    <div class="side"><span class="label">Interest list</span><h2 class="h-lg">Tell us how you’d like to help</h2><p>Adults only, please. We’ll only use your info to send Own Two Feet updates.</p></div>
+    <div class="side"><h2 class="h-lg">Tell us how you’d like to help</h2><p>Adults only, please. We’ll only use your info to send Own Two Feet updates.</p></div>
     <div id="formSlotInvolved"></div>
   </div></div></section>
 </div>
@@ -1072,7 +1045,7 @@ function showMod(i,focus){
   cxI=(i+MODS.length)%MODS.length;const m=MODS[cxI];
   $$('.cx-tab',cxTabs).forEach((b,j)=>{b.setAttribute('aria-selected',String(j===cxI));b.tabIndex=j===cxI?0:-1});
   cxPanel.setAttribute('aria-labelledby','cxt-'+m.k);
-  cxPanel.innerHTML=`<div class="cx-head"><div><span class="label">${m.later?'Coming later':'Topic'}</span><h3 style="margin-top:12px">${m.t}</h3><p>${m.d}</p></div><div style="display:flex;gap:6px;flex-wrap:wrap">${m.g.map(g=>`<span class="chip ${g==='Preview'?'soon':''}" style="background:${g==='Preview'?'':'var(--bg)'}">${g}</span>`).join('')}</div></div>
+  cxPanel.innerHTML=`<div class="cx-head"><div><h3>${m.t}</h3><p>${m.d}</p></div>${m.later?'<span class="chip soon">Coming later</span>':''}</div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span>${m.L.map((l,j)=>`<div class="lesson"><span class="n">${j+1}</span><b>${l[0]}</b><span class="ds">${l[1]}</span></div>`).join('')}</div>
   <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>${m.st}</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>${m.stop}</p></div></div></div>
   <div class="cx-foot"><span class="muted" style="font-size:14.5px">${cxI+1} of ${MODS.length}. Schools can pick any topics, in any order.</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="Previous topic">${I.prev}</button><button class="icon-btn" type="button" data-cx="1" aria-label="Next topic">${I.next}</button></div></div>`;
@@ -1095,7 +1068,7 @@ const SEG=[
 ];
 const sbar=$('#sbar'),sdet=$('#sdetail');
 sbar.innerHTML=SEG.map((s,i)=>`<button class="seg" type="button" data-i="${i}" aria-pressed="${i===2}" style="flex:${s.m}"><span>${s.t}</span><small>${s.m} min</small></button>`).join('');
-function showSeg(i){$$('.seg',sbar).forEach((b,j)=>{b.setAttribute('aria-pressed',String(j===i));b.style.flex=j===i?SEG[j].m+8:SEG[j].m});const s=SEG[i];sdet.innerHTML=`<div><span class="label">${s.t} · ${s.m} minutes</span><h3>${s.h}</h3></div><p>${s.d}</p>`;sdet.classList.remove('swap');void sdet.offsetWidth;sdet.classList.add('swap')}
+function showSeg(i){$$('.seg',sbar).forEach((b,j)=>{b.setAttribute('aria-pressed',String(j===i));b.style.flex=j===i?SEG[j].m+8:SEG[j].m});const s=SEG[i];sdet.innerHTML=`<div><span class="label">${s.m} minutes</span><h3>${s.h}</h3></div><p>${s.d}</p>`;sdet.classList.remove('swap');void sdet.offsetWidth;sdet.classList.add('swap')}
 sbar.addEventListener('click',e=>{const b=e.target.closest('.seg');if(b)showSeg(+b.dataset.i)});
 showSeg(2);
 
@@ -1118,6 +1091,8 @@ if('IntersectionObserver' in window&&!RM){const io=new IntersectionObserver(es=>
 
 /* ---------- router ---------- */
 const VIEWS=['home','workshops','activities','story','involved'];
+/* visit counter: one count per view shown; waits for the GoatCounter script on first load, does nothing if it's blocked */
+function countVisit(view){const go=()=>window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:'/'+view,title:view});window.goatcounter&&window.goatcounter.count?go():addEventListener('load',go,{once:true})}
 function route(hash,push){
   let h=(hash||'').replace(/^#/,'')||'home',view=h,target=null;
   if(!VIEWS.includes(h)){const el=document.getElementById(h);if(el){const v=el.closest('[data-view]');view=v?v.dataset.view:'home';target=el}else{view='home';h='home'}}
@@ -1125,6 +1100,7 @@ function route(hash,push){
   $$('[data-view]').forEach(v=>v.hidden=v.dataset.view!==view);
   $$('.nav a:not(.btn)').forEach(a=>a.getAttribute('href')==='#'+view?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
   placeForm(view==='involved'?'#formSlotInvolved':'#formSlotHome');
+  if(changed)countVisit(view);
   curView=view;closeMenu();
   if(push){try{history.pushState(null,'','#'+h)}catch(e){}}
   requestAnimationFrame(()=>{
@@ -1147,7 +1123,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.dataset.open===
 const holder=$('#formHolder');
 function placeForm(sel){const s=$(sel);if(s&&holder.parentNode!==s)s.appendChild(holder)}
 const form=$('#interestForm',holder),done=$('#formDone',holder);
-const LBL={pilot:'Hosting a pilot',community:'Community workshops',family:'Family days',mentor:'Volunteering',updates:'Launch updates'};
+const LBL={workshops:'Workshops for my students',family:'Family days',mentor:'Volunteering',updates:'Just launch updates'};
 let tried=false;
 function setErr(id,m,inp){$('#'+id,holder).textContent=m;if(inp)inp.setAttribute('aria-invalid',m?'true':'false')}
 function validate(){
@@ -1161,9 +1137,15 @@ function validate(){
   return {ok,first,data:{Name:nm,Email:ev,Organization:$('#f-org',form).value.trim()||'—',Role:r.value||'—',Interests:ints.map(i=>LBL[i.value]).join(', ')||'—'}};
 }
 ['input','change'].forEach(ev=>form.addEventListener(ev,()=>{if(tried)validate()}));
-form.addEventListener('submit',e=>{e.preventDefault();tried=true;const v=validate();if(!v.ok){v.first.focus();toast('A few fields need attention.');return}
-  $('#formSummary',holder).innerHTML=Object.entries(v.data).map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)}</dd>`).join('');form.hidden=true;done.hidden=false;done.focus();toast('Form isn’t connected yet. Nothing was sent.')});
-$('#formAgain',holder).addEventListener('click',()=>{tried=false;form.reset();$$('[aria-invalid]',form).forEach(i=>i.removeAttribute('aria-invalid'));$$('.err',form).forEach(x=>x.textContent='');done.hidden=true;form.hidden=false;$('#f-name',form).focus()});
+const send=$('#formSend',form),ferr=$('#formErr',form);let sending=false;
+form.addEventListener('submit',async e=>{e.preventDefault();if(sending)return;tried=true;ferr.hidden=true;const v=validate();if(!v.ok){v.first.focus();toast('A few fields need attention.');return}
+  const fd=new FormData(form);fd.set('interest',v.data.Interests);fd.set('adult','Yes, 18 or older');
+  sending=true;send.disabled=true;send.textContent='Sending…';
+  try{const res=await fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!res.ok)throw new Error('status '+res.status)}
+  catch(err){sending=false;send.disabled=false;send.textContent='Join the Interest List';ferr.hidden=false;toast('That didn’t go through. Try again.');return}
+  sending=false;send.disabled=false;send.textContent='Join the Interest List';
+  $('#formSummary',holder).innerHTML=Object.entries(v.data).map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)}</dd>`).join('');form.hidden=true;done.hidden=false;done.focus();toast('Sent. You’re on the list.')});
+$('#formAgain',holder).addEventListener('click',()=>{tried=false;form.reset();ferr.hidden=true;$$('[aria-invalid]',form).forEach(i=>i.removeAttribute('aria-invalid'));$$('.err',form).forEach(x=>x.textContent='');done.hidden=true;form.hidden=false;$('#f-name',form).focus()});
 $$('[data-interest]').forEach(b=>b.addEventListener('click',()=>{const cb=$(`input[name=interest][value="${b.dataset.interest}"]`,form);if(cb)cb.checked=true;const r=$('#f-role',form);if(!r.value){if(b.dataset.interest==='family')r.value='Parent or guardian';if(b.dataset.interest==='mentor')r.value='Mentor or volunteer'}
   holder.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});setTimeout(()=>$('#f-name',form).focus({preventScroll:true}),RM?0:450);toast('Added to your interests.')}));
 
@@ -1274,11 +1256,11 @@ function trayState(){$$('#tray button,#fb2d button').forEach(b=>{b.classList.rem
 function renderSide(){
   if(tt.mode==='explore'){
     const pr=`<div class="prog" aria-hidden="true">${TOOLS.map(t=>`<i class="${tt.seen.has(t.id)?'done':''}"></i>`).join('')}</div>`;
-    if(!tt.sel){side.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">Explore · ${tt.seen.size} of 6</span>${pr}</div><h3>Pick up a tool to learn about it.</h3><p>Click any tool on the wall or in the row below. Check out all six, then try the challenge.</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to the challenge</button></div>`;return}
+    if(!tt.sel){side.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">${tt.seen.size} of 6 explored</span>${pr}</div><h3>Pick up a tool to learn about it.</h3><p>Click any tool on the wall or in the row below. Check out all six, then try the challenge.</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to the challenge</button></div>`;return}
     const t=T[tt.sel];
-    side.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">Explore · ${tt.seen.size} of 6</span>${pr}</div><h3>${t.name}</h3><dl class="spec"><div><dt>Used for</dt><dd>${t.use}</dd></div><div><dt>How to hold</dt><dd>${t.grip}</dd></div><div><dt>Safe habit</dt><dd>${t.safe}</dd></div></dl><div class="push">${tt.seen.size===6?'<button class="btn btn-ink" type="button" data-go="match">Start the challenge</button>':'<button class="btn btn-ink btn-sm" type="button" data-nexttool>Next tool</button><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to challenge</button>'}</div>`;
+    side.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">${tt.seen.size} of 6 explored</span>${pr}</div><h3>${t.name}</h3><dl class="spec"><div><dt>Used for</dt><dd>${t.use}</dd></div><div><dt>How to hold</dt><dd>${t.grip}</dd></div><div><dt>Safe habit</dt><dd>${t.safe}</dd></div></dl><div class="push">${tt.seen.size===6?'<button class="btn btn-ink" type="button" data-go="match">Start the challenge</button>':'<button class="btn btn-ink btn-sm" type="button" data-nexttool>Next tool</button><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to challenge</button>'}</div>`;
   }else if(tt.mode==='match'){
-    if(tt.mi>=JOBS.length){side.innerHTML=`<span class="label">Match the job · complete</span><div class="result"><div class="score">${tt.first}<small> / 6 on the first try</small></div><p>In a workshop, students hold each tool and try it on a practice board with a mentor.</p></div><div class="push"><button class="btn btn-ink" type="button" data-go="pro">Next: Fix or call?</button><button class="btn btn-line btn-sm" type="button" data-replay="match">Play again</button></div>`;return}
+    if(tt.mi>=JOBS.length){side.innerHTML=`<span class="label">All jobs matched</span><div class="result"><div class="score">${tt.first}<small> / 6 on the first try</small></div><p>In a workshop, students hold each tool and try it on a practice board with a mentor.</p></div><div class="push"><button class="btn btn-ink" type="button" data-go="pro">Next: Fix or call?</button><button class="btn btn-line btn-sm" type="button" data-replay="match">Play again</button></div>`;return}
     side.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="label">Job ${tt.mi+1} of 6</span><div class="prog" aria-hidden="true">${JOBS.map((j,k)=>`<i class="${k<tt.mi?'done':k===tt.mi?'cur':''}"></i>`).join('')}</div></div><h3>${JOBS[tt.mi].task}</h3><div class="fb" id="ttFb"></div><div class="push"><button class="btn btn-ink" type="button" id="ttNext" hidden>${tt.mi===5?'See results':'Next job'}</button></div>`;
   }
 }
@@ -1301,7 +1283,7 @@ function pick(id){
 }
 function renderPro(){
   const sc=$('#proScene'),sd=$('#proSide');
-  if(tt.pi>=PRO.length){sc.innerHTML=`<span class="label">Fix or call · complete</span><p class="sit">Knowing when to stop is a real skill. You just practiced it six times.</p>`;sd.innerHTML=`<span class="label">Your result</span><div class="result"><div class="score">${tt.pScore}<small> / 6</small></div><p>The rule to remember: water spreading, electricity, gas, or anything that feels unsafe means get an adult first.</p></div><div class="push"><button class="btn btn-ink" type="button" data-replay="pro">Play again</button><button class="btn btn-line btn-sm" type="button" data-go="explore">Back to Explore</button></div>`;return}
+  if(tt.pi>=PRO.length){sc.innerHTML=`<span class="label">All situations done</span><p class="sit">Knowing when to stop is a real skill. You just practiced it six times.</p>`;sd.innerHTML=`<span class="label">Your result</span><div class="result"><div class="score">${tt.pScore}<small> / 6</small></div><p>The rule to remember: water spreading, electricity, gas, or anything that feels unsafe means get an adult first.</p></div><div class="push"><button class="btn btn-ink" type="button" data-replay="pro">Play again</button><button class="btn btn-line btn-sm" type="button" data-go="explore">Back to Explore</button></div>`;return}
   const p=PRO[tt.pi];
   sc.innerHTML=`<div class="where">${p.w.map(w=>`<span class="chip">${w}</span>`).join('')}</div><p class="sit">${p.s}</p><div class="choices3" role="group" aria-label="What should you do?">${Object.entries(PROA).map(([k,v])=>`<button type="button" data-pa="${k}">${v[0]}<small>${v[1]}</small></button>`).join('')}</div>`;
   sd.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="label">Situation ${tt.pi+1} of 6</span><div class="prog" aria-hidden="true">${PRO.map((x,k)=>`<i class="${k<tt.pi?'done':k===tt.pi?'cur':''}"></i>`).join('')}</div></div><h3>What should you do?</h3><p>Some jobs are yours. Some need an adult. Some need a professional, fast.</p><div class="fb" id="proFb"></div><div class="push"><button class="btn btn-ink" type="button" id="proNext" hidden>${tt.pi===5?'See results':'Next situation'}</button></div>`;
@@ -1435,12 +1417,12 @@ route(location.hash,false);
   const fab=$('#hcFab'),box=$('#hc'),log=$('#hcLog'),opts=$('#hcOpts');
   const A={
    what:{q:'What is Own Two Feet?',a:'Own Two Feet runs live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.',go:['#workshops','How workshops work'],next:['who','status','cost']},
-   status:{q:'Are workshops running yet?',a:'Not yet. We’re still building it and talking with schools about first pilots. Join the interest list and we’ll let you know when they start.',go:['#interest','Join the interest list'],next:['host','what']},
+   status:{q:'Are workshops running yet?',a:'Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.',go:['#interest','Join the interest list'],next:['host','what']},
    who:{q:'Who is it for?',a:'Boys and young men in grades 3 to 8. Activities are matched to their age, and topics for older students come later.',go:['#workshops','See age groups'],next:['safe','modules']},
    modules:{q:'What do students learn?',a:'Eight topics: home and tools, tech and online safety, personal care, simple cooking, money, communication, knowing when to ask for help, and car basics later on. Schools pick the ones they want.',go:['#cur-h','See the topics'],next:['session','try']},
-   session:{q:'What happens in a session?',a:'About 50 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:['#ses-h','See a session'],next:['safe','host']},
-   host:{q:'How can my school host a pilot?',a:'Join the interest list and check “Hosting a pilot.” You provide a room, a group of students and an adult who knows them. We bring everything else.',go:['#interest','Ask about a pilot'],next:['cost','safe']},
-   cost:{q:'How much does it cost?',a:'We haven’t set prices yet. We’ll figure that out with our first pilot schools.',next:['host','status']},
+   session:{q:'What happens in a session?',a:'50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:['#ses-h','See a session'],next:['safe','host']},
+   host:{q:'Can my school get a workshop?',a:'Not yet, since we’re not booking. Join the interest list and check “Workshops for my students.” Once we launch, you’d provide a room, up to 30 students and an adult who knows them. We’d bring everything else.',go:['#interest','Join the interest list'],next:['cost','safe']},
+   cost:{q:'How much will it cost?',a:'We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.',go:['#workshops','See planned prices'],next:['host','status']},
    safe:{q:'How do you keep it safe?',a:'Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro.',next:['session','who']},
    parents:{q:'I’m a parent. How can I help?',a:'Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.',go:['#involved','Get involved'],next:['what','status']},
    try:{q:'Can I try an activity?',a:'Yes! There are three you can try right now: Tool Time, Saturday on $25 and Scam or Safe?',go:['#activities','Open activities'],next:['modules','what']},
@@ -1462,6 +1444,9 @@ route(location.hash,false);
     setTimeout(()=>(opts.querySelector('button')||$('#hcX')).focus(),RM?0:200)}
   function close(){box.hidden=true;fab.setAttribute('aria-expanded','false');fab.focus()}
   fab.addEventListener('click',open);$('#hcX').addEventListener('click',close);
+  /* phones: tuck the button away while reading down so it never sits on text; it stays off the first screen and comes back on scroll up or near the end */
+  let lastY=scrollY;const tuck=y=>fab.classList.toggle('tuck',!(y+innerHeight>=document.documentElement.scrollHeight-160)&&(y<420||y>lastY));
+  tuck(lastY);addEventListener('scroll',()=>{const y=scrollY;if(Math.abs(y-lastY)<8)return;tuck(y);lastY=y},{passive:true});
   opts.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)ask(b.dataset.k)});
   log.addEventListener('click',e=>{if(e.target.closest('[data-hcgo]')&&innerWidth<=520)setTimeout(()=>{box.hidden=true;fab.setAttribute('aria-expanded','false')},0)});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!box.hidden)close()});

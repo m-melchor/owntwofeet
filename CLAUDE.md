@@ -4,20 +4,21 @@ Read this before changing anything in this repo.
 
 ## What this is
 
-Own Two Feet runs **live, in-person life-skills workshops** for boys and young men (grades 3–8). Schools and community groups are the customers (counselors, youth leaders, churches, rec centers). Students are the end users. We bring the lesson plan, supplies and mentors; the host provides a room, students and an adult contact.
+Own Two Feet plans to run **live, in-person life-skills workshops** for boys and young men (grades 3–8). Schools and community groups are the customers (counselors, youth leaders, churches, rec centers). Students are the end users. We bring the lesson plan, supplies and mentors; the host provides a room, students and an adult contact.
 
 This replaced an older plan in our venture doc (selling a curriculum for staff to teach). **Do not bring back** apps, logins, an LMS, subscriptions or a backend.
 
-Status: **in development.** No pilots running, no prices, no partner schools yet.
+Status: **in development, not running in the real world.** No workshops are running or booking, and there are no partner schools. We are not running pilots (nobody on the team has time to go to schools yet), so never ask visitors to host one. Planned prices, set by Marco on 2026-10-25: **$350 per 50-minute workshop, $500 per 90-minute workshop, per session, up to 30 students, supplies included.** Always shown as planned. Manuals are planned (one free manual per topic) and shown as coming, not available.
 
 Team: Dane, Jewell, Marco (Baylor ENT 3315 venture project). Marco owns the GitHub repo.
 
 ## Hard rules
 
 - **Only touch this repo** (`m-melchor/owntwofeet`). Never clone, edit or push to Marco's other repositories.
-- **Never invent** testimonials, partners, impact stats, credentials, dates or prices. Plans are labeled as plans ("Coming soon", "Preview", "Planned").
-- **Keep the top notice exactly:** "Own Two Feet is in development. Join our interest list for launch and pilot updates."
-- **The form must never pretend to send.** It stays labeled as not connected until a real service is wired up.
+- **Never invent** testimonials, partners, impact stats, credentials, dates or prices. The only prices are Marco's planned ones above. Plans are labeled as plans ("Coming soon", "Preview", "Planned").
+- **Keep the top notice exactly:** "Own Two Feet is in development. No workshops are running yet. Join our interest list for launch updates."
+- **The form must never pretend to send.** It only shows the thank-you after Formspree answers OK; on any failure it shows an error and keeps the answers.
+- **Keep the flyer in step.** The flyer artifact (https://claude.ai/artifact/PS8uVF8vZanzALs8fqxD5G) must say the same things as the site: status, prices, group size, manuals.
 - **Interview quotes** are real, from our research (first name + last initial). Check with the team before adding or changing any.
 - **Respectful framing.** Never present absent fathers or busy parents as failures. "A busy parent isn't a missing parent."
 - **Safety.** No hazardous repair instructions (electrical, gas, etc.). Every topic includes when to stop and get an adult or a pro.
@@ -28,6 +29,9 @@ Team: Dane, Jewell, Marco (Baylor ENT 3315 venture project). Marco owns the GitH
 - Premium, production-level, friendly. **Must not look AI-generated.**
 - Don't copy LifeReady Academy's exact colors, fonts or layout. Soft and friendly is the goal, but in our own style.
 - Avoid: emoji, gradient washes, generic icon-card grids, "A · B · C" label chains, ALL-CAPS label spam, invented stats.
+- No small labels above headings and no category chips. Chips are only for status (Planned, Coming soon, Coming later, Preview). Icons sit bare, not in circles.
+- Progress marks are footprints (CSS masks `--print` and `--steps` in `:root`).
+- On phones the Questions button stays off the first screen and tucks away while scrolling down, so it never covers text.
 
 ## Writing voice
 
@@ -55,14 +59,9 @@ One file, no build step. Sections in order: CSS → SVG tool symbols → notice 
 - **3D:** three.js r128 from cdnjs. The hero camera auto-fits all six tools at any size (`fit()`), and tall frames switch to a 2-column layout. The Tool Time wall falls back to 2D SVG if WebGL fails.
 - **Motion:** scroll reveals and staggered entrances, word-by-word highlight in "Why it matters", the session section that stays put while you scroll through it (desktop only, over 900px), and a progress line at the top. All of it respects `prefers-reduced-motion`.
 - **Help chat:** saved answers only (`A` object in the help chat script). Labeled "Not a live chat."
-- **Form:** inline in `#formHolder`; JS moves it between the Home and Get Involved views. Validation only; nothing is sent.
+- **Form:** inline in `#formHolder`; JS moves it between the Home and Get Involved views. After validation it `fetch`es `https://formspree.io/f/mgaaaeyp` (`Accept: application/json`), with a `_gotcha` honeypot. The form's `action` points at the same endpoint, so it still posts when scripts are blocked. To test without sending real signups, fake the Formspree response with Playwright's `page.route`.
 
-## Connecting the form (next step)
-
-1. Create a Formspree form and get its endpoint (`https://formspree.io/f/xxxx`).
-2. In the submit handler, after validation passes, `fetch` the endpoint with the form data (`Accept: application/json`).
-3. Show "Sending…" while it runs, a real confirmation on success, and a clear error on failure.
-4. Remove the "isn't hooked up yet" notes only after real submissions work.
+- **Visit counter:** GoatCounter (free, no cookies) at `owntwofeet.goatcounter.com`, loaded in `<head>` with `no_onload`. `countVisit()` in the router counts each view once as `/home`, `/workshops`, etc. It doesn't count local file:// or localhost visits. Marco uses visits vs. sign-ups for his ENT 3315 Part 2A smoke test.
 
 ## Before every push, verify
 

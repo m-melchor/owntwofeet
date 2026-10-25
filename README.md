@@ -1,6 +1,6 @@
 # Own Two Feet
 
-Website for **Own Two Feet**, live, in-person life-skills workshops for boys and young men in grades 3–8, run with schools and community groups.
+Website for **Own Two Feet**, a planned service of live, in-person life-skills workshops for boys and young men in grades 3–8, run with schools and community groups. It's a student venture in development: no workshops are running or booking yet.
 
 **Live site:** https://m-melchor.github.io/owntwofeet/
 
@@ -19,8 +19,8 @@ Built by Dane, Jewell and Marco (ENT 3315 venture project, Baylor University).
 
 ## Pages on the site
 
-- **Home**: hero with 3D tools, why it matters, topics explorer, session walkthrough, interview quotes, info for schools, activity previews, FAQ, interest form
-- **Workshops**: planned formats, age groups, who does what
+- **Home**: hero with 3D tools and planned prices, why it matters, why we started (a quote from Marco's mom), topics explorer, session walkthrough, interview quotes, activity previews, FAQ, interest form
+- **Workshops**: planned prices ($350 for 50 minutes, $500 for 90 minutes, per session, up to 30 students), age groups, who does what
 - **Activities**: Tool Time (3 rounds), Saturday on $25, Scam or Safe?, plus coming-soon previews
 - **Our Story**: why we started, what we heard in interviews, what we believe
 - **Get Involved**: ways to help and the interest form
@@ -41,5 +41,9 @@ Phone previews (Files, Drive, Gmail) often block scripts. The site still shows e
 
 ## Not done yet
 
-- **Interest form isn't connected.** It validates and shows what would be sent, but sends nothing. To collect real signups, hook it up to a form service such as [Formspree](https://formspree.io). See `CLAUDE.md`.
-- **Pricing, dates and pilot schools** aren't set, so the site doesn't list any.
+- **Manuals.** We're writing a free manual for each topic. The site says they're coming, not available.
+- **Dates and partner schools** aren't set, so the site doesn't list any.
+
+## Interest form
+
+Signups go to [Formspree](https://formspree.io) (form `mgaaaeyp`) and arrive by email. The form shows "Sending…" while it runs, a thank-you on success, and an error that keeps the answers on failure.
