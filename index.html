@@ -233,6 +233,48 @@ html:not(.js) .fq-ctrl{display:none}
 @media (max-width:1100px){.teaser{grid-template-columns:1fr 1fr}.teaser .tcard:first-child{grid-row:auto;grid-column:1/-1}}
 @media (max-width:560px){.teaser{grid-template-columns:1fr}}
 
+/* ===== ACTIVITY PICKER + PER-ACTIVITY SCREENS ===== */
+.pick{margin-top:clamp(20px,3vw,32px)}
+.tdone{display:inline-flex;align-items:center;gap:7px;font:500 13px/1 var(--mono);color:var(--accent)}
+.tdone[hidden]{display:none}
+.tdone::before{content:"";width:20px;height:10px;background:currentColor;-webkit-mask:var(--print) center/contain no-repeat;mask:var(--print) center/contain no-repeat}
+#actPicker[hidden],.activity[hidden],#actScreens[hidden]{display:none!important}
+.more{margin-top:clamp(20px,3vw,32px);background:var(--surface);border-radius:var(--r-lg)}
+.more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;min-height:60px;padding:14px clamp(20px,3vw,32px);font:500 17px var(--sans)}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::after{content:"+";margin-left:auto;font:500 20px var(--mono);color:var(--ink-3)}
+.more[open]>summary::after{content:"\2212"}
+.more .more-in{padding:0 clamp(16px,2.4vw,24px) clamp(16px,2.4vw,24px);display:grid;gap:16px}
+.more .more-in>p{color:var(--ink-2);padding:0 clamp(4px,1vw,8px)}
+.more .pv{background:var(--bg)}
+.act-back{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;margin:clamp(10px,1.6vw,18px) 0 0 clamp(18px,2.6vw,36px);color:var(--ink);text-decoration:none;font-weight:500;font-size:15.5px}
+.act-back svg{width:20px;height:20px;transition:transform .25s var(--ease)}
+.act-back:hover svg{transform:translateX(-3px)}
+.act-next{display:flex;align-items:center;gap:clamp(14px,2vw,22px);margin:0 clamp(12px,2vw,24px) clamp(12px,2vw,24px);padding:10px clamp(16px,2vw,24px) 10px 10px;border-radius:26px;background:var(--bg);color:var(--ink);text-decoration:none;min-height:72px;transition:box-shadow .3s var(--ease),transform .3s var(--ease)}
+.act-next:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.act-next .art{flex:none;width:clamp(96px,14vw,140px);aspect-ratio:4/3;border-radius:18px;display:grid;place-items:center;overflow:hidden}
+.act-next .art svg{width:80%;height:auto}
+.act-next .nx{display:grid;gap:4px;min-width:0}
+.act-next .nx small{font-size:13px;color:var(--ink-2)}
+.act-next .nx b{font:400 clamp(20px,2.4vw,26px)/1.15 var(--serif)}
+.act-next>svg{margin-left:auto;flex:none;width:22px;height:22px;transition:transform .25s var(--ease)}
+.act-next:hover>svg{transform:translateX(4px)}
+.act-next.end{padding-left:clamp(18px,2.4vw,28px)}
+@media (max-width:600px){
+  .pick{grid-template-columns:1fr 1fr;gap:10px}
+  .pick .tcard:first-child{grid-row:auto;grid-column:auto}
+  .pick .tcard:last-child{grid-column:1/-1}
+  .pick .tcard,.pick .tcard:first-child{border-radius:22px}
+  .pick .tcard .art,.pick .tcard:first-child .art{aspect-ratio:3/2;min-height:0;flex:none;margin:6px;border-radius:17px}
+  .pick .tcard:last-child .art{aspect-ratio:3/1}
+  .pick .tcard .art svg{width:62%}
+  .pick .tcard:last-child .art svg{width:auto;height:92%}
+  .pick .tcard .meta{padding:2px 14px 14px;gap:6px}
+  .pick .tcard .meta p,.pick .tcard .go{display:none}
+  .pick .tcard h3{font-size:19px}
+  .more>summary{font-size:16px}
+}
+
 /* ===== FOUNDERS ===== */
 .band{background:var(--ink);color:var(--paper);padding-block:clamp(64px,9vw,128px)}
 .founders{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px);align-items:end}
@@ -336,12 +378,100 @@ fieldset.field{border:0;margin:0;padding:0}
 .path .btn{justify-self:start;margin-top:8px}
 @media (max-width:760px){.paths{grid-template-columns:1fr}}
 
+/* ===== WORKSHOPS + STORY (premium pass) ===== */
+.pc{background:var(--surface);border-radius:var(--r-lg);padding:clamp(18px,3vw,36px);display:grid;gap:clamp(14px,2vw,22px)}
+.pc .chip{justify-self:start}
+.pc-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.pc-col{display:grid;gap:10px;align-content:start;padding-right:clamp(12px,3vw,40px)}
+.pc-col+.pc-col{padding:0 0 0 clamp(12px,3vw,40px);border-left:1px solid var(--line)}
+.pc h3{font-size:clamp(17px,2.2vw,28px);line-height:1.15}
+.pc p{color:var(--ink-2);font-size:clamp(14px,1.3vw,15.5px)}
+.pc .price{font:400 clamp(30px,4vw,44px)/1 var(--serif);color:var(--ink)}
+.pc .price small{font:500 clamp(11px,1.2vw,14px)/1 var(--sans);color:var(--ink-2)}
+.pc-row{border-top:1px solid var(--line);padding-top:clamp(14px,2vw,22px);display:grid;gap:6px}
+.pc-row h3{font-size:clamp(17px,1.8vw,22px)}
+@media (min-width:700px){.pc-row{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:6px 40px;align-items:center}}
+.modes.fit{display:flex;width:100%}
+.modes.fit .mode{flex:1;min-width:0;padding:0 8px;min-height:44px;white-space:normal;line-height:1.15;font-size:14px}
+@media (min-width:700px){.modes.fit{display:inline-flex;width:auto}.modes.fit .mode{flex:none;padding:0 20px;min-height:40px;white-space:nowrap;font-size:14.5px}}
+.agewrap{display:grid;gap:18px}
+.agep{display:grid}
+.agep>.tier{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .35s var(--ease),visibility 0s .35s;padding:clamp(20px,3vw,32px)}
+.agep>.tier.on{visibility:visible;opacity:1;transition:opacity .35s var(--ease),visibility 0s}
+.agep .tier h3{font-size:clamp(22px,2.6vw,28px)}
+@media (prefers-reduced-motion:reduce){.agep>.tier,.agep>.tier.on{transition:none}}
+html:not(.js) .modes.fit{display:none}
+html:not(.js) .agep{gap:16px}
+html:not(.js) .agep>.tier{grid-area:auto;visibility:visible;opacity:1}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+.step{position:relative;display:grid;gap:16px;align-content:start}
+.step .sn{font:400 32px/1 var(--serif);color:var(--ink)}
+.step:not(:last-child)::after{content:"";position:absolute;left:44px;right:calc(-1 * clamp(24px,4vw,56px) + 12px);top:16px;height:1px;background:var(--ink);opacity:.3}
+.step .sb{display:grid;gap:8px}
+.step .si{width:32px;height:32px;color:var(--accent)}
+.step h3{font-size:24px}
+.step p{color:var(--ink-2);font-size:15.5px}
+@media (max-width:760px){
+  .steps{grid-template-columns:1fr;gap:0}
+  .step{grid-template-columns:36px minmax(0,1fr);gap:0 14px;padding-bottom:26px}
+  .step:last-child{padding-bottom:0}
+  .step .sn{font-size:26px}
+  .step:not(:last-child)::after{left:8px;right:auto;width:1px;height:auto;top:38px;bottom:8px}
+  .step .sb{grid-template-columns:28px minmax(0,1fr);gap:4px 12px;align-items:center}
+  .step .si{width:28px;height:28px;grid-row:1}
+  .step h3{font-size:21px}
+  .step p{grid-column:1/-1}
+}
+@media (max-width:700px){
+  [data-view="workshops"] .sec.tight,[data-view="story"] .sec.tight{padding-block:36px}
+  [data-view="workshops"] .sec-head,[data-view="story"] .sec-head{margin-bottom:22px;gap:12px}
+  [data-view="workshops"] .panel.sand,[data-view="story"] .panel.sand{padding:24px 20px}
+  [data-view="workshops"] .panel.sage,[data-view="story"] .panel.sage{padding:26px 22px}
+  [data-view="workshops"] .phead .panel,[data-view="story"] .phead .panel{padding-block:30px}
+  [data-view="workshops"] .phead .h-xl,[data-view="story"] .phead .h-xl{font-size:42px}
+  .modes.fit .mode{font-size:13px;padding:0 4px}
+  [data-view="workshops"] .phead .h-xl,[data-view="story"] .phead .h-xl{font-size:40px}
+  [data-view="workshops"] .phead .panel,[data-view="story"] .phead .panel{padding:26px 20px;gap:16px}
+  [data-view="workshops"] .lede,[data-view="story"] .lede{font-size:16.5px;line-height:1.5}
+  [data-view="story"] .prose{font-size:16.5px;gap:16px;line-height:1.55}
+  [data-view="story"] .split{gap:22px}
+  [data-view="story"] .hscroll .value{padding:20px 20px 22px}
+  [data-view="story"] .hscroll .value h3{font-size:21px}
+  .commit summary{padding:15px 18px}
+  .commit details>p{padding:0 18px 18px}
+  [data-view="workshops"] .sec-head .h-lg,[data-view="story"] .sec-head .h-lg{font-size:32px}
+  .pc{padding:18px 16px;gap:14px}
+  .step{padding-bottom:20px}
+  .agep .tier{gap:10px}
+  .agep .tier ul{gap:8px}
+}
+.rowctl{display:none;gap:8px;align-items:center;margin-top:16px}
+.rowctl .count{font:500 13px var(--mono);color:var(--ink-2);margin-left:8px}
+.js .rowctl{display:flex}
+@media (min-width:900px){.js .rowctl{display:none}}
+@media (max-width:899px){
+  .hscroll{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;position:relative;scrollbar-width:none;gap:12px;overscroll-behavior-x:contain}
+  .hscroll::-webkit-scrollbar{display:none}
+  .hscroll>*{flex:0 0 min(84%,420px);scroll-snap-align:start}
+}
+.commit{grid-template-columns:1fr;align-items:start}
+.commit details.value{padding:0;display:block}
+.commit summary{list-style:none;display:flex;align-items:center;gap:16px;cursor:pointer;min-height:44px;padding:18px 22px}
+.commit summary::-webkit-details-marker{display:none}
+.commit summary h3{font-size:20px;line-height:1.2}
+.commit summary::after{content:"";flex:none;margin-left:auto;width:22px;height:22px;background:linear-gradient(var(--ink),var(--ink)) center/12px 1.5px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1.5px 12px no-repeat;transition:background-size .25s var(--ease)}
+.commit details[open] summary::after{background-size:12px 1.5px,0 0}
+.commit details>p{padding:0 22px 22px;margin:0}
+@media (min-width:900px){
+  .commit{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+  .commit summary{pointer-events:none;cursor:default;padding:24px 22px 10px}
+  .commit summary::after{display:none}
+  .commit details>p{font-size:15.5px}
+}
+
 /* ===== ACTIVITIES ===== */
-.act-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;max-width:600px}
-.act-nav a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px 0 16px;border-radius:999px;background:var(--surface);text-decoration:none;font-weight:500;font-size:15px;transition:box-shadow .2s}
-.act-nav a:hover{box-shadow:var(--shadow)}
-.act-nav a i{display:grid;place-items:center;font-style:normal;color:var(--accent)}
-.act-nav a i svg{width:16px;height:16px}
+.phead.ctr .panel{text-align:center;justify-items:center}
+.phead.ctr h1,.phead.ctr .lede{margin-inline:auto}
 .activity{background:var(--surface);border-radius:calc(var(--r-lg) + 4px);overflow:hidden;margin-top:24px}
 .act-head{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;padding:clamp(24px,3vw,40px) clamp(22px,3vw,40px) clamp(18px,2vw,24px)}
 .act-head .t{display:grid;gap:12px;min-width:0;max-width:660px}
@@ -425,6 +555,7 @@ fieldset.field{border:0;margin:0;padding:0}
 .done-chip{vertical-align:middle;margin-left:10px;position:relative;top:-.2em}
 .practiced{margin:0 clamp(12px,2vw,24px) clamp(12px,2vw,24px);background:var(--sage);border-radius:26px;padding:clamp(22px,2.6vw,32px);display:flex;flex-wrap:wrap;gap:20px 32px;align-items:flex-end;justify-content:space-between}
 .practiced .pc{display:grid;gap:14px;min-width:0;flex:1 1 320px}
+.practiced .pbtns{display:flex;flex-wrap:wrap;gap:10px}
 .practiced h3{font-size:clamp(26px,2.6vw,34px);line-height:1.1}
 .practiced .results{font-size:16px;gap:11px}
 @media (max-width:560px){.modes{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:26px}.mode{padding:0 10px}}
@@ -832,7 +963,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
         <details><summary>Couldn’t students just watch a video?</summary><div class="ans">Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.</div></details>
         <details><summary>How do you keep sessions safe?</summary><div class="ans">Everything is supervised and right for their age. Students never work on electrical, gas or other dangerous repairs, and every topic covers when to get an adult or a pro.</div></details>
         <details><summary>What will it cost?</summary><div class="ans">We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</div></details>
-        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. They’re not ready yet. The three activities on this site are free to try now.</div></details>
+        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. They’re not ready yet. The five activities on this site are free to try now.</div></details>
       </div>
     </div>
   </section>
@@ -891,36 +1022,47 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
 <!-- ================= WORKSHOPS ================= -->
 <div class="view" data-view="workshops" id="workshops" hidden>
-  <section class="phead"><div class="wrap"><div class="panel mist">
+  <section class="phead ctr"><div class="wrap"><div class="panel mist with-art">
+    <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 20) rotate(-12 40 125)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(116 6)"><use href="#t-tape" width="90" height="270"/></g><g transform="translate(210 22) rotate(12 40 125)"><use href="#t-flat" width="80" height="250"/></g></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>Hands-on sessions, led in person</h1>
     <p class="lede" style="color:#46504A">Each workshop covers one topic with hands-on practice. Here’s how we plan to run them once we launch. Nothing is running or booking yet.</p>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
     <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</p></div>
-    <div class="stg formats">
-      <article class="tier tint-1"><span class="chip soon" style="justify-self:start">Planned</span><h3>50-minute workshop</h3><p class="price">$350 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></article>
-      <article class="tier tint-2"><span class="chip soon" style="justify-self:start">Planned</span><h3>90-minute workshop</h3><p class="price">$500 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></article>
-      <article class="tier tint-4"><span class="chip soon" style="justify-self:start">Planned</span><h3>Series or family day</h3><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></article>
+    <div class="pc">
+      <span class="chip soon">Planned</span>
+      <div class="pc-cols">
+        <div class="pc-col"><h3>50-minute workshop</h3><p class="price">$350 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></div>
+        <div class="pc-col"><h3>90-minute workshop</h3><p class="price">$500 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></div>
+      </div>
+      <div class="pc-row"><h3>Series or family day</h3><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></div>
     </div>
   </div></section>
 
   <section><div class="wrap"><div class="panel sand">
     <div class="sec-head"><h2 class="h-lg">Matched to their age</h2><p class="lede" style="color:#46504A">Same topics, adjusted to what each age can safely do.</p></div>
-    <div class="stg formats">
-      <article class="tier"><h3>Elementary, grades 3 to 5</h3><p>Short, simple tasks with lots of moving around.</p><ul><li>Name tools and what they’re for</li><li>Spot a “you won a prize” message</li><li>Practice asking for help, out loud</li></ul></article>
-      <article class="tier"><h3>Middle school, grades 6 to 8</h3><p>More on their own, and more real-life decisions.</p><ul><li>Tighten a screw, hang something level</li><li>Lock down an account</li><li>Plan and track a weekend budget</li></ul></article>
-      <article class="tier"><span class="chip soon" style="justify-self:start">Preview</span><h3>Older students</h3><p>Planned for later, after we launch for grades 3 to 8.</p><ul><li>Vehicle basics with an adult</li><li>Budgeting a first paycheck</li><li>Workplace communication</li></ul></article>
+    <div class="agewrap">
+      <div class="modes fit" role="tablist" aria-label="Age groups" id="ageTabs">
+        <button class="mode" type="button" role="tab" id="agt-1" aria-controls="agp-1" aria-selected="true" tabindex="0">Grades 3 to 5</button>
+        <button class="mode" type="button" role="tab" id="agt-2" aria-controls="agp-2" aria-selected="false" tabindex="-1">Grades 6 to 8</button>
+        <button class="mode" type="button" role="tab" id="agt-3" aria-controls="agp-3" aria-selected="false" tabindex="-1">Older students</button>
+      </div>
+      <div class="agep">
+        <article class="tier on" role="tabpanel" id="agp-1" aria-labelledby="agt-1"><h3>Elementary, grades 3 to 5</h3><p>Short, simple tasks with lots of moving around.</p><ul><li>Name tools and what they’re for</li><li>Spot a “you won a prize” message</li><li>Practice asking for help, out loud</li></ul></article>
+        <article class="tier" role="tabpanel" id="agp-2" aria-labelledby="agt-2"><h3>Middle school, grades 6 to 8</h3><p>More on their own, and more real-life decisions.</p><ul><li>Tighten a screw, hang something level</li><li>Lock down an account</li><li>Plan and track a weekend budget</li></ul></article>
+        <article class="tier" role="tabpanel" id="agp-3" aria-labelledby="agt-3"><span class="chip soon" style="justify-self:start">Preview</span><h3>Older students</h3><p>Planned for later, after we launch for grades 3 to 8.</p><ul><li>Vehicle basics with an adult</li><li>Budgeting a first paycheck</li><li>Workplace communication</li></ul></article>
+      </div>
     </div>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
     <div class="sec-head"><h2 class="h-lg">Who does what</h2></div>
-    <div class="stg roles">
-      <div class="role"><h3>The host provides</h3><p>A room with tables, a group of students, and an adult who knows them and stays for the session.</p></div>
-      <div class="role"><h3>We bring</h3><p>Lesson plans, tools, supplies, safety rules and take-home cards.</p></div>
-      <div class="role"><h3>We lead</h3><p>Our team runs the session with your staff in the room.</p></div>
-    </div>
+    <ol class="steps">
+      <li class="step"><span class="sn" aria-hidden="true">1</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18M6 10v9M18 10v9M9 15h6M7 10V6h10v4"/></svg><h3>The host provides</h3><p>A room with tables, a group of students, and an adult who knows them and stays for the session.</p></div></li>
+      <li class="step"><span class="sn" aria-hidden="true">2</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M9 9V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V9M3 14h18M11 13v3h2v-3"/></svg><h3>We bring</h3><p>Lesson plans, tools, supplies, safety rules and take-home cards.</p></div></li>
+      <li class="step"><span class="sn" aria-hidden="true">3</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg><h3>We lead</h3><p>Our team runs the session with your staff in the room.</p></div></li>
+    </ol>
   </div></section>
 
   <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#activities">Explore Activities</a></div></div></div></section>
@@ -928,23 +1070,32 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
 <!-- ================= ACTIVITIES ================= -->
 <div class="view" data-view="activities" id="activities" hidden>
-  <section class="phead"><div class="wrap"><div class="panel butter with-art">
+  <section class="phead ctr"><div class="wrap"><div class="panel butter with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 22) rotate(-14 45 135)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(124 6)"><use href="#t-level" width="80" height="285"/></g><g transform="translate(206 22) rotate(12 40 130)"><use href="#t-wrench" width="80" height="260"/></g></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>Practice a little right now</h1>
-    <p class="lede" style="color:#46504A">Five short activities you can try now. More are on the way further down the page.</p>
-    <nav class="act-nav" aria-label="Jump to an activity">
-      <a href="#tools"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></i>Tool Time</a>
-      <a href="#budget"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/></svg></i>Saturday on $25</a>
-      <a href="#scams"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg></i>Scam or Safe?</a>
-      <a href="#call"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></i>Make the Call</a>
-      <a href="#laundry"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"/></svg></i>Laundry Sort-Out</a>
-    </nav>
+    <p class="lede" style="color:#46504A">Five short activities you can try now.</p>
   </div></div></section>
 
-  <section><div class="wrap">
+  <section id="actPicker"><div class="wrap">
+    <div class="stg teaser pick" id="pickGrid">
+      <a class="tcard" href="#tools"><span class="art" style="background:radial-gradient(110% 80% at 50% 0%,#FBF8F2 0%,#ECE3D3 100%)"><svg viewBox="0 0 520 300" aria-hidden="true"><g transform="translate(40 10)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(120 20)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(195 10)"><use href="#t-tape" width="100" height="270"/></g><g transform="translate(285 15)"><use href="#t-wrench" width="80" height="260"/></g><g transform="translate(360 20)"><use href="#t-flat" width="80" height="250"/></g><g transform="translate(430 5)"><use href="#t-level" width="80" height="285"/></g></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Tool Time</h3><p>Check out six hand tools in 3D, match them to jobs, then decide when to call for help.</p><span class="tdone" data-done="tools" hidden>Done</span></span></a>
+      <a class="tcard" href="#budget"><span class="art" style="background:var(--butter)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="40" width="220" height="140" rx="22" fill="#fff"/><text x="64" y="90" font-family="Geist,system-ui,sans-serif" font-size="13" fill="#8A928D">Left to spend</text><text x="64" y="134" font-family="Young Serif,Georgia,serif" font-size="42" fill="#16211C">$6</text><rect x="64" y="150" width="172" height="10" rx="5" fill="#EEEBE4"/><rect x="64" y="150" width="130" height="10" rx="5" fill="#2F6450"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Saturday on $25</h3><p>Cover needs, keep a promise, stay on budget.</p><span class="tdone" data-done="budget" hidden>Done</span></span></a>
+      <a class="tcard" href="#scams"><span class="art" style="background:var(--sage)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><rect x="88" y="56" width="110" height="34" rx="16" fill="#F6F4EF"/><rect x="88" y="100" width="124" height="44" rx="16" fill="#F2E2A6"/><rect x="100" y="114" width="70" height="6" rx="3" fill="#16211C" opacity=".5"/><rect x="100" y="126" width="90" height="6" rx="3" fill="#16211C" opacity=".3"/><rect x="88" y="156" width="80" height="26" rx="13" fill="#F6F4EF"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Scam or Safe?</h3><p>Read six messages and spot what gives a scam away.</p><span class="tdone" data-done="scams" hidden>Done</span></span></a>
+      <a class="tcard" href="#call"><span class="art" style="background:var(--mist)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><circle cx="150" cy="70" r="20" fill="#F6F4EF"/><text x="150" y="76" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#56615B">FC</text><text x="150" y="116" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#16211C">Fresh Cuts</text><text x="150" y="136" text-anchor="middle" font-family="Geist Mono,monospace" font-size="12" fill="#5F6B64">1:12</text><circle cx="150" cy="172" r="15" fill="#2F6450"/><path d="M143 172h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Make the Call</h3><p>Call a front desk and move an appointment.</p><span class="tdone" data-done="call" hidden>Done</span></span></a>
+      <a class="tcard" href="#laundry"><span class="art" style="background:var(--sand)"><svg viewBox="0 0 300 220" aria-hidden="true"><use href="#l-tshirt" x="18" y="14" width="88" height="88"/><use href="#l-jeans" x="106" y="14" width="88" height="88"/><use href="#l-bath" x="194" y="14" width="88" height="88"/><use href="#l-bk-light" x="20" y="116" width="84" height="66"/><use href="#l-bk-dark" x="108" y="116" width="84" height="66"/><use href="#l-bk-towel" x="196" y="116" width="84" height="66"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Laundry Sort-Out</h3><p>Sort a pile into darks, lights and towels, then read care labels.</p><span class="tdone" data-done="laundry" hidden>Done</span></span></a>
+    </div>
+    <details class="more" id="previews" open>
+      <summary id="prev-h">4 more activities on the way</summary>
+      <div class="more-in"><p>These are planned for workshops. You can’t play them yet.</p>
+      <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div></div>
+    </details>
+  </div></section>
+  <section class="act-cta"><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#workshops">See the Workshops</a></div></div></div></section>
+
+  <section id="actScreens"><div class="wrap">
     <article class="activity" id="tools" aria-labelledby="tools-h">
       <div class="act-head">
-        <div class="t"><h2 id="tools-h">Tool Time <span class="chip live done-chip" data-done="tools" hidden>Done</span></h2><p>Learn six hand tools, match each one to a job, practice knowing when to stop and get help, then use a tape measure and a level.</p></div>
+        <div class="t"><h2 id="tools-h">Tool Time <span class="tdone done-chip" data-done="tools" hidden>Done</span></h2><p>Learn six hand tools, match each one to a job, practice knowing when to stop and get help, then use a tape measure and a level.</p></div>
         <div class="act-tools">
           <div class="modes" role="tablist" aria-label="Tool Time modes" id="ttModes">
             <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">Explore</button>
@@ -977,7 +1128,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="budget" aria-labelledby="budget-h">
       <div class="act-head">
-        <div class="t"><h2 id="budget-h">Saturday on $25 <span class="chip live done-chip" data-done="budget" hidden>Done</span></h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
+        <div class="t"><h2 id="budget-h">Saturday on $25 <span class="tdone done-chip" data-done="budget" hidden>Done</span></h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
         <div class="act-tools"><button class="reset" type="button" id="budReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body budget">
@@ -1006,7 +1157,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="scams" aria-labelledby="scam-h">
       <div class="act-head">
-        <div class="t"><h2 id="scam-h">Scam or Safe? <span class="chip live done-chip" data-done="scams" hidden>Done</span></h2><p>Read each message and make the call. If it’s a scam, tap the words that give it away.</p></div>
+        <div class="t"><h2 id="scam-h">Scam or Safe? <span class="tdone done-chip" data-done="scams" hidden>Done</span></h2><p>Read each message and make the call. If it’s a scam, tap the words that give it away.</p></div>
         <div class="act-tools"><div class="prog" id="scamProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><button class="reset" type="button" id="scamReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body scam">
@@ -1030,7 +1181,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="call" aria-labelledby="call-h">
       <div class="act-head">
-        <div class="t"><h2 id="call-h">Make the Call <span class="chip live done-chip" data-done="call" hidden>Done</span></h2><p>Your haircut clashes with a new practice. Call the front desk, say what you need, and pick a time that fits your week.</p></div>
+        <div class="t"><h2 id="call-h">Make the Call <span class="tdone done-chip" data-done="call" hidden>Done</span></h2><p>Your haircut clashes with a new practice. Call the front desk, say what you need, and pick a time that fits your week.</p></div>
         <div class="act-tools"><button class="reset" type="button" id="callReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body scam callb">
@@ -1055,7 +1206,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
     <article class="activity" id="laundry" aria-labelledby="laundry-h">
       <div class="act-head">
-        <div class="t"><h2 id="laundry-h">Laundry Sort&#8209;Out <span class="chip live done-chip" data-done="laundry" hidden>Done</span></h2><p>Sort a pile of laundry into darks, lights and towels, then read care labels to pick the right water. Ask an adult before you use a washer or dryer the first time.</p></div>
+        <div class="t"><h2 id="laundry-h">Laundry Sort&#8209;Out <span class="tdone done-chip" data-done="laundry" hidden>Done</span></h2><p>Sort a pile of laundry into darks, lights and towels, then read care labels to pick the right water. Ask an adult before you use a washer or dryer the first time.</p></div>
         <div class="act-tools"><button class="reset" type="button" id="launReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body scam">
@@ -1065,16 +1216,13 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
       <div class="practiced" id="pracLaundry" role="region" aria-label="What you practiced" hidden></div>
     </article>
 
-    <section id="previews" class="sec tight" aria-labelledby="prev-h" style="padding-bottom:0">
-      <div class="sec-head"><h2 class="h-lg" id="prev-h">More activities coming</h2><p class="lede">These are planned for workshops. You can’t play them yet.</p></div>
-      <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="label">Tech &amp; online safety</span><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="label">Simple cooking</span><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="label">Home &amp; tools</span><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="label">Vehicle basics</span><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div>
-    </section>
   </div></section>
 </div>
 
 <!-- ================= STORY ================= -->
 <div class="view" data-view="story" id="story" hidden>
-  <section class="phead"><div class="wrap"><div class="panel peach">
+  <section class="phead ctr"><div class="wrap"><div class="panel peach with-art">
+    <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><defs><g id="stFoot"><circle cx="24" cy="7" r="6"/><circle cx="33" cy="11.5" r="4"/><circle cx="38.5" cy="18" r="3.3"/><circle cx="41" cy="25" r="2.8"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)"/></g></defs><use href="#stFoot" fill="#16211C" opacity=".3" transform="translate(150 0) rotate(5) scale(-.8 .8)"/><use href="#stFoot" fill="#2F6450" opacity=".5" transform="translate(178 52) rotate(8) scale(.8)"/><use href="#stFoot" fill="#16211C" opacity=".7" transform="translate(146 106) rotate(5) scale(-.8 .8)"/><use href="#stFoot" fill="#2F6450" opacity=".85" transform="translate(182 158) rotate(8) scale(.8)"/><use href="#stFoot" fill="#16211C" transform="translate(142 212) rotate(5) scale(-.8 .8)"/></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>We had to figure it out alone. They shouldn’t have to.</h1>
   </div></div></section>
   <section class="sec tight"><div class="wrap split">
@@ -1087,22 +1235,24 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   </div></section>
   <section><div class="wrap"><div class="panel sand">
     <div class="sec-head"><h2 class="h-lg">Our interviews shaped the plan</h2><p class="lede" style="color:#46504A">We talked to parents, mentors and young men about growing up and learning this stuff.</p></div>
-    <div class="stg values">
+    <div class="stg values hscroll" id="ivRow">
       <div class="value"><h3>Videos help, but they don’t stick</h3><p>Stuff you learn alone from a video is easy to forget. Learning from a real person sticks.</p></div>
       <div class="value"><h3>Kids don’t want to bother busy parents</h3><p>A lot of boys figure things out on their own so they don’t add to their parents’ stress.</p></div>
       <div class="value"><h3>Asking for help is hard</h3><p>Workshops have to make questions feel normal and safe.</p></div>
       <div class="value"><h3>Not everyone thinks they need it</h3><p>So we focus on what free videos can’t give you: hands-on practice with someone there to help.</p></div>
     </div>
+    <div class="rowctl"><button class="icon-btn" type="button" id="ivPrev" aria-label="Previous interview finding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button class="icon-btn" type="button" id="ivNext" aria-label="Next interview finding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><span class="count" id="ivCount" aria-live="polite">1 of 4</span></div>
   </div></div></section>
   <section class="sec tight"><div class="wrap">
     <div class="sec-head"><h2 class="h-lg">Four commitments</h2></div>
-    <div class="stg values">
-      <div class="value tint-1"><h3>Support families, never replace them</h3><p>We work alongside parents, counselors and mentors, and send skills home with students.</p></div>
-      <div class="value tint-2"><h3>Practice beats watching</h3><p>Students learn by doing, with someone nearby to answer questions and catch mistakes.</p></div>
-      <div class="value tint-3"><h3>Know your limits</h3><p>Knowing when to stop and ask for help is a skill too, and we teach it every session.</p></div>
-      <div class="value tint-4"><h3>Confidence, not judgment</h3><p>No student is behind because of how his family works. Everyone starts somewhere.</p></div>
+    <div class="stg values commit" id="commits">
+      <details class="value tint-1" open><summary><h3>Support families, never replace them</h3></summary><p>We work alongside parents, counselors and mentors, and send skills home with students.</p></details>
+      <details class="value tint-2" open><summary><h3>Practice beats watching</h3></summary><p>Students learn by doing, with someone nearby to answer questions and catch mistakes.</p></details>
+      <details class="value tint-3" open><summary><h3>Know your limits</h3></summary><p>Knowing when to stop and ask for help is a skill too, and we teach it every session.</p></details>
+      <details class="value tint-4" open><summary><h3>Confidence, not judgment</h3></summary><p>No student is behind because of how his family works. Everyone starts somewhere.</p></details>
     </div>
   </div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#workshops">See the Workshops</a></div></div></div></section>
 </div>
 
 <!-- ================= GET INVOLVED ================= -->
@@ -1181,10 +1331,10 @@ const PRAC={tools:['Reading a tape measure to the nearest 1/8 inch','Matching th
  laundry:['Sorting darks, lights and towels','Reading a care label before you wash','Picking the right water temperature']};
 function pracHide(id){$('#'+ACT[id][1]).hidden=true}
 function finish(id){doneSet(id);const el=$('#'+ACT[id][1]),i=ORDER.indexOf(id),nx=ORDER.slice(1).map((_,k)=>ORDER[(i+k+1)%ORDER.length]).find(x=>!doneMem.has(x));
-  el.innerHTML=`<div class="pc"><h3>What you practiced</h3><ul class="results">${PRAC[id].map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul></div><button class="btn btn-ink" type="button" data-pnext="${nx||'previews'}">${nx?'Next: '+ACT[nx][0]:'See what is coming'}</button>`;
+  el.innerHTML=`<div class="pc"><h3>What you practiced</h3><ul class="results">${PRAC[id].map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul></div><div class="pbtns"><button class="btn btn-ink" type="button" data-pnext="${nx||'activities'}">${nx?'Next: '+ACT[nx][0]:'See all activities'}</button><a class="btn btn-line" href="#interest">Join the Interest List</a></div>`;countEvent('activity-done/'+id);
   el.hidden=false;toast(`${ACT[id][0]} finished. See what you practiced below.`)}
 $$('.practiced').forEach(p=>p.addEventListener('click',e=>{const b=e.target.closest('[data-pnext]');if(b)route('#'+b.dataset.pnext,true)}));
-let curView=null;
+let curView=null,curAct=null;
 const hdr=$('#siteHeader');addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>8),{passive:true});
 
 /* ---------- curriculum ---------- */
@@ -1250,6 +1400,25 @@ function stopQ(){clearInterval(qTimer);qTimer=null}
 $('#vqPrev').addEventListener('click',()=>{showQ(qi-1);stopQ()});$('#vqNext').addEventListener('click',()=>{showQ(qi+1);stopQ()});
 if(!RM)qTimer=setInterval(()=>{if(curView==='home'&&!document.hidden)showQ(qi+1)},8000);
 
+/* ---------- workshops age tabs, story interview row, story commitments ---------- */
+const ageTl=$('#ageTabs');
+if(ageTl){const tabs=$$('[role=tab]',ageTl),panels=tabs.map(t=>$('#'+t.getAttribute('aria-controls')));
+  const pick=(i,f)=>{tabs.forEach((t,j)=>{t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;panels[j].classList.toggle('on',j===i)});if(f)tabs[i].focus()};
+  ageTl.addEventListener('click',e=>{const t=e.target.closest('[role=tab]');if(t)pick(tabs.indexOf(t))});
+  ageTl.addEventListener('keydown',e=>{const c=tabs.indexOf(document.activeElement),n=tabs.length,k={ArrowRight:(c+1)%n,ArrowLeft:(c+n-1)%n,Home:0,End:n-1}[e.key];if(k!==undefined&&c>-1){e.preventDefault();pick(k,1)}})}
+const ivRow=$('#ivRow');
+if(ivRow){const cs=[...ivRow.children],cnt=$('#ivCount');let ivI=0;
+  const cur=()=>{if(ivRow.scrollLeft+ivRow.clientWidth>=ivRow.scrollWidth-4)return cs.length-1;let b=0,d=1e9;cs.forEach((c,j)=>{const x=Math.abs(c.offsetLeft-ivRow.scrollLeft);if(x<d){d=x;b=j}});return b};
+  const upd=i=>{ivI=i;cnt.textContent=`${i+1} of ${cs.length}`};
+  ivRow.addEventListener('scroll',()=>upd(cur()),{passive:true});
+  const go=i=>{i=(i+cs.length)%cs.length;upd(i);ivRow.scrollTo({left:cs[i].offsetLeft,behavior:RM?'auto':'smooth'})};
+  $('#ivPrev').addEventListener('click',()=>go(ivI-1));$('#ivNext').addEventListener('click',()=>go(ivI+1))}
+const commits=$('#commits');
+if(commits){const mq=matchMedia('(min-width:900px)'),ds=$$('details',commits);
+  const sync=()=>ds.forEach((d,i)=>{d.open=mq.matches||i===0;d.firstElementChild.tabIndex=mq.matches?-1:0});
+  sync();mq.addEventListener('change',sync);
+  commits.addEventListener('click',e=>{if(mq.matches&&e.target.closest('summary'))e.preventDefault()})}
+
 /* ---------- reveal ---------- */
 if('IntersectionObserver' in window&&!RM){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});$$('.reveal').forEach(r=>{if(r.getBoundingClientRect().top>innerHeight){r.classList.add('pre');io.observe(r)}})}
 
@@ -1257,22 +1426,27 @@ if('IntersectionObserver' in window&&!RM){const io=new IntersectionObserver(es=>
 const VIEWS=['home','workshops','activities','story','involved'];
 /* visit counter: one count per view shown; waits for the GoatCounter script on first load, does nothing if it's blocked */
 function countVisit(view){const go=()=>window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:'/'+view,title:view});window.goatcounter&&window.goatcounter.count?go():addEventListener('load',go,{once:true})}
+/* funnel events for the smoke test: activity finished, sign-up sent (only after Formspree answers OK) */
+function countEvent(name){try{window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:name,title:name,event:true})}catch(e){}}
 function route(hash,push){
   let h=(hash||'').replace(/^#/,'')||'home',view=h,target=null;
   if(!VIEWS.includes(h)){const el=document.getElementById(h);if(el){const v=el.closest('[data-view]');view=v?v.dataset.view:'home';target=el}else{view='home';h='home'}}
+  /* each activity is its own screen; #activities is the picker */
+  const act=ORDER.includes(h)?h:null;if(act)target=null;
   const first=curView===null,changed=view!==curView;
   $$('[data-view]').forEach(v=>v.hidden=v.dataset.view!==view);
+  if(view==='activities'){$('#actPicker').hidden=!!act;$('#actScreens').hidden=!act;$('[data-view="activities"] .phead').hidden=!!act;$('.act-cta').hidden=!!act;$$('#actScreens .activity').forEach(a=>a.hidden=a.id!==act);if(h==='previews')$('#previews').open=true;if(act&&act!==curAct)countVisit('activities/'+act)}
   $$('.nav a:not(.btn)').forEach(a=>a.getAttribute('href')==='#'+view?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
   placeForm(view==='involved'?'#formSlotInvolved':'#formSlotHome');
   if(changed)countVisit(view);
-  curView=view;closeMenu();
+  curView=view;curAct=view==='activities'?act:null;closeMenu();
   if(push){try{history.pushState(null,'','#'+h)}catch(e){}}
   requestAnimationFrame(()=>{
-    if(target){$$('.reveal.pre,.stg.pre',target.closest('[data-view]')||document).forEach(r=>r.classList.remove('pre'));const top=Math.max(0,target.getBoundingClientRect().top+scrollY-84);const far=Math.abs(top-scrollY)>innerHeight*2;scrollTo({top,behavior:(RM||changed||far)?'instant':'smooth'});const f=target.querySelector('h2,h3');if(f){f.tabIndex=-1;f.focus({preventScroll:true})}}
-    else{scrollTo({top:0,behavior:'instant'});if(changed&&!first){const f=$(`[data-view="${view}"] [data-focus]`);f&&f.focus({preventScroll:true})}}
+    if(target){$$('.reveal.pre,.stg.pre',target.closest('[data-view]')||document).forEach(r=>r.classList.remove('pre'));const top=Math.max(0,target.getBoundingClientRect().top+scrollY-84);const far=Math.abs(top-scrollY)>innerHeight*2;scrollTo({top,behavior:(RM||changed||far)?'instant':'smooth'});const f=target.matches('details')?target.querySelector('summary'):target.querySelector('h2,h3');if(f){f.tabIndex=-1;f.focus({preventScroll:true})}}
+    else{scrollTo({top:0,behavior:'instant'});if(act){const f=$('#'+act+' h2');if(f){f.tabIndex=-1;f.focus({preventScroll:true})}}else if(changed&&!first){const f=$(`[data-view="${view}"] [data-focus]`);f&&f.focus({preventScroll:true})}}
     window.__stgObserve&&window.__stgObserve($(`[data-view="${view}"]`));window.__tick&&window.__tick();
-    if(view==='activities')initBench();
-    bench&&bench.active(view==='activities');hero&&hero.active(view==='home');
+    if(act==='tools')initBench();
+    bench&&bench.active(act==='tools');bench&&act==='tools'&&bench.resize();hero&&hero.active(view==='home');
   });
 }
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href');if(h.length<2)return;e.preventDefault();route(h,true)});
@@ -1298,7 +1472,7 @@ function validate(){
   if(!r.value){setErr('e-role','Select the role that fits best.',r);first=first||r;ok=false}else setErr('e-role','',r);
   if(!ints.length){setErr('e-int','Choose at least one.');first=first||$('input[name=interest]',form);ok=false}else setErr('e-int','');
   if(!ad.checked){setErr('e-adult','The list is for adults. Please confirm you’re 18 or older.',ad);first=first||ad;ok=false}else setErr('e-adult','',ad);
-  return {ok,first,data:{Name:nm,Email:ev,Organization:$('#f-org',form).value.trim()||'—',Role:r.value||'—',Interests:ints.map(i=>LBL[i.value]).join(', ')||'—'}};
+  return {ok,first,data:{Name:nm,Email:ev,Organization:$('#f-org',form).value.trim()||'Not given',Role:r.value||'Not given',Interests:ints.map(i=>LBL[i.value]).join(', ')||'Not given'}};
 }
 ['input','change'].forEach(ev=>form.addEventListener(ev,()=>{if(tried)validate()}));
 const send=$('#formSend',form),ferr=$('#formErr',form);let sending=false;
@@ -1307,7 +1481,7 @@ form.addEventListener('submit',async e=>{e.preventDefault();if(sending)return;tr
   sending=true;send.disabled=true;send.textContent='Sending…';
   try{const res=await fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!res.ok)throw new Error('status '+res.status)}
   catch(err){sending=false;send.disabled=false;send.textContent='Join the Interest List';ferr.hidden=false;toast('That didn’t go through. Try again.');return}
-  sending=false;send.disabled=false;send.textContent='Join the Interest List';
+  sending=false;send.disabled=false;send.textContent='Join the Interest List';countEvent('signup-sent');
   $('#formSummary',holder).innerHTML=Object.entries(v.data).map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)}</dd>`).join('');form.hidden=true;done.hidden=false;done.focus();toast('Sent. You’re on the list.')});
 $('#formAgain',holder).addEventListener('click',()=>{tried=false;form.reset();ferr.hidden=true;$$('[aria-invalid]',form).forEach(i=>i.removeAttribute('aria-invalid'));$$('.err',form).forEach(x=>x.textContent='');done.hidden=true;form.hidden=false;$('#f-name',form).focus()});
 $$('[data-interest]').forEach(b=>b.addEventListener('click',()=>{const cb=$(`input[name=interest][value="${b.dataset.interest}"]`,form);if(cb)cb.checked=true;const r=$('#f-role',form);if(!r.value){if(b.dataset.interest==='family')r.value='Parent or guardian';if(b.dataset.interest==='mentor')r.value='Mentor or volunteer'}
@@ -1553,8 +1727,8 @@ function buildBench(){
       g.traverse(o=>{if(o.isMesh){if(em!==null){tmp.setHex(em).multiplyScalar(k);o.material.emissive.copy(o.userData.e).add(tmp)}else o.material.emissive.copy(o.userData.e)}})});
     r.render(scene,cam);if(!RM||busy)requestAnimationFrame(frame);else run=false}
   function wake(){if(on&&!run){run=true;requestAnimationFrame(frame)}}
-  new IntersectionObserver(es=>api.active(es[0].isIntersecting&&curView==='activities')).observe(host);
-  document.addEventListener('visibilitychange',()=>api.active(!document.hidden&&curView==='activities'));
+  new IntersectionObserver(es=>api.active(es[0].isIntersecting&&curAct==='tools')).observe(host);
+  document.addEventListener('visibilitychange',()=>api.active(!document.hidden&&curAct==='tools'));
   const api={active(x){on=x;if(x)wake()},resize(){layout();wake()},select(id){sel=id;wake()},
     hover(id){tagHov=id;$$('#tray button').forEach(b=>b.classList.toggle('is-hover',b.dataset.tool===id));wake()},
     mark(id,st){tools.forEach(g=>{const u=g.userData;if(!id)u.st=null;else if(u.id===id){u.st=st;if(st==='no'){u.shake=1;setTimeout(()=>{if(u.st==='no'){u.st=null;wake()}},900)}}else if(st==='ok')u.st=null});wake()}};
@@ -1765,7 +1939,13 @@ const PV=[
  {t:'Shutoff Finder',m:'Home & tools',s:'Coming soon',d:'Find the water shutoffs in a home and practice what to do first in a leak.',b:['Where shutoff valves live','Which way to turn','Who to tell, right away']},
  {t:'Dashboard Basics',m:'Vehicle basics',s:'Preview',d:'Coming later: what warning lights mean and when to pull over.',b:['Warning light colors','Tire checks with an adult','Who to call in a breakdown']}
 ];
-$('#previewGrid').innerHTML=PV.map(p=>`<article class="pv"><div class="top"><span class="label">${p.m}</span><span class="chip soon">${p.s}</span></div><h3>${p.t}</h3><p>${p.d}</p><details><summary>What students practice</summary><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul></details></article>`).join('');
+$('#previewGrid').innerHTML=PV.map(p=>`<article class="pv"><div class="top"><span class="chip soon">${p.s}</span></div><h3>${p.t}</h3><p>${p.d}</p><details><summary>What students practice</summary><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul></details></article>`).join('');
+$('#prev-h').textContent=PV.length+' more activities on the way';$('#previews').open=false;
+
+/* ---------- per-activity screens: Back link on top, Next card at the bottom (art copied from the picker cards) ---------- */
+ORDER.forEach((id,i)=>{const a=$('#'+id),nx=ORDER[i+1],card=nx&&$(`#pickGrid .tcard[href="#${nx}"]`);
+  a.insertAdjacentHTML('afterbegin',`<a class="act-back" href="#activities">${I.prev}Back to activities</a>`);
+  a.insertAdjacentHTML('beforeend',nx?`<a class="act-next" href="#${nx}">${card.querySelector('.art').outerHTML}<span class="nx"><small>Next activity</small><b>${ACT[nx][0]}</b></span>${I.next}</a>`:`<a class="act-next end" href="#activities"><span class="nx"><small>That was the last one</small><b>See all activities</b></span>${I.next}</a>`)});
 
 route(location.hash,false);
 
