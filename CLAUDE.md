@@ -54,7 +54,8 @@ Round sage badge: white inner circle, two footprints with toes (left ink `#16211
 One file, no build step. Sections in order: CSS → SVG tool symbols → notice → header → `<main>` with five views (`data-view="home|workshops|activities|story|involved"`) → footer → help chat → scripts.
 
 - **Router:** hash-based. `#workshops` shows a view; `#tools`, `#interest`, etc. scroll to an id inside a view. Long jumps scroll instantly (smooth scrolling over long distances kept stopping partway on phones).
-- **Script-built content is also prerendered** into the HTML (topics, session bar, quotes, activities), so the page still shows everything when scripts are blocked. If you change the data arrays in JS (`MODS`, `SEG`, `Q`, `TOOLS`, `BI`, `MS`, `PV`), update the matching prerendered HTML too, or re-run a prerender.
+- **Script-built content is also prerendered** into the HTML (topics, session bar, activities), so the page still shows everything when scripts are blocked. If you change the data arrays in JS (`MODS`, `SEG`, `TOOLS`, `BI`, `MS`, `PV`), update the matching prerendered HTML too, or re-run a prerender.
+- **Quotes** live only in the HTML: the dark "why we started" band on Home rotates Marco's mom plus the four interview quotes (`#vq .fq` figures, stacked in one grid cell so the band never changes height). Add or edit quotes there.
 - **No-script fallback:** CSS under `html:not(.js)` shows all views stacked, makes the menu plain links, and shows a note telling people to open the file in a real browser.
 - **3D:** three.js r128 from cdnjs. The hero camera auto-fits all six tools at any size (`fit()`), and tall frames switch to a 2-column layout. The Tool Time wall falls back to 2D SVG if WebGL fails.
 - **Motion:** scroll reveals and staggered entrances, word-by-word highlight in "Why it matters", the session section that stays put while you scroll through it (desktop only, over 900px), and a progress line at the top. All of it respects `prefers-reduced-motion`.
@@ -70,6 +71,6 @@ Marco expects layout problems to be caught before he sees them.
 - Check widths **1920, 1366, 1100, 940, 860, 390**: no sideways scroll, all six hero tools fully in frame, nothing clipped.
 - Click every nav item, button and link. Each one should land on a visible section (no dead links).
 - Mobile: the menu opens and closes, both "Join the Interest List" buttons reach the form, and the form validates.
-- Activities: all three Tool Time rounds, the budget check, and Scam or Safe all complete and reset.
+- Activities: all four Tool Time modes (including Use it: tape and shelf), the budget check through its curveball, Scam or Safe (with flag taps) Make the Call (best path and all-wrong path) and Laundry Sort-Out (drag with a mouse, tap then tap on phones) all complete and reset. Test scripts for these live outside the repo (act1 to act4). On touch screens Laundry sorting is tap only, on purpose, so a swipe always scrolls the page. Each shows its "What you practiced" card, and the Done marks (localStorage `otf-done`) survive a reload.
 - Scripts blocked: content still shows (test with JavaScript disabled).
 - No console errors. Reduced-motion mode leaves nothing hidden.

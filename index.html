@@ -204,24 +204,20 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 @media (prefers-reduced-motion:no-preference){.sdetail.swap>*{animation:fade .4s var(--ease) both}}
 
 /* ===== QUOTES ===== */
-.vq{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;min-height:280px}
-.vq blockquote{margin:0;font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);line-height:1.2;letter-spacing:-.02em;max-width:26ch}
-.vq blockquote::before{content:"“";display:block;font-size:1.7em;line-height:.6;color:var(--accent);margin-bottom:6px}
-.vq figcaption{margin-top:24px;color:var(--ink-2);font-size:15px;display:flex;align-items:center;gap:12px}
-.vq figcaption i{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.75);display:grid;place-items:center;font:600 13px var(--sans);font-style:normal;color:var(--ink)}
-.vq figcaption b{color:var(--ink);font-weight:600}
-.vq .ctrl{display:flex;gap:8px;align-items:center}
-.vq .ctrl .icon-btn{background:rgba(255,255,255,.7);border-color:transparent}
-.vq .ctrl .icon-btn:hover{background:#fff}
-.vq .count{font:500 13px var(--mono);color:var(--ink-2);margin-right:8px}
-.vbar{display:flex;gap:6px;margin-top:36px}
-.vbar i{height:4px;flex:1;background:rgba(22,33,28,.1);border-radius:4px;position:relative;overflow:hidden}
-.vbar i.on::after{content:"";position:absolute;inset:0;background:var(--ink);border-radius:4px}
-@media (max-width:700px){.vq{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:no-preference){.vq.swap figure{animation:fade .5s var(--ease) both}}
+/* every quote sits in the same grid cell, so the band is as tall as the longest one and never jumps */
+.fq-wrap{display:grid;gap:28px}
+.fq-stack{display:grid}
+.fq{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+.fq.on{opacity:1;visibility:visible}
+.fq-ctrl{display:flex;gap:8px;align-items:center}
+.fq-ctrl .icon-btn{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.fq-ctrl .icon-btn:hover{border-color:#fff}
+.fq-ctrl .count{font:500 13px var(--mono);color:#C8CFCA;margin-left:8px}
+html:not(.js) .fq-ctrl{display:none}
 
 /* ===== ACTIVITY TEASER ===== */
-.teaser{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:16px}
+.teaser{display:grid;grid-template-columns:minmax(0,1.15fr) repeat(2,minmax(0,1fr));gap:16px}
+.teaser .tcard:first-child{grid-row:span 2}
 .tcard{position:relative;border-radius:var(--r-lg);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;background:var(--surface);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
 .tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .tcard .art{aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden;margin:10px;border-radius:24px}
@@ -234,14 +230,14 @@ header.site .wrap{display:flex;align-items:center;gap:16px;min-height:76px}
 .tcard .go{position:absolute;top:24px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;transition:transform .3s var(--ease)}
 .tcard:hover .go{transform:rotate(-45deg)}
 .tcard .go svg{width:16px;height:16px}
-@media (max-width:900px){.teaser{grid-template-columns:1fr 1fr}.tcard:first-child{grid-column:1/-1}}
+@media (max-width:1100px){.teaser{grid-template-columns:1fr 1fr}.teaser .tcard:first-child{grid-row:auto;grid-column:1/-1}}
 @media (max-width:560px){.teaser{grid-template-columns:1fr}}
 
 /* ===== FOUNDERS ===== */
 .band{background:var(--ink);color:var(--paper);padding-block:clamp(64px,9vw,128px)}
 .founders{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px);align-items:end}
-.founders figure{margin:0;display:grid;gap:22px}
-.founders .big{margin:0;font-family:var(--serif);font-size:clamp(30px,3.6vw,50px);line-height:1.16;letter-spacing:-.02em;text-wrap:balance}
+.founders figure{margin:0;display:grid;gap:22px;align-content:start}
+.founders .big{margin:0;font-family:var(--serif);font-size:clamp(26px,3vw,42px);line-height:1.16;letter-spacing:-.02em;text-wrap:balance}
 .founders figcaption{color:#C8CFCA;font-size:15px}
 .founders .copy{display:grid;gap:18px;color:#DCE1DD;font-size:17px;line-height:1.6;max-width:46ch}
 .btn-paper{background:var(--paper);color:var(--ink)}
@@ -341,7 +337,7 @@ fieldset.field{border:0;margin:0;padding:0}
 @media (max-width:760px){.paths{grid-template-columns:1fr}}
 
 /* ===== ACTIVITIES ===== */
-.act-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.act-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;max-width:600px}
 .act-nav a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px 0 16px;border-radius:999px;background:var(--surface);text-decoration:none;font-weight:500;font-size:15px;transition:box-shadow .2s}
 .act-nav a:hover{box-shadow:var(--shadow)}
 .act-nav a i{display:grid;place-items:center;font-style:normal;color:var(--accent)}
@@ -395,7 +391,7 @@ fieldset.field{border:0;margin:0;padding:0}
 .spec dd{margin:0}
 .fb{border-radius:18px;padding:16px 18px;display:grid;gap:6px;font-size:15.5px}
 .fb:empty{display:none}
-.fb.ok{background:var(--ok-soft)} .fb.no{background:var(--bad-soft)}
+.fb.ok{background:var(--ok-soft)} .fb.plain{background:var(--surface)}.fb.no{background:var(--bad-soft)}
 .fb h4{font-family:var(--sans);font-weight:600;font-size:16.5px;letter-spacing:-.01em;line-height:1.3}
 .fb .hab{color:var(--ink-2);font-size:14.5px}
 .fb .hab b{color:var(--ink);font-weight:600}
@@ -416,6 +412,23 @@ fieldset.field{border:0;margin:0;padding:0}
 .choices3 button.no{background:var(--bad-soft);border-color:var(--bad)}
 .choices3 button[disabled]{opacity:1;cursor:default}
 @media (max-width:560px){.choices3{grid-template-columns:1fr}}
+.choices3.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.choices3.c4 button{min-height:60px;font-size:17px;align-content:center}
+.scene .uq{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.25;max-width:26ch}
+.tape{background:rgba(255,255,255,.6);border-radius:20px;padding:12px 8px}
+.tape svg{display:block;width:100%;max-width:600px;height:auto;margin:0 auto}
+.tilt{display:grid;gap:8px}
+.tilt label{font-weight:600;font-size:15px}
+.tilt input{width:100%;min-height:34px;accent-color:var(--accent);margin:0}
+.tilt-ends{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--ink-2)}
+#bub{transition:transform .2s var(--ease)}
+.done-chip{vertical-align:middle;margin-left:10px;position:relative;top:-.2em}
+.practiced{margin:0 clamp(12px,2vw,24px) clamp(12px,2vw,24px);background:var(--sage);border-radius:26px;padding:clamp(22px,2.6vw,32px);display:flex;flex-wrap:wrap;gap:20px 32px;align-items:flex-end;justify-content:space-between}
+.practiced .pc{display:grid;gap:14px;min-width:0;flex:1 1 320px}
+.practiced h3{font-size:clamp(26px,2.6vw,34px);line-height:1.1}
+.practiced .results{font-size:16px;gap:11px}
+@media (max-width:560px){.modes{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:26px}.mode{padding:0 10px}}
+@media (prefers-reduced-motion:reduce){#bub{transition:none}}
 .budget{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:12px;align-items:start}
 @media (max-width:1000px){.budget{grid-template-columns:1fr}}
 #budForm{padding:8px clamp(8px,1.4vw,16px)}
@@ -442,8 +455,25 @@ fieldset.field{border:0;margin:0;padding:0}
 .results{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:15px}
 .results li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start}
 .results svg{width:18px;height:18px;margin-top:2px}
-.results .pass svg{color:var(--ok)} .results .fail svg{color:var(--bad)} .results .bonus svg{color:#9A7A3C}
+.results .pass svg{color:var(--ok)} .results .fail svg{color:var(--bad)} .results .bonus svg{color:var(--accent)}
+.items.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1180px){.items.three{grid-template-columns:1fr}}
+.item.sv .pr{font-size:13.5px}
+.bgroup[hidden],.wallet .row[hidden],.curve[hidden]{display:none}
+.curve{background:rgba(255,255,255,.8);border:1px solid var(--ink);border-radius:18px;padding:14px 16px}
+.curve h4{margin:0 0 4px;font-size:17px}
+.curve p{margin:0;font-size:14.5px;line-height:1.45}
+.item.chg .pr{background:#fff;box-shadow:inset 0 0 0 1px var(--ink)}
+.carry{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 2px}
+.carry b{font-family:var(--serif);font-size:44px;font-weight:400;line-height:1}
+.flag{border-radius:5px;padding:2px 1px;cursor:pointer;-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-tap-highlight-color:transparent}
+.flag:hover{background:rgba(242,226,166,.55)}
+.flag:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.flag.on{background:#F2E2A6;padding:2px 3px;cursor:default}
+.bubble mark.miss,.phone .from mark.miss{background:#F5D3C2;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.fb .hint{color:var(--ink);font-weight:500}
 .scam{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:12px;align-items:stretch}
+.callb{grid-template-columns:minmax(0,1fr) minmax(0,440px)}
 @media (max-width:1000px){.scam{grid-template-columns:1fr}}
 .phone-wrap{border-radius:26px;background:var(--sage);display:grid;place-items:center;padding:clamp(24px,4vw,48px);min-height:460px}
 .phone{background:var(--surface);border-radius:36px;padding:16px 16px 22px;width:100%;max-width:380px;display:grid;gap:14px;box-shadow:0 30px 60px -36px rgba(22,33,28,.45),0 0 0 8px rgba(255,255,255,.5)}
@@ -453,8 +483,73 @@ fieldset.field{border:0;margin:0;padding:0}
 .from b{display:block;font-size:15px;font-weight:600;line-height:1.25;word-break:break-word}
 .from small{color:var(--ink-3);font-size:13px}
 .bubble{background:var(--bg);border-radius:22px 22px 22px 6px;padding:14px 16px;font-size:16px;line-height:1.5;word-break:break-word;min-height:96px;margin:0 6px}
-.bubble mark{background:#F2E2A6;color:inherit;border-radius:4px;padding:0 3px}
+.bubble mark,.phone .from mark{background:#F2E2A6;color:inherit;border-radius:4px;padding:0 3px}
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.callb .phone{min-height:520px;align-content:start}
+.callb .bar b{font-weight:500;color:var(--ink)}
+.tx{display:grid;gap:8px;align-content:start;min-height:300px;max-height:360px;overflow-y:auto;padding:4px 6px 2px;scrollbar-width:thin}
+.tx .ln{margin:0;max-width:86%;padding:10px 14px;font-size:15.5px;line-height:1.45;word-break:break-word}
+.tx .desk{background:var(--bg);border-radius:20px 20px 20px 6px;justify-self:start}
+.tx .me{background:var(--ink);color:#fff;border-radius:20px 20px 6px 20px;justify-self:end}
+.tx .sys{max-width:100%;justify-self:center;text-align:center;font-size:13px;color:var(--ink-3);padding:2px 8px}
+@media (prefers-reduced-motion:no-preference){.tx .ln{animation:fade .35s var(--ease) both}.tx .hold::after{content:"";display:inline-block;width:6px;height:6px;margin-left:8px;border-radius:50%;background:var(--ink-3);animation:blink 1s ease-in-out infinite}@keyframes blink{50%{opacity:.2}}}
+.opts{display:grid;gap:8px}
+.opts .btn{white-space:normal;text-align:left;justify-content:flex-start;line-height:1.35;padding:13px 20px;border-radius:20px;min-height:50px}
+.opts .btn:disabled{cursor:default;opacity:.5}
+.opts .btn.picked:disabled{opacity:1;border-color:var(--ink);background:#fff}
+.week{background:var(--surface);border-radius:18px;padding:14px 16px;display:grid;gap:6px}
+.week[hidden]{display:none}
+.week h4{font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.01em}
+.week p{margin:0;font-size:14px;color:var(--ink-2)}
+.week div{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding-top:6px;border-top:1px solid var(--line)}
+.week div b{font-weight:600;text-align:right}
+/* Laundry Sort-Out */
+.lstage{border-radius:26px;background:var(--mist);padding:clamp(16px,2.6vw,32px);display:grid;gap:clamp(12px,1.8vw,18px);align-content:start;min-height:460px}
+.pile{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cell{position:relative;aspect-ratio:1/1.12}
+.piece{position:absolute;inset:0;border:2px solid transparent;border-radius:20px;background:rgba(255,255,255,.6);display:grid;grid-template-rows:minmax(0,1fr) auto auto;justify-items:center;align-items:center;gap:3px;padding:8px 6px 9px;font:500 13.5px/1.2 var(--sans);color:var(--ink);text-align:center;cursor:grab;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;transition:border-color .2s,background .2s}
+.piece svg{width:100%;height:100%;min-height:0;pointer-events:none}
+.piece span{display:flex;align-items:center;min-height:2.4em;pointer-events:none}
+.piece small{font-size:12.5px;color:var(--ink-2);font-weight:400;pointer-events:none}
+.piece:hover{background:#fff}
+.piece[aria-pressed=true]{border-color:var(--ink);background:#fff}
+.piece.lift{opacity:.3}
+.piece:disabled{color:var(--ink);cursor:default;opacity:1}
+.cell.gone{display:none}
+.piece.nope{animation:shake .4s}
+.pile.recap .piece{background:rgba(255,255,255,.75)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes bump{40%{transform:scale(1.05)}}
+.lfb{min-height:74px;display:grid;align-content:center}
+.lfb .fb{width:100%}
+.baskets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bk{border:2px dashed rgba(22,33,28,.3);border-radius:22px;background:rgba(255,255,255,.4);padding:10px 8px 12px;display:grid;justify-items:center;gap:1px;font:inherit;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s,transform .25s var(--ease);-webkit-tap-highlight-color:transparent}
+.bk svg{width:min(100%,150px);height:auto;display:block;pointer-events:none}
+.bk b{font-weight:600;font-size:16px;pointer-events:none}
+.bk small{font-size:13px;color:var(--ink-2);pointer-events:none}
+.bk:hover,.lstage.armed .bk{border-color:var(--ink);background:rgba(255,255,255,.75)}
+.bk.over{border-style:solid;border-color:var(--ink);background:#fff;transform:scale(1.03)}
+.bk.bump{animation:bump .35s var(--ease)}
+.ghost{position:fixed;left:0;top:0;width:88px;height:88px;pointer-events:none;z-index:90;filter:drop-shadow(0 14px 16px rgba(22,33,28,.28))}
+.ghost svg{width:100%;height:100%}
+body.dragging,body.dragging *{cursor:grabbing!important;user-select:none;-webkit-user-select:none}
+.lstage.lab{align-content:center;justify-items:center}
+.lblw{display:grid;gap:14px;justify-items:center;width:100%}
+.care{display:block;width:100%;max-width:440px;height:auto;filter:drop-shadow(0 16px 22px rgba(22,33,28,.16))}
+.lcap{color:var(--ink-2);font-size:16px;text-align:center}
+.lcap b{color:var(--ink);font-weight:600}
+.tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tri.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tri .btn{padding:0 8px}
+.tri .btn.ok{background:#fff;border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.tri .btn.no{background:#fff;border-color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad)}
+.tri .btn:disabled{cursor:default}
+.tri .btn:disabled:not(.ok):not(.no){opacity:.5}
+.lg{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px;font-size:14.5px;color:var(--ink-2)}
+.lg li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:center}
+.lg svg{width:30px;height:30px;color:var(--ink);fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:1000px){.lstage{min-height:0}}
+@media (max-width:560px){.pile{grid-template-columns:repeat(3,minmax(0,1fr))}.cell{aspect-ratio:1/1.34}.piece{font-size:13px}}
 .clues{margin:0;padding-left:18px;display:grid;gap:4px}
 .previews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .pv{background:var(--surface);border-radius:var(--r-lg);padding:26px;display:grid;gap:10px;align-content:start}
@@ -574,6 +669,18 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   <symbol id="t-wrench" viewBox="0 0 80 200"><path d="M22 18a22 22 0 0 0 6 40l4 6v114a8 8 0 0 0 16 0V64l4-6a22 22 0 0 0 6-40v22H46V14H34v26H22z" fill="url(#st)"/><circle cx="40" cy="176" r="4" fill="#6B7680"/></symbol>
   <symbol id="t-tape" viewBox="0 0 80 200"><rect x="6" y="30" width="68" height="68" rx="18" fill="#E5C27E"/><circle cx="40" cy="64" r="15" fill="#2B3540"/><circle cx="40" cy="64" r="5" fill="#E5C27E"/><rect x="52" y="94" width="12" height="86" fill="#F0E2B6"/><path d="M52 104h6M52 114h4M52 124h6M52 134h4M52 144h6M52 154h4M52 164h6" stroke="#2B3540" stroke-width="1.4"/><rect x="49" y="178" width="18" height="6" rx="1.5" fill="#9AA3AC"/></symbol>
   <symbol id="t-level" viewBox="0 0 80 200"><rect x="25" y="8" width="30" height="184" rx="6" fill="#8FB09B"/><rect x="30" y="86" width="20" height="28" rx="6" fill="#2B3540"/><rect x="33" y="91" width="14" height="18" rx="7" fill="#DDE9B0"/><circle cx="40" cy="100" r="4" fill="#fff"/><circle cx="40" cy="24" r="5.5" fill="#2B3540"/><circle cx="40" cy="176" r="5.5" fill="#2B3540"/></symbol>
+  <!-- Laundry Sort-Out: clothes (120 x 120) and baskets (140 x 110) -->
+  <symbol id="l-tshirt" viewBox="0 0 120 120"><path d="M40 16 22 26 6 52l18 10 8-10v52q0 4 4 4h48q4 0 4-4V52l8 10 18-10-16-26-18-10q-8 14-20 14T40 16z" fill="#fff" stroke="#B9B4A6" stroke-width="1.8" stroke-linejoin="round"/><path d="M40 16Q60 10 80 16Q72 30 60 30Q48 30 40 16z" fill="#E4E0D6"/><path d="M40 16Q48 30 60 30T80 16" fill="none" stroke="#D2CDC0" stroke-width="3" stroke-linecap="round"/><path d="M32 52q-2-22 8-36M88 52q2-22-8-36M33 99h54" fill="none" stroke="#DAD5C9" stroke-width="1.4"/><path d="M74 31q14 4 14 22v51q0 4-4 4H74z" fill="#16211C" opacity=".05"/></symbol>
+  <symbol id="l-jeans" viewBox="0 0 120 120"><path d="M34 10h52l6 98H64L60 46l-4 62H28z" fill="#2F4A68"/><path d="M60 46l4 62h28l-6-76q-12 18-26 14z" fill="#16211C" opacity=".14"/><path d="M40 58q-2 22-4 38" fill="none" stroke="#4F6F92" stroke-width="5" stroke-linecap="round" opacity=".55"/><path d="M34 10h52l.8 13H33.2z" fill="#243B54"/><rect x="39" y="9" width="4" height="16" rx="1.5" fill="#1D3149"/><rect x="77" y="9" width="4" height="16" rx="1.5" fill="#1D3149"/><circle cx="60" cy="16" r="2.4" fill="#C9D0D6"/><path d="M60 24v22M36 25q2 13 16 11M84 25q-2 13-16 11M30 101h25M65 101h25" fill="none" stroke="#7F9BB8" stroke-width="1.4" stroke-dasharray="3 2.5"/></symbol>
+  <symbol id="l-hoodie" viewBox="0 0 120 120"><path d="M42 24 22 34 8 78l18 6 8-20v42q0 4 4 4h44q4 0 4-4V64l8 20 18-6-14-44-20-10z" fill="#262B31"/><path d="M8 78l18 6-2.5 7-18-6zM112 78l-18 6 2.5 7 18-6z" fill="#1A1E23"/><rect x="34" y="102" width="52" height="8" rx="3" fill="#1A1E23"/><path d="M41 74h38l5 26H36z" fill="#2E343B" stroke="#3E464E" stroke-width="1.4" stroke-linejoin="round"/><path d="M42 24 34 64M78 24l8 40" fill="none" stroke="#3A4249" stroke-width="1.4"/><path d="M42 24Q40 6 60 6T78 24Q70 40 60 40T42 24z" fill="#333A41"/><path d="M49 24Q50 14 60 14T71 24Q66 34 60 34T49 24z" fill="#14171A"/><path d="M54 38v16M66 38v16" stroke="#C9CFD4" stroke-width="2" stroke-linecap="round"/><circle cx="54" cy="56" r="2.2" fill="#C9CFD4"/><circle cx="66" cy="56" r="2.2" fill="#C9CFD4"/></symbol>
+  <symbol id="l-socks" viewBox="0 0 120 120"><g transform="translate(36 4) scale(.8)"><path d="M24 10h28v52q0 7 8 10l24 9q14 6 8 18-5 8-16 7l-40-6q-12-2-12-14z" fill="#F1EEE6" stroke="#B9B4A6" stroke-width="2.2" stroke-linejoin="round"/><path d="M24 15h28M24 21h28" stroke="#9CB2C8" stroke-width="3"/></g><path d="M24 10h28v52q0 7 8 10l24 9q14 6 8 18-5 8-16 7l-40-6q-12-2-12-14z" fill="#fff" stroke="#B9B4A6" stroke-width="1.8" stroke-linejoin="round"/><path d="M24 10h28v12H24z" fill="#F0EDE4"/><path d="M24 15h28M24 21h28" stroke="#8FA7BF" stroke-width="2.6"/><path d="M44 24v38q0 7 8 10V24z" fill="#16211C" opacity=".05"/></symbol>
+  <symbol id="l-sweats" viewBox="0 0 120 120"><path d="M32 10H88L92 100q0 8-4 8H68q-4 0-4-8L60 50 56 100q0 8-4 8H32q-4 0-4-8z" fill="#555B62"/><path d="M60 50 64 100q0 8 4 8H88q4 0 4-8L88 10Q84 36 60 50z" fill="#16211C" opacity=".14"/><rect x="31" y="10" width="58" height="14" rx="3" fill="#41464D"/><path d="M60 24V50M36 26l-6 74M84 26l6 74" stroke="#444A51" stroke-width="1.4" fill="none"/><rect x="28" y="94" width="28" height="14" rx="4" fill="#41464D"/><rect x="64" y="94" width="28" height="14" rx="4" fill="#41464D"/><path d="M56 24q-2 12-6 17M64 24q2 12 6 17" stroke="#DADEE2" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="50" cy="43" r="2.3" fill="#DADEE2"/><circle cx="70" cy="43" r="2.3" fill="#DADEE2"/></symbol>
+  <symbol id="l-bath" viewBox="0 0 120 120"><rect x="16" y="96" width="88" height="8" rx="4" fill="#4D8593"/><rect x="12" y="24" width="96" height="76" rx="9" fill="#6FA8B6"/><rect x="12" y="24" width="96" height="15" rx="8" fill="#8CBFCB"/><path d="M12 39h96" stroke="#5A93A1" stroke-width="1.5"/><path d="M12 68h96v7H12zM12 79h96v3.5H12z" fill="#EAF3F5"/><path d="M92 39h16v50q0 11-9 11H92z" fill="#16211C" opacity=".07"/><rect x="12" y="24" width="96" height="76" rx="9" fill="none" stroke="#4D8593" stroke-width="1.4"/></symbol>
+  <symbol id="l-hand" viewBox="0 0 120 120"><path d="M54 18Q54 6 60 6T66 18" fill="none" stroke="#6E9C7D" stroke-width="3.2" stroke-linecap="round"/><path d="M36 100v7M44 100v7M52 100v7M60 100v7M68 100v7M76 100v7M84 100v7" stroke="#8DB89B" stroke-width="2.4" stroke-linecap="round"/><rect x="32" y="16" width="56" height="86" rx="7" fill="#8DB89B"/><rect x="32" y="16" width="56" height="12" rx="6" fill="#A6CDB1"/><path d="M32 28h56" stroke="#78A486" stroke-width="1.5"/><path d="M32 72h56v6H32zM32 82h56v3H32z" fill="#F0F6F1"/><path d="M76 28h12v68q0 6-7 6h-5z" fill="#16211C" opacity=".07"/><rect x="32" y="16" width="56" height="86" rx="7" fill="none" stroke="#6E9C7D" stroke-width="1.4"/></symbol>
+  <symbol id="l-jersey" viewBox="0 0 120 120"><path d="M40 16 22 26 6 52l18 10 8-10v52q0 4 4 4h48q4 0 4-4V52l8 10 18-10-16-26-18-10L60 40z" fill="#C8372D"/><path d="M74 33l14 12v59q0 4-4 4H74z" fill="#16211C" opacity=".1"/><path d="M40 16Q60 9 80 16L60 40z" fill="#8F2620"/><path d="M40 16 60 40 80 16" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 44l16 9M110 44l-16 9M13 38l16 9M107 38l-16 9" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="60" y="86" text-anchor="middle" font-family="Young Serif,Georgia,serif" font-size="34" fill="#fff">7</text><path d="M68 28Q80 34 88 50" fill="none" stroke="#fff" stroke-width="1.6"/><g transform="translate(88 50) rotate(14)"><rect x="-8" y="0" width="16" height="22" rx="3" fill="#fff" stroke="#B9B4A6" stroke-width="1.2"/><circle cx="0" cy="4" r="1.6" fill="#B9B4A6"/><text x="0" y="16" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="6.5" font-weight="600" fill="#C8372D">NEW</text></g></symbol>
+  <symbol id="l-bk-dark" viewBox="0 0 140 110"><rect x="6" y="8" width="128" height="14" rx="7" fill="#262E36"/><path d="M14 22h112l-10 76q-1 6-7 6H31q-6 0-7-6z" fill="#3E4A56"/><g fill="#222A31"><rect x="24" y="34" width="12" height="9" rx="4.5"/><rect x="44" y="34" width="12" height="9" rx="4.5"/><rect x="64" y="34" width="12" height="9" rx="4.5"/><rect x="84" y="34" width="12" height="9" rx="4.5"/><rect x="104" y="34" width="12" height="9" rx="4.5"/><rect x="24" y="54" width="12" height="9" rx="4.5"/><rect x="44" y="54" width="12" height="9" rx="4.5"/><rect x="64" y="54" width="12" height="9" rx="4.5"/><rect x="84" y="54" width="12" height="9" rx="4.5"/><rect x="104" y="54" width="12" height="9" rx="4.5"/><rect x="31" y="74" width="12" height="9" rx="4.5"/><rect x="53" y="74" width="12" height="9" rx="4.5"/><rect x="75" y="74" width="12" height="9" rx="4.5"/><rect x="97" y="74" width="12" height="9" rx="4.5"/></g></symbol>
+  <symbol id="l-bk-light" viewBox="0 0 140 110"><rect x="6" y="8" width="128" height="14" rx="7" fill="#DDD7C8" stroke="#BDB7A8" stroke-width="1.4"/><path d="M14 22h112l-10 76q-1 6-7 6H31q-6 0-7-6z" fill="#F6F3EB" stroke="#BDB7A8" stroke-width="1.4" stroke-linejoin="round"/><g fill="#DAD4C5"><rect x="24" y="34" width="12" height="9" rx="4.5"/><rect x="44" y="34" width="12" height="9" rx="4.5"/><rect x="64" y="34" width="12" height="9" rx="4.5"/><rect x="84" y="34" width="12" height="9" rx="4.5"/><rect x="104" y="34" width="12" height="9" rx="4.5"/><rect x="24" y="54" width="12" height="9" rx="4.5"/><rect x="44" y="54" width="12" height="9" rx="4.5"/><rect x="64" y="54" width="12" height="9" rx="4.5"/><rect x="84" y="54" width="12" height="9" rx="4.5"/><rect x="104" y="54" width="12" height="9" rx="4.5"/><rect x="31" y="74" width="12" height="9" rx="4.5"/><rect x="53" y="74" width="12" height="9" rx="4.5"/><rect x="75" y="74" width="12" height="9" rx="4.5"/><rect x="97" y="74" width="12" height="9" rx="4.5"/></g></symbol>
+  <symbol id="l-bk-towel" viewBox="0 0 140 110"><rect x="6" y="8" width="128" height="14" rx="7" fill="#4D8593"/><path d="M14 22h112l-10 76q-1 6-7 6H31q-6 0-7-6z" fill="#6FA8B6"/><g fill="#52899A"><rect x="24" y="34" width="12" height="9" rx="4.5"/><rect x="44" y="34" width="12" height="9" rx="4.5"/><rect x="64" y="34" width="12" height="9" rx="4.5"/><rect x="84" y="34" width="12" height="9" rx="4.5"/><rect x="104" y="34" width="12" height="9" rx="4.5"/><rect x="24" y="54" width="12" height="9" rx="4.5"/><rect x="44" y="54" width="12" height="9" rx="4.5"/><rect x="64" y="54" width="12" height="9" rx="4.5"/><rect x="84" y="54" width="12" height="9" rx="4.5"/><rect x="104" y="54" width="12" height="9" rx="4.5"/><rect x="31" y="74" width="12" height="9" rx="4.5"/><rect x="53" y="74" width="12" height="9" rx="4.5"/><rect x="75" y="74" width="12" height="9" rx="4.5"/><rect x="97" y="74" width="12" height="9" rx="4.5"/></g></symbol>
 </svg>
 
 <p class="nojs-note">This viewer is blocking the page’s scripts, so menus and activities won’t work here. Open the file in Chrome or Safari for the full site.</p>
@@ -639,11 +746,21 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 
   <section class="band" aria-labelledby="fou-h">
     <div class="wrap founders reveal">
-      <figure>
+      <div class="fq-wrap">
         <h2 class="sr-only" id="fou-h">Why we started</h2>
-        <blockquote class="big">“I was working to make sure my kids had what they needed, but I couldn’t always be there to teach them every little thing.”</blockquote>
-        <figcaption>Marco’s mom, a single mother who at times worked three jobs</figcaption>
-      </figure>
+        <div class="fq-stack" id="vq" aria-live="polite">
+          <figure class="fq on"><blockquote class="big">“I was working to make sure my kids had what they needed, but I couldn’t always be there to teach them every little thing.”</blockquote><figcaption>Marco’s mom, a single mother who at times worked three jobs</figcaption></figure>
+          <figure class="fq"><blockquote class="big">“Sometimes YouTube videos don’t explain it fully, and then you have to go to a totally different video. It’s not a relationship, and it’s really confusing.”</blockquote><figcaption>Joseph P., interviewed by Jewell</figcaption></figure>
+          <figure class="fq"><blockquote class="big">“I didn’t always want to ask for help because my parents were already busy. Sometimes I just figured things out so I could help my brothers.”</blockquote><figcaption>Luis V., interviewed by Marco</figcaption></figure>
+          <figure class="fq"><blockquote class="big">“I was missing guidance in so many areas when I was that age. This would’ve been a huge help for me.”</blockquote><figcaption>Jayden S., interviewed by Dane</figcaption></figure>
+          <figure class="fq"><blockquote class="big">“Guys love to know how to do things and love to have knowledge.”</blockquote><figcaption>Shepherd S., 14, interviewed by Jewell</figcaption></figure>
+        </div>
+        <div class="fq-ctrl">
+          <button class="icon-btn" type="button" id="vqPrev" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="icon-btn" type="button" id="vqNext" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <span class="count" id="vqCount">1 of 5</span>
+        </div>
+      </div>
       <div class="copy">
         <p>We’re Dane, Jewell and Marco, three college students who kept getting asked to fix phones, paint walls, fix cabinets and deal with car trouble. Usually nobody had shown us how.</p>
         <p>This isn’t about parents who didn’t care. It’s about families doing everything they can, and kids who just need someone to take the time to teach them.</p>
@@ -686,22 +803,6 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
     </div>
   </section>
 
-  <section aria-labelledby="voi-h">
-    <div class="wrap">
-      <div class="panel sand reveal">
-        <h2 class="h-md" id="voi-h">What we heard</h2>
-        <div class="vq" id="vq" style="margin-top:28px">
-          <figure style="margin:0" aria-live="polite"><blockquote id="vqText">Sometimes YouTube videos don’t explain it fully, and then you have to go to a totally different video. It’s not a relationship, and it’s really confusing.</blockquote><figcaption id="vqWho"><i>J</i><span><b>Joseph P.</b>, interviewed by Jewell</span></figcaption></figure>
-          <div class="ctrl">
-            <span class="count" id="vqCount">1 / 4</span>
-            <button class="icon-btn" type="button" id="vqPrev" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-            <button class="icon-btn" type="button" id="vqNext" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
-        <div class="vbar" id="vbar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-      </div>
-    </div>
-  </section>
 
   <section aria-labelledby="try-h">
     <div class="wrap">
@@ -709,12 +810,14 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
         <div class="sec-head">
           
           <h2 class="h-lg" id="try-h">Try an activity</h2>
-          <p class="lede" style="color:#46504A">Three short activities that give you a feel for what students do in a workshop.</p>
+          <p class="lede" style="color:#46504A">Five short activities that give you a feel for what students do in a workshop.</p>
         </div>
         <div class="stg teaser">
           <a class="tcard" href="#tools"><span class="art" style="background:radial-gradient(110% 80% at 50% 0%,#FBF8F2 0%,#ECE3D3 100%)"><svg viewBox="0 0 520 300" aria-hidden="true"><g transform="translate(40 10)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(120 20)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(195 10)"><use href="#t-tape" width="100" height="270"/></g><g transform="translate(285 15)"><use href="#t-wrench" width="80" height="260"/></g><g transform="translate(360 20)"><use href="#t-flat" width="80" height="250"/></g><g transform="translate(430 5)"><use href="#t-level" width="80" height="285"/></g></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Tool Time</h3><p>Check out six hand tools in 3D, match them to jobs, then decide when to call for help.</p></span></a>
           <a class="tcard" href="#budget"><span class="art" style="background:var(--butter)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="40" width="220" height="140" rx="22" fill="#fff"/><text x="64" y="90" font-family="Geist,system-ui,sans-serif" font-size="13" fill="#8A928D">Left to spend</text><text x="64" y="134" font-family="Young Serif,Georgia,serif" font-size="42" fill="#16211C">$6</text><rect x="64" y="150" width="172" height="10" rx="5" fill="#EEEBE4"/><rect x="64" y="150" width="130" height="10" rx="5" fill="#2F6450"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Saturday on $25</h3><p>Cover needs, keep a promise, stay on budget.</p></span></a>
           <a class="tcard" href="#scams"><span class="art" style="background:var(--sage)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><rect x="88" y="56" width="110" height="34" rx="16" fill="#F6F4EF"/><rect x="88" y="100" width="124" height="44" rx="16" fill="#F2E2A6"/><rect x="100" y="114" width="70" height="6" rx="3" fill="#16211C" opacity=".5"/><rect x="100" y="126" width="90" height="6" rx="3" fill="#16211C" opacity=".3"/><rect x="88" y="156" width="80" height="26" rx="13" fill="#F6F4EF"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Scam or Safe?</h3><p>Read six messages and spot what gives a scam away.</p></span></a>
+          <a class="tcard" href="#call"><span class="art" style="background:var(--mist)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><circle cx="150" cy="70" r="20" fill="#F6F4EF"/><text x="150" y="76" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#56615B">FC</text><text x="150" y="116" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#16211C">Fresh Cuts</text><text x="150" y="136" text-anchor="middle" font-family="Geist Mono,monospace" font-size="12" fill="#5F6B64">1:12</text><circle cx="150" cy="172" r="15" fill="#2F6450"/><path d="M143 172h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Make the Call</h3><p>Call a front desk and move an appointment.</p></span></a>
+          <a class="tcard" href="#laundry"><span class="art" style="background:var(--sand)"><svg viewBox="0 0 300 220" aria-hidden="true"><use href="#l-tshirt" x="18" y="14" width="88" height="88"/><use href="#l-jeans" x="106" y="14" width="88" height="88"/><use href="#l-bath" x="194" y="14" width="88" height="88"/><use href="#l-bk-light" x="20" y="116" width="84" height="66"/><use href="#l-bk-dark" x="108" y="116" width="84" height="66"/><use href="#l-bk-towel" x="196" y="116" width="84" height="66"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Laundry Sort-Out</h3><p>Sort a pile into darks, lights and towels, then read care labels.</p></span></a>
         </div>
       </div>
     </div>
@@ -828,24 +931,26 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   <section class="phead"><div class="wrap"><div class="panel butter with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 22) rotate(-14 45 135)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(124 6)"><use href="#t-level" width="80" height="285"/></g><g transform="translate(206 22) rotate(12 40 130)"><use href="#t-wrench" width="80" height="260"/></g></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>Practice a little right now</h1>
-    <p class="lede" style="color:#46504A">Three short activities you can try now. More are on the way further down the page.</p>
+    <p class="lede" style="color:#46504A">Five short activities you can try now. More are on the way further down the page.</p>
     <nav class="act-nav" aria-label="Jump to an activity">
       <a href="#tools"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></i>Tool Time</a>
       <a href="#budget"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/></svg></i>Saturday on $25</a>
       <a href="#scams"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg></i>Scam or Safe?</a>
-      <a href="#previews"><i style="background:var(--peach)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg></i>Coming soon</a>
+      <a href="#call"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></i>Make the Call</a>
+      <a href="#laundry"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"/></svg></i>Laundry Sort-Out</a>
     </nav>
   </div></div></section>
 
   <section><div class="wrap">
     <article class="activity" id="tools" aria-labelledby="tools-h">
       <div class="act-head">
-        <div class="t"><h2 id="tools-h">Tool Time</h2><p>Learn six hand tools, match each one to a job, then practice knowing when to stop and get help.</p></div>
+        <div class="t"><h2 id="tools-h">Tool Time <span class="chip live done-chip" data-done="tools" hidden>Done</span></h2><p>Learn six hand tools, match each one to a job, practice knowing when to stop and get help, then use a tape measure and a level.</p></div>
         <div class="act-tools">
           <div class="modes" role="tablist" aria-label="Tool Time modes" id="ttModes">
             <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">Explore</button>
             <button class="mode" role="tab" aria-selected="false" data-mode="match" id="m-match" tabindex="-1">Match the job</button>
             <button class="mode" role="tab" aria-selected="false" data-mode="pro" id="m-pro" tabindex="-1">Fix or call?</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="use" id="m-use" tabindex="-1">Use it</button>
           </div>
           <button class="reset" type="button" id="ttReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
         </div>
@@ -862,12 +967,17 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
           <div class="scene" id="proScene"></div>
           <div class="side-card" id="proSide" aria-live="polite"></div>
         </div>
+        <div class="pro" id="useWrap" hidden>
+          <div class="scene" id="useScene"></div>
+          <div class="side-card" id="useSide" aria-live="polite"></div>
+        </div>
       </div>
+      <div class="practiced" id="pracTools" role="region" aria-label="What you practiced" hidden></div>
     </article>
 
     <article class="activity" id="budget" aria-labelledby="budget-h">
       <div class="act-head">
-        <div class="t"><h2 id="budget-h">Saturday on $25</h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
+        <div class="t"><h2 id="budget-h">Saturday on $25 <span class="chip live done-chip" data-done="budget" hidden>Done</span></h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
         <div class="act-tools"><button class="reset" type="button" id="budReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body budget">
@@ -876,27 +986,32 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
           <fieldset class="bgroup"><legend class="label">Lunch (pick one)</legend><div class="items" id="bLunch"><label class="item"><input type="radio" name="lunch" value="taco" id="b-taco"><span class="nm">Taco truck lunch<small>Two tacos and a drink</small></span><span class="pr">$7</span></label><label class="item"><input type="radio" name="lunch" value="packed" id="b-packed"><span class="nm">Packed lunch from home<small>Sandwich, fruit, water</small></span><span class="pr">$2</span></label></div></fieldset>
           <fieldset class="bgroup"><legend class="label">A promise you made</legend><div class="items" id="bPromise"><label class="item"><input type="checkbox" value="gift" id="b-gift"><span class="nm">Card and small gift<small>Your sister’s birthday is Sunday</small></span><span class="pr">$8</span></label></div></fieldset>
           <fieldset class="bgroup"><legend class="label">Wants (optional)</legend><div class="items" id="bWants"><label class="item"><input type="checkbox" value="movie" id="b-movie"><span class="nm">Movie ticket<small>Matinee with friends</small></span><span class="pr">$9</span></label><label class="item"><input type="checkbox" value="snack" id="b-snack"><span class="nm">Movie snacks<small>Popcorn and a drink</small></span><span class="pr">$6</span></label><label class="item"><input type="checkbox" value="arcade" id="b-arcade"><span class="nm">Arcade tokens<small>About 20 minutes of games</small></span><span class="pr">$5</span></label><label class="item"><input type="checkbox" value="case" id="b-case"><span class="nm">New phone case<small>Yours still works fine</small></span><span class="pr">$12</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">Save for next week (optional)</legend><div class="items three" id="bSaveItems"><label class="item sv"><input type="radio" name="save" value="0" checked><span class="nm">Save nothing<small>Spend or keep the rest</small></span><span class="pr">$0</span></label><label class="item sv"><input type="radio" name="save" value="3"><span class="nm">Save a little<small>Set it aside first</small></span><span class="pr">$3</span></label><label class="item sv"><input type="radio" name="save" value="5"><span class="nm">Save more<small>A bigger head start</small></span><span class="pr">$5</span></label></div></fieldset>
+          <fieldset class="bgroup" id="bCurve" hidden><legend class="label" id="bCurveLg">A friend asks</legend><div class="items" id="bCurveItems"></div></fieldset>
         </form>
         <aside class="wallet" aria-label="Your budget">
           <div class="row"><span class="muted">Spent</span><b id="bSpent">$0</b></div>
           <div class="meter" id="bMeter" aria-hidden="true"><div class="fill" id="bFill"></div></div>
           <div class="scale" aria-hidden="true"><span>$0</span><span>$25</span></div>
+          <div class="row" style="font-size:15px" id="bSaveRow" hidden><span class="muted">Saving for next week</span><span id="bSave" style="font-weight:600">$0</span></div>
           <div class="row" style="font-size:15px"><span class="muted">Left</span><span id="bLeft" style="font-weight:600">$25</span></div>
+          <div class="curve" id="bCurveCard" hidden><h4>Curveball</h4><p id="bCurveTxt"></p></div>
           <p class="sr-only" id="bLive" aria-live="polite"></p>
           <button class="btn btn-ink" id="bCheck" type="button">Check my plan</button>
           <div id="bResult" aria-live="polite"></div>
         </aside>
       </div>
+      <div class="practiced" id="pracBudget" role="region" aria-label="What you practiced" hidden></div>
     </article>
 
     <article class="activity" id="scams" aria-labelledby="scam-h">
       <div class="act-head">
-        <div class="t"><h2 id="scam-h">Scam or Safe?</h2><p>Read each message and make the call. Then see the clues.</p></div>
+        <div class="t"><h2 id="scam-h">Scam or Safe? <span class="chip live done-chip" data-done="scams" hidden>Done</span></h2><p>Read each message and make the call. If it’s a scam, tap the words that give it away.</p></div>
         <div class="act-tools"><div class="prog" id="scamProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><button class="reset" type="button" id="scamReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
       </div>
       <div class="act-body scam">
         <div class="phone-wrap">
-          <div class="phone" aria-label="Message preview">
+          <div class="phone" id="scamPhone" aria-label="Message preview">
             <div class="bar" aria-hidden="true"><span>9:41</span><span id="scamCount">1 / 6</span></div>
             <div class="from"><span class="av" id="scamAv" aria-hidden="true">?</span><div style="min-width:0"><b id="scamFrom">Unknown number</b><small id="scamChan">Text message</small></div></div>
             <p class="bubble" id="scamBody">CONGRATS!! You won a free GameStation 5. Claim in the next 10 min: gs5-prizes.win/claim. Just pay $4.99 shipping with a parent’s card.</p>
@@ -907,14 +1022,52 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
           <h3>Is this message safe, or is it a scam?</h3>
           <div class="duo"><button class="btn btn-line" id="scamSafe" type="button">Looks safe</button><button class="btn btn-line" id="scamBad" type="button">It’s a scam</button></div>
           <div class="fb" id="scamFb" aria-live="polite"></div>
-          <div class="push"><button class="btn btn-ink" id="scamNext" type="button" hidden>Next message</button></div>
+          <div class="push"><button class="btn btn-line" id="scamShow" type="button" hidden>Show what I missed</button><button class="btn btn-ink" id="scamNext" type="button" hidden>Next message</button></div>
         </div>
       </div>
+      <div class="practiced" id="pracScams" role="region" aria-label="What you practiced" hidden></div>
+    </article>
+
+    <article class="activity" id="call" aria-labelledby="call-h">
+      <div class="act-head">
+        <div class="t"><h2 id="call-h">Make the Call <span class="chip live done-chip" data-done="call" hidden>Done</span></h2><p>Your haircut clashes with a new practice. Call the front desk, say what you need, and pick a time that fits your week.</p></div>
+        <div class="act-tools"><button class="reset" type="button" id="callReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+      </div>
+      <div class="act-body scam callb">
+        <div class="phone-wrap">
+          <div class="phone" aria-label="Phone call with Fresh Cuts">
+            <div class="bar" aria-hidden="true"><span>9:41</span><b id="callTime">0:00</b></div>
+            <div class="from"><span class="av" aria-hidden="true">FC</span><div style="min-width:0"><b>Fresh Cuts</b><small id="callSt">Connected</small></div></div>
+            <div class="tx" id="callTx" role="log" aria-live="polite" aria-label="The call so far"><p class="ln desk">Thanks for calling Fresh Cuts, this is Dana.</p></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label" id="callStep">Step 1 of 6</span><div class="prog" id="callProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+          <h3 id="callQ">Dana picks up. What do you say?</h3>
+          <div class="opts" id="callOpts"><button class="btn btn-line" type="button">Hi Dana, this is Sam.</button><button class="btn btn-line" type="button">Uh... hi.</button><button class="btn btn-line" type="button">Yeah, I need to change my haircut.</button></div>
+          <div class="fb" id="callFb" aria-live="polite"></div>
+          <div class="week" id="callWeek"><h4>Your week</h4><p>Practice now takes Thursday 4:00 to 6:00.</p><div><span>Thursday</span><b>Free after 6:00</b></div><div><span>Friday</span><b>Free after 3:30</b></div><div><span>Saturday</span><b>Free in the morning</b></div></div>
+          <div class="push"><button class="btn btn-ink" id="callNext" type="button" hidden>Next step</button><button class="btn btn-ink" id="callAgain" type="button" hidden>Play again</button></div>
+        </div>
+      </div>
+      <div class="practiced" id="pracCall" role="region" aria-label="What you practiced" hidden></div>
+    </article>
+
+    <article class="activity" id="laundry" aria-labelledby="laundry-h">
+      <div class="act-head">
+        <div class="t"><h2 id="laundry-h">Laundry Sort&#8209;Out <span class="chip live done-chip" data-done="laundry" hidden>Done</span></h2><p>Sort a pile of laundry into darks, lights and towels, then read care labels to pick the right water. Ask an adult before you use a washer or dryer the first time.</p></div>
+        <div class="act-tools"><button class="reset" type="button" id="launReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+      </div>
+      <div class="act-body scam">
+        <div class="lstage" id="lStage"><div class="pile" id="lPile" role="group" aria-label="The laundry pile"><div class="cell"><button class="piece" type="button" data-i="tshirt" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-tshirt"></use></svg><span>White T-shirt</span></button></div><div class="cell"><button class="piece" type="button" data-i="jeans" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-jeans"></use></svg><span>Dark jeans</span></button></div><div class="cell"><button class="piece" type="button" data-i="bath" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-bath"></use></svg><span>Bath towel</span></button></div><div class="cell"><button class="piece" type="button" data-i="jersey" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-jersey"></use></svg><span>Red team jersey</span></button></div><div class="cell"><button class="piece" type="button" data-i="socks" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-socks"></use></svg><span>White socks</span></button></div><div class="cell"><button class="piece" type="button" data-i="hoodie" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-hoodie"></use></svg><span>Black hoodie</span></button></div><div class="cell"><button class="piece" type="button" data-i="hand" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-hand"></use></svg><span>Hand towel</span></button></div><div class="cell"><button class="piece" type="button" data-i="sweats" aria-pressed="false"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-sweats"></use></svg><span>Dark gray sweatpants</span></button></div></div><div class="lfb"><div class="fb" id="lFb" aria-live="polite"></div></div><div class="baskets" id="lBaskets" role="group" aria-label="Baskets"><button class="bk" type="button" data-b="dark" aria-label="Darks basket, empty"><svg viewBox="0 0 140 110" aria-hidden="true"><use href="#l-bk-dark"></use></svg><b>Darks</b><small>Empty</small></button><button class="bk" type="button" data-b="light" aria-label="Lights basket, empty"><svg viewBox="0 0 140 110" aria-hidden="true"><use href="#l-bk-light"></use></svg><b>Lights</b><small>Empty</small></button><button class="bk" type="button" data-b="towel" aria-label="Towels basket, empty"><svg viewBox="0 0 140 110" aria-hidden="true"><use href="#l-bk-towel"></use></svg><b>Towels</b><small>Empty</small></button></div></div>
+        <div class="side-card" id="lSide"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">Part 1 of 2</span><div class="prog" id="lProg" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div><h3>Sort the pile into three baskets.</h3><p>Drag each item to a basket. Or tap an item, then tap a basket.</p><div class="push"><button class="btn btn-ink" id="lGo" type="button" hidden="">Read the labels</button></div></div>
+      </div>
+      <div class="practiced" id="pracLaundry" role="region" aria-label="What you practiced" hidden></div>
     </article>
 
     <section id="previews" class="sec tight" aria-labelledby="prev-h" style="padding-bottom:0">
       <div class="sec-head"><h2 class="h-lg" id="prev-h">More activities coming</h2><p class="lede">These are planned for workshops. You can’t play them yet.</p></div>
-      <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="label">Tech &amp; online safety</span><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 1;"><div class="top"><span class="label">Personal care</span><span class="chip soon">Coming soon</span></div><h3>Laundry Sort-Out</h3><p>Sort a real pile of clothes and decode the care-label symbols.</p><details><summary>What students practice</summary><ul><li>Darks, lights and towels</li><li>Wash and dry symbols</li><li>Measuring detergent with an adult</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="label">Simple cooking</span><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="label">Communication</span><span class="chip soon">Coming soon</span></div><h3>Make the Call</h3><p>Role-play calling a front desk to ask a question or reschedule.</p><details><summary>What students practice</summary><ul><li>A clear introduction</li><li>Planning what to say</li><li>Confirming details before you hang up</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="label">Home &amp; tools</span><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 5;"><div class="top"><span class="label">Vehicle basics</span><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div>
+      <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="label">Tech &amp; online safety</span><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="label">Simple cooking</span><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="label">Home &amp; tools</span><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="label">Vehicle basics</span><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div>
     </section>
   </div></section>
 </div>
@@ -922,7 +1075,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
 <!-- ================= STORY ================= -->
 <div class="view" data-view="story" id="story" hidden>
   <section class="phead"><div class="wrap"><div class="panel peach">
-    <h1 class="h-xl" tabindex="-1" data-focus>We learned by doing. It shouldn’t be that hard.</h1>
+    <h1 class="h-xl" tabindex="-1" data-focus>We had to figure it out alone. They shouldn’t have to.</h1>
   </div></div></section>
   <section class="sec tight"><div class="wrap split">
     <div class="prose">
@@ -1014,6 +1167,23 @@ const I={
  next:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>'
 };
 function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2600)}
+/* finished activities: only these ids are stored on this device (key otf-done); storage may be blocked */
+const DONE_KEY='otf-done',ACT={tools:['Tool Time','pracTools'],budget:['Saturday on $25','pracBudget'],scams:['Scam or Safe?','pracScams'],call:['Make the Call','pracCall'],laundry:['Laundry Sort-Out','pracLaundry']},ORDER=['tools','budget','scams','call','laundry'];
+const doneMem=new Set();
+function doneRead(){try{const a=JSON.parse(localStorage.getItem(DONE_KEY));return Array.isArray(a)?a.filter(x=>x in ACT):[]}catch(e){return []}}
+function paintDone(){$$('[data-done]').forEach(c=>c.hidden=!doneMem.has(c.dataset.done))}
+doneRead().forEach(x=>doneMem.add(x));paintDone();
+function doneSet(id){doneMem.add(id);const a=doneRead();if(!a.includes(id)){a.push(id);try{localStorage.setItem(DONE_KEY,JSON.stringify(a))}catch(e){}}paintDone()}
+const PRAC={tools:['Reading a tape measure to the nearest 1/8 inch','Matching the right tool to the job','Knowing when to stop and get an adult'],
+ budget:['Paying for needs and promises before wants','Changing your plan when something unexpected happens','Saving a little for next week'],
+ scams:['Spotting a rushed deadline','Checking a link before you tap','Telling a trusted adult'],
+ call:['Saying who you are and why you’re calling','Picking a time that fits your week','Repeating details back to confirm'],
+ laundry:['Sorting darks, lights and towels','Reading a care label before you wash','Picking the right water temperature']};
+function pracHide(id){$('#'+ACT[id][1]).hidden=true}
+function finish(id){doneSet(id);const el=$('#'+ACT[id][1]),i=ORDER.indexOf(id),nx=ORDER.slice(1).map((_,k)=>ORDER[(i+k+1)%ORDER.length]).find(x=>!doneMem.has(x));
+  el.innerHTML=`<div class="pc"><h3>What you practiced</h3><ul class="results">${PRAC[id].map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul></div><button class="btn btn-ink" type="button" data-pnext="${nx||'previews'}">${nx?'Next: '+ACT[nx][0]:'See what is coming'}</button>`;
+  el.hidden=false;toast(`${ACT[id][0]} finished. See what you practiced below.`)}
+$$('.practiced').forEach(p=>p.addEventListener('click',e=>{const b=e.target.closest('[data-pnext]');if(b)route('#'+b.dataset.pnext,true)}));
 let curView=null;
 const hdr=$('#siteHeader');addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>8),{passive:true});
 
@@ -1073,18 +1243,12 @@ sbar.addEventListener('click',e=>{const b=e.target.closest('.seg');if(b)showSeg(
 showSeg(2);
 
 /* ---------- voices ---------- */
-const Q=[
- {q:'Sometimes YouTube videos don’t explain it fully, and then you have to go to a totally different video. It’s not a relationship, and it’s really confusing.',w:'Joseph P.',r:'interviewed by Jewell'},
- {q:'I didn’t always want to ask for help because my parents were already busy. Sometimes I just figured things out so I could help my brothers.',w:'Luis V.',r:'interviewed by Marco'},
- {q:'I was missing guidance in so many areas when I was that age. This would’ve been a huge help for me.',w:'Jayden S.',r:'interviewed by Dane'},
- {q:'Guys love to know how to do things and love to have knowledge.',w:'Shepherd S., 14',r:'interviewed by Jewell'}
-];
-let qi=0,qTimer=null;
-$('#vbar').innerHTML=Q.map(()=>'<i></i>').join('');
-function showQ(i){qi=(i+Q.length)%Q.length;$('#vqText').textContent=Q[qi].q;$('#vqWho').innerHTML=`<i>${esc(Q[qi].w.charAt(0))}</i><span><b>${esc(Q[qi].w)}</b>, ${esc(Q[qi].r)}</span>`;$('#vqCount').textContent=`${qi+1} / ${Q.length}`;$$('#vbar i').forEach((b,j)=>b.classList.toggle('on',j===qi));const v=$('#vq');v.classList.remove('swap');void v.offsetWidth;v.classList.add('swap')}
+/* why-we-started quotes: one at a time, every figure stays stacked in the same cell so the band never changes height */
+const FQ=$$('#vq .fq');let qi=0,qTimer=null;
+function showQ(i){qi=(i+FQ.length)%FQ.length;FQ.forEach((f,j)=>f.classList.toggle('on',j===qi));$('#vqCount').textContent=`${qi+1} of ${FQ.length}`}
 function stopQ(){clearInterval(qTimer);qTimer=null}
 $('#vqPrev').addEventListener('click',()=>{showQ(qi-1);stopQ()});$('#vqNext').addEventListener('click',()=>{showQ(qi+1);stopQ()});
-showQ(0);if(!RM)qTimer=setInterval(()=>{if(curView==='home'&&!document.hidden)showQ(qi+1)},8000);
+if(!RM)qTimer=setInterval(()=>{if(curView==='home'&&!document.hidden)showQ(qi+1)},8000);
 
 /* ---------- reveal ---------- */
 if('IntersectionObserver' in window&&!RM){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});$$('.reveal').forEach(r=>{if(r.getBoundingClientRect().top>innerHeight){r.classList.add('pre');io.observe(r)}})}
@@ -1247,7 +1411,16 @@ const PRO=[
  {s:'Water is coming through the ceiling during a storm.',w:['Living room','Emergency'],a:'pro',why:'Tell an adult immediately and stay away from outlets or lights near the water. A roof leak needs a professional.'}
 ];
 const PROA={me:['I can handle it','Safe to do myself'],ask:['Get an adult','Stop and tell someone'],pro:['Call the pros','Leave, call for help']};
-const freshTT=()=>({mode:'explore',sel:null,seen:new Set(),mi:0,first:0,tries:0,answered:false,pi:0,pScore:0,pAns:false});
+/* "Use it": tape questions (n = eighths of an inch) and the shelf task */
+let uTimer=0;
+const gcd=(a,b)=>b?gcd(b,a%b):a,rnd=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const frac=r=>{const g=gcd(r,8);return `${r/g}/${8/g}`},tfmt=n=>`${n>>3}${n%8?' '+frac(n%8):''} in`;
+function tapeQs(){return rnd([1,2,3,4,5,6,7]).slice(0,4).map(r=>{const n=(2+Math.floor(Math.random()*9))*8+r,w=n>>3;
+  const cand=[w*8+8-r,Math.random()<.5?n+1:n-1,Math.random()<.5?n+8:n-8,n+1,n-1,n+2,n-2],o=[];for(const k of cand)if(k>=8&&k!==n&&!o.includes(k)&&o.length<3)o.push(k);
+  return {n,o:rnd([n,...o])}})}
+const tilt0=()=>(Math.random()<.5?-1:1)*(4+Math.floor(Math.random()*13)/2);
+const useFresh=()=>({ui:0,uq:tapeQs(),uScore:0,uAns:false,sv:tilt0(),sw:false});
+const freshTT=()=>({mode:'explore',sel:null,seen:new Set(),mi:0,first:0,tries:0,answered:false,pi:0,pScore:0,pAns:false,dn:new Set(),fin:false,...useFresh()});
 let tt=freshTT();
 const tray=$('#tray'),side=$('#ttSide');
 tray.innerHTML=TOOLS.map(t=>`<button type="button" data-tool="${t.id}">${{hammer:'Hammer',phillips:'Phillips',tape:'Tape measure',wrench:'Wrench',flat:'Flathead',level:'Level'}[t.id]}</button>`).join('');
@@ -1260,21 +1433,21 @@ function renderSide(){
     const t=T[tt.sel];
     side.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">${tt.seen.size} of 6 explored</span>${pr}</div><h3>${t.name}</h3><dl class="spec"><div><dt>Used for</dt><dd>${t.use}</dd></div><div><dt>How to hold</dt><dd>${t.grip}</dd></div><div><dt>Safe habit</dt><dd>${t.safe}</dd></div></dl><div class="push">${tt.seen.size===6?'<button class="btn btn-ink" type="button" data-go="match">Start the challenge</button>':'<button class="btn btn-ink btn-sm" type="button" data-nexttool>Next tool</button><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to challenge</button>'}</div>`;
   }else if(tt.mode==='match'){
-    if(tt.mi>=JOBS.length){side.innerHTML=`<span class="label">All jobs matched</span><div class="result"><div class="score">${tt.first}<small> / 6 on the first try</small></div><p>In a workshop, students hold each tool and try it on a practice board with a mentor.</p></div><div class="push"><button class="btn btn-ink" type="button" data-go="pro">Next: Fix or call?</button><button class="btn btn-line btn-sm" type="button" data-replay="match">Play again</button></div>`;return}
+    if(tt.mi>=JOBS.length){tt.dn.add('match');ttCheck();side.innerHTML=`<span class="label">All jobs matched</span><div class="result"><div class="score">${tt.first}<small> / 6 on the first try</small></div><p>In a workshop, students hold each tool and try it on a practice board with a mentor.</p></div><div class="push"><button class="btn btn-ink" type="button" data-go="pro">Next: Fix or call?</button><button class="btn btn-line btn-sm" type="button" data-replay="match">Play again</button></div>`;return}
     side.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="label">Job ${tt.mi+1} of 6</span><div class="prog" aria-hidden="true">${JOBS.map((j,k)=>`<i class="${k<tt.mi?'done':k===tt.mi?'cur':''}"></i>`).join('')}</div></div><h3>${JOBS[tt.mi].task}</h3><div class="fb" id="ttFb"></div><div class="push"><button class="btn btn-ink" type="button" id="ttNext" hidden>${tt.mi===5?'See results':'Next job'}</button></div>`;
   }
 }
 function setMode(m){
   tt.mode=m;$$('#ttModes .mode').forEach(b=>{const on=b.dataset.mode===m;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
-  $('#benchWrap').hidden=m==='pro';$('#proWrap').hidden=m!=='pro';
+  clearTimeout(uTimer);$('#benchWrap').hidden=m==='pro'||m==='use';$('#proWrap').hidden=m!=='pro';$('#useWrap').hidden=m!=='use';
   $$('#tray button,#fb2d button').forEach(b=>delete b.dataset.st);
   $('#wallHint').textContent=m==='explore'?'Click a tool to pick it up':'Choose the tool for the job';
   if(m!=='explore'){tt.sel=null;bench&&bench.select(null)}else bench&&bench.select(tt.sel);
   bench&&bench.mark(null);
-  if(m==='pro')renderPro();else{renderSide();trayState();bench&&bench.resize()}
+  if(m==='pro')renderPro();else if(m==='use')renderUse();else{renderSide();trayState();bench&&bench.resize()}
 }
 function pick(id){
-  if(tt.mode==='explore'){tt.sel=id;tt.seen.add(id);bench&&bench.select(id);renderSide();trayState();return}
+  if(tt.mode==='explore'){tt.sel=id;tt.seen.add(id);if(tt.seen.size===6){tt.dn.add('explore');ttCheck()}bench&&bench.select(id);renderSide();trayState();return}
   if(tt.mode!=='match'||tt.mi>=JOBS.length||tt.answered)return;
   const j=JOBS[tt.mi],t=T[id],b=$$(`[data-tool="${id}"]`),fb=$('#ttFb');tt.tries++;
   if(id===j.a){tt.answered=true;if(tt.tries===1)tt.first++;b.forEach(x=>x.dataset.st='ok');fb.className='fb ok';fb.innerHTML=`<h4>Yes, the ${t.name.toLowerCase()}.</h4><p>${t.use}</p><p class="hab"><b>Safe habit:</b> ${t.safe}</p>`;const n=$('#ttNext');n.hidden=false;n.focus({preventScroll:true});bench&&bench.mark(id,'ok')}
@@ -1283,7 +1456,7 @@ function pick(id){
 }
 function renderPro(){
   const sc=$('#proScene'),sd=$('#proSide');
-  if(tt.pi>=PRO.length){sc.innerHTML=`<span class="label">All situations done</span><p class="sit">Knowing when to stop is a real skill. You just practiced it six times.</p>`;sd.innerHTML=`<span class="label">Your result</span><div class="result"><div class="score">${tt.pScore}<small> / 6</small></div><p>The rule to remember: water spreading, electricity, gas, or anything that feels unsafe means get an adult first.</p></div><div class="push"><button class="btn btn-ink" type="button" data-replay="pro">Play again</button><button class="btn btn-line btn-sm" type="button" data-go="explore">Back to Explore</button></div>`;return}
+  if(tt.pi>=PRO.length){tt.dn.add('pro');ttCheck();sc.innerHTML=`<span class="label">All situations done</span><p class="sit">Knowing when to stop is a real skill. You just practiced it six times.</p>`;sd.innerHTML=`<span class="label">Your result</span><div class="result"><div class="score">${tt.pScore}<small> / 6</small></div><p>The rule to remember: water spreading, electricity, gas, or anything that feels unsafe means get an adult first.</p></div><div class="push"><button class="btn btn-ink" type="button" data-replay="pro">Play again</button><button class="btn btn-line btn-sm" type="button" data-go="explore">Back to Explore</button></div>`;return}
   const p=PRO[tt.pi];
   sc.innerHTML=`<div class="where">${p.w.map(w=>`<span class="chip">${w}</span>`).join('')}</div><p class="sit">${p.s}</p><div class="choices3" role="group" aria-label="What should you do?">${Object.entries(PROA).map(([k,v])=>`<button type="button" data-pa="${k}">${v[0]}<small>${v[1]}</small></button>`).join('')}</div>`;
   sd.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="label">Situation ${tt.pi+1} of 6</span><div class="prog" aria-hidden="true">${PRO.map((x,k)=>`<i class="${k<tt.pi?'done':k===tt.pi?'cur':''}"></i>`).join('')}</div></div><h3>What should you do?</h3><p>Some jobs are yours. Some need an adult. Some need a professional, fast.</p><div class="fb" id="proFb"></div><div class="push"><button class="btn btn-ink" type="button" id="proNext" hidden>${tt.pi===5?'See results':'Next situation'}</button></div>`;
@@ -1296,12 +1469,42 @@ $('#proWrap').addEventListener('click',e=>{
     const fb=$('#proFb');fb.className='fb '+(right?'ok':'no');fb.innerHTML=`<h4>${right?'Right call.':'Better call: '+PROA[p.a][0].toLowerCase()+'.'}</h4><p>${p.why}</p>`;const n=$('#proNext');n.hidden=false;n.focus({preventScroll:true})}
   if(e.target.closest('#proNext')){tt.pi++;renderPro()}
 });
+/* Use it: zoomed tape (3 inches, ticks every 1/16) with a board edge, and a shelf with a bubble level */
+function tapeSvg(n){const S=100,v=n/8,st=Math.max(0,Math.round(v-1.5)),mx=(v-st)*S;let a='',b='',lb='';
+  for(let k=0;k<=48;k++){const x=k*S/16,m=k%16===0,d=`M${x} 26v${m?60:k%8===0?47:k%4===0?36:k%2===0?26:17}`;if(m){a+=d;lb+=`<text x="${x}" y="118" text-anchor="middle">${st+k/16}</text>`}else b+=d}
+  return `<svg viewBox="-18 0 336 152" role="img" aria-label="Close-up of a tape measure. The edge of a board lines up with a mark on the tape."><rect x="-18" y="24" width="336" height="106" fill="#F2D24B"/><rect x="-18" y="124" width="336" height="6" fill="#D6B52E"/><rect x="-18" y="24" width="336" height="2" fill="#16211C" opacity=".35"/><rect x="${mx}" y="0" width="${318-mx}" height="24" fill="#C99A63"/><rect x="${mx-3}" y="24" width="6" height="104" fill="#B83A2A" opacity=".3"/><path d="M${mx} 0V24" stroke="#B83A2A" stroke-width="3"/><path d="${b}" stroke="#16211C" stroke-width="1.6" fill="none"/><path d="${a}" stroke="#16211C" stroke-width="2.8" fill="none"/><g fill="#16211C" font-family="Geist,system-ui,sans-serif" font-size="28" font-weight="700">${lb}</g><path d="M${mx-8} 151L${mx} 134L${mx+8} 151z" fill="#B83A2A"/></svg>`}
+const bubX=v=>Math.max(-14,Math.min(14,v*6)),tiltTxt=v=>v===0?'Level':`${v>0?'Right':'Left'} end up ${Math.abs(v)} degrees`;
+const shelfSvg=v=>`<svg viewBox="10 72 300 118" role="img" aria-label="A shelf on a wall bracket with a bubble level on top."><rect x="10" y="72" width="300" height="118" rx="14" fill="#F2E6D3"/><rect x="146" y="128" width="28" height="52" rx="4" fill="#9AA4AB"/><circle cx="160" cy="146" r="2.5" fill="#6B747A"/><circle cx="160" cy="164" r="2.5" fill="#6B747A"/><g id="shelfG" transform="rotate(${-v} 160 128)"><rect x="30" y="122" width="260" height="12" rx="2" fill="#C99A63"/><rect x="30" y="122" width="260" height="3" rx="1.5" fill="#D9B07A"/><rect x="104" y="100" width="112" height="22" rx="4" fill="#2F6450"/><rect x="138" y="104" width="44" height="14" rx="7" fill="#EEF3C9"/><path d="M150 104v14M170 104v14" stroke="#16211C" stroke-width="1.5"/><ellipse id="bub" cx="160" cy="111" rx="6" ry="4" fill="#fff" stroke="#7C8A4A" stroke-width="1" style="transform:translateX(${bubX(v)}px)"/></g><circle cx="160" cy="128" r="5" fill="#16211C"/></svg>`;
+function shelfSet(v){$('#shelfG').setAttribute('transform',`rotate(${-v} 160 128)`);$('#bub').style.transform=`translateX(${bubX(v)}px)`;const t=$('#tilt');t.setAttribute('aria-valuetext',tiltTxt(v))}
+function renderUse(){
+  const sc=$('#useScene'),sd=$('#useSide'),i=tt.ui;clearTimeout(uTimer);
+  const pr=`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="label">${i<4?`Question ${i+1} of 4`:i===4?'Last task':'All done'}</span><div class="prog" aria-hidden="true">${[0,1,2,3,4].map(k=>`<i class="${k<i?'done':k===i?'cur':''}"></i>`).join('')}</div></div>`;
+  if(i<4){const q=tt.uq[i];
+    sc.innerHTML=`<p class="uq">Where does the edge of the board land on the tape?</p><div class="tape">${tapeSvg(q.n)}</div><div class="choices3 c4" role="group" aria-label="What length does the tape show?">${q.o.map(k=>`<button type="button" data-ua="${k}">${tfmt(k)}</button>`).join('')}</div>`;
+    sd.innerHTML=`${pr}<h3>Read the tape</h3><p>You are looking at 3 inches of tape, zoomed in. Find the big number just before the red line, then count the small marks past it. Each small mark is 1/16 inch.</p><div class="fb" id="useFb"></div><div class="push"><button class="btn btn-ink" type="button" id="useNext" hidden>${i===3?'Next: level the shelf':'Next question'}</button></div>`;tt.uAns=false}
+  else if(i===4){const v=tt.sw?0:tt.sv;
+    sc.innerHTML=`<p class="uq">Tilt the shelf until the bubble sits between the two lines.</p><div class="tape">${shelfSvg(v)}</div><div class="tilt"><label for="tilt">Tilt the shelf</label><input type="range" id="tilt" min="-12" max="12" step="0.5" value="${v}" aria-valuetext="${tiltTxt(v)}"${tt.sw?' disabled':''}><div class="tilt-ends"><span>Raise left end</span><span>Raise right end</span></div></div>`;
+    sd.innerHTML=`${pr}<h3>Level the shelf</h3><p>A bubble level shows which side is higher. The bubble floats to the high side. Move the slider or use the arrow keys, and stop when the bubble sits between the lines.</p><div class="fb${tt.sw?' ok':''}" id="useFb">${tt.sw?'<h4>Level.</h4><p>That’s how you hang a shelf straight.</p>':''}</div><div class="push"><button class="btn btn-ink" type="button" id="useNext"${tt.sw?'':' hidden'}>See results</button></div>`}
+  else{tt.dn.add('use');const nm={explore:'Explore',match:'Match the job',pro:'Fix or call?'},rest=['explore','match','pro'].filter(m=>!tt.dn.has(m)).map(m=>nm[m]);
+    sc.innerHTML=`<p class="uq">You read the tape and leveled the shelf.</p><div class="tape">${shelfSvg(0)}</div>`;
+    sd.innerHTML=`${pr}<h3>Nice work.</h3><div class="result"><div class="score">${tt.uScore}<small> / 4 tape readings right</small></div><p>${rest.length?`To finish Tool Time, also complete ${rest.join(', ').replace(/, ([^,]+)$/,rest.length>1?' and $1':', $1')}.`:'You have now finished every Tool Time mode.'}</p></div><div class="push"><button class="btn btn-line btn-sm" type="button" data-replay="use">Play again</button><button class="btn btn-line btn-sm" type="button" data-go="explore">Back to Explore</button></div>`;ttCheck()}
+}
+function ttCheck(){if(!tt.fin&&['explore','match','pro','use'].every(m=>tt.dn.has(m))){tt.fin=true;finish('tools')}}
+$('#useWrap').addEventListener('click',e=>{
+  const b=e.target.closest('[data-ua]');
+  if(b&&!tt.uAns){tt.uAns=true;const q=tt.uq[tt.ui],k=+b.dataset.ua,ok=k===q.n,w=q.n>>3,r=q.n%8;if(ok)tt.uScore++;
+    $$('[data-ua]').forEach(x=>{x.disabled=true;if(+x.dataset.ua===q.n)x.classList.add('ok');else if(x===b)x.classList.add('no')});
+    const fb=$('#useFb');fb.className='fb '+(ok?'ok':'no');fb.innerHTML=`<h4>${ok?'Yes, '+tfmt(q.n)+'.':'Not quite. It is '+tfmt(q.n)+'.'}</h4><p>Start at the ${w} and count the small marks to the red line: ${r*2} of them. That is ${r*2}/16, or ${frac(r)} inch.</p>`;const n=$('#useNext');n.hidden=false;n.focus({preventScroll:true})}
+  if(e.target.closest('#useNext')){tt.ui++;renderUse()}
+});
+$('#useWrap').addEventListener('input',e=>{if(e.target.id!=='tilt'||tt.sw)return;const v=+e.target.value;tt.sv=v;shelfSet(v);clearTimeout(uTimer);
+  if(Math.abs(v)<=.5)uTimer=setTimeout(()=>{if(tt.ui!==4||tt.sw)return;tt.sw=true;tt.sv=0;const t=$('#tilt');t.value=0;t.disabled=true;shelfSet(0);const fb=$('#useFb');fb.className='fb ok';fb.innerHTML='<h4>Level.</h4><p>That’s how you hang a shelf straight.</p>';const n=$('#useNext');n.hidden=false;n.focus({preventScroll:true})},700)});
 $('#ttModes').addEventListener('click',e=>{const b=e.target.closest('.mode');if(b)setMode(b.dataset.mode)});
-$('#ttModes').addEventListener('keydown',e=>{const ms=['explore','match','pro'];let i=ms.indexOf(tt.mode);if(e.key==='ArrowRight')i++;else if(e.key==='ArrowLeft')i--;else return;e.preventDefault();i=(i+3)%3;setMode(ms[i]);$('#m-'+ms[i]).focus()});
+$('#ttModes').addEventListener('keydown',e=>{const ms=['explore','match','pro','use'];let i=ms.indexOf(tt.mode);if(e.key==='ArrowRight')i++;else if(e.key==='ArrowLeft')i--;else return;e.preventDefault();i=(i+4)%4;setMode(ms[i]);$('#m-'+ms[i]).focus()});
 $('#tools').addEventListener('click',e=>{
   const tb=e.target.closest('#tray [data-tool],#fb2d [data-tool]');if(tb){pick(tb.dataset.tool);return}
   const g=e.target.closest('[data-go]');if(g){setMode(g.dataset.go);return}
-  const rp=e.target.closest('[data-replay]');if(rp){if(rp.dataset.replay==='match'){tt.mi=0;tt.first=0;tt.tries=0;tt.answered=false}else{tt.pi=0;tt.pScore=0}setMode(rp.dataset.replay);return}
+  const rp=e.target.closest('[data-replay]');if(rp){if(rp.dataset.replay==='match'){tt.mi=0;tt.first=0;tt.tries=0;tt.answered=false}else if(rp.dataset.replay==='use')Object.assign(tt,useFresh());else{tt.pi=0;tt.pScore=0}setMode(rp.dataset.replay);return}
   if(e.target.closest('[data-nexttool]')){const i=TOOLS.findIndex(t=>t.id===tt.sel);pick(TOOLS[(i+1)%6].id);return}
   if(e.target.closest('#ttNext')){tt.mi++;tt.tries=0;tt.answered=false;$$('#tray button,#fb2d button').forEach(b=>delete b.dataset.st);bench&&bench.mark(null);renderSide();trayState()}
 });
@@ -1309,7 +1512,7 @@ tray.addEventListener('pointerover',e=>{const b=e.target.closest('[data-tool]');
 tray.addEventListener('pointerleave',()=>bench&&bench.hover(null));
 tray.addEventListener('focusin',e=>{const b=e.target.closest('[data-tool]');bench&&bench.hover(b?b.dataset.tool:null)});
 tray.addEventListener('focusout',()=>bench&&bench.hover(null));
-$('#ttReset').addEventListener('click',()=>{tt=freshTT();bench&&bench.select(null);setMode('explore');toast('Tool Time reset.')});
+$('#ttReset').addEventListener('click',()=>{clearTimeout(uTimer);tt=freshTT();pracHide('tools');bench&&bench.select(null);setMode('explore');toast('Tool Time reset.')});
 
 let bench=null,benchTried=false;
 function initBench(){
@@ -1366,45 +1569,199 @@ const BI={bNeeds:[{id:'bus',n:'Round-trip bus fare',s:'Rec center and back',p:4}
  bPromise:[{id:'gift',n:'Card and small gift',s:'Your sister’s birthday is Sunday',p:8}],
  bWants:[{id:'movie',n:'Movie ticket',s:'Matinee with friends',p:9},{id:'snack',n:'Movie snacks',s:'Popcorn and a drink',p:6},{id:'arcade',n:'Arcade tokens',s:'About 20 minutes of games',p:5},{id:'case',n:'New phone case',s:'Yours still works fine',p:12}]};
 Object.entries(BI).forEach(([k,l])=>{$('#'+k).innerHTML=l.map(it=>{PRICE[it.id]=it.p;return `<label class="item"><input type="${it.r?'radio':'checkbox'}" ${it.r?'name="lunch"':''} value="${it.id}" id="b-${it.id}"><span class="nm">${it.n}<small>${it.s}</small></span><span class="pr">$${it.p}</span></label>`}).join('')});
-const bs=()=>{const sel=$$('#budForm input:checked').map(i=>i.value),sp=sel.reduce((a,i)=>a+PRICE[i],0);return {sel,sp,left:BUD-sp}};
-function bRender(){const {sp,left}=bs();$('#bSpent').textContent='$'+sp;const l=$('#bLeft');l.textContent=(left<0?'−$':'$')+Math.abs(left);l.style.color=left<0?'var(--bad)':'';$('#bFill').style.width=Math.min(100,sp/BUD*100)+'%';$('#bMeter').classList.toggle('over',left<0);$('#bLive').textContent=`Spent $${sp}. ${left<0?'Over by $'+(-left):'$'+left+' left'}.`}
-$('#budForm').addEventListener('change',()=>{bRender();$('#bResult').innerHTML=''});
-$('#bCheck').addEventListener('click',()=>{const {sel,sp,left}=bs(),has=i=>sel.includes(i);
-  const R=[{ok:has('bus'),t:'Ride covered',f:'Add bus fare. Without it, you can’t get there.'},{ok:has('taco')||has('packed'),t:'Lunch planned',f:'Pick a lunch. Packing one saves $5.'},{ok:has('gift'),t:'Promise kept',f:'You promised a birthday gift. Plan for it before wants.'},{ok:left>=0,t:`Within $${BUD}`,f:`You’re $${-left} over. Drop a want${has('taco')?' or pack lunch':''}.`}];
+const BASE={...PRICE,loan:5};PRICE.loan=5;
+const CB=[{id:'bus',p:5,t:'The bus fare went up $1. Round trip is now $5.'},{id:'movie',p:11,t:'The movie costs $2 more than you thought. The ticket is now $11.'},{id:'arcade',p:3,t:'Good news. Arcade tokens are on sale. They are now $3.'},{id:'loan',t:'A friend asks to borrow $5 and promises to pay you back next week. Lending is your choice. Money you lend is money you can’t spend.'}];
+let bq={cb:null};
+const bs=()=>{const sel=$$('#budForm input:checked:not([name=save])').map(i=>i.value),sp=sel.reduce((a,i)=>a+PRICE[i],0),sv=+$('#budForm input[name=save]:checked').value;return {sel,sp,sv,left:BUD-sp-sv}};
+function bPrices(){$$('#budForm .item:not(.sv)').forEach(l=>{const v=l.querySelector('input').value;l.querySelector('.pr').textContent='$'+PRICE[v];l.classList.toggle('chg',PRICE[v]!==BASE[v])})}
+function bRender(){const {sp,sv,left}=bs();$('#bSpent').textContent='$'+sp;$('#bSaveRow').hidden=!sv;$('#bSave').textContent='$'+sv;const l=$('#bLeft');l.textContent=(left<0?'−$':'$')+Math.abs(left);l.style.color=left<0?'var(--bad)':'';$('#bFill').style.width=Math.min(100,(sp+sv)/BUD*100)+'%';$('#bMeter').classList.toggle('over',left<0);$('#bLive').textContent=`Spent $${sp}.${sv?` Saving $${sv}.`:''} ${left<0?'Over by $'+(-left):'$'+left+' left'}.`}
+function bThrow(){const c=bq.cb=CB[Math.floor(Math.random()*CB.length)];if(c.id==='loan'){$('#bCurveItems').innerHTML=`<label class="item"><input type="checkbox" value="loan" id="b-loan"><span class="nm">Lend $5 to your friend<small>They say they will pay you back next week</small></span><span class="pr">$5</span></label>`;$('#bCurve').hidden=false}else{PRICE[c.id]=c.p;bPrices()}
+  $('#bCurveTxt').textContent=c.t;$('#bCurveCard').hidden=false;bRender()}
+$('#budForm').addEventListener('change',()=>{bRender();pracHide('budget');$('#bResult').innerHTML=''});
+$('#bCheck').addEventListener('click',()=>{const {sel,sp,sv,left}=bs(),has=i=>sel.includes(i);
+  const R=[{ok:has('bus'),t:'Ride covered',f:'Add bus fare. Without it, you can’t get there.'},{ok:has('taco')||has('packed'),t:'Lunch planned',f:'Pick a lunch. Packing one saves $5.'},{ok:has('gift'),t:'Promise kept',f:'You promised a birthday gift. Plan for it before wants.'},{ok:left>=0,t:`Within $${BUD}`,f:`You’re $${-left} over. Drop a want${has('taco')?' or pack lunch':''}${sv?' or save a little less':''}.`}];
   const pass=R.every(x=>x.ok);let h='<ul class="results">'+R.map(x=>`<li class="${x.ok?'pass':'fail'}">${x.ok?I.check:I.x}<span>${x.ok?x.t:x.f}</span></li>`).join('');
-  if(pass)h+=`<li class="bonus">${I.star}<span>${left>=3?`Bonus: $${left} saved for next week.`:'Try leaving $3 unspent to start a savings habit.'}</span></li>`;h+='</ul>';
-  $('#bResult').innerHTML=pass?`<div class="fb ok"><h4>Your Saturday works.</h4><p>$${sp} spent, $${left} kept. Needs and promises came first.</p>${h}</div>`:`<div class="fb no"><h4>Almost. Fix these:</h4>${h}</div>`});
-$('#budReset').addEventListener('click',()=>{$('#budForm').reset();bRender();$('#bResult').innerHTML='';toast('Budget reset.')});
+  if(pass)h+=`<li class="bonus">${I.star}<span>${sv?`You set aside $${sv} for next week. That’s a win.`:left>=3?`You kept $${left} unspent. That counts too.`:'Next time, try setting aside $3 for next week.'}</span></li>`;h+='</ul>';
+  if(pass&&!bq.cb){bThrow();$('#bResult').innerHTML=`<div class="fb"><h4>Your plan works. Now a curveball.</h4><p>Read the Curveball box, change your plan if you need to, then check again.</p></div>`;return}
+  const cr=sv+left,lent=has('loan'),ln=bq.cb&&bq.cb.id==='loan'?(lent?'<p class="hab">You lent $5. That’s your choice. Remember it isn’t yours to spend until it comes back.</p>':'<p class="hab">You kept your $5. Saying no is a fair choice too.</p>'):'';
+  $('#bResult').innerHTML=pass?`<div class="fb ok"><h4>Your Saturday works.</h4><p>$${sp} spent${sv?`, $${sv} saved`:''}, $${left} unspent. Needs and promises came first.</p>${ln}${cr>0?`<div class="carry"><b>$${cr}</b><span>carries over to next week</span></div>`:'<p>Nothing carries over this time. A few dollars set aside next time would.</p>'}${h}</div>`:`<div class="fb no"><h4>Almost. Fix these:</h4>${h}</div>`;if(pass)finish('budget')});
+$('#budReset').addEventListener('click',()=>{bq={cb:null};Object.assign(PRICE,BASE);$('#budForm').reset();$('#bCurveItems').innerHTML='';$('#bCurve').hidden=true;$('#bCurveCard').hidden=true;bPrices();bRender();$('#bResult').innerHTML='';pracHide('budget');toast('Budget reset.')});
 bRender();
 
 /* ---------- Scam or Safe ---------- */
 const MS=[
- {f:'Unknown number',c:'Text message',b:'CONGRATS!! You won a free GameStation 5. Claim in the next [10 min]: [gs5-prizes.win/claim]. Just pay $4.99 shipping with [a parent’s card].',x:1,k:['A prize for a contest you never entered','A countdown meant to rush you','A strange web address','It asks for a card number']},
- {f:'xX_ProBuilder_Xx',c:'In-game chat',b:'yo i can give u [10,000 free coins]. send me ur [login + password] and i’ll load them rn',x:1,k:['Free in-game money is a common trick','No real player or game needs your password','Sharing it can cost you the whole account']},
+ {f:'Unknown number',c:'Text message',b:'CONGRATS!! You won a free GameStation 5. Claim [in the next 10 min]: [gs5-prizes.win/claim]. Just [pay $4.99 shipping with a parent’s card].',x:1,k:['A countdown meant to rush you','A strange web address','A real prize never makes you pay. This also asks for a card number.']},
+ {f:'xX_ProBuilder_Xx',c:'In-game chat',b:'yo i can give u [10,000 free coins]. send me ur [login + password] and i’ll load them rn',x:1,k:['Free in-game money is a common trick','No real player or game needs your password. Sharing it can cost you the whole account.']},
  {f:'Mom (saved contact)',c:'Text message',b:'Practice ends at 5. I’ll pick you up by the front doors. Text me if it runs late.',x:0,y:'It’s from a saved contact, matches plans you know about, and asks for nothing.'},
  {f:'Security <alerts@[g00gle]-support.co>',c:'Email',b:'Your account will be [DELETED in 1 hour]. Verify now to keep your photos: [g00gle-support.co/verify]',x:1,k:['Zeros where letters should be','A scary deadline','A login link. Open the real app instead.']},
  {f:'Riverside Library',c:'App notification',b:'Reminder: 2 books are due Friday. You can renew them in the app.',x:0,y:'It appears inside an app you already use, only shares information, and lets you act in the app.'},
- {f:'Unknown number',c:'Text message',b:'hey its your cousin, [got a new number]. can u buy 2 [gift cards] and send me the codes? [don’t tell anyone] i’ll pay u back',x:1,k:['Claims to be family from a new number','Gift card codes are a favorite scam payment','Asking you to keep a secret is a red flag']}
+ {f:'Unknown number',c:'Text message',b:'hey its your cousin, [got a new number]. can u buy 2 [gift cards] and send me the codes? [don’t tell anyone] i’ll pay u back',x:1,k:['Claims to be family from a new number','Gift card codes are a favorite scam payment','Asking you to keep a secret is a red flag']},
+ {f:'Tyler_07',c:'Direct message',b:'hey its tyler, my account got locked. [can u read me the 6 digit code] that just got texted to u? [need it rn] pls pls',x:1,k:['That code is the key to your account. Never share it, even with a friend.','A friend in a big hurry is a pressure trick. Call or ask them in person.']},
+ {f:'Delivery Team',c:'Text message',b:'Your package could not be delivered. [Pay a $1.99 fee] at [pkg-redelivery.help/track] or it will be [sent back today].',x:1,k:['Real delivery companies don’t ask for a fee by text','A strange web address, not the real company’s site','A deadline meant to rush you']},
+ {f:'SkinDrop',c:'Game chat',b:'FREE skins for everyone!! Tap [skinz-free.gg] and [log in with your game account] to get 5. [Only 20 left].',x:1,k:['A strange link, not the real game store','Free skins don’t need your login. That’s how accounts get stolen.','“Only 20 left” is a rush trick']},
+ {f:'ProTrader99',c:'Game chat',b:'trade u 5 rare skins for ur 1 [dragon skin]. [send yours first] so i know ur real. [trust me], im a top player',x:1,k:['A trade that’s too good to be true','Making you go first means you can lose your item','“Trust me” is not proof. Real trades happen in the game at the same time.']},
+ {f:'Coach Ray (saved contact)',c:'Text message',b:'Game moved to Saturday at 10. Same field. Bring water.',x:0,y:'It’s from a saved contact, it matches your team, and it only shares plans. You can double check with your team.'},
+ {f:'Diego (saved contact)',c:'Group chat',b:'Pizza at my house after the game? My mom said it’s ok if your mom says yes.',x:0,y:'It’s from a friend you know, and it asks you to check with your parent first.'}
 ];
-let sq={i:0,s:0,a:false};
-const hl=(s,on)=>esc(s).replace(/\[(.+?)\]/g,on?'<mark>$1</mark>':'$1');
-function sRender(){const fb=$('#scamFb');$('#scamProg').innerHTML=MS.map((m,j)=>`<i class="${j<sq.i||sq.i>=MS.length?'done':j===sq.i?'cur':''}"></i>`).join('');
-  if(sq.i>=MS.length){$('#scamFrom').textContent='Inbox clear';$('#scamChan').textContent='All 6 reviewed';$('#scamAv').textContent='✓';$('#scamCount').textContent='Done';$('#scamBody').textContent='When a message makes you feel rushed, excited or scared, slow down.';$('#scamSafe').disabled=$('#scamBad').disabled=true;$('#scamNext').hidden=true;
-    fb.className='fb ok';fb.innerHTML=`<div class="result"><div class="score">${sq.s}<small> / 6</small></div><p><b>Pause.</b> Real messages rarely need an answer in minutes. <b>Don’t click.</b> Open the real app yourself. <b>Show an adult.</b> Asking is the smart move.</p><div><button class="btn btn-ink btn-sm" type="button" id="scamAgain">Play again</button></div></div>`;$('#scamAgain').addEventListener('click',sReset);return}
-  const m=MS[sq.i];$('#scamCount').textContent=`${sq.i+1} / 6`;$('#scamFrom').innerHTML=hl(m.f,false);$('#scamChan').textContent=m.c;$('#scamAv').textContent=m.f.replace(/[^A-Za-z]/g,'').charAt(0).toUpperCase()||'?';$('#scamBody').innerHTML=hl(m.b,false);$('#scamSafe').disabled=$('#scamBad').disabled=false;fb.className='fb';fb.innerHTML='';$('#scamNext').hidden=true}
-function sAns(sc){if(sq.a||sq.i>=MS.length)return;sq.a=true;const m=MS[sq.i],ok=sc===!!m.x;if(ok)sq.s++;$('#scamBody').innerHTML=hl(m.b,true);$('#scamFrom').innerHTML=hl(m.f,true);$('#scamSafe').disabled=$('#scamBad').disabled=true;
-  const fb=$('#scamFb');fb.className='fb '+(ok?'ok':'no');fb.innerHTML=`<h4>${ok?'Good call.':'Look again.'} This one ${m.x?'is a scam':'is safe'}.</h4>`+(m.x?`<ul class="clues">${m.k.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><p class="hab"><b>What to do:</b> don’t click or reply. Show a trusted adult, then block and delete.</p>`:`<p>${esc(m.y)}</p>`);
-  const n=$('#scamNext');n.hidden=false;n.textContent=sq.i===5?'See results':'Next message';n.focus({preventScroll:true})}
-function sReset(){sq={i:0,s:0,a:false};sRender();toast('Scam or Safe reset.')}
-$('#scamSafe').addEventListener('click',()=>sAns(false));$('#scamBad').addEventListener('click',()=>sAns(true));
-$('#scamNext').addEventListener('click',()=>{sq.i++;sq.a=false;sRender()});$('#scamReset').addEventListener('click',sReset);sRender();
+const SN=6,shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const sDeal=()=>shuf([...shuf(MS.filter(m=>m.x)).slice(0,4),...shuf(MS.filter(m=>!m.x)).slice(0,2)]);
+let sq={q:sDeal(),i:0,s:0,ph:'call',fd:[],hint:''};
+const sCur=()=>sq.q[sq.i];
+function sFlags(m,mode){let n=0;const r=s=>esc(s).replace(/\[(.+?)\]/g,(_,t)=>{const j=n++,f=sq.fd.includes(j);return mode==='tap'?`<span role="button" tabindex="0" class="flag${f?' on':''}" data-j="${j}" aria-pressed="${f}">${t}</span>`:mode==='show'?`<mark${f?'':' class="miss"'}>${t}</mark>`:t});return [r(m.f),r(m.b)]}
+function sBubble(){const m=sCur(),[f,b]=sFlags(m,sq.ph==='call'?'plain':sq.ph);$('#scamFrom').innerHTML=f;$('#scamBody').innerHTML=b}
+function sRender(){const fb=$('#scamFb');$('#scamProg').innerHTML=sq.q.map((m,j)=>`<i class="${j<sq.i||sq.i>=SN?'done':j===sq.i?'cur':''}"></i>`).join('');$('#scamShow').hidden=true;
+  if(sq.i>=SN){$('#scamFrom').textContent='Inbox clear';$('#scamChan').textContent='All 6 reviewed';$('#scamAv').textContent='✓';$('#scamCount').textContent='Done';$('#scamBody').textContent='When a message makes you feel rushed, excited or scared, slow down.';$('#scamSafe').disabled=$('#scamBad').disabled=true;$('#scamNext').hidden=true;
+    fb.className='fb ok';fb.innerHTML=`<div class="result"><div class="score">${sq.s}<small> / 6</small></div><p><b>Pause.</b> Real messages rarely need an answer in minutes. <b>Don’t click.</b> Open the real app yourself. <b>Show an adult.</b> Asking is the smart move.</p><div><button class="btn btn-ink btn-sm" type="button" id="scamAgain">Play again</button></div></div>`;$('#scamAgain').addEventListener('click',sReset);finish('scams');return}
+  pracHide('scams');const m=sCur();sq.ph='call';sq.fd=[];sq.hint='';$('#scamCount').textContent=`${sq.i+1} / ${SN}`;$('#scamChan').textContent=m.c;$('#scamAv').textContent=m.f.replace(/[^A-Za-z]/g,'').charAt(0).toUpperCase()||'?';sBubble();$('#scamSafe').disabled=$('#scamBad').disabled=false;fb.className='fb';fb.innerHTML='';$('#scamNext').hidden=true}
+function sFb(){const m=sCur(),fb=$('#scamFb'),n=m.k?m.k.length:0,fin=sq.ph==='show',rv=fin&&sq.fd.length<n;fb.className='fb '+(sq.ok?'ok':'no');
+  let h=`<h4>${sq.ok?'Good call.':'Look again.'} This one ${m.x?'is a scam':'is safe'}.</h4>`;
+  if(!m.x)h+=`<p>${esc(m.y)}</p>`;else{
+    if(!fin)h+=`<p>Now tap the words that give it away. Found ${sq.fd.length} of ${n}.</p>${sq.hint?`<p class="hint">${esc(sq.hint)}</p>`:''}`;else if(sq.ok&&!rv)h+=`<p>You found all ${n}.</p>`;
+    const li=m.k.map((c,j)=>sq.fd.includes(j)?`<li>${esc(c)}</li>`:fin?`<li><b>You missed:</b> ${esc(c)}</li>`:'').join('');
+    if(li)h+=`<ul class="clues">${li}</ul>`;
+    if(fin)h+=`<p class="hab"><b>What to do:</b> don’t click or reply. Show a trusted adult, then block and delete.</p>`}
+  fb.innerHTML=h;$('#scamShow').hidden=!(sq.ph==='tap'&&sq.fd.length>0);$('#scamNext').hidden=!(fin||(sq.ph==='tap'&&sq.fd.length>0));$('#scamNext').textContent=sq.i===SN-1?'See results':'Next message'}
+function sAns(sc){if(sq.ph!=='call'||sq.i>=SN)return;const m=sCur(),ok=sc===!!m.x;sq.ok=ok;if(ok)sq.s++;$('#scamSafe').disabled=$('#scamBad').disabled=true;
+  if(m.x&&ok)sq.ph='tap';else{sq.ph='show';if(m.x)sq.fd=m.k.map((_,j)=>j)}
+  sBubble();sFb();if(sq.ph==='show'){const n=$('#scamNext');n.hidden=false;n.focus({preventScroll:true})}}
+function sFinish(){sq.ph='show';sBubble();sFb();$('#scamNext').focus({preventScroll:true})}
+function sReset(){sq={q:sDeal(),i:0,s:0,ph:'call',fd:[],hint:''};sRender();toast('Scam or Safe reset.')}
+$('#scamPhone').addEventListener('click',e=>{if(sq.ph!=='tap')return;const b=e.target.closest('.flag');
+  if(b){const j=+b.dataset.j;if(sq.fd.includes(j))return;sq.fd.push(j);sq.hint='';b.classList.add('on');b.setAttribute('aria-pressed','true');if(sq.fd.length===sCur().k.length)sFinish();else sFb()}
+  else if(e.target.closest('.bubble,.from b')){sq.hint='Look again. Which words feel off?';sFb()}});
+$('#scamPhone').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('flag')){e.preventDefault();e.target.click()}});
+$('#scamSafe').addEventListener('click',()=>sAns(false));$('#scamBad').addEventListener('click',()=>sAns(true));$('#scamShow').addEventListener('click',sFinish);
+$('#scamNext').addEventListener('click',()=>{sq.i++;sRender()});$('#scamReset').addEventListener('click',sReset);sRender();
+
+/* ---------- make the call: each step has 3 choices (good, vague, off); r = Dana's reply, "~" = note, "~~" = hold ---------- */
+const CT='Here are the times I have: Thursday at 5:30, Friday at 3:00, or Saturday at 10:00.',CH=['Okay, let me check the book. One moment.','~~','Thanks for waiting. '+CT];
+const CS=[
+ {q:'Dana picks up. What do you say?',s:'Said who you were',n:'Start with hello and your name.',c:[
+  {y:'good',t:'Hi Dana, this is Sam.',r:['Hi Sam! How can I help you?']},
+  {y:'vague',t:'Uh... hi.',r:['Hello? Sorry, who is this?','~You tell her you’re Sam.','Hi Sam. How can I help you?'],tip:'Say your name right away. It helps Dana find your visit.'},
+  {y:'off',t:'Yeah, I need to change my haircut.',r:['Okay... who is this, so I can look you up?','~You tell her you’re Sam.','Thanks, Sam. What’s going on?'],tip:'Start with hello and your name. It’s friendlier, and it helps Dana look you up.'}]},
+ {q:'Tell her why you’re calling.',s:'Said why you were calling',n:'Say why you’re calling in one clear sentence.',c:[
+  {y:'good',t:'I have a haircut Thursday at 4:00, but my team added a practice then. I need to move it.',r:['Oh, got it. I see you Thursday at 4:00 with Marcus.','What would you like to do?']},
+  {y:'vague',t:'Um, I have a thing. It’s about my appointment.',r:['Okay... which appointment? What’s the thing?','~You explain it’s your Thursday 4:00 haircut and you have practice.','Oh, I see you Thursday at 4:00 with Marcus. What would you like to do?'],tip:'Say the day, the time and the problem in one sentence. Then Dana knows what you need.'},
+  {y:'off',t:'Your schedule is messed up. Fix my appointment.',r:['Oh! Sorry about that. Which appointment is it?','~You explain it’s your Thursday 4:00 haircut and your own plans changed.','Okay, I see you Thursday at 4:00 with Marcus. What would you like to do?'],tip:'Nothing is wrong with their schedule. Yours changed. Say that calmly and Dana will help.'}]},
+ {q:'Ask for a new time.',s:'Asked for a new time politely',n:'Ask politely, and say please.',c:[
+  {y:'good',t:'Could I move it to a later time this week, please?',r:CH},
+  {y:'vague',t:'Uh, can I change it?',r:['Change it to what? I need a day or a time.','~You say you want a later time this week.',...CH],tip:'Tell Dana what you want: a different time this week. “Change it” can mean a lot of things.'},
+  {y:'off',t:'Just give me a new time. I’m busy.',r:['Okay, okay.',...CH],tip:'Please makes a big difference. A kind voice gets help faster, even when you’re in a hurry.'}]},
+ {q:'Dana read out some times. Which one do you take?',s:'Picked a time that fits your week',n:'Check Your week before you pick a time.',c:[
+  {y:'good',t:'Saturday at 10:00 works. I’m free Saturday morning.',r:['Saturday at 10:00. Perfect, that one’s open. I’ll put you down.']},
+  {y:'clash',t:'Thursday at 5:30, please.',r:['Thursday at 5:30, okay.','~Wait. Your week says practice runs until 6:00. You ask for Saturday at 10:00 instead.','No problem. Saturday at 10:00 is open. I’ll put you down.'],tip:'Thursday at 5:30 clashes with practice, which runs until 6:00. Check Your week first. Saturday morning is free.'},
+  {y:'off',t:'Whichever. I don’t care.',r:['Um, okay. Saturday at 10:00 is open, so I’ll put you down for that.'],tip:'Pick a time yourself. Dana can’t see your week, and a time that clashes would mean another call.'}]},
+ {q:'Say it back to be sure.',s:'Repeated the day and time back',n:'Repeat the day and time back before you hang up.',c:[
+  {y:'good',t:'So that’s Saturday at 10:00, not Thursday. Is that right?',r:['Yes, that’s right. Saturday at 10:00, with Marcus.','Anything else I can help with?']},
+  {y:'vague',t:'Okay, cool. So it’s all set?',r:['Yep, all set. That’s Saturday at 10:00.','Anything else I can help with?'],tip:'Say the day and time back yourself. It catches mix-ups, like Thursday instead of Saturday.'},
+  {y:'off',t:'Fine. Just don’t mess it up this time.',r:['Oh. I won’t. You’re down for Saturday at 10:00.','Anything else I can help with?'],tip:'Saying the day and time back is how you check. Blaming the desk makes the call feel tense.'}]},
+ {q:'Time to wrap up the call.',s:'Ended with a thank you',n:'End with a thank you.',c:[
+  {y:'good',t:'No, that’s all. Thank you, Dana! See you Saturday.',r:['You’re welcome, Sam! See you Saturday at 10:00. Bye!']},
+  {y:'vague',t:'Uh, no. Bye.',r:['Okay. Bye now.'],tip:'A quick thank you ends the call on a good note.'},
+  {y:'off',t:'Nope. Okay, bye.',r:['...Bye.'],tip:'Say thank you before you hang up. It only takes a second, and people remember it.'}]}
+];
+const CN=CS.length;
+let cl=null,ctick=0;
+const cFmt=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+function cTx(k,t,x){const p=document.createElement('p');p.className='ln '+k+(x?' '+x:'');p.textContent=t;const w=$('#callTx');w.appendChild(p);w.scrollTop=w.scrollHeight;return p}
+function cStatus(t){$('#callSt').textContent=t}
+function cStop(){clearInterval(ctick);ctick=0;clearTimeout(cl&&cl.to)}
+function cTimer(){if(ctick)return;cl.t0=Date.now();ctick=setInterval(()=>{$('#callTime').textContent=cFmt(Date.now()-cl.t0)},500)}
+function cReset(quiet){if(cl)cStop();cl={i:0,g:0,got:[],busy:false,o:shuf([0,1,2]),t0:0,to:0};$('#callTime').textContent='0:00';$('#callTx').innerHTML='';cTx('desk','Thanks for calling Fresh Cuts, this is Dana.');cStatus('Connected');pracHide('call');cRender();if(!quiet)toast('Make the Call reset.')}
+function cRender(){const fb=$('#callFb'),o=$('#callOpts');$('#callProg').innerHTML=CS.map((_,j)=>`<i class="${j<cl.i?'done':j===cl.i?'cur':''}"></i>`).join('');fb.className='fb';fb.innerHTML='';$('#callNext').hidden=$('#callAgain').hidden=true;
+  if(cl.i>=CN)return cEnd();
+  const st=CS[cl.i];$('#callStep').textContent=`Step ${cl.i+1} of ${CN}`;$('#callQ').textContent=st.q;$('#callWeek').hidden=false;
+  o.innerHTML=cl.o.map(k=>`<button class="btn btn-line" type="button" data-ci="${k}" data-y="${st.c[k].y}">${esc(st.c[k].t)}</button>`).join('')}
+function cPlay(L,k,id){if(cl.id!==id)return;for(;k<L.length;k++){const l=L[k];
+    if(l==='~~'){cStatus('On hold');const h=cTx('sys','On hold for a moment...','hold');cl.to=setTimeout(()=>{h.classList.remove('hold');cStatus('On the call');cPlay(L,k+1,id)},RM?0:1500);return}
+    l[0]==='~'?cTx('sys',l.slice(1)):cTx('desk',l)}
+  cAfter()}
+function cAfter(){const st=CS[cl.i],ch=st.c[cl.pick],good=ch.y==='good',fb=$('#callFb');if(good)cl.g++;cl.got[cl.i]=good;
+  fb.className='fb '+(good?'ok':'no');fb.innerHTML=good?`<h4>Nice and clear.</h4><p class="hab">That’s what a good call sounds like.</p>`:`<h4>Try this next time.</h4><p class="hab">${esc(ch.tip)}</p>`;
+  const n=$('#callNext');n.textContent=cl.i===CN-1?'See how it went':'Next step';n.hidden=false;n.focus({preventScroll:true});cl.busy=false}
+function cPick(k){if(cl.busy||cl.i>=CN)return;cl.busy=true;cl.pick=k;cl.id=(cl.id||0)+1;cTimer();const ch=CS[cl.i].c[k];
+  $$('#callOpts .btn').forEach(b=>{b.disabled=true;b.classList.toggle('picked',+b.dataset.ci===k)});cTx('me',ch.t);cStatus('On the call');cPlay(ch.r,0,cl.id)}
+function cEnd(){const dur=cl.t0?cFmt(Date.now()-cl.t0):'0:00',fb=$('#callFb'),good=CS.filter((_,j)=>cl.got[j]),miss=CS.find((_,j)=>!cl.got[j]);cStop();
+  $('#callTime').textContent=dur;cStatus('Call ended');cTx('sys','Call ended');$('#callStep').textContent='Call ended';$('#callQ').textContent='How the call went';$('#callOpts').innerHTML='';$('#callWeek').hidden=true;
+  fb.className=cl.g>=4?'fb ok':'fb plain';fb.innerHTML=`<div class="result">${cl.g?`<div class="score">${cl.g}<small> / ${CN} clear</small></div>`:'<p><b>Call done. Now try it with clearer lines.</b></p>'}<ul class="results">${(good.length?good.slice(0,3).map(s=>s.s):['You stayed on the call and kept going']).map(s=>`<li class="pass">${I.check}<span>${esc(s)}</span></li>`).join('')}</ul><p class="hab"><b>Try next time:</b> ${esc(miss?miss.n:'Jot down your plan before you call: who you are, why, and when you’re free.')}</p></div>`;
+  $('#callAgain').hidden=false;finish('call')}
+$('#callOpts').addEventListener('click',e=>{const b=e.target.closest('[data-ci]');if(b&&!b.disabled)cPick(+b.dataset.ci)});
+$('#callNext').addEventListener('click',()=>{if(cl.busy)return;cl.i++;cl.o=shuf([0,1,2]);cRender();if(cl.i<CN){$('#callOpts .btn').focus({preventScroll:true})}});
+$('#callAgain').addEventListener('click',()=>cReset());$('#callReset').addEventListener('click',()=>cReset());cReset(true);
+
+/* ---------- Laundry Sort-Out: sort the pile, then read care labels ---------- */
+const LB={dark:'Darks',light:'Lights',towel:'Towels'};
+const LI=[{id:'tshirt',n:'White T-shirt',b:'light',c:'l'},{id:'jeans',n:'Dark jeans',b:'dark',c:'d'},{id:'bath',n:'Bath towel',b:'towel',c:'t'},{id:'jersey',n:'Red team jersey',b:'dark',c:'r'},{id:'socks',n:'White socks',b:'light',c:'l'},{id:'hoodie',n:'Black hoodie',b:'dark',c:'d'},{id:'hand',n:'Hand towel',b:'towel',c:'t'},{id:'sweats',n:'Dark gray sweatpants',b:'dark',c:'d'}];
+const LOK={l:'Lights stay together so they stay bright.',d:'Darks wash together so their color stays put.',t:'Towels shed lint, so they get their own load.',r:'New bright colors can bleed in the wash, so the red jersey goes with the darks.'};
+const LCT='Towels are thick and shed lint onto clothes, so clothes wash in their own load.',LTW='Towels shed lint onto other clothes, so they get their own load.';
+const LNO={l:{dark:'Light clothes can pick up color from darks and look dingy, so lights wash with lights.',towel:LCT},d:{light:'Dark clothes can leak color onto light ones, so darks wash with darks.',towel:LCT},t:{dark:LTW,light:LTW},r:{light:'A new red jersey can bleed and turn light clothes pink. New bright colors go with the darks.',towel:'Towels shed lint, and a new red jersey can bleed color too. New bright colors go with the darks.'}};
+const LW=['cold','warm','hot'],LH=['low','medium','high'],dt=n=>n+' dot'+(n>1?'s':'');
+const lDots=(n,y,cx=24)=>Array.from({length:n},(_,i)=>`<circle cx="${cx+(i-(n-1)/2)*7}" cy="${y}" r="2" fill="currentColor" stroke="none"/>`).join('');
+const LX='<path d="M7 7l34 34M41 7L7 41"/>';
+const LSY={tub:n=>`<path d="M6 15h36l-4 23q-.5 3-3.5 3h-21q-3 0-3.5-3z"/><path d="M11 22q3-3 6.5 0t6.5 0 6.5 0 6.5 0"/>${lDots(n,32)}`,nob:()=>`<path d="M24 7l18 32H6z"/>${LX}`,dry:n=>`<rect x="6" y="6" width="36" height="36" rx="2"/><circle cx="24" cy="24" r="12"/>${lDots(n,24)}`,nodry:()=>LSY.dry(0)+LX,flat:()=>'<rect x="6" y="6" width="36" height="36" rx="2"/><path d="M13 24h22"/>',iron:n=>`<path d="M6 38h36V26Q42 14 31 14H17q-3 0-4.5 4z"/>${lDots(n,30,26)}`,noiron:()=>LSY.iron(0)+LX};
+const LN={tub:n=>'washtub with '+dt(n),nob:()=>'crossed-out triangle',dry:n=>'square with a circle and '+dt(n),nodry:()=>'crossed-out square with a circle',flat:()=>'square with a line',iron:n=>'iron with '+dt(n),noiron:()=>'crossed-out iron'};
+const LTX={tub:n=>`Washtub with ${dt(n)}: wash in ${LW[n-1]} water.`,nob:()=>'Triangle with an X: do not use bleach.',dry:n=>`Square with a circle and ${dt(n)}: tumble dry on ${LH[n-1]} heat.`,nodry:()=>'Square and circle with an X: do not use a dryer.',flat:()=>'Square with a line in it: lay the item flat to dry.',iron:n=>`Iron with ${dt(n)}: iron on ${LH[n-1]} heat. Ask an adult first.`,noiron:()=>'Iron with an X: do not iron.'};
+const LL=[{g:'a hoodie',f:'80% cotton, 20% polyester',t:2,s:[['tub',2],['nob'],['dry',2],['noiron']]},{g:'a wool sweater',f:'100% wool',t:1,d:0,s:[['tub',1],['nob'],['nodry'],['flat']]},{g:'a gym shirt',f:'100% polyester',t:1,d:1,s:[['tub',1],['nob'],['dry',1],['iron',1]]},{g:'a white cotton shirt',f:'100% cotton',t:3,s:[['tub',3],['nob'],['dry',3],['iron',3]]}];
+const lSvg=(k,n)=>`<svg viewBox="0 0 48 48" aria-hidden="true">${LSY[k](n)}</svg>`;
+const careSvg=L=>`<svg class="care" viewBox="0 0 340 176" role="img" aria-label="Care label with these symbols: ${L.s.map(([k,n])=>LN[k](n)).join(', ')}"><rect x="2" y="2" width="336" height="172" rx="14" fill="#FBF9F3" stroke="#BDB8AB" stroke-width="2"/><rect x="12" y="12" width="316" height="152" rx="9" fill="none" stroke="#CFCABD" stroke-width="1.6" stroke-dasharray="5 4"/><text x="170" y="46" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="500" fill="#56615B">${L.f}</text><path d="M44 62h252" stroke="#E2DED5" stroke-width="1.5"/>${L.s.map(([k,n],i)=>`<g transform="translate(${27+i*72} 86) scale(1.3)" fill="none" stroke="#16211C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${LSY[k](n)}</g>`).join('')}</svg>`;
+const lPileHtml=recap=>`<div class="pile${recap?' recap':''}" id="lPile" role="group" aria-label="${recap?'Your sorted laundry':'The laundry pile'}">${LI.map(it=>`<div class="cell"><button class="piece" type="button" data-i="${it.id}" aria-pressed="false"${recap?' tabindex="-1" disabled':''}><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#l-${it.id}"></use></svg><span>${it.n}</span>${recap?`<small>${LB[it.b]}</small>`:''}</button></div>`).join('')}</div>`;
+const lBaskHtml=()=>`<div class="baskets" id="lBaskets" role="group" aria-label="Baskets">${Object.keys(LB).map(k=>`<button class="bk" type="button" data-b="${k}" aria-label="${LB[k]} basket, empty"><svg viewBox="0 0 140 110" aria-hidden="true"><use href="#l-bk-${k}"></use></svg><b>${LB[k]}</b><small>Empty</small></button>`).join('')}</div>`;
+const lHead=(t,n,f)=>`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">${t}</span><div class="prog" id="lProg" aria-hidden="true">${Array.from({length:n},(_,i)=>`<i class="${f(i)}"></i>`).join('')}</div></div>`;
+let lz=null,ld=null,lSkip=0;
+const lFbSet=(c,h,p)=>{const f=$('#lFb');f.className='fb '+c;f.innerHTML=`<h4>${h}</h4><p class="hab">${p}</p>`};
+function lView(){const r=$('#lStage').getBoundingClientRect();if(r.top<70||r.top>innerHeight*.6)scrollTo({top:scrollY+r.top-100,behavior:RM?'instant':'smooth'})}
+function lShow1(){lz.ph=1;$('#lStage').className='lstage';$('#lStage').innerHTML=lPileHtml()+'<div class="lfb"><div class="fb" id="lFb" aria-live="polite"></div></div>'+lBaskHtml();
+  $('#lSide').innerHTML=lHead('Part 1 of 2',LI.length,()=>'')+'<h3>Sort the pile into three baskets.</h3><p>'+(matchMedia('(pointer:coarse)').matches?'Tap an item, then tap the basket it goes in.':'Drag each item to a basket. Or click an item, then click a basket.')+'</p><div class="push"><button class="btn btn-ink" id="lGo" type="button" hidden>Read the labels</button></div>'}
+function lBk(){Object.keys(LB).forEach(k=>{const n=Object.values(lz.placed).filter(v=>v===k).length,t=n?n+(n>1?' items':' item'):'Empty',b=$(`.bk[data-b="${k}"]`);b.querySelector('small').textContent=t;b.setAttribute('aria-label',`${LB[k]} basket, ${t.toLowerCase()}`)})}
+function lSel(id){lz.sel=id;$$('#lPile .piece').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.i===id)));$('#lStage').classList.toggle('armed',!!id);if(id)lFbSet('plain',LI.find(x=>x.id===id).n+' is picked.','Now choose a basket for it.')}
+function lDrop(id,bk){const it=LI.find(x=>x.id===id),p=$(`#lPile [data-i="${id}"]`);lSel(null);p.classList.remove('lift');
+  if(it.b===bk){lz.placed[id]=bk;p.classList.add('gone');p.closest('.cell').classList.add('gone');p.disabled=true;p.tabIndex=-1;const b=$(`.bk[data-b="${bk}"]`);b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');lBk();
+    const n=Object.keys(lz.placed).length,left=LI.filter(x=>!lz.placed[x.id]);$$('#lProg i').forEach((x,i)=>x.className=i<n?'done':'');
+    if(left.length){lFbSet('ok','Right.',`${it.n} goes in ${LB[bk]}. ${LOK[it.c]}`);$(`#lPile [data-i="${left[0].id}"]`).focus({preventScroll:true})}
+    else{const a=LI.filter(x=>!lz.miss[x.id]).length;lFbSet('ok','Pile sorted.',`${LOK[it.c]} ${a?a+' of '+LI.length+' went in the right basket on the first try.':'Every item is in the right basket now.'} Next, read some care labels.`);const g=$('#lGo');g.hidden=false;g.focus()}}
+  else{lz.miss[id]=lz.miss[id]||bk;p.classList.remove('nope');void p.offsetWidth;p.classList.add('nope');lFbSet('no','Not that basket.',LNO[it.c][bk]);p.focus({preventScroll:true})}}
+function lLab(){const L=LL[lz.li];lz.st='t';lz.msg='';$('#lStage').className='lstage lab';$('#lStage').innerHTML=`<div class="lblw">${careSvg(L)}<p class="lcap">Care label from <b>${L.g}</b></p></div>`;
+  $('#lSide').innerHTML=lHead(`Label ${lz.li+1} of ${LL.length}`,LL.length,i=>i<lz.li?'done':i===lz.li?'cur':'')+`<h3>What water temperature does this label say?</h3><p>Look at the washtub. More dots mean hotter water.</p><div class="tri" id="lOpts">${LW.map((w,i)=>`<button class="btn btn-line" type="button" data-t="${i+1}">${w[0].toUpperCase()+w.slice(1)}</button>`).join('')}</div><div class="fb" id="lFb" aria-live="polite"></div><div class="push"><button class="btn btn-ink" id="lNext" type="button" hidden></button></div>`;
+  lView();$('#lOpts .btn').focus({preventScroll:true})}
+function lMark(v,right){$$('#lOpts .btn').forEach(b=>{b.disabled=true;const k=+(b.dataset.t||b.dataset.y);b.classList.toggle('ok',k===right);b.classList.toggle('no',k===v&&v!==right)})}
+function lTemp(v){const L=LL[lz.li],ok=v===L.t;lz.r[lz.li]={t:ok};lMark(v,L.t);lz.msg=`<p class="hab"><b>${ok?'Water: right.':'Water: not quite.'}</b> The washtub has ${dt(L.t)}, which means ${LW[L.t-1]} water.</p>`;
+  if(L.d==null)return lDone();
+  lz.st='d';const f=$('#lFb');f.className='fb '+(ok?'ok':'no');f.innerHTML=lz.msg;
+  $('#lSide h3').textContent='Can this go in the dryer?';$('#lSide h3+p').textContent='Look at the square with the circle.';const o=$('#lOpts');o.className='tri two';o.innerHTML='<button class="btn btn-line" type="button" data-y="1">Yes</button><button class="btn btn-line" type="button" data-y="0">No</button>';o.querySelector('.btn').focus({preventScroll:true})}
+function lDry(v){const L=LL[lz.li],ok=v===L.d,s=L.s.find(x=>x[0]==='dry'||x[0]==='nodry');lz.r[lz.li].d=ok;lMark(v,L.d);lz.msg+=`<p class="hab"><b>${ok?'Dryer: right.':'Dryer: not quite.'}</b> ${LTX[s[0]](s[1])}</p>`;lDone()}
+function lDone(){const L=LL[lz.li],r=lz.r[lz.li],all=r.t&&r.d!==false,f=$('#lFb'),nx=$('#lNext');lz.st='x';
+  f.className='fb '+(all?'ok':'no');f.innerHTML=`<h4>${all?'Nice reading.':'Here is what the label says.'}</h4>${lz.msg}<ul class="lg">${L.s.map(([k,n])=>`<li>${lSvg(k,n)}<span>${LTX[k](n)}</span></li>`).join('')}</ul>`;
+  $$('#lProg i').forEach((x,i)=>x.className=i<=lz.li?'done':'');nx.textContent=lz.li===LL.length-1?'See how it went':'Next label';nx.hidden=false;nx.focus()}
+function lFinish(){lz.ph=3;const a=LI.filter(x=>!lz.miss[x.id]).length,jr=!lz.miss.jersey,b=lz.r.reduce((s,x)=>s+(x.t?1:0)+(x.d?1:0),0),qs=LL.length+LL.filter(x=>x.d!=null).length,g=a+b,tot=LI.length+qs,mi=LI.find(x=>lz.miss[x.id]),ml=LL.findIndex((x,i)=>!lz.r[i].t||lz.r[i].d===false);
+  const good=[];if(a)good.push(`Sorted ${a} of ${LI.length} items on the first try`);if(jr)good.push('Spotted that a new red jersey can bleed');if(b)good.push(`Read ${b} of ${qs} label questions right`);if(!good.length)good.push('You sorted the whole pile and read every label');
+  const tip=mi?LNO[mi.c][lz.miss[mi.id]]:ml>=0?(!lz.r[ml].t?`Count the dots on the washtub. ${dt(LL[ml].t)} means ${LW[LL[ml].t-1]} water.`:'An X over the dryer symbol means no dryer.'):'Check the care label every time before you wash.';
+  $('#lStage').className='lstage';$('#lStage').innerHTML=lPileHtml(true);
+  $('#lSide').innerHTML=lHead('Finished',LL.length,()=>'done')+`<h3>How it went</h3><div class="fb ${g>=11?'ok':'plain'}" id="lFb" aria-live="polite"><div class="result">${g?`<div class="score">${g}<small> / ${tot} right</small></div>`:'<p><b>All sorted and read. Try it again and use the hints.</b></p>'}<ul class="results">${good.map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul><p class="hab"><b>Try next time:</b> ${tip}</p><p class="hab">Ask an adult before you use a washer or dryer the first time.</p></div></div><div class="push"><button class="btn btn-ink" id="lAgain" type="button">Play again</button></div>`;
+  lView();finish('laundry')}
+function lReset(quiet){lz={ph:1,sel:null,placed:{},miss:{},li:0,r:[],st:'t',msg:''};pracHide('laundry');lShow1();if(!quiet)toast('Laundry Sort-Out reset.')}
+$('#lStage').addEventListener('click',e=>{if(Date.now()-lSkip<350||lz.ph!==1)return;const p=e.target.closest('.piece'),b=e.target.closest('.bk');
+  if(p&&!p.disabled)lSel(lz.sel===p.dataset.i?null:p.dataset.i);
+  else if(b){if(lz.sel)lDrop(lz.sel,b.dataset.b);else lFbSet('plain','Pick an item first.','Tap an item in the pile, then tap a basket. Or drag it over.')}});
+$('#lStage').addEventListener('pointerdown',e=>{const p=e.target.closest('.piece');if(!p||p.disabled||lz.ph!==1||e.pointerType==='touch'||(e.pointerType==='mouse'&&e.button))return;ld={p,id:p.dataset.i,x:e.clientX,y:e.clientY,on:false,pid:e.pointerId,bk:null}});
+addEventListener('pointermove',e=>{if(!ld||e.pointerId!==ld.pid)return;
+  if(!ld.on){if(Math.hypot(e.clientX-ld.x,e.clientY-ld.y)<8)return;ld.on=true;const g=document.createElement('div');g.className='ghost';g.innerHTML=ld.p.querySelector('svg').outerHTML;document.body.appendChild(g);ld.g=g;ld.p.classList.add('lift');document.body.classList.add('dragging')}
+  ld.g.style.transform=`translate(${e.clientX-44}px,${e.clientY-52}px) scale(1.08)`;const el=document.elementFromPoint(e.clientX,e.clientY),b=el&&el.closest('.bk');if(b!==ld.bk){ld.bk&&ld.bk.classList.remove('over');b&&b.classList.add('over');ld.bk=b}});
+function ldStop(e){if(!ld||e.pointerId!==ld.pid)return;const d=ld;ld=null;if(!d.on)return;d.g.remove();document.body.classList.remove('dragging');d.p.classList.remove('lift');d.bk&&d.bk.classList.remove('over');lSkip=Date.now();
+  if(e.type==='pointerup'){const el=document.elementFromPoint(e.clientX,e.clientY),b=el&&el.closest('.bk');if(b)lDrop(d.id,b.dataset.b)}}
+addEventListener('pointerup',ldStop);addEventListener('pointercancel',ldStop);
+$('#lSide').addEventListener('click',e=>{const t=e.target.closest('button');if(!t||t.disabled)return;
+  if(t.id==='lGo'){lz.ph=2;lz.li=0;lz.r=[];lLab()}
+  else if(t.dataset.t&&lz.st==='t')lTemp(+t.dataset.t);
+  else if(t.dataset.y&&lz.st==='d')lDry(+t.dataset.y);
+  else if(t.id==='lNext'){if(lz.li<LL.length-1){lz.li++;lLab()}else lFinish()}
+  else if(t.id==='lAgain')lReset()});
+$('#launReset').addEventListener('click',()=>lReset());lReset(true);
 
 /* ---------- previews ---------- */
 const PV=[
  {t:'Password Builder',m:'Tech & online safety',s:'Coming soon',d:'Turn a silly sentence into a strong passphrase you can remember.',b:['Why short passwords get guessed','Building a four-word passphrase','Never sharing, even with friends']},
- {t:'Laundry Sort-Out',m:'Personal care',s:'Coming soon',d:'Sort a real pile of clothes and decode the care-label symbols.',b:['Darks, lights and towels','Wash and dry symbols','Measuring detergent with an adult']},
  {t:'Snack Lab',m:'Simple cooking',s:'Coming soon',d:'Follow a recipe card to build a no-stove snack, then clean the station.',b:['Clean hands, clean surface','Measuring from a recipe','Cleanup as part of cooking']},
- {t:'Make the Call',m:'Communication',s:'Coming soon',d:'Role-play calling a front desk to ask a question or reschedule.',b:['A clear introduction','Planning what to say','Confirming details before you hang up']},
  {t:'Shutoff Finder',m:'Home & tools',s:'Coming soon',d:'Find the water shutoffs in a home and practice what to do first in a leak.',b:['Where shutoff valves live','Which way to turn','Who to tell, right away']},
  {t:'Dashboard Basics',m:'Vehicle basics',s:'Preview',d:'Coming later: what warning lights mean and when to pull over.',b:['Warning light colors','Tire checks with an adult','Who to call in a breakdown']}
 ];
@@ -1425,7 +1782,7 @@ route(location.hash,false);
    cost:{q:'How much will it cost?',a:'We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.',go:['#workshops','See planned prices'],next:['host','status']},
    safe:{q:'How do you keep it safe?',a:'Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro.',next:['session','who']},
    parents:{q:'I’m a parent. How can I help?',a:'Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.',go:['#involved','Get involved'],next:['what','status']},
-   try:{q:'Can I try an activity?',a:'Yes! There are three you can try right now: Tool Time, Saturday on $25 and Scam or Safe?',go:['#activities','Open activities'],next:['modules','what']},
+   try:{q:'Can I try an activity?',a:'Yes! There are five you can try right now: Tool Time, Saturday on $25, Scam or Safe?, Make the Call and Laundry Sort-Out.',go:['#activities','Open activities'],next:['modules','what']},
    person:{q:'Can I talk to a person?',a:'This chat can only answer the questions listed here. To reach our team, join the interest list and put your question in the notes box. We’ll get back to you.',go:['#interest','Leave a note'],next:['what','host']}
   };
   const START=['what','status','who','host','cost','try','person'];
