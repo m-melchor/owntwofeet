@@ -487,6 +487,24 @@ html:not(.js) .agep>.tier{grid-area:auto;visibility:visible;opacity:1}
   .hscroll::-webkit-scrollbar{display:none}
   .hscroll>*{flex:0 0 min(84%,420px);scroll-snap-align:start}
 }
+/* Scroll arrow under rows that scroll sideways (added by edgeArrows()): right while more is hidden, left once the end is reached */
+.sx{min-width:0}
+@media (min-width:981px){.cx>.sx{display:contents}}
+.sx-hint{display:none;justify-content:space-between;height:30px;margin-top:2px}
+.sx[data-sx] .sx-hint{display:flex}
+.sx[data-sx="r"]>:first-child{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 64px),transparent)}
+.sx[data-sx="m"]>:first-child{-webkit-mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 64px),transparent)}
+.sx[data-sx="l"]>:first-child{-webkit-mask-image:linear-gradient(to right,transparent,#000 64px);mask-image:linear-gradient(to right,transparent,#000 64px)}
+.sx-btn{width:52px;height:30px;display:flex;align-items:center;border:0;padding:0;margin:0;background:none;color:var(--ink);cursor:pointer;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s;-webkit-tap-highlight-color:transparent}
+.sx-r{justify-content:flex-end;margin-left:auto}
+.sx-l{justify-content:flex-start}
+.sx-btn svg{width:24px;height:24px}
+.sx[data-sx="r"] .sx-r,.sx[data-sx="m"] .sx-r,.sx[data-sx="l"] .sx-l{opacity:1;visibility:visible;transition:opacity .25s}
+.sx[data-sx="r"] .sx-r svg,.sx[data-sx="m"] .sx-r svg{animation:sxR 1.6s ease-in-out infinite}
+.sx[data-sx="l"] .sx-l svg{animation:sxL 1.6s ease-in-out infinite}
+@keyframes sxR{0%,100%{transform:translateX(-4px)}50%{transform:translateX(2px)}}
+@keyframes sxL{0%,100%{transform:translateX(4px)}50%{transform:translateX(-2px)}}
+@media (prefers-reduced-motion:reduce){.sx-btn svg{animation:none!important}}
 .commit{grid-template-columns:1fr;align-items:start}
 .commit details.value{padding:0;display:block}
 .commit summary{list-style:none;display:flex;align-items:center;gap:16px;cursor:pointer;min-height:44px;padding:18px 22px}
@@ -1508,6 +1526,21 @@ if(ivRow){const cs=[...ivRow.children],cnt=$('#ivCount');let ivI=0;
   ivRow.addEventListener('scroll',()=>upd(cur()),{passive:true});
   const go=i=>{i=(i+cs.length)%cs.length;upd(i);ivRow.scrollTo({left:cs[i].offsetLeft,behavior:RM?'auto':'smooth'})};
   $('#ivPrev').addEventListener('click',()=>go(ivI-1));$('#ivNext').addEventListener('click',()=>go(ivI+1))}
+// Sideways rows get an arrow just below them: right while more is hidden, left (back to the start) once the end is reached
+function edgeArrows(row){if(!row)return;const sx=document.createElement('div'),hint=document.createElement('div');sx.className='sx';hint.className='sx-hint';row.before(sx);sx.append(row,hint);
+  const mk=(c,d,go)=>{const b=document.createElement('button');b.type='button';b.className='sx-btn '+c;b.tabIndex=-1;b.setAttribute('aria-hidden','true');
+    b.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;b.addEventListener('click',go);hint.append(b)};
+  const by=o=>row.scrollTo({left:o,behavior:RM?'auto':'smooth'});
+  mk('sx-l','M19 12H5M11 6l-6 6 6 6',()=>by(0));mk('sx-r','M5 12h14M13 6l6 6-6 6',()=>by(row.scrollLeft+row.clientWidth*.8));
+  const upd=()=>{const m=row.scrollWidth-row.clientWidth,x=row.scrollLeft;if(m<4)delete sx.dataset.sx;else sx.dataset.sx=x>=m-4?'l':x>4?'m':'r'};
+  row.addEventListener('scroll',upd,{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(upd).observe(row);else addEventListener('resize',upd);
+  if(document.fonts)document.fonts.ready.then(upd);upd();
+  // One peek the first time the row is on screen: slide a little and back so it reads as swipeable
+  let touched=false;['pointerdown','wheel','keydown'].forEach(t=>row.addEventListener(t,()=>{touched=true},{passive:true,once:true}));
+  if(!RM&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!es[0].isIntersecting||sx.dataset.sx!=='r')return;io.disconnect();
+    setTimeout(()=>{if(touched||row.scrollLeft>4)return;by(Math.min(90,row.scrollWidth-row.clientWidth));setTimeout(()=>{if(!touched)by(0)},650)},500)},{threshold:1});io.observe(row)}}
+edgeArrows($('#cxTabs'));
 const commits=$('#commits');
 if(commits){const mq=matchMedia('(min-width:900px)'),ds=$$('details',commits);
   const sync=()=>ds.forEach((d,i)=>{d.open=mq.matches||i===0;d.firstElementChild.tabIndex=mq.matches?-1:0});
