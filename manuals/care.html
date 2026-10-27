@@ -1,0 +1,478 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Personal care manual: Own Two Feet</title>
+<meta name="description" content="A free, friendly manual for grades 3 to 8: read clothing labels, run a load of laundry and build daily routines that stick. With sources.">
+<meta name="theme-color" content="#F6F4EF">
+<link rel="icon" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Young+Serif&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F6F4EF; --paper:#FCFBF8; --surface:#FFFFFF; --ink:#16211C; --ink-2:#56615B; --line:#E2DED5;
+  --sage:#D9E6D8; --mist:#DDE7F0; --sand:#F2E6D3; --butter:#F4EDCF; --peach:#F5E0D3;
+  --accent:#2F6450; --accent-soft:#D9E9DF; --bad:#A2412F; --focus:#2C5E8A;
+  --serif:"Young Serif",Georgia,"Times New Roman",serif;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:18px; --r-lg:28px;
+  --ease:cubic-bezier(.2,.75,.15,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+svg{max-width:100%}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:8px}
+[id]{scroll-margin-top:24px}
+.wrap{max-width:860px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.muted{color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:8px 11px;border-radius:999px;white-space:nowrap;background:var(--butter);color:#6E5A22}
+
+/* top bar */
+.site{padding:14px 0}
+.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:16px}
+.brand .mark{width:40px;height:40px;flex:none}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.back:hover{color:var(--ink)}
+.back svg{width:16px;height:16px}
+
+/* hero */
+.hero{padding:clamp(28px,5vw,64px) 0 clamp(20px,3vw,36px)}
+.hero .kick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.hero .kick .series{font-size:15.5px;color:var(--ink-2)}
+.h1{font-size:clamp(42px,7vw,76px);letter-spacing:-.03em;line-height:1}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;margin-top:18px;max-width:640px}
+.hero-tools{display:flex;gap:clamp(14px,3.5vw,32px);align-items:flex-end;margin-top:30px;height:clamp(110px,16vw,160px)}
+.hero-tools svg{height:100%;width:auto;flex:none}
+.hero-tools svg{flex-shrink:1;min-width:0}/* the drawings shrink only when a very narrow phone can't fit the row */
+.hero-tools svg:nth-child(2){height:70%}.hero-tools svg:nth-child(3){height:72%}.hero-tools svg:nth-child(4){height:80%}
+
+/* screens: one lesson at a time when scripts run; everything stacked without them and in print */
+html.js [data-screen]{display:none}
+html.js [data-screen].on{display:block}
+[data-screen]:focus{outline:none}
+
+/* lesson cards (the contents) */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(26px,4vw,40px)}
+.card{display:grid;align-content:start;gap:8px;padding:clamp(22px,3.5vw,30px);border-radius:var(--r-lg);text-decoration:none;min-height:190px;position:relative;transition:transform .35s var(--ease)}
+.card:hover{transform:translateY(-2px)}
+.card .n{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.card h2{font-size:clamp(24px,2.8vw,30px);letter-spacing:-.02em}
+.card p{font-size:16px;line-height:1.5;color:var(--ink-2)}
+.card .go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:14px;font-weight:500;font-size:15.5px}
+.card .go svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.card:hover .go svg{transform:translateX(4px)}
+.card.white .n{color:var(--ink-2)}
+.srcs{display:inline-flex;align-items:center;gap:8px;margin-top:16px;text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.srcs:hover{color:var(--ink)}
+.srcs svg{width:16px;height:16px}
+.grown{padding:clamp(22px,3.5vw,32px);border-radius:var(--r-lg);background:var(--mist);margin-top:18px}
+
+/* inside a lesson: back link on top, next card at the bottom */
+.lesson .back{margin-bottom:clamp(22px,3.5vw,34px)}
+.next{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:clamp(30px,4.5vw,48px);padding:22px clamp(20px,3vw,28px);border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);text-decoration:none;transition:transform .35s var(--ease)}
+.next:hover{transform:translateY(-2px)}
+.next .lbl{display:block;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.next .t{font-family:var(--serif);font-size:clamp(20px,2.4vw,24px);letter-spacing:-.02em;line-height:1.15}
+.next svg{width:22px;height:22px;flex:none}
+.grown h2,.box h3{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:0;margin-bottom:8px}
+
+/* lessons */
+.lesson{padding:clamp(34px,6vw,72px) 0 0}
+.lesson>.wrap>.num{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px}
+.h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em}
+.sub{font-size:clamp(18px,2vw,20px);margin-top:12px;max-width:620px}
+.h3{font-size:clamp(22px,2.6vw,27px);line-height:1.15;margin-top:clamp(28px,4vw,40px)}
+.h3+p,.h3+ol,.h3+ul{margin-top:12px}
+.lesson p+p{margin-top:12px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+ol.steps li{position:relative;padding-left:44px;counter-increment:s}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);font:600 14px/30px var(--sans);text-align:center}
+ul.plain{margin:0;padding-left:22px;display:grid;gap:6px}
+.panel{border-radius:var(--r-lg);padding:clamp(22px,3.5vw,34px);margin-top:clamp(22px,3.4vw,32px)}
+.sage{background:var(--sage)} .sand{background:var(--sand)} .butter{background:var(--butter)} .peach{background:var(--peach)} .mist{background:var(--mist)} .white{background:var(--surface);border:1px solid var(--line)}
+.panel>.h3{margin-top:0}
+.box{display:grid;gap:8px}
+.stop{border:2px solid var(--bad)}
+.stop h3{color:var(--bad)}
+.try h3{color:var(--accent)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.tool{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;padding:18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.tool svg{width:64px;height:120px;display:block}
+.tool h4{font-family:var(--sans);font-weight:600;font-size:16.5px;letter-spacing:0;line-height:1.3}
+.tool p{font-size:15px;line-height:1.5;margin-top:5px;color:var(--ink-2)}
+.tool p b{color:var(--ink);font-weight:600}
+.tape{display:grid;gap:10px;margin-top:16px;padding:18px 20px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.tape svg{width:100%;height:auto;display:block}
+.tape p{font-size:15.5px;color:var(--ink-2)}
+.fact{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding:16px 18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);font-size:16px}
+.fact b{font-weight:600}
+sup.c{line-height:0;font-size:.7em;vertical-align:super;margin-left:1px}
+sup.c a{text-decoration:none;color:var(--accent);font-weight:600;padding:0 2px}
+sup.c a:hover{text-decoration:underline}
+
+/* quick check */
+.check details{border-top:1px solid var(--line);padding:12px 0}
+.check details:last-of-type{border-bottom:1px solid var(--line)}
+.check summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.check summary::-webkit-details-marker{display:none}
+.check summary::after{content:"Show";font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);flex:none}
+.check details[open] summary::after{content:"Hide"}
+.check .ans{margin-top:8px;color:var(--ink-2)}
+
+/* sources */
+.sources ol{margin:14px 0 0;padding-left:26px;display:grid;gap:10px;font-size:15.5px;color:var(--ink-2)}
+.sources li a{color:var(--ink);word-break:break-word}
+.sources li a:hover{color:var(--accent)}
+
+/* end */
+.end{margin:clamp(40px,7vw,80px) 0 40px}
+.end .panel{display:grid;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font:500 15.5px/1 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;justify-self:start}
+.btn:hover{background:#0F1713}
+.btn .arr{width:16px;height:16px}
+footer.site-foot{padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:14.5px;border-top:1px solid var(--line)}
+footer.site-foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:560px){
+  .tools{grid-template-columns:1fr}
+  .hero-tools{height:96px}
+  .cards{grid-template-columns:1fr}
+  .card{min-height:0}
+}
+@media print{
+  @page{size:letter;margin:.75in}
+  body{background:#fff;font-size:11.5pt;line-height:1.5}
+  html.js [data-screen]{display:block}
+  .site,.back,.end,footer.site-foot,.cards,.srcs,.next,.hero-tools{display:none}
+  .hero{padding:0 0 12pt}
+  .h1{font-size:34pt}.h2{font-size:22pt}.h3{font-size:14pt;margin-top:16pt}
+  .lesson{padding-top:0;break-before:page}
+  .panel,.tool,.tape,.fact,.grown{border:1px solid #CFCBC2;background:#fff!important;break-inside:avoid;padding:12pt}
+  .stop{border:2px solid var(--bad)}
+  .tools{grid-template-columns:1fr 1fr}
+  .check details{break-inside:avoid}
+  .check details>*{display:block}
+  .check summary::after{content:""}
+  .check .ans{display:block}
+  .sources li a{text-decoration:none}
+  .sources li a::after{content:" " attr(href);font-family:var(--mono);font-size:8.5pt;color:#56615B}
+  sup.c a{color:var(--ink)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="t-washer" viewBox="0 0 100 120"><rect x="6" y="4" width="88" height="112" rx="12" fill="#D9DEE2"/><rect x="6" y="4" width="88" height="26" rx="12" fill="#9AA3AC"/><circle cx="24" cy="17" r="5" fill="#2B3540"/><rect x="40" y="13" width="36" height="8" rx="4" fill="#D9DEE2"/><circle cx="50" cy="73" r="32" fill="#2B3540"/><circle cx="50" cy="73" r="24" fill="#86A3BF"/><path d="M30 76c7-8 13 8 20 0s13 8 20 0v8a24 24 0 0 1-40 0z" fill="#7FA893"/></symbol>
+<symbol id="t-shirt" viewBox="0 0 120 110"><path d="M40 6L14 22 2 46l20 8 8-10v62h60V44l8 10 20-8-12-24L80 6c-4 10-12 16-20 16S44 16 40 6z" transform="scale(1 .92)" fill="#86A3BF"/><path d="M40 6c4 10 12 16 20 16s16-6 20-16" transform="scale(1 .92)" fill="none" stroke="#2B3540" stroke-width="5" stroke-linecap="round"/><rect x="62" y="48" width="18" height="16" rx="3" fill="#D9DEE2"/></symbol>
+<symbol id="t-brush" viewBox="0 0 40 150"><rect x="8" y="2" width="24" height="42" rx="7" fill="#D9DEE2"/><rect x="11" y="6" width="4" height="30" rx="2" fill="#86A3BF"/><rect x="18" y="6" width="4" height="30" rx="2" fill="#86A3BF"/><rect x="25" y="6" width="4" height="30" rx="2" fill="#86A3BF"/><path d="M14 44h12l-2 16h-8z" fill="#7FA893"/><rect x="12" y="58" width="16" height="88" rx="8" fill="#7FA893"/><rect x="17" y="74" width="6" height="30" rx="3" fill="#D9DEE2"/></symbol>
+<symbol id="t-basket" viewBox="0 0 110 100"><path d="M24 36c-4-22 8-32 31-32s35 10 31 32" fill="none" stroke="#9AA3AC" stroke-width="7" stroke-linecap="round"/><path d="M8 32h94l-10 62a6 6 0 0 1-6 5H24a6 6 0 0 1-6-5z" fill="#E5C27E"/><rect x="4" y="26" width="102" height="12" rx="6" fill="#D4AE63"/><rect x="32" y="48" width="6" height="40" rx="3" fill="#D4AE63"/><rect x="52" y="48" width="6" height="40" rx="3" fill="#D4AE63"/><rect x="72" y="48" width="6" height="40" rx="3" fill="#D4AE63"/><path d="M30 28c4-14 18-14 24-6s14 2 18-6l8 12z" fill="#7FA893"/></symbol>
+</defs>
+</svg>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <svg class="mark" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="mcT" d="M30 110a80 80 0 0 1 160 0"/><path id="mcB" d="M24 110a86 86 0 0 0 172 0"/></defs><circle cx="110" cy="110" r="106" fill="#D9E6D8"/><circle cx="110" cy="110" r="64" fill="#FFFFFF"/><text font-family="Geist, system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing="5" fill="#16211C"><textPath href="#mcT" startOffset="50%" text-anchor="middle">OWN TWO FEET</textPath></text><text font-family="Geist, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="4" fill="#46504A"><textPath href="#mcB" startOffset="50%" text-anchor="middle">LIFE SKILLS · HANDS ON</textPath></text><circle cx="40" cy="110" r="3" fill="#2F6450"/><circle cx="180" cy="110" r="3" fill="#2F6450"/><g transform="translate(70 64) scale(.82)"><g transform="translate(40 20) scale(-1 1)"><circle cx="24" cy="7" r="6" fill="#16211C"/><circle cx="33" cy="11.5" r="4" fill="#16211C"/><circle cx="38.5" cy="18" r="3.3" fill="#16211C"/><circle cx="41" cy="25" r="2.8" fill="#16211C"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#16211C"/></g><g transform="translate(52 0)"><circle cx="24" cy="7" r="6" fill="#2F6450"/><circle cx="33" cy="11.5" r="4" fill="#2F6450"/><circle cx="38.5" cy="18" r="3.3" fill="#2F6450"/><circle cx="41" cy="25" r="2.8" fill="#2F6450"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#2F6450"/></g></g></svg>
+      <span>Own Two Feet</span>
+    </a>
+    <a class="back" href="../#workshops"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to the site</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="home" data-screen="home" tabindex="-1">
+    <div class="wrap">
+      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <h1 class="h1">Personal care</h1>
+      <p class="lede">Daily routines and doing laundry from start to finish. Three short lessons, things to try at home, and one rule that never changes: ask an adult before you use bleach or strong cleaners, and check with them on hot water and the dryer.</p>
+      <div class="hero-tools" aria-hidden="true">
+        <svg viewBox="0 0 100 120"><use href="#t-washer"/></svg>
+        <svg viewBox="0 0 120 110"><use href="#t-shirt"/></svg>
+        <svg viewBox="0 0 40 150"><use href="#t-brush"/></svg>
+        <svg viewBox="0 0 110 100"><use href="#t-basket"/></svg>
+      </div>
+
+      <nav class="cards" aria-label="Lessons">
+        <a class="card sage" href="#lesson1"><span class="n">Lesson 1</span><h2>Read the label</h2><p>What the wash and dry symbols mean.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card sand" href="#lesson2"><span class="n">Lesson 2</span><h2>Run a load</h2><p>Sort, measure, wash, dry and fold.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card mist" href="#lesson3"><span class="n">Lesson 3</span><h2>Everyday routines</h2><p>Simple habits that stick: showering, teeth, hair, nails, clean clothes and sleep.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card white" href="#check"><span class="n">Quick check</span><h2>Did it stick?</h2><p>Eight questions. Answer out loud, then tap to see.</p><span class="go">Take the check<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </nav>
+      <a class="srcs" href="#sources">Where this comes from: 7 sources<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+      <div class="grown">
+        <h2>For grown-ups</h2>
+        <p class="muted">This manual is written to the student. Read it together the first time, then let them lead. Every lesson ends with a red box that says when to stop. Bleach, stain removers and other strong cleaning products, hot water settings and the dryer (especially lint and vents) are adult-check items. Laundry packets must be stored out of sight and reach of young children. Habits like showering and sleep look different in every home, so use this as a starting point, not a grade. We link every source at the bottom.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lesson 1 -->
+  <section class="lesson" id="lesson1" data-screen="lesson1" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 1</span>
+      <h2 class="h2">Read the label</h2>
+      <p class="sub">What the wash and dry symbols mean.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>Every piece of clothing comes with instructions. Following them can be the difference between a shirt that lasts and one that shrinks, fades or gets ruined.<sup class="c"><a href="#s1">1</a></sup> Nobody is born knowing this. Once you can read the label, you can wash your own clothes with confidence.</p>
+
+      <h3 class="h3">Where to find it and what it says</h3>
+      <p>The care label is a small tag sewn inside the clothing. Look at the inside of the collar, the neckline or the waist seam. Sometimes it is on another inside seam.<sup class="c"><a href="#s1">1</a></sup> Leave it attached, so you always know how to care for that piece.<sup class="c"><a href="#s1">1</a></sup></p>
+      <p>The picture symbols look like a secret code at first. They tell you which cycle to use, how to dry the item and what heat to use if you iron it.<sup class="c"><a href="#s1">1</a></sup> Here is how to crack the code.</p>
+
+      <div class="tools">
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>The tub is washing</h4><p>A picture of a wash tub means washing. Dots inside mean heat: one dot is cool, more dots are hotter. Lines underneath mean go gentle.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>The square is drying</h4><p>A square means drying. A circle inside the square means the dryer. Dots again show the heat. A line or a hanger means dry it flat or hang it up.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>The triangle is bleach</h4><p>An empty triangle means bleach is okay. A triangle with an X means no bleach at all. Either way, bleach is an adult job.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>The iron is ironing</h4><p>An iron with dots shows how hot it can go. An X through it means do not iron. Ask an adult before you touch an iron.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>An X means no</h4><p>Any symbol with an X through it means do not do that to this piece of clothing.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>A circle is dry cleaning</h4><p>A plain circle means the item is for a dry cleaner. Do not put it in your home washer. Hand it to an adult.</p></div></div>
+      </div>
+
+      <h3 class="h3">How to read a label</h3>
+      <ol class="steps">
+        <li><b>Find the tag.</b> Check the collar, neckline and waist seam first.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Check the tub.</b> What temperature does it show? Is there a line under it?</li>
+        <li><b>Check the X marks.</b> Anything crossed out is a no.</li>
+        <li><b>Check the square.</b> Dryer, or hang it up? Some items shrink in the dryer, so the label matters.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Say it out loud.</b> “Wash cool, no bleach, hang to dry.” If you can say it, you can do it.</li>
+      </ol>
+
+      <div class="fact"><div><b>Not sure? Ask.</b> If a symbol looks new to you, do not guess. Show an adult, or wash the item the gentlest way and wait to learn more. Never cut the tag out, or you lose the instructions.<sup class="c"><a href="#s1">1</a></sup></div></div>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Label hunt.</b> Find the care label on five things you wear. Which ones say cool water? Which ones say do not put in the dryer?</p>
+        <p><b>Symbol match.</b> Draw the tub, the square, the triangle and the iron on index cards. Mix them up, then say what each one means.</p>
+        <p><b>Make a pile.</b> Sort five clothes into “dryer okay” and “hang to dry.”</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <ul class="plain">
+          <li>The label shows a bleach triangle, or the item is stained and you want to use bleach or a strong cleaner. Ask first. Never mix cleaning products.</li>
+          <li>The label says dry clean only, or you cannot read the symbols.</li>
+          <li>You want to use an iron or hot water. Check with an adult.</li>
+          <li>There is no label at all and you are not sure how to wash it.</li>
+        </ul>
+      </div>
+
+      <a class="next" href="#lesson2"><span><span class="lbl">Next</span><span class="t">Lesson 2: Run a load</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Lesson 2 -->
+  <section class="lesson" id="lesson2" data-screen="lesson2" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 2</span>
+      <h2 class="h2">Run a load</h2>
+      <p class="sub">Sort, measure, wash, dry and fold.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>Clean clothes are part of feeling ready for the day. Doing your own laundry is also a skill you will use every week for the rest of your life. A load takes a few steps, and once you know them, it is easy.</p>
+
+      <h3 class="h3">The steps</h3>
+      <ol class="steps">
+        <li><b>Check pockets and close up.</b> Empty every pocket. Shake off loose dirt and close zippers and hooks.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Sort.</b> Whites go with whites, and lights go apart from darks. Wash towels and other fabrics that shed lint apart from the ones that attract it. Wash very dirty clothes apart from lightly dirty ones. Sorting stops colors from running onto other clothes.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Pick the temperature.</b> Check the care label first. Cold is good for dark and bright colors that might bleed. Warm works for most clothes. Hot is for towels, bedding and very dirty items, but it can shrink or fade some fabrics.<sup class="c"><a href="#s1">1</a></sup> Check with an adult before you choose hot.</li>
+        <li><b>Measure the detergent.</b> Every load needs detergent. Follow the amounts on the bottle and measure before you add it. A very small load needs less, and a very big load may need more. Use detergent marked HE if the washer is a high-efficiency one.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Load it loosely.</b> Do not pack the clothes in. Packing leaves detergent on clothes and makes extra lint.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Start the wash.</b> Pick the cycle that fits the label and press start.</li>
+        <li><b>Move to the dryer, or hang it.</b> Shake damp clothes out first. Items the label says to hang go on a rack or flat. Do not overload the dryer.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Clean the lint filter.</b> Clean the lint filter before or after each use, and never run the dryer without one.<sup class="c"><a href="#s2">2</a></sup> Ask an adult to check it with you the first time.</li>
+        <li><b>Take clothes out when it stops.</b> Taking them out right away means fewer wrinkles.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li><b>Fold and put away.</b> Fold shirts and pants flat, pair the socks and put each pile where it lives. Do it while the clothes are warm and the wrinkles are easy to smooth.</li>
+      </ol>
+
+      <div class="fact"><div><b>The dryer needs care.</b> The leading cause of home dryer fires is not cleaning the dryer.<sup class="c"><a href="#s2">2</a></sup> Do not leave a dryer running if you leave home or go to bed.<sup class="c"><a href="#s2">2</a></sup> Never dry anything that has touched cooking oil, gasoline, paint thinner or alcohol.<sup class="c"><a href="#s2">2</a></sup></div></div>
+
+      <div class="panel sand box">
+        <h3 class="h3">Laundry packets are not toys</h3>
+        <p>Single-load detergent packets can look like candy. Store them in their original container, out of sight and reach of young children, and do not let children handle them.<sup class="c"><a href="#s3">3</a></sup> If you have a little brother or sister at home, this one is on you. Put the container back up high every time.</p>
+      </div>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Sorting race.</b> With a basket of clean clothes, sort them into whites, lights and darks. How fast can you do it?</p>
+        <p><b>Run one load.</b> With an adult next to you, run a small load start to finish. Measure the detergent yourself.</p>
+        <p><b>Fold challenge.</b> Fold five shirts and pair five socks. Teach someone else how.</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <ul class="plain">
+          <li>Before you use bleach, a stain remover or any strong cleaning product. Ask first, and never mix products.</li>
+          <li>Before you pick hot water or use an iron.</li>
+          <li>Lint that has built up around the dryer, a dryer that takes much longer than normal, or a burning smell. Turn it off and tell an adult.<sup class="c"><a href="#s2">2</a></sup></li>
+          <li>Clothes with cooking oil, gasoline, paint thinner or alcohol on them. Do not put them in the dryer.<sup class="c"><a href="#s2">2</a></sup></li>
+          <li>A laundry packet or detergent that a young child touched or swallowed. Tell an adult right away. They can call Poison Help at 1-800-222-1222.</li>
+          <li>Water on the floor, strange noises or a smell from the machine. Stop it and tell an adult.</li>
+        </ul>
+      </div>
+
+      <a class="next" href="#lesson3"><span><span class="lbl">Next</span><span class="t">Lesson 3: Everyday routines</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Lesson 3 -->
+  <section class="lesson" id="lesson3" data-screen="lesson3" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 3</span>
+      <h2 class="h2">Everyday routines</h2>
+      <p class="sub">Simple habits that stick: showering, deodorant, teeth, hair, nails, clean clothes and sleep.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>As you get older, your body changes. You may sweat more and notice new smells. That is normal, and it happens to everyone. A few simple habits help you feel fresh, healthy and ready for the day. Small habits you do every day beat big efforts you do once in a while.</p>
+
+      <h3 class="h3">Build a routine</h3>
+      <div class="tools">
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Shower or wash up</h4><p>Wash your body with soap and water every day or two, and after sports or heavy sweating. Pay attention to underarms, feet and your private areas. Dry well, especially between your toes.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Deodorant</h4><p>Use it on clean, dry underarms after you shower. Ask an adult to help you pick one that does not bother your skin.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Teeth</h4><p>Brush twice a day with a soft brush and fluoride toothpaste.<sup class="c"><a href="#s5">5</a></sup> Aim for two minutes each time. Floss once a day.<sup class="c"><a href="#s6">6</a></sup> Replace your toothbrush every three or four months, or sooner if the bristles are frayed.<sup class="c"><a href="#s5">5</a></sup></p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Hands</h4><p>Wash your hands with soap and water, and scrub for at least 20 seconds. Do it before you eat or cook and after the bathroom.<sup class="c"><a href="#s4">4</a></sup></p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Hair</h4><p>Wash it with shampoo a few times a week, or when it feels oily or dirty. Comb or brush it before you go out.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Nails</h4><p>Keep fingernails short and clean. Trim them after a shower when they are soft. Cut straight across and use clippers made for nails.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Clean clothes</h4><p>Put on clean underwear and socks every day. Wear a shirt again only if it still looks and smells fresh. Put dirty clothes in the hamper, not on the floor.</p></div></div>
+        <div class="tool" style="grid-template-columns:1fr"><div><h4>Sleep</h4><p>Kids ages 6 to 12 need 9 to 12 hours of sleep a day, and teens 13 to 17 need 8 to 10.<sup class="c"><a href="#s7">7</a></sup> Pick a bedtime and a short wind-down, like a shower, brushing and a book.</p></div></div>
+      </div>
+
+      <h3 class="h3">Make it stick</h3>
+      <ol class="steps">
+        <li><b>Start with one habit.</b> Pick the one that feels easiest, and do it for two weeks.</li>
+        <li><b>Tie it to something you already do.</b> Brush your teeth right after breakfast. Put on deodorant right after your shower.</li>
+        <li><b>Make it easy.</b> Keep your toothbrush, soap and deodorant where you can see them.</li>
+        <li><b>Use a checklist.</b> Tick it off each day. Seeing a row of checks feels great.</li>
+        <li><b>Add the next habit.</b> Build the routine one piece at a time.</li>
+      </ol>
+
+      <div class="panel mist box">
+        <h3 class="h3">Everyone starts somewhere</h3>
+        <p>You do not need to be perfect. Missing a day is fine. Start again the next day. Every person you know has had to learn these habits, and the people who care about you will be glad you are working on them.</p>
+      </div>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Make a morning card.</b> Write your morning routine in order and tape it where you will see it.</p>
+        <p><b>Two-minute timer.</b> Brush for two minutes by a timer or a favorite song.</p>
+        <p><b>Pack a go bag.</b> Put deodorant, a clean shirt and socks in your sports bag.</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <ul class="plain">
+          <li>Skin that is red, sore, itchy or has a rash, or a smell that does not go away with washing. A doctor can help.</li>
+          <li>A tooth that hurts, or gums that bleed a lot.<sup class="c"><a href="#s6">6</a></sup></li>
+          <li>You get a cut while trimming your nails, or you need to use sharp tools such as razors. Ask for help.</li>
+          <li>Hot water that feels too hot. Turn it down or ask an adult to adjust it.</li>
+          <li>Trouble sleeping for a long time, or feeling very tired or worried. Tell an adult you trust.</li>
+        </ul>
+      </div>
+
+      <a class="next" href="#check"><span><span class="lbl">Next</span><span class="t">Quick check: Did it stick?</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Quick check -->
+  <section class="lesson check" id="check" data-screen="check" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Quick check</span>
+      <h2 class="h2">Did it stick?</h2>
+      <p class="sub">Answer out loud, then tap to see.</p>
+      <div style="margin-top:22px">
+        <details><summary>Where do you find a clothing care label?</summary><p class="ans">Inside the collar, the neckline or the waist seam, and sometimes on another inside seam.</p></details>
+        <details><summary>What does an X through a symbol mean?</summary><p class="ans">Do not do that to this piece of clothing.</p></details>
+        <details><summary>Name the first two things you do before washing.</summary><p class="ans">Empty the pockets and sort the clothes, whites with whites, lights apart from darks.</p></details>
+        <details><summary>How much detergent do you use?</summary><p class="ans">Measure it, and follow the amount on the bottle. Use HE detergent in a high-efficiency washer.</p></details>
+        <details><summary>What do you do with the dryer lint filter?</summary><p class="ans">Clean it before or after every load, and never run the dryer without it.</p></details>
+        <details><summary>You want to use bleach on a stain. What do you do?</summary><p class="ans">Stop and ask an adult first. Bleach and other strong cleaners are adult-check items, and you never mix products.</p></details>
+        <details><summary>How long should you scrub your hands, and how long should you brush your teeth?</summary><p class="ans">At least 20 seconds for hands. Two minutes, twice a day, for teeth.</p></details>
+        <details><summary>What is a good way to make a new habit stick?</summary><p class="ans">Start with one habit, tie it to something you already do, make it easy and tick it off on a checklist. Missing a day is fine. Start again the next day.</p></details>
+      </div>
+
+      <a class="next" href="#sources"><span><span class="lbl">Next</span><span class="t">Where this comes from</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="lesson sources" id="sources" data-screen="sources" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</a>
+      <span class="num">Sources</span>
+      <h2 class="h2">Where this comes from</h2>
+      <p class="sub">We only cite government agencies, university extension programs and safety nonprofits. Facts with a number link to one of these. Anything without one is plain how-to.</p>
+      <ol>
+        <li id="s1">Texas A&amp;M AgriLife Extension, Texas 4-H. <a href="https://texas4-h.tamu.edu/wp-content/uploads/fashion_duds_to_dazzle_resource_laundry_on_your_own.pdf">Laundry on Your Own</a>. Care labels, sorting, detergent amounts, water temperature, loading, drying.</li>
+        <li id="s2">National Fire Protection Association (NFPA), shared by the U.S. Department of Energy. <a href="https://www.energy.gov/sites/prod/files/2016/06/f32/NFPA_DryerWasherSafetyTips.pdf">Clothes Dryer &amp; Washing Machine Safety</a>. Lint filter, vents, never run it when you leave or sleep, never dry oily items.</li>
+        <li id="s3">U.S. Consumer Product Safety Commission. <a href="https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Poison-Prevention-Information-Center">Poison Prevention</a>. Storing laundry packets out of children’s reach.</li>
+        <li id="s4">Centers for Disease Control and Prevention. <a href="https://www.cdc.gov/clean-hands/about/index.html">About Handwashing</a>. When to wash and scrubbing for at least 20 seconds.</li>
+        <li id="s5">American Dental Association. <a href="https://www.mouthhealthy.org/all-topics-a-z/brushing-your-teeth">Brushing Your Teeth</a>, MouthHealthy. Twice a day, fluoride toothpaste, replacing your brush.</li>
+        <li id="s6">Centers for Disease Control and Prevention. <a href="https://www.cdc.gov/oral-health/about/index.html">About Oral Health</a>. Brushing, flossing and dental checkups.</li>
+        <li id="s7">Centers for Disease Control and Prevention. <a href="https://www.cdc.gov/sleep/about/index.html">About Sleep</a>. How much sleep kids and teens need.</li>
+      </ol>
+      <p class="muted" style="margin-top:18px;font-size:15.5px">Checked October 2026. If a link stops working, the page may have moved. Search the agency’s site for the title.</p>
+
+      <a class="next" href="#home"><span><span class="lbl">Done reading</span><span class="t">Back to all lessons</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="end" data-screen="home">
+    <div class="wrap">
+      <div class="panel sage">
+        <h2 class="h3" style="margin-top:0">This is one of seven</h2>
+        <p class="muted">We are writing a free manual for every Own Two Feet topic. Want to hear when the next one is ready, or bring a workshop to your school or group?</p>
+        <a class="btn" href="../#interest">Join the Interest List<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Own Two Feet · Personal care manual</span>
+    <span style="display:flex;gap:18px"><a href="#home" style="text-decoration:none">All lessons</a><a href="./" style="text-decoration:none">All manuals</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+  var screens=Array.prototype.slice.call(document.querySelectorAll('[data-screen]'));
+  var names={home:'Personal care manual',lesson1:'Lesson 1: Read the label',lesson2:'Lesson 2: Run a load',lesson3:'Lesson 3: Everyday routines',check:'Quick check',sources:'Sources'};
+  var cur='home',prev='home',first=true;
+  function jump(y){root.style.scrollBehavior='auto';window.scrollTo(0,y);requestAnimationFrame(function(){root.style.scrollBehavior=''});}
+  function show(){
+    var hash=location.hash.replace('#','')||'home',target=null;
+    if(/^s\d+$/.test(hash)){target=document.getElementById(hash);hash=target?'sources':'home';}
+    if(!names[hash]){hash='home';}
+    var focusEl=null;
+    screens.forEach(function(s){var on=s.getAttribute('data-screen')===hash;s.classList.toggle('on',on);if(on&&!focusEl)focusEl=s;});
+    if(hash!==cur){prev=cur;cur=hash;}
+    document.title=names[hash]+': Own Two Feet';
+    if(target){jump(0);target.scrollIntoView({block:'start'});}
+    else if(!first){jump(0);requestAnimationFrame(function(){jump(0)});}
+    if(!first&&focusEl){focusEl.focus({preventScroll:true});}
+    first=false;
+  }
+  var back=document.querySelector('a[data-prev]');
+  if(back){back.addEventListener('click',function(e){e.preventDefault();location.hash=(prev==='sources'||prev==='home')?'home':prev;});}
+  window.addEventListener('hashchange',show);
+  show();
+})();
+</script>
+</body></html>

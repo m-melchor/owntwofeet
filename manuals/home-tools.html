@@ -1,0 +1,544 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Home &amp; tools manual: Own Two Feet</title>
+<meta name="description" content="A free, friendly manual for grades 3 to 8: meet your toolbox, make small fixes, and know what to do when water goes wrong. With sources.">
+<meta name="theme-color" content="#F6F4EF">
+<link rel="icon" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Young+Serif&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F6F4EF; --paper:#FCFBF8; --surface:#FFFFFF; --ink:#16211C; --ink-2:#56615B; --line:#E2DED5;
+  --sage:#D9E6D8; --mist:#DDE7F0; --sand:#F2E6D3; --butter:#F4EDCF; --peach:#F5E0D3;
+  --accent:#2F6450; --accent-soft:#D9E9DF; --bad:#A2412F; --focus:#2C5E8A;
+  --serif:"Young Serif",Georgia,"Times New Roman",serif;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:18px; --r-lg:28px;
+  --ease:cubic-bezier(.2,.75,.15,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+svg{max-width:100%}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:8px}
+[id]{scroll-margin-top:24px}
+.wrap{max-width:860px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.muted{color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:8px 11px;border-radius:999px;white-space:nowrap;background:var(--butter);color:#6E5A22}
+
+/* top bar */
+.site{padding:14px 0}
+.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:16px}
+.brand .mark{width:40px;height:40px;flex:none}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.back:hover{color:var(--ink)}
+.back svg{width:16px;height:16px}
+
+/* hero */
+.hero{padding:clamp(28px,5vw,64px) 0 clamp(20px,3vw,36px)}
+.hero .kick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.hero .kick .series{font-size:15.5px;color:var(--ink-2)}
+.h1{font-size:clamp(42px,7vw,76px);letter-spacing:-.03em;line-height:1}
+.lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;margin-top:18px;max-width:640px}
+.hero-tools{display:flex;gap:clamp(10px,2.5vw,22px);align-items:flex-end;margin-top:30px;height:clamp(110px,16vw,160px)}
+.hero-tools svg{height:100%;width:auto;flex:none}
+.hero-tools svg{flex-shrink:1;min-width:0}/* the drawings shrink only when a very narrow phone can't fit the row */
+.hero-tools svg:nth-child(2){height:88%}.hero-tools svg:nth-child(4){height:92%}.hero-tools svg:nth-child(5){height:72%}
+
+/* screens: one lesson at a time when scripts run; everything stacked without them and in print */
+html.js [data-screen]{display:none}
+html.js [data-screen].on{display:block}
+[data-screen]:focus{outline:none}
+
+/* lesson cards (the contents) */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(26px,4vw,40px)}
+.card{display:grid;align-content:start;gap:8px;padding:clamp(22px,3.5vw,30px);border-radius:var(--r-lg);text-decoration:none;min-height:190px;position:relative;transition:transform .35s var(--ease)}
+.card:hover{transform:translateY(-2px)}
+.card .n{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.card h2{font-size:clamp(24px,2.8vw,30px);letter-spacing:-.02em}
+.card p{font-size:16px;line-height:1.5;color:var(--ink-2)}
+.card .go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:14px;font-weight:500;font-size:15.5px}
+.card .go svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.card:hover .go svg{transform:translateX(4px)}
+.card.white .n{color:var(--ink-2)}
+.srcs{display:inline-flex;align-items:center;gap:8px;margin-top:16px;text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.srcs:hover{color:var(--ink)}
+.srcs svg{width:16px;height:16px}
+.grown{padding:clamp(22px,3.5vw,32px);border-radius:var(--r-lg);background:var(--mist);margin-top:18px}
+
+/* inside a lesson: back link on top, next card at the bottom */
+.lesson .back{margin-bottom:clamp(22px,3.5vw,34px)}
+.next{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:clamp(30px,4.5vw,48px);padding:22px clamp(20px,3vw,28px);border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);text-decoration:none;transition:transform .35s var(--ease)}
+.next:hover{transform:translateY(-2px)}
+.next .lbl{display:block;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.next .t{font-family:var(--serif);font-size:clamp(20px,2.4vw,24px);letter-spacing:-.02em;line-height:1.15}
+.next svg{width:22px;height:22px;flex:none}
+.grown h2,.box h3{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:0;margin-bottom:8px}
+
+/* lessons */
+.lesson{padding:clamp(34px,6vw,72px) 0 0}
+.lesson>.wrap>.num{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px}
+.h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em}
+.sub{font-size:clamp(18px,2vw,20px);margin-top:12px;max-width:620px}
+.h3{font-size:clamp(22px,2.6vw,27px);line-height:1.15;margin-top:clamp(28px,4vw,40px)}
+.h3+p,.h3+ol,.h3+ul{margin-top:12px}
+.lesson p+p{margin-top:12px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+ol.steps li{position:relative;padding-left:44px;counter-increment:s}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);font:600 14px/30px var(--sans);text-align:center}
+ul.plain{margin:0;padding-left:22px;display:grid;gap:6px}
+.panel{border-radius:var(--r-lg);padding:clamp(22px,3.5vw,34px);margin-top:clamp(22px,3.4vw,32px)}
+.sage{background:var(--sage)} .sand{background:var(--sand)} .butter{background:var(--butter)} .peach{background:var(--peach)} .mist{background:var(--mist)} .white{background:var(--surface);border:1px solid var(--line)}
+.panel>.h3{margin-top:0}
+.box{display:grid;gap:8px}
+.stop{border:2px solid var(--bad)}
+.stop h3{color:var(--bad)}
+.try h3{color:var(--accent)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.tool{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;padding:18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.tool svg{width:64px;height:120px;display:block}
+.tool h4{font-family:var(--sans);font-weight:600;font-size:16.5px;letter-spacing:0;line-height:1.3}
+.tool p{font-size:15px;line-height:1.5;margin-top:5px;color:var(--ink-2)}
+.tool p b{color:var(--ink);font-weight:600}
+.tape{display:grid;gap:10px;margin-top:16px;padding:18px 20px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.tape svg{width:100%;height:auto;display:block}
+.tape p{font-size:15.5px;color:var(--ink-2)}
+.fact{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding:16px 18px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);font-size:16px}
+.fact b{font-weight:600}
+sup.c{line-height:0;font-size:.7em;vertical-align:super;margin-left:1px}
+sup.c a{text-decoration:none;color:var(--accent);font-weight:600;padding:0 2px}
+sup.c a:hover{text-decoration:underline}
+
+/* quick check */
+.check details{border-top:1px solid var(--line);padding:12px 0}
+.check details:last-of-type{border-bottom:1px solid var(--line)}
+.check summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.check summary::-webkit-details-marker{display:none}
+.check summary::after{content:"Show";font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);flex:none}
+.check details[open] summary::after{content:"Hide"}
+.check .ans{margin-top:8px;color:var(--ink-2)}
+
+/* sources */
+.sources ol{margin:14px 0 0;padding-left:26px;display:grid;gap:10px;font-size:15.5px;color:var(--ink-2)}
+.sources li a{color:var(--ink);word-break:break-word}
+.sources li a:hover{color:var(--accent)}
+
+/* end */
+.end{margin:clamp(40px,7vw,80px) 0 40px}
+.end .panel{display:grid;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font:500 15.5px/1 var(--sans);text-decoration:none;cursor:pointer;white-space:nowrap;justify-self:start}
+.btn:hover{background:#0F1713}
+.btn .arr{width:16px;height:16px}
+footer.site-foot{padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:14.5px;border-top:1px solid var(--line)}
+footer.site-foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:560px){
+  .tools{grid-template-columns:1fr}
+  .hero-tools{height:96px}
+  .cards{grid-template-columns:1fr}
+  .card{min-height:0}
+}
+@media print{
+  @page{size:letter;margin:.75in}
+  body{background:#fff;font-size:11.5pt;line-height:1.5}
+  html.js [data-screen]{display:block}
+  .site,.back,.end,footer.site-foot,.cards,.srcs,.next,.hero-tools{display:none}
+  .hero{padding:0 0 12pt}
+  .h1{font-size:34pt}.h2{font-size:22pt}.h3{font-size:14pt;margin-top:16pt}
+  .lesson{padding-top:0;break-before:page}
+  .panel,.tool,.tape,.fact,.grown{border:1px solid #CFCBC2;background:#fff!important;break-inside:avoid;padding:12pt}
+  .stop{border:2px solid var(--bad)}
+  .tools{grid-template-columns:1fr 1fr}
+  .check details{break-inside:avoid}
+  .check details>*{display:block}
+  .check summary::after{content:""}
+  .check .ans{display:block}
+  .sources li a{text-decoration:none}
+  .sources li a::after{content:" " attr(href);font-family:var(--mono);font-size:8.5pt;color:#56615B}
+  sup.c a{color:var(--ink)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="st" x1="0" x2="1"><stop offset="0" stop-color="#9AA3AC"/><stop offset=".5" stop-color="#D9DEE2"/><stop offset="1" stop-color="#A3ACB4"/></linearGradient>
+<linearGradient id="wd" x1="0" x2="1"><stop offset="0" stop-color="#C39A70"/><stop offset=".5" stop-color="#DDBB92"/><stop offset="1" stop-color="#BF956A"/></linearGradient>
+<symbol id="t-hammer" viewBox="0 0 80 200"><rect x="34.5" y="40" width="11" height="150" rx="5.5" fill="url(#wd)"/><rect x="32" y="128" width="16" height="64" rx="8" fill="#2B3540"/><path d="M10 22h50a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H22C14 48 6 40 4 30c-.6-3 1.8-8 6-8z" fill="url(#st)"/><rect x="60" y="20" width="14" height="30" rx="4" fill="#A3ACB4"/></symbol>
+<symbol id="t-phillips" viewBox="0 0 80 200"><rect x="26" y="10" width="28" height="76" rx="12" fill="#7FA893"/><rect x="33" y="84" width="14" height="10" rx="2" fill="#6B7680"/><rect x="37.5" y="92" width="5" height="84" fill="url(#st)"/><path d="M37.5 176h5l-2.5 15z" fill="#9AA3AC"/></symbol>
+<symbol id="t-flat" viewBox="0 0 80 200"><rect x="26" y="10" width="28" height="76" rx="12" fill="#86A3BF"/><rect x="33" y="84" width="14" height="10" rx="2" fill="#6B7680"/><rect x="37.5" y="92" width="5" height="84" fill="url(#st)"/><path d="M36 176h8l1 13h-10z" fill="#9AA3AC"/></symbol>
+<symbol id="t-wrench" viewBox="0 0 80 200"><path d="M22 18a22 22 0 0 0 6 40l4 6v114a8 8 0 0 0 16 0V64l4-6a22 22 0 0 0 6-40v22H46V14H34v26H22z" fill="url(#st)"/><circle cx="40" cy="176" r="4" fill="#6B7680"/></symbol>
+<symbol id="t-tape" viewBox="0 0 80 200"><rect x="6" y="30" width="68" height="68" rx="18" fill="#E5C27E"/><circle cx="40" cy="64" r="15" fill="#2B3540"/><circle cx="40" cy="64" r="5" fill="#E5C27E"/><rect x="52" y="94" width="12" height="86" fill="#F0E2B6"/><path d="M52 104h6M52 114h4M52 124h6M52 134h4M52 144h6M52 154h4M52 164h6" stroke="#2B3540" stroke-width="1.4"/><rect x="49" y="178" width="18" height="6" rx="1.5" fill="#9AA3AC"/></symbol>
+<symbol id="t-level" viewBox="0 0 80 200"><rect x="25" y="8" width="30" height="184" rx="6" fill="#8FB09B"/><rect x="30" y="86" width="20" height="28" rx="6" fill="#2B3540"/><rect x="33" y="91" width="14" height="18" rx="7" fill="#DDE9B0"/><circle cx="40" cy="100" r="4" fill="#fff"/><circle cx="40" cy="24" r="5.5" fill="#2B3540"/><circle cx="40" cy="176" r="5.5" fill="#2B3540"/></symbol>
+</defs>
+</svg>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <svg class="mark" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="mnT" d="M30 110a80 80 0 0 1 160 0"/><path id="mnB" d="M24 110a86 86 0 0 0 172 0"/></defs><circle cx="110" cy="110" r="106" fill="#D9E6D8"/><circle cx="110" cy="110" r="64" fill="#FFFFFF"/><text font-family="Geist, system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing="5" fill="#16211C"><textPath href="#mnT" startOffset="50%" text-anchor="middle">OWN TWO FEET</textPath></text><text font-family="Geist, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="4" fill="#46504A"><textPath href="#mnB" startOffset="50%" text-anchor="middle">LIFE SKILLS · HANDS ON</textPath></text><circle cx="40" cy="110" r="3" fill="#2F6450"/><circle cx="180" cy="110" r="3" fill="#2F6450"/><g transform="translate(70 64) scale(.82)"><g transform="translate(40 20) scale(-1 1)"><circle cx="24" cy="7" r="6" fill="#16211C"/><circle cx="33" cy="11.5" r="4" fill="#16211C"/><circle cx="38.5" cy="18" r="3.3" fill="#16211C"/><circle cx="41" cy="25" r="2.8" fill="#16211C"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#16211C"/></g><g transform="translate(52 0)"><circle cx="24" cy="7" r="6" fill="#2F6450"/><circle cx="33" cy="11.5" r="4" fill="#2F6450"/><circle cx="38.5" cy="18" r="3.3" fill="#2F6450"/><circle cx="41" cy="25" r="2.8" fill="#2F6450"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#2F6450"/></g></g></svg>
+      <span>Own Two Feet</span>
+    </a>
+    <a class="back" href="../#workshops"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to the site</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="home" data-screen="home" tabindex="-1">
+    <div class="wrap">
+      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <h1 class="h1">Home &amp; tools</h1>
+      <p class="lede">Using basic hand tools safely and handling the small fixes every home needs. Three short lessons, things to try at home, and one rule that never changes: when a job is too big, you stop and get an adult.</p>
+      <div class="hero-tools" aria-hidden="true">
+        <svg viewBox="0 0 80 200"><use href="#t-hammer"/></svg>
+        <svg viewBox="0 0 80 200"><use href="#t-phillips"/></svg>
+        <svg viewBox="0 0 80 200"><use href="#t-level"/></svg>
+        <svg viewBox="0 0 80 200"><use href="#t-wrench"/></svg>
+        <svg viewBox="0 0 80 200"><use href="#t-tape"/></svg>
+        <svg viewBox="0 0 80 200"><use href="#t-flat"/></svg>
+      </div>
+
+      <nav class="cards" aria-label="Lessons">
+        <a class="card sage" href="#lesson1"><span class="n">Lesson 1</span><h2>Meet your toolbox</h2><p>What each common hand tool is for, and how to hold it.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card sand" href="#lesson2"><span class="n">Lesson 2</span><h2>Small fixes</h2><p>Tighten a loose handle, hang something level, change a light bulb.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card mist" href="#lesson3"><span class="n">Lesson 3</span><h2>When water goes wrong</h2><p>Find the shutoff valve, and know what to do first during a leak.</p><span class="go">Open the lesson<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="card white" href="#check"><span class="n">Quick check</span><h2>Did it stick?</h2><p>Eight questions. Answer out loud, then tap to see.</p><span class="go">Take the check<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </nav>
+      <a class="srcs" href="#sources">Where this comes from: 11 sources<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+      <div class="grown">
+        <h2>For grown-ups</h2>
+        <p class="muted">This manual is written to the student. Read it together the first time, then let them lead. Every lesson ends with a red box that says when to stop. Those lines come from safety groups, and we link each one at the bottom. Hand tools are fine for this age with you nearby. Power tools, electricity, gas and anything up a ladder are yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lesson 1 -->
+  <section class="lesson" id="lesson1" data-screen="lesson1" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 1</span>
+      <h2 class="h2">Meet your toolbox</h2>
+      <p class="sub">What each common hand tool is for, and how to hold it.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>A toolbox is a team. Each tool is great at one job. When you know the job, you grab the right tool, and the work gets easier and safer. Using the right tool for the right job is one of the first rules kids learn in 4-H woodworking.<sup class="c"><a href="#s1">1</a></sup> A screwdriver is not a chisel. A wrench is not a hammer.</p>
+      <p>You are old enough for most of these. 4-H lets beginners, starting at age five, learn the hammer, screwdriver, pliers, tape measure, square, sanding block, hand drill and handsaw, with an adult close by. Power tools come later.<sup class="c"><a href="#s2">2</a></sup></p>
+
+      <h3 class="h3">The six you will use most</h3>
+      <div class="tools">
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-tape"/></svg><div><h4>Tape measure</h4><p><b>For:</b> finding out how long or wide something is.</p><p><b>Hold it:</b> hook the metal end on the edge, pull the tape tight, press the lock, and read the line closest to your mark.</p></div></div>
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-hammer"/></svg><div><h4>Hammer</h4><p><b>For:</b> driving nails in. The claw on the back pulls them out.</p><p><b>Hold it:</b> near the end of the handle, not up by the head. Your arm stays straight and your wrist does the work.<sup class="c"><a href="#s1">1</a></sup></p></div></div>
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-phillips"/></svg><div><h4>Phillips screwdriver</h4><p><b>For:</b> screws with a cross, like a plus sign, on top.</p><p><b>Hold it:</b> tip straight down into the screw, one hand on the handle, the other steadying the shaft. Press in while you turn so it does not slip.</p></div></div>
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-flat"/></svg><div><h4>Flat screwdriver</h4><p><b>For:</b> screws with one straight slot on top.</p><p><b>Hold it:</b> pick the tip that fills the slot. Clockwise tightens, counterclockwise loosens.<sup class="c"><a href="#s1">1</a></sup> People say “righty tighty, lefty loosey.”</p></div></div>
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-wrench"/></svg><div><h4>Adjustable wrench</h4><p><b>For:</b> gripping nuts and bolts.</p><p><b>Hold it:</b> spin the little wheel until the jaws hug the nut with no wiggle, then pull toward you. A loose fit rounds off the corners.</p></div></div>
+        <div class="tool"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-level"/></svg><div><h4>Level</h4><p><b>For:</b> telling you if something is straight.</p><p><b>Hold it:</b> set it flat on top of the thing. When the bubble floats right between the two lines, it is level.</p></div></div>
+      </div>
+      <p style="margin-top:14px" class="muted">Two more that live in every toolbox: a pencil, for marking where things go, and pliers, which hold a nail you are about to start so your fingers stay out of the way.<sup class="c"><a href="#s1">1</a></sup> And safety glasses. Put them on before you swing anything.</p>
+
+      <h3 class="h3">Reading a tape measure</h3>
+      <div class="tape">
+        <svg viewBox="0 0 640 110" role="img" aria-label="A section of tape measure from 2 to 4 inches, with the half, quarter, eighth and sixteenth inch lines labeled">
+          <rect x="0" y="30" width="640" height="60" rx="4" fill="#F0E2B6"/>
+          <g stroke="#16211C" stroke-linecap="round">
+            <path d="M40 30v34M300 30v34M560 30v34" stroke-width="2.2"/>
+            <path d="M170 30v26M430 30v26" stroke-width="1.8"/>
+            <path d="M105 30v19M235 30v19M365 30v19M495 30v19" stroke-width="1.5"/>
+            <path d="M72.5 30v13M137.5 30v13M202.5 30v13M267.5 30v13M332.5 30v13M397.5 30v13M462.5 30v13M527.5 30v13M592.5 30v13" stroke-width="1.2"/>
+            <path d="M56 30v8M89 30v8M121 30v8M154 30v8M186 30v8M219 30v8M251 30v8M284 30v8M316 30v8M349 30v8M381 30v8M414 30v8M446 30v8M479 30v8M511 30v8M544 30v8M576 30v8M609 30v8" stroke-width="1"/>
+          </g>
+          <g font-family="Geist, system-ui, sans-serif" font-weight="600" font-size="22" fill="#16211C"><text x="48" y="84">2</text><text x="308" y="84">3</text><text x="568" y="84">4</text></g>
+          <g font-family="Geist Mono, Menlo, monospace" font-size="16" font-weight="500" fill="#16211C" text-anchor="middle">
+            <text x="170" y="104">½</text><text x="105" y="104">¼</text><text x="235" y="104">¾</text>
+            <text x="72.5" y="20">⅛</text><text x="397.5" y="20">⅝</text><text x="316" y="20">1⁄16</text>
+          </g>
+        </svg>
+        <p>The big numbers are inches. Twelve inches make a foot. The longest line between two numbers is the half inch. The next longest are quarters. Shorter still are eighths, and the tiniest lines are sixteenths. The more lines a tool has between the inches, the more precise it is.<sup class="c"><a href="#s1">1</a></sup> So the line just past 3 in the picture reads “three and one sixteenth.” Write it 3 1⁄16″. The little mark ″ means inches and ′ means feet.<sup class="c"><a href="#s1">1</a></sup></p>
+        <p>The hook on the end wiggles a little. That is on purpose. It slides by exactly its own thickness, so you get the same answer whether you hook it over an edge or push it against a wall.</p>
+      </div>
+      <div class="fact"><div><b>Tape measures get checked under a microscope.</b> At the National Institute of Standards and Technology, scientists line up a microscope on the very center of each hash mark. A six-foot tape used for buying and selling has to be right to within 1⁄32 of an inch.<sup class="c"><a href="#s3">3</a></sup></div></div>
+
+      <h3 class="h3">Hammer a nail without hitting your finger</h3>
+      <ol class="steps">
+        <li>Safety glasses on.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Hold the nail with pliers, or push it through a strip of stiff paper and hold the paper. Your fingers stay away from the head.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Hold the hammer near the end of the handle. Arm straight, wrist loose.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Tap the nail gently and square on the head until it stands by itself.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Now swing a little harder, still square, until the head sits flat on the wood. Go easy on the last hit so you do not dent the board.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Bent it? Pull it with the claw. Slip a scrap of wood under the hammer head first so it does not mark the board.<sup class="c"><a href="#s1">1</a></sup></li>
+      </ol>
+      <p style="margin-top:12px">Hard wood? Ask your adult to drill a small starter hole first.<sup class="c"><a href="#s1">1</a></sup></p>
+
+      <h3 class="h3">The toolbox rules</h3>
+      <p>These are the same rules 4-H gives kids before they pick up a tool.<sup class="c"><a href="#s1">1</a></sup></p>
+      <ul class="plain">
+        <li><b>Ask first.</b> Tell an adult what you are doing and where.</li>
+        <li><b>Clear the table and the floor.</b> Pick up dropped nails and screws right away.</li>
+        <li><b>Work where you can see.</b> Good light, and fresh air if you are sanding.</li>
+        <li><b>Glasses on, sleeves up, long hair back.</b></li>
+        <li><b>Right tool, right job.</b></li>
+        <li><b>Check the tool.</b> A wobbly hammer head, a cracked handle or a frayed cord means put it down and show an adult.</li>
+        <li><b>Put tools back</b> when you finish, so they are there next time.</li>
+      </ul>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Toolbox tour.</b> Find all six tools in your house. If one is missing, that is good to know too.</p>
+        <p><b>Measure three things.</b> A book, a door, your own foot. Write each one down to the nearest quarter inch. Have someone check you.</p>
+        <p><b>Three nails.</b> With an adult, drive three nails into a scrap board. Count your hits. Fewer hits, straighter nail, is the game.</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <ul class="plain">
+          <li>Any power tool. Drills, saws and sanders are an adult-helping job, every time.<sup class="c"><a href="#s1">1</a></sup></li>
+          <li>Any cord that is cracked, frayed or taped up.<sup class="c"><a href="#s1">1</a></sup></li>
+          <li>Anything electrical. Fire safety experts say electrical work is for a qualified electrician.<sup class="c"><a href="#s6">6</a></sup></li>
+          <li>A tool that is broken or loose. Show it, do not use it.</li>
+        </ul>
+      </div>
+
+      <a class="next" href="#lesson2"><span><span class="lbl">Next</span><span class="t">Lesson 2: Small fixes</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Lesson 2 -->
+  <section class="lesson" id="lesson2" data-screen="lesson2" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 2</span>
+      <h2 class="h2">Small fixes</h2>
+      <p class="sub">Tighten a loose handle, hang something level, change a light bulb.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>Small loose things get worse. A loose knob becomes a lost knob. A crooked picture bugs everyone who walks by. Fixing the small stuff yourself takes five minutes, and it feels great. These three fixes are the ones every home needs most.</p>
+
+      <h3 class="h3">Fix 1: Tighten a loose handle or knob</h3>
+      <ol class="steps">
+        <li>Find the screw. On a drawer knob it is usually inside the drawer. On a cabinet door it is on the inside of the door. On a pot handle it is at the end of the handle.</li>
+        <li>Look at the screw head. Cross means Phillips. One slot means flat. Pick the tip that fills it.</li>
+        <li>Hold the knob still with one hand. Turn the screw clockwise with the other until it stops.<sup class="c"><a href="#s1">1</a></sup></li>
+        <li>Stop when it is snug. Snug means it stops turning easily. Cranking harder can strip the hole or crack the knob.</li>
+        <li>Wiggle test. No wiggle, you are done.</li>
+      </ol>
+      <p style="margin-top:12px">If the screw spins and spins and never gets tight, the hole is stripped. That is an adult fix.</p>
+
+      <h3 class="h3">Fix 2: Hang something level</h3>
+      <p>This is for light things: a poster, a small picture, a calendar. Heavy things come after.</p>
+      <ol class="steps">
+        <li>Ask where it can go. Walls have pipes and wires inside, so an adult picks the spot.</li>
+        <li>Hold it up. Have someone step back and say “a little left” until it looks right. Make a small pencil mark at the top center.</li>
+        <li>Measure from the top of the frame down to the hook or wire on the back. Measure that same distance down from your mark. That is where the nail goes.</li>
+        <li>Tap in a small nail or picture hook, tilted slightly upward, using the hammer steps from Lesson 1.</li>
+        <li>Hang it. Set the level on top. Nudge one side until the bubble sits between the lines.</li>
+      </ol>
+
+      <div class="panel sand box">
+        <h3 class="h3">Heavy things get anchored</h3>
+        <p>Shelves, mirrors, TVs, dressers and bookcases are not a nail job. The Consumer Product Safety Commission says to anchor all furniture with drawers, doors and shelves to the wall, and TVs too, because tip-overs happen “in the blink of an eye.”<sup class="c"><a href="#s4">4</a></sup> In the United States a child goes to the emergency room every 24 minutes because of a furniture or TV tip-over.<sup class="c"><a href="#s5">5</a></sup></p>
+        <p>An adult does the anchoring, because the bracket has to go into a stud, the wood post inside the wall. You can be the helper. The steps are: attach a bracket to the wall, move the furniture close, attach the other bracket to the furniture, connect the strap, tighten it, then tug on the straps to make sure everything is secure.<sup class="c"><a href="#s4">4</a></sup> You hand over the tools, hold the level and do the tug test.</p>
+        <p>Two more things you can do yourself: keep remotes and toys off the top of tall furniture, so nobody climbs for them, and if a TV cannot be anchored, it belongs on a low, sturdy stand pushed all the way back.<sup class="c"><a href="#s5">5</a></sup></p>
+      </div>
+
+      <h3 class="h3">Fix 3: Change a light bulb</h3>
+      <ol class="steps">
+        <li>Ask first, and have the adult nearby.</li>
+        <li>Turn the lamp or light switch off.</li>
+        <li>Wait for the bulb to cool. A hot bulb burns fingers, and a hot bulb near cloth or paper can start a fire.<sup class="c"><a href="#s6">6</a></sup></li>
+        <li>Dry hands. If you need to reach, use a sturdy step stool with the adult holding it. No chairs, no stacks of boxes.</li>
+        <li>Unscrew the old bulb counterclockwise. Gentle. Hold it by the glass or plastic, not the metal.</li>
+        <li>Read the sticker on the lamp. It tells you the most watts the lamp can take. Your new bulb uses that number or less.<sup class="c"><a href="#s6">6</a></sup></li>
+        <li>Screw the new bulb in clockwise until it is snug, not forced. Switch on.</li>
+        <li>Ask the adult what to do with the old one. Wrap a burned-out bulb in paper before it goes in the trash, and some kinds need special recycling.</li>
+      </ol>
+      <div class="fact"><div><b>Pick LED when you can.</b> LED bulbs use up to 90% less energy than old incandescent bulbs and last far longer. Incandescents give off 90% of their energy as heat. LEDs also do not burn out suddenly; they slowly dim, so you have time to buy a new one.<sup class="c"><a href="#s7">7</a></sup></div></div>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Knob patrol.</b> Walk through the kitchen and wiggle every knob and handle. Tighten the loose ones. Count how many you fixed.</p>
+        <p><b>Level check.</b> Put the level on top of three pictures in your house. Fix the crooked ones.</p>
+        <p><b>Sticker hunt.</b> Find the watt sticker on two lamps. Then read the box of a spare bulb. Would it be safe in each lamp?</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <p>Tell an adult right away if you ever notice one of these. They are the signs fire safety experts say mean call a qualified electrician or the landlord:<sup class="c"><a href="#s6">6</a></sup></p>
+        <ul class="plain">
+          <li>A breaker that keeps tripping or fuses that keep blowing.</li>
+          <li>A tingle when you touch something plugged in.</li>
+          <li>A wall outlet that feels warm or looks brown or dark.</li>
+          <li>A burning or rubbery smell from anything with a cord.</li>
+          <li>Lights that flicker or dim on their own.</li>
+          <li>Sparks from an outlet.</li>
+        </ul>
+        <p>Never open an outlet, a switch or a light fixture, and never touch anything electrical with wet hands or while standing in water.</p>
+      </div>
+
+      <a class="next" href="#lesson3"><span><span class="lbl">Next</span><span class="t">Lesson 3: When water goes wrong</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Lesson 3 -->
+  <section class="lesson" id="lesson3" data-screen="lesson3" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Lesson 3</span>
+      <h2 class="h2">When water goes wrong</h2>
+      <p class="sub">Find the shutoff valve, and know what to do first during a leak.</p>
+
+      <h3 class="h3">Why it matters</h3>
+      <p>Water does not wait. A burst hose under the sink can soak a whole kitchen floor in minutes. The difference between a mess and a disaster is knowing where the shutoff is and getting there fast. The federal emergency site Ready.gov puts it simply: everyone in the household should learn how to shut off the main water valve.<sup class="c"><a href="#s8">8</a></sup> That includes you.</p>
+      <p>Leaks are also sneaky. Household leaks in the United States waste nearly one trillion gallons of water a year.<sup class="c"><a href="#s10">10</a></sup> You can learn to catch them.</p>
+
+      <h3 class="h3">Find the shutoffs (with an adult)</h3>
+      <ol class="steps">
+        <li><b>The main valve.</b> It is usually where the water pipe comes into the house, often in the basement, a utility room or the garage. Some homes have it in a box in the ground near the street.<sup class="c"><a href="#s9">9</a></sup></li>
+        <li><b>Look at the handle.</b> A round wheel handle closes by turning clockwise, usually several turns. A lever handle is open when it lines up with the pipe and closed when it sits across the pipe. Ask before you turn the main one.</li>
+        <li><b>Mark it.</b> Wrap bright tape around the handle so you can find it in the dark.<sup class="c"><a href="#s9">9</a></sup></li>
+        <li><b>The small valves.</b> Every sink has one or two under it, and every toilet has one on the wall behind it. These shut off just that one fixture. Find them all.</li>
+        <li><b>Draw a map.</b> One sheet of paper, one X for each valve. Stick it inside a cabinet door.</li>
+      </ol>
+
+      <div class="panel mist box">
+        <h3 class="h3">Your leak plan</h3>
+        <p>Something is spraying or pouring. Do this, in this order.</p>
+        <ol class="steps" style="margin-top:12px">
+          <li>Turn off the nearest small valve: under the sink, or behind the toilet.</li>
+          <li>Still coming, or you cannot find it? Go to the main valve and close it.</li>
+          <li>Get an adult. Shout if you need to.</li>
+          <li>Towels down, bucket under the drip, and move things off the floor.</li>
+          <li>Water near an outlet, a cord, a lamp or anything plugged in? Do not step in it. Stay out of the room and get the adult.</li>
+        </ol>
+      </div>
+
+      <h3 class="h3">Catch a hidden leak</h3>
+      <p>The Environmental Protection Agency gives two easy tests.<sup class="c"><a href="#s10">10</a></sup></p>
+      <ul class="plain">
+        <li><b>The meter test.</b> Read your water meter. Then nobody uses water for two hours. Read it again. If the number changed, something is leaking.</li>
+        <li><b>The toilet test.</b> Put a few drops of food coloring in the toilet tank. Wait ten minutes without flushing. If color shows up in the bowl, the toilet is leaking. Flush right after so the tank does not stain.</li>
+      </ul>
+
+      <div class="panel sage try box">
+        <h3>Try it at home</h3>
+        <p><b>Valve hunt.</b> Find the main valve and every small valve with an adult. Tape the main one. Draw your map.</p>
+        <p><b>Leak drill.</b> Have an adult say “the kitchen sink is leaking.” Walk, do not run, to the right valve and point to it. Time yourself. Try again from another room.</p>
+        <p><b>Toilet test.</b> Run the food coloring test on one toilet this week. Report what you found.</p>
+      </div>
+
+      <div class="panel stop box white">
+        <h3>Stop and get an adult</h3>
+        <ul class="plain">
+          <li>Water coming through a ceiling or down a wall.</li>
+          <li>Water anywhere near electricity.</li>
+          <li>A hot water pipe or the water heater. Hot water burns.</li>
+          <li><b>You smell gas, or hear hissing.</b> Leave right away. Call the gas company or 911 from outside. Do not flip switches, light anything or use a phone until you are out.<sup class="c"><a href="#s11">11</a></sup> And nobody ever turns gas back on themselves. Only a qualified professional does that.<sup class="c"><a href="#s8">8</a></sup></li>
+        </ul>
+      </div>
+
+      <a class="next" href="#check"><span><span class="lbl">Next</span><span class="t">Quick check: Did it stick?</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Quick check -->
+  <section class="lesson check" id="check" data-screen="check" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All lessons</a>
+      <span class="num">Quick check</span>
+      <h2 class="h2">Did it stick?</h2>
+      <p class="sub">Answer out loud, then tap to see.</p>
+      <div style="margin-top:22px">
+        <details><summary>Which way do you turn a screw to tighten it?</summary><p class="ans">Clockwise. Counterclockwise loosens. Righty tighty, lefty loosey.</p></details>
+        <details><summary>Where do you hold a hammer?</summary><p class="ans">Near the end of the handle, not up by the head. Arm straight, wrist loose.</p></details>
+        <details><summary>On a tape measure, what is the longest line between two numbers?</summary><p class="ans">The half inch.</p></details>
+        <details><summary>What do you read on a lamp before you put in a new bulb?</summary><p class="ans">The sticker with the most watts it can take. Your bulb uses that number or less.</p></details>
+        <details><summary>Who anchors a dresser or TV to the wall?</summary><p class="ans">An adult, into a stud. You help: hand tools, hold the level, do the tug test.</p></details>
+        <details><summary>Where is the main water shutoff usually?</summary><p class="ans">Where the water pipe comes into the house, often the basement, utility room or garage, or in a box near the street.</p></details>
+        <details><summary>An outlet feels warm. What do you do?</summary><p class="ans">Tell an adult right away. They call a qualified electrician or the landlord.</p></details>
+        <details><summary>You smell gas. What do you do?</summary><p class="ans">Leave right away. Call the gas company or 911 from outside. No switches, no lights, no phone until you are out.</p></details>
+      </div>
+
+      <a class="next" href="#sources"><span><span class="lbl">Next</span><span class="t">Where this comes from</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="lesson sources" id="sources" data-screen="sources" tabindex="-1">
+    <div class="wrap">
+      <a class="back" href="#home" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</a>
+      <span class="num">Sources</span>
+      <h2 class="h2">Where this comes from</h2>
+      <p class="sub">We only cite government agencies, universities and safety nonprofits. Every number in the manual links to one of these. Anything without a number is plain how-to.</p>
+      <ol>
+        <li id="s1">Purdue University Extension, Decatur County. <a href="https://www.extension.purdue.edu/county/decatur/_docs/mini-4-h-woodworking.pdf">Mini 4-H Woodworking manual</a> (PDF). Safety rules, measuring tools, hammer and screwdriver basics.</li>
+        <li id="s2">University of Wisconsin–Madison Extension, 4-H. <a href="https://4h.extension.wisc.edu/files/2021/06/Wisconsin-4-H-Woodworking-Risk-Management-Tip-Sheet.pdf">Wisconsin 4-H Woodworking Project Risk Management Tip Sheet</a> (PDF, 2020). Which tools beginners may use.</li>
+        <li id="s3">National Institute of Standards and Technology. Dan Sawyer, <a href="https://www.nist.gov/blogs/taking-measure/going-distance-national-tape-measure-day">Going the Distance on National Tape Measure Day</a>, Taking Measure blog, July 14, 2016.</li>
+        <li id="s4">U.S. Consumer Product Safety Commission. <a href="https://www.anchorit.gov/">Anchor It!</a> How to anchor furniture and TVs.</li>
+        <li id="s5">U.S. Consumer Product Safety Commission. <a href="https://www.cpsc.gov/Newsroom/News-Releases/2015/Anchor-It-CPSC-Launches-Nations-Largest-Campaign-to-Prevent-Furniture-and-TV-Tip-Over-Deaths-and-Injuries">Anchor It! CPSC Launches Nation’s Largest Campaign to Prevent Furniture and TV Tip-Over Deaths and Injuries</a>, news release, June 4, 2015.</li>
+        <li id="s6">National Fire Protection Association. <a href="https://www.nfpa.org/-/media/project/storefront/catalog/files/safety-tip-sheets/electricalsafetytips.pdf">Electrical Safety tip sheet</a> (PDF, 2018). Warning signs, bulb wattage, who does electrical work.</li>
+        <li id="s7">ENERGY STAR, U.S. Environmental Protection Agency. <a href="https://www.energystar.gov/products/learn-about-led-lighting">Learn About LED Lighting</a>.</li>
+        <li id="s8">Ready.gov, Federal Emergency Management Agency. <a href="https://www.ready.gov/safety-skills">Safety Skills</a>. Learning to shut off water, and never turning gas back on yourself.</li>
+        <li id="s9">DC Water. <a href="https://dcwater.com/preparing-water-emergency">Preparation Helps Keep You and Your Family Safe</a>. Where the main valve usually is, and marking it.</li>
+        <li id="s10">U.S. Environmental Protection Agency, WaterSense. <a href="https://www.epa.gov/watersense/fix-leak-week">Fix a Leak Week</a>. The meter test, the toilet test and the trillion-gallon figure.</li>
+        <li id="s11">U.S. Consumer Product Safety Commission. <a href="https://www.cpsc.gov/Newsroom/News-Releases/2026/CPSC-Issues-Winter-Weather-Safety-Tips-to-Prevent-Fires-and-Carbon-Monoxide-Poisoning">CPSC Issues Winter Weather Safety Tips to Prevent Fires and Carbon Monoxide Poisoning</a>, news release, March 16, 2026. What to do if you smell gas.</li>
+      </ol>
+      <p class="muted" style="margin-top:18px;font-size:15.5px">Checked October 2026. If a link stops working, the page may have moved. Search the agency’s site for the title.</p>
+
+      <a class="next" href="#home"><span><span class="lbl">Done reading</span><span class="t">Back to all lessons</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="end" data-screen="home">
+    <div class="wrap">
+      <div class="panel sage">
+        <h2 class="h3" style="margin-top:0">This is one of seven</h2>
+        <p class="muted">We are writing a free manual for every Own Two Feet topic. This one is the first. Want to hear when the next one is ready, or bring a workshop to your school or group?</p>
+        <a class="btn" href="../#interest">Join the Interest List<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Own Two Feet · Home &amp; tools manual</span>
+    <span style="display:flex;gap:18px"><a href="#home" style="text-decoration:none">All lessons</a><a href="./" style="text-decoration:none">All manuals</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+  var screens=Array.prototype.slice.call(document.querySelectorAll('[data-screen]'));
+  var names={home:'Home & tools manual',lesson1:'Lesson 1: Meet your toolbox',lesson2:'Lesson 2: Small fixes',lesson3:'Lesson 3: When water goes wrong',check:'Quick check',sources:'Sources'};
+  var cur='home',prev='home',first=true;
+  function jump(y){root.style.scrollBehavior='auto';window.scrollTo(0,y);requestAnimationFrame(function(){root.style.scrollBehavior=''});}
+  function show(){
+    var hash=location.hash.replace('#','')||'home',target=null;
+    if(/^s\d+$/.test(hash)){target=document.getElementById(hash);hash=target?'sources':'home';}
+    if(!names[hash]){hash='home';}
+    var focusEl=null;
+    screens.forEach(function(s){var on=s.getAttribute('data-screen')===hash;s.classList.toggle('on',on);if(on&&!focusEl)focusEl=s;});
+    if(hash!==cur){prev=cur;cur=hash;}
+    document.title=names[hash]+': Own Two Feet';
+    if(target){jump(0);target.scrollIntoView({block:'start'});}
+    else if(!first){jump(0);requestAnimationFrame(function(){jump(0)});}
+    if(!first&&focusEl){focusEl.focus({preventScroll:true});}
+    first=false;
+  }
+  var back=document.querySelector('a[data-prev]');
+  if(back){back.addEventListener('click',function(e){e.preventDefault();location.hash=(prev==='sources'||prev==='home')?'home':prev;});}
+  window.addEventListener('hashchange',show);
+  show();
+})();
+</script>
+</body></html>
