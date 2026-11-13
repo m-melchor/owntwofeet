@@ -41,3 +41,12 @@ main{flex:1;display:grid;align-content:center;padding:clamp(28px,6vw,80px) 0}
 footer.site-foot{padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:14.5px;border-top:1px solid var(--line)}
 footer.site-foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* Layout pass (step 5b): same wide header and footer as the manuals, centered message, ink footer. */
+@media (min-width:900px){.site .wrap,footer.site-foot .wrap{max-width:1260px;padding-inline:40px}}
+@media (min-width:1600px){.site .wrap,footer.site-foot .wrap{max-width:1480px}}
+@media (min-width:1900px){.site .wrap,footer.site-foot .wrap{max-width:1640px}}
+main{text-align:center}
+.lede,.hint{margin-inline:auto}
+.btns{justify-content:center}
+footer.site-foot{background:var(--ink);color:#fff;border-top:0;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px))}

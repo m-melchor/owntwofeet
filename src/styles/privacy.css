@@ -65,3 +65,16 @@ footer.site-foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-
   .short{border:1px solid #CFCBC2;background:#fff}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Layout pass (step 5b): same wide header and footer as the manuals, centered head, full-width closing band, ink footer. The reading column stays narrow. */
+@media screen{
+  @media (min-width:900px){.site .wrap,footer.site-foot .wrap{max-width:1260px;padding-inline:40px}}
+  @media (min-width:1600px){.site .wrap,footer.site-foot .wrap{max-width:1480px}}
+  @media (min-width:1900px){.site .wrap,footer.site-foot .wrap{max-width:1640px}}
+  .hero .kick,.hero .h1,.hero .lede{text-align:center}
+  .hero .lede{margin-inline:auto}
+  .end{margin:clamp(48px,7vw,96px) 0 0;background:var(--sage)}
+  .end .panel{background:none;border-radius:0;padding:clamp(44px,6vw,88px) 0}
+  @media (min-width:900px){.end .panel{grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:48px}.end .panel>*{grid-column:1}.end .panel .btn{grid-column:2;grid-row:1/span 2}}
+  footer.site-foot{background:var(--ink);color:#fff;border-top:0;padding-block:36px calc(36px + env(safe-area-inset-bottom,0px))}
+}
