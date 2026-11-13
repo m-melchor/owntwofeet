@@ -2,6 +2,10 @@
 
 Read this before changing anything in this repo.
 
+## Astro move in progress (branch `astro`, started 2026-11-13)
+
+The site is moving to Astro (approved by Marco). On this branch the old `index.html` is split into `src/layouts/Layout.astro`, `src/components/` (Symbols, Header, Footer, HelpChat) and `src/components/views/` (Home, Workshops, Activities, Story, Involved). The CSS is `src/styles/site.css`, and the main script is `public/js/site.js`, loaded as-is at the end of the page. Manuals, privacy, 404, es.html, images and the sitemap are in `public/` unchanged. `npm run build` writes `dist/`, and `.github/workflows/deploy.yml` deploys it once pushed. Do not push until Marco says the whole move is done. Sections below that describe `index.html` as one file still describe the same code, now split into those files.
+
 ## What this is
 
 Own Two Feet plans to run **live, in-person life-skills workshops** for boys and young men (grades 3–8). Schools and community groups are the customers (counselors, youth leaders, churches, rec centers). Students are the end users. We bring the lesson plan, supplies and mentors; the host provides a room, students and an adult contact.
