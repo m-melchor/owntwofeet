@@ -1,15 +1,5 @@
 "use strict";
 /* ---------- curriculum ---------- */
-const MI={
- home:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
- tech:'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
- care:'<path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"/>',
- cook:'<path d="M3 11h14v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 12h4M7 7c0-1.5 1-1.5 1-3M11 7c0-1.5 1-1.5 1-3"/>',
- money:'<rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/>',
- comm:'<path d="M4 5h16v10H9l-5 4z"/>',
- help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.5v.5"/>',
- car:'<path d="M4 16V12l2-5h12l2 5v4M4 16h16M4 16v3M20 16v3"/><circle cx="7.5" cy="13.5" r=".9"/><circle cx="16.5" cy="13.5" r=".9"/>'
-};
 const MODS=[
  {k:'home',t:'Home & tools',man:'manuals/home-tools.html',d:'Using basic hand tools safely and handling the small fixes every home needs.',L:[['Meet your toolbox','What each common hand tool is for, and how to hold it.'],['Small fixes','Tighten a loose handle, hang something level, change a light bulb.'],['When water goes wrong','Find the shutoff valve and what to do first during a leak.']],st:'A practice board with screws, nails, a level and a shutoff valve.',stop:'Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.',g:['Grades 3–8']},
  {k:'tech',t:'Tech & online safety',man:'manuals/tech.html',d:'Troubleshooting devices, protecting accounts and spotting scams before they cost you.',L:[['Restart, update, check','A simple routine that fixes most device problems.'],['Locks that work','Passphrases, two-step sign-in and never sharing a password.'],['Spot the scam','The red flags in fake prizes, account alerts and “new number” texts.']],st:'Sample messages and a practice account to secure.',stop:'Money lost, threats, or someone pressuring you to keep secrets: tell a trusted adult right away.',g:['Grades 3–8']},
@@ -20,51 +10,25 @@ const MODS=[
  {k:'help',t:'Knowing when to ask',man:'manuals/help.html',d:'Recognizing when a job is too big or unsafe, and knowing exactly who to ask.',L:[['Handle, ask or call','Sorting situations by who should handle them.'],['Your people','Naming the adults you can go to at home, school and nearby.'],['Emergencies','When to leave, when to call 911, and what to say.']],st:'Scenario cards drawn from real household situations.',stop:'This one is part of every other topic too.',g:['Grades 3–8']},
  {k:'car',t:'Vehicle basics',later:1,d:'For older students, later on: dashboard lights, tire checks, and what to do if a car breaks down.',L:[['Read the dash','What common warning lights mean.'],['Tire check','Checking pressure and tread, with an adult.'],['Breakdown plan','Getting safe and getting help.']],st:'Coming later.',stop:'All vehicle work happens with an adult. Nothing under the hood without one.',g:['Older students','Preview']}
 ];
-const cxTabs=$('#cxTabs'),cxPanel=$('#cxPanel');
-cxTabs.innerHTML=MODS.map((m,i)=>`<button class="cx-tab" role="tab" id="cxt-${m.k}" aria-controls="cxPanel" aria-selected="${i===0}" tabindex="${i===0?0:-1}" data-i="${i}"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${MI[m.k]}</svg></span><span>${m.t}</span><span class="st">${m.later?'Later':''}</span></button>`).join('');
-let cxI=0;
+/* ---------- topics: eight tiles, tap one to open its lessons below ---------- */
+const cxTiles=$$('#cxTiles .cx-tile'),cxPanel=$('#cxPanel');
+let cxI=-1;
 function showMod(i,focus){
   cxI=(i+MODS.length)%MODS.length;const m=MODS[cxI];
-  $$('.cx-tab',cxTabs).forEach((b,j)=>{b.setAttribute('aria-selected',String(j===cxI));b.tabIndex=j===cxI?0:-1});
-  cxPanel.setAttribute('aria-labelledby','cxt-'+m.k);
+  cxTiles.forEach((b,j)=>b.setAttribute('aria-expanded',String(j===cxI)));
+  cxPanel.hidden=false;cxPanel.setAttribute('aria-labelledby','cxt-'+m.k);
   cxPanel.innerHTML=`<div class="cx-head"><div><h3>${m.t}</h3><p>${m.d}</p></div>${m.man?`<a class="btn btn-line btn-sm" href="${m.man}">Read the free manual</a>`:m.later?'<span class="chip soon">Coming later</span>':''}</div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span>${m.L.map((l,j)=>`<div class="lesson"><span class="n">${j+1}</span><b>${l[0]}</b><span class="ds">${l[1]}</span></div>`).join('')}</div>
   <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>${m.st}</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>${m.stop}</p></div></div></div>
   <div class="cx-foot"><span class="muted" style="font-size:14.5px">${cxI+1} of ${MODS.length}. Schools can pick any topics, in any order.</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="Previous topic">${I.prev}</button><button class="icon-btn" type="button" data-cx="1" aria-label="Next topic">${I.next}</button></div></div>`;
   cxPanel.classList.remove('swap');void cxPanel.offsetWidth;cxPanel.classList.add('swap');
-  const tb=$$('.cx-tab',cxTabs)[cxI];
-  if(cxTabs.scrollWidth>cxTabs.clientWidth+4)cxTabs.scrollTo({left:tb.offsetLeft-cxTabs.clientWidth/2+tb.offsetWidth/2,behavior:RM?'auto':'smooth'});
-  if(focus)tb.focus({preventScroll:true});
+  if(focus)cxTiles[cxI].focus({preventScroll:true});
 }
-cxTabs.addEventListener('click',e=>{const b=e.target.closest('.cx-tab');if(b)showMod(+b.dataset.i)});
-cxTabs.addEventListener('keydown',e=>{const k=e.key;let n=null;if(k==='ArrowDown'||k==='ArrowRight')n=cxI+1;else if(k==='ArrowUp'||k==='ArrowLeft')n=cxI-1;else if(k==='Home')n=0;else if(k==='End')n=MODS.length-1;if(n!==null){e.preventDefault();showMod(n,true)}});
+function closeMod(){cxI=-1;cxPanel.hidden=true;cxTiles.forEach(b=>b.setAttribute('aria-expanded','false'))}
+$('#cxTiles').addEventListener('click',e=>{const b=e.target.closest('.cx-tile');if(!b)return;const i=+b.dataset.i;if(i===cxI){closeMod();return}showMod(i);
+  const r=cxPanel.getBoundingClientRect();if(r.top>innerHeight-160)scrollTo({top:scrollY+r.top-110,behavior:RM?'auto':'smooth'})});
 cxPanel.addEventListener('click',e=>{const b=e.target.closest('[data-cx]');if(b)showMod(cxI+ +b.dataset.cx)});
-showMod(0);
-
-/* ---------- session ---------- */
-const SEG=[
- {t:'Open',m:5,h:'Start with real life',d:'Students talk about a time they ran into the problem or saw someone handle it. It gets everyone thinking before anyone picks up a tool.'},
- {t:'Show',m:10,h:'Watch it done',d:'A mentor shows the skill step by step, explains why each step matters, and points out common mistakes.'},
- {t:'Practice',m:25,h:'Try it yourself',d:'Students practice in small groups with real tools and materials while mentors help. Mistakes are expected.'},
- {t:'Debrief',m:10,h:'Wrap up',d:'We talk about what was hard, when to stop and ask for help, and who to ask. Everyone takes home a card with the steps.'}
-];
-const sbar=$('#sbar'),sdet=$('#sdetail');
-sbar.innerHTML=SEG.map((s,i)=>`<button class="seg" type="button" data-i="${i}" aria-pressed="${i===2}" style="flex:${s.m}"><span>${s.t}</span><small>${s.m} min</small></button>`).join('');
-function showSeg(i){$$('.seg',sbar).forEach((b,j)=>{b.setAttribute('aria-pressed',String(j===i));b.style.flex=j===i?SEG[j].m+8:SEG[j].m});const s=SEG[i];sdet.innerHTML=`<div><span class="label">${s.m} minutes</span><h3>${s.h}</h3></div><p>${s.d}</p>`;sdet.classList.remove('swap');void sdet.offsetWidth;sdet.classList.add('swap')}
-sbar.addEventListener('click',e=>{const b=e.target.closest('.seg');if(b)showSeg(+b.dataset.i)});
-showSeg(2);
-
-/* ---------- voices ---------- */
-/* why-we-started quotes: one at a time, every figure stays stacked in the same cell so the band never changes height.
-   Auto-rotation runs only while the band is on screen and restarts its 8 s clock each time the band comes into view, so the first quote you see always gets its full time. It also never flips a quote while the page is still being scrolled: phones hold timers during a scroll and used to fire the change the moment the finger stopped, which looked like the quote changed on scroll. Prev/Next ends auto-rotation. */
-const FQ=$$('#vq .fq');let qi=0,qTimer=null,qAuto=!RM,qScroll=0;
-function showQ(i){qi=(i+FQ.length)%FQ.length;FQ.forEach((f,j)=>f.classList.toggle('on',j===qi));$('#vqCount').textContent=`${qi+1} of ${FQ.length}`}
-function stopQ(){clearTimeout(qTimer);qTimer=null;qAuto=false;$('#vq').setAttribute('aria-live','polite')}/* screen readers hear a quote only after someone taps Prev or Next, never on the timer */
-function queueQ(ms){clearTimeout(qTimer);qTimer=setTimeout(tickQ,ms)}
-function tickQ(){if(!qAuto)return;if(performance.now()-qScroll<700){queueQ(900);return}if(curView==='home'&&!document.hidden)showQ(qi+1);queueQ(8000)}
-$('#vqPrev').addEventListener('click',()=>{stopQ();showQ(qi-1)});$('#vqNext').addEventListener('click',()=>{stopQ();showQ(qi+1)});
-addEventListener('scroll',()=>{qScroll=performance.now()},{passive:true});
-if(qAuto){if('IntersectionObserver' in window)new IntersectionObserver(es=>{if(es[0].isIntersecting)queueQ(8000);else{clearTimeout(qTimer);qTimer=null}},{threshold:.5}).observe($('#vq'));else queueQ(8000)}
+closeMod();
 
 // Sideways rows get an arrow just below them: right while more is hidden, left (back to the start) once the end is reached
 function edgeArrows(row){if(!row)return;const sx=document.createElement('div'),hint=document.createElement('div');sx.className='sx';hint.className='sx-hint';row.before(sx);sx.append(row,hint);
@@ -80,7 +44,7 @@ function edgeArrows(row){if(!row)return;const sx=document.createElement('div'),h
   let touched=false;['pointerdown','wheel','keydown'].forEach(t=>row.addEventListener(t,()=>{touched=true},{passive:true,once:true}));
   if(!RM&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(!es[0].isIntersecting||sx.dataset.sx!=='r')return;io.disconnect();
     setTimeout(()=>{if(touched||row.scrollLeft>4)return;by(Math.min(90,row.scrollWidth-row.clientWidth));setTimeout(()=>{if(!touched)by(0)},650)},500)},{threshold:1});io.observe(row)}}
-edgeArrows($('#cxTabs'));
+edgeArrows($('#actRow'));
 
 /* ---------- hero 3D ---------- */
 let hero=null;

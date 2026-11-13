@@ -13,13 +13,14 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
 (function(){
   const fab=$('#hcFab'),box=$('#hc'),log=$('#hcLog'),opts=$('#hcOpts');
   const A={
-   what:{q:'What is Own Two Feet?',a:'Own Two Feet runs live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.',go:[SITE+'workshops/','How workshops work'],next:['who','status','cost']},
+   what:{q:'What is Own Two Feet?',a:'Own Two Feet is a student venture planning live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.',go:[SITE+'workshops/','How workshops work'],next:['who','video','cost']},
    status:{q:'Are workshops running yet?',a:'Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.',go:[SITE+'#interest','Join the interest list'],next:['host','what']},
    who:{q:'Who is it for?',a:'Boys and young men in grades 3 to 8. Activities are matched to their age, and topics for older students come later.',go:[SITE+'workshops/','See age groups'],next:['safe','modules']},
    modules:{q:'What do students learn?',a:'Eight topics: home and tools, tech and online safety, personal care, simple cooking, money, communication, knowing when to ask for help, and car basics later on. Schools pick the ones they want.',go:[SITE+'#cur-h','See the topics'],next:['session','try']},
-   session:{q:'What happens in a session?',a:'50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:[SITE+'#ses-h','See a session'],next:['safe','host']},
+   session:{q:'What happens in a session?',a:'50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:[SITE+'workshops/#ses-h','See a session'],next:['safe','host']},
    host:{q:'Can my school get a workshop?',a:'Not yet, since we’re not booking. Join the interest list and pick “An in-person workshop.” Once we launch, you’d provide a room, up to 30 students and an adult who knows them. We’d bring everything else.',go:[SITE+'#interest','Join the interest list'],next:['cost','safe']},
    cost:{q:'How much will it cost?',a:'We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.',go:[SITE+'workshops/','See planned prices'],next:['host','status']},
+   video:{q:'Couldn’t students just watch a video?',a:'Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.',next:['session','safe']},
    safe:{q:'How do you keep it safe?',a:'Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro.',next:['session','who']},
    parents:{q:'I’m a parent. How can I help?',a:'Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.',go:[SITE+'get-involved/','Get involved'],next:['what','status']},
    try:{q:'Can I try an activity?',a:'Yes! There are five you can try right now: Tool Time, Saturday on $25, Scam or Safe?, Make the Call and Laundry Sort-Out.',go:[SITE+'activities/','Open activities'],next:['modules','what']},
@@ -51,7 +52,7 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
 
 /* ---------- premium scroll layer ---------- */
 (function(){
-  const sp=$('#sprog'),heroSec=$('.hero'),stage=$('#heroStage'),copy=$('.hero-copy'),pin=$('#sesPin'),bar=$('#sesBar');
+  const sp=$('#sprog'),heroSec=$('.hero'),stage=$('#heroStage'),copy=$('.hero-copy');
   // stagger indexes + hide only what's below the fold
   $$('.stg').forEach(g=>{[...g.children].forEach((c,i)=>c.style.setProperty('--i',i%6))});
   if('IntersectionObserver' in window&&!RM){
@@ -63,10 +64,8 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
   const big=$('.problem .big');
   if(big&&!RM){const wrap=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t))f.appendChild(document.createTextNode(t));else{const w=document.createElement('span');w.className='w';w.textContent=t;f.appendChild(w)}});c.replaceWith(f)}else if(c.nodeType===1)wrap(c)})};wrap(big);big.setAttribute('aria-label',big.textContent)}
   const words=big?$$('.w',big):[];
-  const pinOn=()=>pin&&!RM&&innerWidth>900;
-  if(pinOn())pin.classList.add('on');
-  addEventListener('resize',()=>{if(pin)pin.classList.toggle('on',pinOn());tick()},{passive:true});
-  let lastSeg=-1,ticking=false;
+  addEventListener('resize',()=>tick(),{passive:true});
+  let ticking=false;
   function tick(){ticking=false;
     const vh=innerHeight,max=document.documentElement.scrollHeight-vh;
     sp.style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;
@@ -74,13 +73,7 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
     if(!RM&&heroSec){const r=heroSec.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height)));
       if(stage)stage.style.transform=`translateY(${p*-40}px) scale(${1-p*.03})`;if(copy)copy.style.transform=`translateY(${p*24}px)`;hero&&hero.scroll&&hero.scroll(p)}
     if(words.length){const r=big.getBoundingClientRect(),p=Math.min(1,Math.max(0,(vh*.82-r.top)/(r.height+vh*.35)));const n=Math.round(p*words.length);words.forEach((w,i)=>w.classList.toggle('on',i<n))}
-    if(pin&&pin.classList.contains('on')){const r=pin.getBoundingClientRect(),span=r.height-vh,p=Math.min(1,Math.max(0,(-r.top+60)/Math.max(1,span)));
-      if(bar)bar.style.width=(p*100)+'%';
-      let acc=0,idx=0;const tot=SEG.reduce((a,x)=>a+x.m,0);for(let i=0;i<SEG.length;i++){acc+=SEG[i].m/tot;if(p<=acc+1e-6){idx=i;break}idx=i}
-      if(idx!==lastSeg){lastSeg=idx;showSeg(idx)}}
   }
   addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(tick)}},{passive:true});
-  // clicking a segment while pinned scrolls to its slice
-  if(pin)sbar.addEventListener('click',e=>{const b=e.target.closest('.seg');if(!b||!pin.classList.contains('on'))return;const i=+b.dataset.i,tot=SEG.reduce((a,x)=>a+x.m,0);let before=0;for(let k=0;k<i;k++)before+=SEG[k].m;const mid=(before+SEG[i].m/2)/tot;const top=pin.getBoundingClientRect().top+scrollY-60+mid*(pin.offsetHeight-innerHeight);lastSeg=i;scrollTo({top,behavior:'smooth'})});
   window.__tick=tick;tick();
 })();

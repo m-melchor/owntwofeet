@@ -2,6 +2,17 @@
 import { base } from '../../base.js';
 import ActCard from '../ActCard.astro';
 import InterestForm from '../InterestForm.astro';
+// The eight topic tiles. Their lessons live in public/js/home.js (MODS) and open below the tiles on a tap.
+const TOPICS = [
+  { k: 'home', t: 'Home & tools', ic: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>' },
+  { k: 'tech', t: 'Tech & online safety', ic: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/>' },
+  { k: 'care', t: 'Personal care', ic: '<path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"/>' },
+  { k: 'cook', t: 'Simple cooking', ic: '<path d="M3 11h14v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 12h4M7 7c0-1.5 1-1.5 1-3M11 7c0-1.5 1-1.5 1-3"/>' },
+  { k: 'money', t: 'Money', ic: '<rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M16 12.5h2.5M2.5 10h19"/>' },
+  { k: 'comm', t: 'Communication', ic: '<path d="M4 5h16v10H9l-5 4z"/>' },
+  { k: 'help', t: 'Knowing when to ask', ic: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.5v.5"/>' },
+  { k: 'car', t: 'Vehicle basics', later: true, ic: '<path d="M4 16V12l2-5h12l2 5v4M4 16h16M4 16v3M20 16v3"/><circle cx="7.5" cy="13.5" r=".9"/><circle cx="16.5" cy="13.5" r=".9"/>' }
+];
 ---
 <!-- ================= HOME ================= -->
 <div class="view" data-view="home" id="home">
@@ -29,35 +40,23 @@ import InterestForm from '../InterestForm.astro';
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="prob-h">
-    <div class="wrap problem reveal">
-      <h2 class="big" id="prob-h">Young men are expected to fix things, stay safe online and handle money. <em>Many were never shown how.</em></h2>
-      <p class="why">A video shows the steps, but it can’t tell you what you did wrong or when to stop. Parents working long hours can’t be there for every little lesson, and that’s not their fault. And boys are often told to tough it out, so they figure things out alone.</p>
+  <section class="doors-sec" aria-labelledby="path-h">
+    <div class="wrap">
+      <h2 class="sr-only" id="path-h">Where to start</h2>
+      <div class="doors stg">
+        <a class="door" href={base + 'workshops/'}><span class="door-art" style="background:var(--mist)"><svg viewBox="0 0 200 120" aria-hidden="true"><g transform="translate(46 8) rotate(-10 20 52)"><use href="#t-hammer" width="36" height="104"/></g><g transform="translate(84 10)"><use href="#t-phillips" width="32" height="100"/></g><g transform="translate(120 8) rotate(10 18 52)"><use href="#t-wrench" width="34" height="104"/></g></svg></span><span class="meta"><h3>In-person workshops</h3><p>Planned prices and how a class period runs.</p></span></a>
+        <a class="door" href={base + 'monthly-plan/'}><span class="door-art" style="background:var(--butter)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="62" y="14" width="76" height="92" rx="8" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5"/><path d="M62 34h76" stroke="#16211C" stroke-width="2.5"/><path d="M80 8v14M120 8v14" stroke="#16211C" stroke-width="3" stroke-linecap="round"/><g fill="#16211C" opacity=".18"><rect x="72" y="44" width="12" height="12" rx="2"/><rect x="94" y="44" width="12" height="12" rx="2"/><rect x="116" y="44" width="12" height="12" rx="2"/><rect x="72" y="66" width="12" height="12" rx="2"/><rect x="116" y="66" width="12" height="12" rx="2"/><rect x="72" y="88" width="12" height="10" rx="2"/><rect x="94" y="88" width="12" height="10" rx="2"/></g><rect x="92" y="64" width="16" height="16" rx="3" fill="#2F6450"/><path d="M96 72l3 3 5-6" fill="none" stroke="#FCFBF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="meta"><h3>Monthly plan</h3><p>Run our activities yourself, from $9.99 a month.</p></span></a>
+        <a class="door" href={base + 'activities/'}><span class="door-art" style="background:var(--peach)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="70" y="6" width="60" height="108" rx="12" fill="#16211C"/><rect x="75" y="16" width="50" height="88" rx="6" fill="#FCFBF8"/><rect x="80" y="26" width="32" height="14" rx="7" fill="#DDE7F0"/><rect x="88" y="46" width="32" height="14" rx="7" fill="#2F6450"/><rect x="80" y="66" width="26" height="14" rx="7" fill="#DDE7F0"/><path d="M84 92h32" stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".25"/></svg></span><span class="meta"><h3>Try an activity</h3><p>Five short ones, free to play now.</p></span></a>
+        <a class="door" href={base + 'manuals/'}><span class="door-art" style="background:var(--sage)"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M100 26c-14-10-34-12-52-8v80c18-4 38-2 52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26c14-10 34-12 52-8v80c-18-4-38-2-52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26v80" stroke="#16211C" stroke-width="2.5"/><g stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".3"><path d="M60 40h28M60 52h28M60 64h22M112 40h28M112 52h28M112 64h22"/></g><path d="M112 76h20" stroke="#2F6450" stroke-width="3" stroke-linecap="round"/></svg></span><span class="meta"><h3>Free manuals</h3><p>Seven topics, ready to read and print.</p></span></a>
+      </div>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="fou-h">
-    <div class="wrap founders reveal">
-      <div class="fq-wrap">
-        <h2 class="sr-only" id="fou-h">Why we started</h2>
-        <div class="fq-stack" id="vq" aria-live="off">
-          <figure class="fq on"><blockquote class="big">“I was working to make sure my kids had what they needed, but I couldn’t always be there to teach them every little thing.”</blockquote><figcaption>Marco’s mom, a single mother who at times worked three jobs</figcaption></figure>
-          <figure class="fq"><blockquote class="big">“Sometimes YouTube videos don’t explain it fully, and then you have to go to a totally different video. It’s not a relationship, and it’s really confusing.”</blockquote><figcaption>Joseph P., interviewed by Jewell</figcaption></figure>
-          <figure class="fq"><blockquote class="big">“I didn’t always want to ask for help because my parents were already busy. Sometimes I just figured things out so I could help my brothers.”</blockquote><figcaption>Luis V., interviewed by Marco</figcaption></figure>
-          <figure class="fq"><blockquote class="big">“I was missing guidance in so many areas when I was that age. This would’ve been a huge help for me.”</blockquote><figcaption>Jayden S., interviewed by Dane</figcaption></figure>
-          <figure class="fq"><blockquote class="big">“Guys love to know how to do things and love to have knowledge.”</blockquote><figcaption>Shepherd S., 14, interviewed by Jewell</figcaption></figure>
-        </div>
-        <div class="fq-ctrl">
-          <button class="icon-btn" type="button" id="vqPrev" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-          <button class="icon-btn" type="button" id="vqNext" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-          <span class="count" id="vqCount">1 of 5</span>
-        </div>
-      </div>
-      <div class="copy">
-        <p>We’re Dane, Jewell and Marco, three college students who kept getting asked to fix phones, paint walls, fix cabinets and deal with car trouble. Usually nobody had shown us how.</p>
-        <p>This isn’t about parents who didn’t care. It’s about families doing everything they can, and kids who just need someone to take the time to teach them.</p>
-        <div><a class="btn btn-paper btn-sm" href={base + 'story/'}>Read our story <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-      </div>
+  <section class="sec tight" aria-labelledby="prob-h">
+    <div class="wrap problem reveal">
+      <h2 class="big" id="prob-h">Young men are expected to fix things, stay safe online and handle money. <em>Many were never shown how.</em></h2>
+      <p class="why">A video shows the steps, but it can’t tell you what you did wrong or when to stop. Parents working long hours can’t be there for every little lesson, and that’s not their fault. And boys are often told to tough it out, so they figure things out alone.</p>
+      <a class="btn btn-line btn-sm" href={base + 'story/'}>Read why we started <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 
@@ -65,66 +64,45 @@ import InterestForm from '../InterestForm.astro';
     <div class="wrap">
       <div class="panel sage reveal">
         <div class="sec-head">
-          
           <h2 class="h-lg" id="cur-h">Eight topics for everyday life</h2>
           <p class="lede" style="color:#46504A">Schools pick the topics that fit their students. Every lesson includes a demo, hands-on practice, and when to ask for help.</p>
         </div>
-        <div class="cx">
-          <div class="cx-index" role="tablist" aria-label="Topics" aria-orientation="vertical" id="cxTabs"><button class="cx-tab" role="tab" id="cxt-home" aria-controls="cxPanel" aria-selected="true" tabindex="0" data-i="0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"></path></svg></span><span>Home &amp; tools</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-tech" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></span><span>Tech &amp; online safety</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-care" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"></path></svg></span><span>Personal care</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-cook" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h14v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 12h4M7 7c0-1.5 1-1.5 1-3M11 7c0-1.5 1-1.5 1-3"></path></svg></span><span>Simple cooking</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-money" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"></rect><path d="M16 12.5h2.5M2.5 10h19"></path></svg></span><span>Money</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-comm" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="5"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"></path></svg></span><span>Communication</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-help" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="6"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.5v.5"></path></svg></span><span>Knowing when to ask</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-car" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16V12l2-5h12l2 5v4M4 16h16M4 16v3M20 16v3"></path><circle cx="7.5" cy="13.5" r=".9"></circle><circle cx="16.5" cy="13.5" r=".9"></circle></svg></span><span>Vehicle basics</span><span class="st">Later</span></button></div>
-          <div class="cx-panel" role="tabpanel" id="cxPanel" tabindex="0"><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><a class="btn btn-line btn-sm" href={base + 'manuals/home-tools.html'}>Read the free manual</a></div>
+        <div class="cx-tiles" id="cxTiles">
+          {TOPICS.map((t, i) => (
+            <button class="cx-tile" type="button" id={'cxt-' + t.k} aria-expanded="false" aria-controls="cxPanel" data-i={i}><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={t.ic} /></span><span class="nm">{t.t}</span>{t.later && <span class="st">Later</span>}<span class="pl" aria-hidden="true"></span></button>
+          ))}
+        </div>
+        <div class="cx-panel" role="region" id="cxPanel" aria-labelledby="cxt-home" hidden><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><a class="btn btn-line btn-sm" href={base + 'manuals/home-tools.html'}>Read the free manual</a></div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span><div class="lesson"><span class="n">1</span><b>Meet your toolbox</b><span class="ds">What each common hand tool is for, and how to hold it.</span></div><div class="lesson"><span class="n">2</span><b>Small fixes</b><span class="ds">Tighten a loose handle, hang something level, change a light bulb.</span></div><div class="lesson"><span class="n">3</span><b>When water goes wrong</b><span class="ds">Find the shutoff valve and what to do first during a leak.</span></div></div>
-  <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>A practice board with screws, nails, a level and a shutoff valve.</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.</p></div></div></div>
-  <div class="cx-foot"><span class="muted" style="font-size:14.5px">1 of 8. Schools can pick any topics, in any order.</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="Previous topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><button class="icon-btn" type="button" data-cx="1" aria-label="Next topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div></div></div>
-        </div>
+  <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>A practice board with screws, nails, a level and a shutoff valve.</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.</p></div></div></div></div>
       </div>
     </div>
   </section>
 
-  <section class="sec ses-pin" id="sesPin" aria-labelledby="ses-h">
-    <div class="wrap ses-stick">
-      <div class="sec-head center reveal">
-        
-        <h2 class="h-lg" id="ses-h">One class period, four parts</h2>
-        <p class="lede">Here’s the 50-minute version, which fits in a class period or after school. The 90-minute one adds more practice time. Scroll or tap a part to see what happens.</p>
-      </div>
-      <div class="session reveal">
-        <div class="sbar" id="sbar" role="group" aria-label="Session parts"><button class="seg" type="button" data-i="0" aria-pressed="false" style="flex:5"><span>Open</span><small>5 min</small></button><button class="seg" type="button" data-i="1" aria-pressed="false" style="flex:10"><span>Show</span><small>10 min</small></button><button class="seg" type="button" data-i="2" aria-pressed="true" style="flex: 33 1 0%;"><span>Practice</span><small>25 min</small></button><button class="seg" type="button" data-i="3" aria-pressed="false" style="flex:10"><span>Debrief</span><small>10 min</small></button></div>
-        <div class="sdetail" id="sdetail" aria-live="polite"><div><span class="label">25 minutes</span><h3>Try it yourself</h3></div><p>Students practice in small groups with real tools and materials while mentors help. Mistakes are expected.</p></div>
-        <div class="ses-track" aria-hidden="true"><span>0 min</span><span class="bar"><i id="sesBar"></i></span><span>50 min</span></div>
-      </div>
-    </div>
-  </section>
-
-
-  <section aria-labelledby="try-h">
+  <section class="sec tight" aria-labelledby="try-h">
     <div class="wrap">
-      <div class="panel mist reveal">
-        <div class="sec-head">
-          
-          <h2 class="h-lg" id="try-h">Try an activity</h2>
-          <p class="lede" style="color:#46504A">Five short activities that give you a feel for what students do in a workshop.</p>
-        </div>
-        <div class="stg teaser">
-          <ActCard id="tools" />
-          <ActCard id="budget" />
-          <ActCard id="scams" />
-          <ActCard id="call" />
-          <ActCard id="laundry" />
-        </div>
+      <div class="sec-head">
+        <h2 class="h-lg" id="try-h">Try an activity</h2>
+        <p class="lede">Five short activities that give you a feel for what students do in a workshop.</p>
+      </div>
+      <div class="stg trow" id="actRow">
+        <ActCard id="tools" />
+        <ActCard id="budget" />
+        <ActCard id="scams" />
+        <ActCard id="call" />
+        <ActCard id="laundry" />
       </div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="faq-h" id="faq">
+  <section class="sec tight" aria-labelledby="faq-h" id="faq">
     <div class="wrap faqwrap">
       <div><h2 class="h-lg" id="faq-h">Good to know</h2></div>
       <div class="stg faq">
         <details><summary>Are workshops running yet?</summary><div class="ans">Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.</div></details>
         <details><summary>Who are the workshops for?</summary><div class="ans">Boys and young men in elementary and middle school. Activities are matched to their age. Topics for older students, like car basics, come later.</div></details>
-        <details><summary>Couldn’t students just watch a video?</summary><div class="ans">Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.</div></details>
-        <details><summary>How do you keep sessions safe?</summary><div class="ans">Everything is supervised and right for their age. Students never work on electrical, gas or other dangerous repairs, and every topic covers when to get an adult or a pro.</div></details>
-        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.</div></details>
-        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way.<a href={base + 'manuals/'}>See the manuals</a>. The five activities on this site are free to try now.</div></details>
+        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a <a href={base + 'monthly-plan/'}>monthly online plan</a>: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.</div></details>
+        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way. <a href={base + 'manuals/'}>See the manuals</a>. The five activities on this site are free to try now.</div></details>
       </div>
     </div>
   </section>
@@ -133,7 +111,6 @@ import InterestForm from '../InterestForm.astro';
     <div class="wrap">
       <div class="panel sage cta reveal">
         <div class="side">
-          
           <h2 class="h-lg" id="interest-h">Bring Own Two Feet to your students</h2>
           <p>For adults: teachers, counselors, community leaders, parents and guardians.</p>
           <div class="note">
@@ -146,4 +123,3 @@ import InterestForm from '../InterestForm.astro';
     </div>
   </section>
 </div>
-
