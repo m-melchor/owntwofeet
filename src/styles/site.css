@@ -4,6 +4,7 @@
   /* footprints used as masks for progress marks: one print, and a left-right pair that repeats along a track */
   --print:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 16'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/svg%3E");
   --steps:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 20'%3E%3Cg transform='translate(1 0) scale(.62)'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/g%3E%3Cg transform='translate(25 10) scale(.62)'%3E%3Cpath d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/g%3E%3C/svg%3E");
+  --stepsV:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cpath transform='translate(9 1) rotate(90) scale(.62)' d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3Cpath transform='translate(19 25) rotate(90) scale(.62)' d='M1 8c0-3 2.5-4.6 5.5-4.4 2.4.2 4 .9 6.5.7C16.5 4 19 2 22.5 2 26 2 29 4.6 29 8s-3 6-6.5 6c-3.5 0-6-2-9.5-2.3-2.5-.2-4.1.5-6.5.7C3.5 12.6 1 11 1 8z'/%3E%3C/svg%3E");
   --bg:#F6F4EF; --paper:#FCFBF8; --surface:#FFFFFF; --surface-2:#EEEBE4; --ink:#16211C; --ink-2:#56615B; --ink-3:#5F6862; --line:#E2DED5;
   --sage:#D9E6D8; --mist:#DDE7F0; --sand:#F2E6D3; --butter:#F4EDCF; --peach:#F5E0D3;
   --accent:#2F6450; --accent-soft:#D9E9DF;
@@ -28,6 +29,10 @@ button{font-family:inherit}
 [data-focus]:focus,main:focus,.panel-focus:focus{outline:none}
 [id]{scroll-margin-top:92px}
 .wrap{max-width:1260px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+/* wide screens: a wider column, and gutters that clear the footprint scroll trail on the right */
+@media (min-width:900px){.wrap{padding-inline:40px}}
+@media (min-width:1600px){.wrap{max-width:1480px}}
+@media (min-width:1900px){.wrap{max-width:1640px}}
 .sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:10px;z-index:100;text-decoration:none}
 .skip:focus{top:12px}
@@ -824,20 +829,42 @@ body.dragging,body.dragging *{cursor:grabbing!important;user-select:none;-webkit
 @media (max-width:600px){.previews{grid-template-columns:1fr}}
 
 /* footer */
-footer.site{padding-block:clamp(40px,5vw,64px) calc(28px + env(safe-area-inset-bottom,0px));margin-top:clamp(56px,7vw,96px)}
-footer.site .inner{background:var(--surface);border-radius:var(--r-lg);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1.6fr) repeat(2,minmax(0,.7fr));gap:32px}
-footer.site .tag{font-family:var(--serif);font-size:clamp(26px,2.8vw,36px);line-height:1.18;max-width:18ch;margin-top:20px}
-footer.site h3{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+/* footer: a full-width ink band, edge to edge, white text */
+footer.site{background:var(--ink);color:#fff;padding-block:clamp(56px,6vw,96px) calc(32px + env(safe-area-inset-bottom,0px));margin-top:clamp(56px,7vw,96px)}
+footer.site .inner{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(2,minmax(0,.7fr));gap:40px clamp(32px,4vw,64px)}
+footer.site .tag{font-family:var(--serif);font-size:clamp(28px,3vw,44px);line-height:1.15;max-width:18ch;margin-top:24px}
+footer.site h3{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.18)}
 footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-footer.site ul a{text-decoration:none;display:inline-block;padding:6px 0;font-weight:500}
-footer.site ul a:hover{color:var(--accent)}
-footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:22px;margin-top:12px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
-@media (max-width:760px){footer.site .inner{grid-template-columns:1fr 1fr}footer.site .inner>div:first-child{grid-column:1/-1}}
-@media (max-width:700px){footer.site{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
+footer.site ul a{text-decoration:none;display:inline-block;padding:7px 0;font-weight:500;color:#fff;transition:color .2s}
+footer.site ul a:hover{color:var(--sage)}
+footer.site .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.18);padding-top:24px;margin-top:8px;font-size:14px;color:#fff;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+footer.site .fine a{color:#fff;text-decoration:none}
+footer.site .fine a:hover{color:var(--sage)}
+@media (max-width:760px){footer.site .inner{grid-template-columns:1fr 1fr}footer.site .inner>div:first-child{grid-column:1/-1}footer.site .fine{flex-direction:column}}
+@media (max-width:899px){footer.site{padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))}}
 
 /* ===== premium motion layer ===== */
 :root{--ease-out:cubic-bezier(.16,1,.3,1)}
-.sprog{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:2px;z-index:70;transform-origin:0 50%;transform:scaleX(0);background:var(--accent);pointer-events:none}
+/* scroll status: desktop gets a trail of footprints on the right in place of the scrollbar (it fills as you go and can be dragged); phones get a row of dots at the bottom */
+.sprog,.sdots{display:none}
+@media (min-width:900px){
+  html.js{scrollbar-width:none}
+  html.js::-webkit-scrollbar,html.js body::-webkit-scrollbar{display:none}
+  .sprog{display:block;position:fixed;right:calc(6px + env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);width:26px;height:min(60vh,560px);z-index:70;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+  .sprog i{position:absolute;top:0;bottom:0;left:50%;width:14px;margin-left:-7px;-webkit-mask:var(--stepsV) center top/14px 33.6px repeat-y;mask:var(--stepsV) center top/14px 33.6px repeat-y}
+  .sprog .trail{background:rgba(22,33,28,.16);transition:background .25s}
+  .sprog .fill{background:var(--accent);clip-path:inset(0 0 calc((1 - var(--p,0))*100%) 0)}
+  .sprog:hover .trail,.sprog.drag .trail{background:rgba(22,33,28,.28)}
+  .sprog.dark .trail{background:rgba(255,255,255,.22)}
+  .sprog.dark .fill{background:var(--sage)}
+}
+@media (max-width:899px){
+  .sdots{display:flex;position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);gap:7px;z-index:70;pointer-events:none}
+  .sdots i{width:6px;height:6px;border-radius:50%;background:rgba(22,33,28,.2);transition:background .25s}
+  .sdots i.on{background:var(--ink)}
+  .sdots.dark i{background:rgba(255,255,255,.3)}
+  .sdots.dark i.on{background:#fff}
+}
 .reveal{transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
 .js .reveal.pre{opacity:.001;transform:translateY(28px)}
 .stg>*{transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
@@ -853,13 +880,18 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:
 @media (prefers-reduced-motion:reduce){.js .stg.pre>*{opacity:1;transform:none}.problem .big .w{opacity:1}}
 
 /* ===== help chat (preset answers) ===== */
-.hc-fab{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:0 20px 0 8px;border-radius:999px;border:0;background:var(--ink);color:var(--paper);font:500 15px var(--sans);cursor:pointer;box-shadow:0 18px 40px -18px rgba(22,33,28,.6);transition:transform .4s var(--ease-out),opacity .3s}
-.hc-fab:hover{transform:translateY(-2px)}
-.hc-fab svg{width:42px;height:42px}
-.hc-fab[aria-expanded="true"]{opacity:0;pointer-events:none;transform:scale(.9)}
-@media (max-width:700px){.hc-fab.tuck{opacity:0;pointer-events:none;transform:translateY(calc(100% + 24px))}}
-.hc{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:85;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100vh - 120px));background:var(--paper);border-radius:28px;box-shadow:0 30px 80px -30px rgba(22,33,28,.55),0 0 0 1px rgba(22,33,28,.06);display:flex;flex-direction:column;overflow:hidden;transform-origin:100% 100%;transition:opacity .35s var(--ease-out),transform .45s var(--ease-out)}
-.hc[hidden]{display:flex!important;opacity:0;transform:translateY(16px) scale(.96);pointer-events:none;visibility:hidden}
+/* opened from the Questions button: in the header bar on desktop, inside the menu on phones. No floating button. */
+.hc-open{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;border:0;border-radius:10px;background:none;color:var(--ink);font:500 15px var(--sans);cursor:pointer;flex:none;transition:color .2s}
+.hc-open svg{width:20px;height:20px;flex:none}
+.hc-open:hover,.hc-open[aria-expanded="true"]{color:var(--accent)}
+.nav-q{display:none}
+@media (min-width:1000px) and (max-width:1140px){.hc-open span{display:none}}
+@media (max-width:999px){
+  .hc-open{display:none}
+  .nav .nav-q{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:none;padding:16px 6px;font:500 18px var(--sans);color:var(--ink);cursor:pointer}
+}
+.hc{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));top:var(--hc-top,96px);z-index:85;width:min(400px,calc(100vw - 32px));height:min(600px,calc(100vh - var(--hc-top,96px) - 20px));background:var(--paper);border-radius:20px;box-shadow:0 30px 80px -30px rgba(22,33,28,.55),0 0 0 1px rgba(22,33,28,.08);display:flex;flex-direction:column;overflow:hidden;transform-origin:100% 0;transition:opacity .3s var(--ease-out),transform .4s var(--ease-out)}
+.hc[hidden]{display:flex!important;opacity:0;transform:translateY(-10px) scale(.97);pointer-events:none;visibility:hidden}
 .hc-head{display:flex;align-items:center;gap:12px;padding:16px 16px 14px 18px;background:var(--sage)}
 .hc-head svg{width:46px;height:46px;flex:none}
 .hc-head b{display:block;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.1}
@@ -884,14 +916,14 @@ footer.site .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:
 .hc-opt:hover{border-color:var(--ink)}
 .hc-opt.alt{background:transparent;color:var(--ink-2)}
 .hc-note{font-size:11.5px;color:var(--ink-3);text-align:center;padding:0 16px 12px;background:var(--paper)}
-@media (max-width:520px){.hc{right:0;bottom:0;width:100vw;height:min(86vh,640px);border-radius:24px 24px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}.hc-fab span{display:none}.hc-fab{padding:0 8px}}
+@media (max-width:520px){.hc{right:0;top:auto;bottom:0;width:100vw;height:min(86vh,640px);border-radius:24px 24px 0 0;padding-bottom:env(safe-area-inset-bottom,0px);transform-origin:50% 100%}}
 @media (prefers-reduced-motion:reduce){.hc-msg,.hc-typing i{animation:none}}
 
 /* ===== works with scripts blocked (file previews, email viewers) ===== */
 .nojs-note{display:none}
 html:not(.js) .nojs-note{display:block;background:var(--butter);color:var(--ink);font-size:14px;text-align:center;padding:10px max(16px,env(safe-area-inset-left,0px))}
 html:not(.js) .view[hidden]{display:block!important}
-html:not(.js) .menu-btn,html:not(.js) .hc-fab,html:not(.js) .hc{display:none!important}
+html:not(.js) .menu-btn,html:not(.js) [data-hc],html:not(.js) .hc,html:not(.js) .sprog,html:not(.js) .sdots{display:none!important}
 html:not(.js) .nav[data-open="false"]{display:flex}
 @media (max-width:999px){html:not(.js) header.site .wrap{flex-wrap:wrap;padding-block:8px}html:not(.js) .nav{position:static;flex-direction:row;flex-wrap:wrap;box-shadow:none;border:0;background:none;padding:0 0 8px;width:100%}html:not(.js) .nav a{border:0;padding:8px 10px;font-size:15px}html:not(.js) .nav .btn{display:none}}
 html:not(.js) .act-tools,html:not(.js) .modes{display:none}

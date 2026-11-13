@@ -11,7 +11,7 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
 
 /* ---------- help chat (preset answers, nothing sent anywhere) ---------- */
 (function(){
-  const fab=$('#hcFab'),box=$('#hc'),log=$('#hcLog'),opts=$('#hcOpts');
+  const trig=$$('[data-hc]'),box=$('#hc'),log=$('#hcLog'),opts=$('#hcOpts');
   const A={
    what:{q:'What is Own Two Feet?',a:'Own Two Feet is a student venture planning live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.',go:[SITE+'workshops/','How workshops work'],next:['who','video','cost']},
    status:{q:'Are workshops running yet?',a:'Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.',go:[SITE+'#interest','Join the interest list'],next:['host','what']},
@@ -37,22 +37,23 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
     const t=document.createElement('div');t.className='hc-typing';t.innerHTML='<i></i><i></i><i></i>';t.setAttribute('aria-hidden','true');log.appendChild(t);scrollEnd();
     setTimeout(()=>{t.remove();add('bot',esc(it.a)+(it.go?`<br><a class="go" href="${it.go[0]}" data-hcgo>${it.go[1]}</a>`:''));options(it.next,'More questions');busy=false},RM?0:650);
   }
-  function open(){box.hidden=false;fab.setAttribute('aria-expanded','true');
+  /* opened from the Questions button in the header (desktop) or in the menu (phones); on desktop the panel drops from under the header */
+  const hdr=$('#siteHeader');let opener=null;
+  const setX=v=>trig.forEach(b=>b.setAttribute('aria-expanded',v));
+  function open(e){opener=e&&e.currentTarget||null;closeMenu();box.style.setProperty('--hc-top',Math.max(12,hdr.getBoundingClientRect().bottom+10)+'px');box.hidden=false;setX('true');
     if(!started){started=true;add('bot','Hi! What do you want to know? Tap a question below.');options(START,'Questions')}
     setTimeout(()=>(opts.querySelector('button')||$('#hcX')).focus(),RM?0:200)}
-  function close(){box.hidden=true;fab.setAttribute('aria-expanded','false');fab.focus()}
-  fab.addEventListener('click',open);$('#hcX').addEventListener('click',close);
-  /* phones: tuck the button away while reading down so it never sits on text; it stays off the first screen and comes back on scroll up or near the end */
-  let lastY=scrollY;const tuck=y=>fab.classList.toggle('tuck',!(y+innerHeight>=document.documentElement.scrollHeight-160)&&(y<420||y>lastY));
-  tuck(lastY);addEventListener('scroll',()=>{const y=scrollY;if(Math.abs(y-lastY)<8)return;tuck(y);lastY=y},{passive:true});
+  function close(){box.hidden=true;setX('false');const o=opener&&opener.offsetParent?opener:$('.hc-open');if(o&&o.offsetParent)o.focus()}
+  trig.forEach(b=>b.addEventListener('click',e=>box.hidden?open(e):close()));$('#hcX').addEventListener('click',close);
+  document.addEventListener('click',e=>{const p=e.composedPath();if(!box.hidden&&!p.includes(box)&&!p.some(n=>n.dataset&&'hc' in n.dataset))close()});
   opts.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)ask(b.dataset.k)});
-  log.addEventListener('click',e=>{if(e.target.closest('[data-hcgo]')&&innerWidth<=520)setTimeout(()=>{box.hidden=true;fab.setAttribute('aria-expanded','false')},0)});
+  log.addEventListener('click',e=>{if(e.target.closest('[data-hcgo]')&&innerWidth<=520)setTimeout(()=>{box.hidden=true;setX('false')},0)});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!box.hidden)close()});
 })();
 
 /* ---------- premium scroll layer ---------- */
 (function(){
-  const sp=$('#sprog'),heroSec=$('.hero'),stage=$('#heroStage'),copy=$('.hero-copy');
+  const sp=$('#sprog'),sd=$('#sdots'),dots=$$('i',sd),foot=$('footer.site'),heroSec=$('.hero'),stage=$('#heroStage'),copy=$('.hero-copy');
   // stagger indexes + hide only what's below the fold
   $$('.stg').forEach(g=>{[...g.children].forEach((c,i)=>c.style.setProperty('--i',i%6))});
   if('IntersectionObserver' in window&&!RM){
@@ -68,7 +69,9 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
   let ticking=false;
   function tick(){ticking=false;
     const vh=innerHeight,max=document.documentElement.scrollHeight-vh;
-    sp.style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;
+    const prog=max>0?Math.min(1,Math.max(0,scrollY/max)):0,ft=foot?foot.getBoundingClientRect().top:1e9;
+    sp.style.setProperty('--p',prog.toFixed(4));sp.classList.toggle('dark',ft<vh*.5);
+    const on=Math.round(prog*(dots.length-1));dots.forEach((d,i)=>d.classList.toggle('on',i<=on));sd.classList.toggle('dark',ft<vh-24);
     if(curView!=='home')return;
     if(!RM&&heroSec){const r=heroSec.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height)));
       if(stage)stage.style.transform=`translateY(${p*-40}px) scale(${1-p*.03})`;if(copy)copy.style.transform=`translateY(${p*24}px)`;hero&&hero.scroll&&hero.scroll(p)}
@@ -76,4 +79,9 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
   }
   addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(tick)}},{passive:true});
   window.__tick=tick;tick();
+  /* desktop: the footprint trail stands in for the scrollbar, so it can be clicked or dragged like one */
+  const jump=e=>{const r=sp.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));scrollTo({top:f*(document.documentElement.scrollHeight-innerHeight),behavior:'instant'})};
+  sp.addEventListener('pointerdown',e=>{sp.setPointerCapture(e.pointerId);sp.classList.add('drag');jump(e)});
+  sp.addEventListener('pointermove',e=>{if(sp.hasPointerCapture(e.pointerId))jump(e)});
+  ['pointerup','pointercancel'].forEach(t=>sp.addEventListener(t,()=>sp.classList.remove('drag')));
 })();
