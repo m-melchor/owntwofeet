@@ -311,7 +311,7 @@ names: {"lesson1":"Lesson 1: Meet your toolbox","lesson2":"Lesson 2: Small fixes
     <div class="wrap">
       <div class="panel sage">
         <h2 class="h3" style="margin-top:0">This is one of seven</h2>
-        <p class="muted">We are writing a free manual for every Own Two Feet topic. This one is the first. Want to hear when the next one is ready, or bring a workshop to your school or group?</p>
+        <p class="muted">We are writing a free manual for every Own Two Feet topic. Want to hear when the next one is ready, or bring a workshop to your school or group?</p>
         <a class="btn" href="../#interest">Join the Interest List<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>

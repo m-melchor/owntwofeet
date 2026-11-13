@@ -845,6 +845,10 @@ body.dragging,body.dragging *{cursor:grabbing!important;user-select:none;-webkit
 /* footer: a full-width ink band, edge to edge, white text */
 footer.site{background:var(--ink);color:#fff;padding-block:clamp(56px,6vw,96px) calc(32px + env(safe-area-inset-bottom,0px));margin-top:clamp(56px,7vw,96px)}
 body:has([data-view="home"]) footer.site{margin-top:0}
+/* Main pages: page heads and closing bands run edge to edge (the Story side panel sits in a grid, so it stays a card). */
+[data-view]:not([data-view="home"]) section>.wrap:not(.split)>.panel{margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);border-radius:0}
+[data-view]:not([data-view="home"]) .phead{padding-top:0}
+body:has([data-view]:not([data-view="home"])>section:last-child>.wrap>.panel) footer.site{margin-top:0}
 footer.site .inner{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(2,minmax(0,.7fr));gap:40px clamp(32px,4vw,64px)}
 footer.site .tag{font-family:var(--serif);font-size:clamp(28px,3vw,44px);line-height:1.15;max-width:18ch;margin-top:24px}
 footer.site h3{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.18)}
