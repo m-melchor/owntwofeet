@@ -25,7 +25,7 @@ Built by Dane, Jewell and Marco (ENT 3315 venture project, Baylor University).
 ## Pages on the site
 
 - **Home**: hero with 3D tools and planned prices, why it matters, why we started (rotating quotes from Marco's mom and our interviews), topics explorer, session walkthrough, activity previews, FAQ, interest form
-- **Workshops**: planned prices ($350 for 50 minutes, $500 for 90 minutes, per session, up to 30 students), age groups, who does what
+- **Workshops**: planned prices, in person ($200 for 50 minutes, $350 for 90 minutes, per session, up to 30 students) beside the monthly online plans ($9.99 a month for a teacher or volunteer with proof, $19.99 a month for a team of three), age groups, who does what
 - **Activities**: Tool Time (4 rounds, including reading a tape measure and leveling a shelf), Saturday on $25 (with a curveball and saving), Scam or Safe? (tap the red flags), Make the Call (reschedule an appointment by phone, three scenarios), Laundry Sort-Out (sort a pile, read care labels), plus coming-soon previews. The Activities page is a short picker of five cards (with a collapsed "more on the way" list); each activity opens on its own screen (#tools, #budget, #scams, #call, #laundry) with a Back link and a Next activity card. Finished activities are remembered on that device.
 - **Our Story**: why we started, who we are, what we heard in interviews, what we believe
 - **Get Involved**: ways to help and the interest form

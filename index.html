@@ -437,9 +437,18 @@ fieldset.field{border:0;margin:0;padding:0}
 .pc-col{display:grid;gap:10px;align-content:start;padding-right:clamp(12px,3vw,40px)}
 .pc-col+.pc-col{padding:0 0 0 clamp(12px,3vw,40px);border-left:1px solid var(--line)}
 .pc h3{font-size:clamp(17px,2.2vw,28px);line-height:1.15}
+.plans{display:grid;gap:16px}
+@media (min-width:1000px){.plans{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.pc.mo{background:var(--mist)}
+.pc.mo .pc-col+.pc-col,.pc.mo .pc-row{border-color:rgba(22,33,28,.14)}
+.pc-top{display:grid;gap:8px;padding-bottom:clamp(14px,2vw,22px);border-bottom:1px solid var(--line)}
+.pc.mo .pc-top{border-color:rgba(22,33,28,.14)}
+.pc-top .chip{justify-self:start}
+.pc .pc-top h3{font-size:clamp(26px,3vw,36px)}
+.pc h4{font:600 clamp(15px,1.5vw,17px)/1.2 var(--sans);color:var(--ink)}
 .pc p{color:var(--ink-2);font-size:clamp(14px,1.3vw,15.5px)}
-.pc .price{font:400 clamp(30px,4vw,44px)/1 var(--serif);color:var(--ink)}
-.pc .price small{font:500 clamp(11px,1.2vw,14px)/1 var(--sans);color:var(--ink-2)}
+.pc .price{font:400 clamp(30px,4vw,44px)/1 var(--serif);color:var(--ink);white-space:nowrap}
+.pc .price small{display:block;margin-top:6px;font:500 clamp(12px,1.2vw,14px)/1 var(--sans);color:var(--ink-2)}
 .pc-row{border-top:1px solid var(--line);padding-top:clamp(14px,2vw,22px);display:grid;gap:6px}
 .pc-row h3{font-size:clamp(17px,1.8vw,22px)}
 @media (min-width:700px){.pc-row{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:6px 40px;align-items:center}}
@@ -955,7 +964,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
             <a class="btn btn-ink" href="#interest">Join the Interest List</a>
             <a class="btn btn-line" href="#activities">Explore Activities</a>
           </div>
-          <p class="hero-price"><span>Planned for grades 3 to 8, up to 30 students.</span> <span><b>$350</b> for 50 minutes or <b>$500</b> for 90 minutes, per session. Not booking yet.</span></p>
+          <p class="hero-price"><span>Planned for grades 3 to 8, up to 30 students.</span> <span><b>$200</b> for 50 minutes or <b>$350</b> for 90 minutes, per session. Monthly online plans from <b>$9.99</b>. Not booking yet.</span></p>
         </div>
         <div class="stage-hero" id="heroStage" role="img" aria-label="Rendered hand tools resting on a workbench: hammer, screwdrivers, wrench, tape measure and level">
           <div class="fallback" id="heroFallback" aria-hidden="true">
@@ -1062,7 +1071,7 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
         <details><summary>Who are the workshops for?</summary><div class="ans">Boys and young men in elementary and middle school. Activities are matched to their age. Topics for older students, like car basics, come later.</div></details>
         <details><summary>Couldn’t students just watch a video?</summary><div class="ans">Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.</div></details>
         <details><summary>How do you keep sessions safe?</summary><div class="ans">Everything is supervised and right for their age. Students never work on electrical, gas or other dangerous repairs, and every topic covers when to get an adult or a pro.</div></details>
-        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</div></details>
+        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $200 for a 50-minute workshop and $350 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.</div></details>
         <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way.<a href="manuals/">See the manuals</a>. The five activities on this site are free to try now.</div></details>
       </div>
     </div>
@@ -1140,14 +1149,24 @@ html:not(.js) .act-tools,html:not(.js) .modes{display:none}
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.</p></div>
-    <div class="pc">
-      <span class="chip soon">Planned</span>
+    <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Book us for a workshop, or run the activities yourself with a monthly plan. These are planned prices, and nothing is booking yet.</p></div>
+    <div class="plans">
+    <div class="pc" id="plan-live">
+      <div class="pc-top"><span class="chip soon">Planned</span><h3>In person</h3><p>We come to you with the supplies. Up to 30 students per session.</p></div>
       <div class="pc-cols">
-        <div class="pc-col"><h3>50-minute workshop</h3><p class="price">$350 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></div>
-        <div class="pc-col"><h3>90-minute workshop</h3><p class="price">$500 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></div>
+        <div class="pc-col"><h4>50-minute workshop</h4><p class="price">$200 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></div>
+        <div class="pc-col"><h4>90-minute workshop</h4><p class="price">$350 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></div>
       </div>
-      <div class="pc-row"><h3>Series or family day</h3><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></div>
+      <div class="pc-row"><h4>Series or family day</h4><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></div>
+    </div>
+    <div class="pc mo" id="plan-monthly">
+      <div class="pc-top"><span class="chip soon">Planned</span><h3>Monthly, online</h3><p>New activities and printable guides every month. You run them with your students, on your schedule.</p></div>
+      <div class="pc-cols">
+        <div class="pc-col"><h4>Teacher plan</h4><p class="price">$9.99 <small>/ month</small></p><p>For teachers, volunteers and community group leaders. Show proof, like a school ID or a letter from your group, and tell us why this rate fits you.</p></div>
+        <div class="pc-col"><h4>Team plan</h4><p class="price">$19.99 <small>/ month</small></p><p>One plan you share with up to two other teachers or staff at your school or group. About $6.66 each.</p></div>
+      </div>
+      <div class="pc-row"><h4>Who goes first</h4><p>Schools and groups that serve low-income families get the first spots.</p></div>
+    </div>
     </div>
   </div></section>
 
@@ -2198,7 +2217,7 @@ route(location.hash,false);
    modules:{q:'What do students learn?',a:'Eight topics: home and tools, tech and online safety, personal care, simple cooking, money, communication, knowing when to ask for help, and car basics later on. Schools pick the ones they want.',go:['#cur-h','See the topics'],next:['session','try']},
    session:{q:'What happens in a session?',a:'50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:['#ses-h','See a session'],next:['safe','host']},
    host:{q:'Can my school get a workshop?',a:'Not yet, since we’re not booking. Join the interest list and check “Workshops for my students.” Once we launch, you’d provide a room, up to 30 students and an adult who knows them. We’d bring everything else.',go:['#interest','Join the interest list'],next:['cost','safe']},
-   cost:{q:'How much will it cost?',a:'We plan to charge $350 for a 50-minute workshop and $500 for a 90-minute one, per session, for up to 30 students. We bring the supplies. These are planned prices, and nothing is booking yet.',go:['#workshops','See planned prices'],next:['host','status']},
+   cost:{q:'How much will it cost?',a:'We plan to charge $200 for a 50-minute workshop and $350 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.',go:['#workshops','See planned prices'],next:['host','status']},
    safe:{q:'How do you keep it safe?',a:'Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro.',next:['session','who']},
    parents:{q:'I’m a parent. How can I help?',a:'Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.',go:['#involved','Get involved'],next:['what','status']},
    try:{q:'Can I try an activity?',a:'Yes! There are five you can try right now: Tool Time, Saturday on $25, Scam or Safe?, Make the Call and Laundry Sort-Out.',go:['#activities','Open activities'],next:['modules','what']},
