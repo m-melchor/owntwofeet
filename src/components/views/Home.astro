@@ -1,3 +1,8 @@
+---
+import { base } from '../../base.js';
+import ActCard from '../ActCard.astro';
+import InterestForm from '../InterestForm.astro';
+---
 <!-- ================= HOME ================= -->
 <div class="view" data-view="home" id="home">
 
@@ -8,8 +13,8 @@
           <h1 class="h-xl" tabindex="-1" data-focus>Skills for life, taught <em>side by side.</em></h1>
           <p class="lede" style="color:#46504A">Hands-on workshops for schools and community groups. Boys and young men learn everyday skills by actually doing them, with a mentor right there to help.</p>
           <div class="acts">
-            <a class="btn btn-ink" href="#interest">Join the Interest List</a>
-            <a class="btn btn-line" href="#activities">Explore Activities</a>
+            <a class="btn btn-ink" href={base + '#interest'}>Join the Interest List</a>
+            <a class="btn btn-line" href={base + 'activities/'}>Explore Activities</a>
           </div>
           <p class="hero-price"><span>Planned for grades 3 to 8, up to 30 students.</span> <span><b>$200</b> for 50 minutes or <b>$300</b> for 90 minutes, per session. Monthly online plans from <b>$9.99</b>. Not booking yet.</span></p>
         </div>
@@ -51,7 +56,7 @@
       <div class="copy">
         <p>We’re Dane, Jewell and Marco, three college students who kept getting asked to fix phones, paint walls, fix cabinets and deal with car trouble. Usually nobody had shown us how.</p>
         <p>This isn’t about parents who didn’t care. It’s about families doing everything they can, and kids who just need someone to take the time to teach them.</p>
-        <div><a class="btn btn-paper btn-sm" href="#story">Read our story <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div><a class="btn btn-paper btn-sm" href={base + 'story/'}>Read our story <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
     </div>
   </section>
@@ -66,7 +71,7 @@
         </div>
         <div class="cx">
           <div class="cx-index" role="tablist" aria-label="Topics" aria-orientation="vertical" id="cxTabs"><button class="cx-tab" role="tab" id="cxt-home" aria-controls="cxPanel" aria-selected="true" tabindex="0" data-i="0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"></path></svg></span><span>Home &amp; tools</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-tech" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></span><span>Tech &amp; online safety</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-care" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 1.7-2 3-4 3s-3.5-1.3-4-3z"></path></svg></span><span>Personal care</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-cook" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h14v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM17 12h4M7 7c0-1.5 1-1.5 1-3M11 7c0-1.5 1-1.5 1-3"></path></svg></span><span>Simple cooking</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-money" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="2.5"></rect><path d="M16 12.5h2.5M2.5 10h19"></path></svg></span><span>Money</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-comm" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="5"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"></path></svg></span><span>Communication</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-help" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="6"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.5v.5"></path></svg></span><span>Knowing when to ask</span><span class="st"></span></button><button class="cx-tab" role="tab" id="cxt-car" aria-controls="cxPanel" aria-selected="false" tabindex="-1" data-i="7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16V12l2-5h12l2 5v4M4 16h16M4 16v3M20 16v3"></path><circle cx="7.5" cy="13.5" r=".9"></circle><circle cx="16.5" cy="13.5" r=".9"></circle></svg></span><span>Vehicle basics</span><span class="st">Later</span></button></div>
-          <div class="cx-panel" role="tabpanel" id="cxPanel" tabindex="0"><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><a class="btn btn-line btn-sm" href="manuals/home-tools.html">Read the free manual</a></div>
+          <div class="cx-panel" role="tabpanel" id="cxPanel" tabindex="0"><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><a class="btn btn-line btn-sm" href={base + 'manuals/home-tools.html'}>Read the free manual</a></div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span><div class="lesson"><span class="n">1</span><b>Meet your toolbox</b><span class="ds">What each common hand tool is for, and how to hold it.</span></div><div class="lesson"><span class="n">2</span><b>Small fixes</b><span class="ds">Tighten a loose handle, hang something level, change a light bulb.</span></div><div class="lesson"><span class="n">3</span><b>When water goes wrong</b><span class="ds">Find the shutoff valve and what to do first during a leak.</span></div></div>
   <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>A practice board with screws, nails, a level and a shutoff valve.</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.</p></div></div></div>
   <div class="cx-foot"><span class="muted" style="font-size:14.5px">1 of 8. Schools can pick any topics, in any order.</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="Previous topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><button class="icon-btn" type="button" data-cx="1" aria-label="Next topic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div></div></div>
@@ -100,11 +105,11 @@
           <p class="lede" style="color:#46504A">Five short activities that give you a feel for what students do in a workshop.</p>
         </div>
         <div class="stg teaser">
-          <a class="tcard" href="#tools"><span class="art" style="background:radial-gradient(110% 80% at 50% 0%,#FBF8F2 0%,#ECE3D3 100%)"><svg viewBox="0 0 520 300" aria-hidden="true"><g transform="translate(40 10)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(120 20)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(195 10)"><use href="#t-tape" width="100" height="270"/></g><g transform="translate(285 15)"><use href="#t-wrench" width="80" height="260"/></g><g transform="translate(360 20)"><use href="#t-flat" width="80" height="250"/></g><g transform="translate(430 5)"><use href="#t-level" width="80" height="285"/></g></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Tool Time</h3><p>Check out six hand tools in 3D, match them to jobs, then decide when to call for help.</p></span></a>
-          <a class="tcard" href="#budget"><span class="art" style="background:var(--butter)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="40" width="220" height="140" rx="22" fill="#fff"/><text x="64" y="90" font-family="Geist,system-ui,sans-serif" font-size="13" fill="#8A928D">Left to spend</text><text x="64" y="134" font-family="Young Serif,Georgia,serif" font-size="42" fill="#16211C">$6</text><rect x="64" y="150" width="172" height="10" rx="5" fill="#EEEBE4"/><rect x="64" y="150" width="130" height="10" rx="5" fill="#2F6450"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Saturday on $25</h3><p>Cover needs, keep a promise, stay on budget.</p></span></a>
-          <a class="tcard" href="#scams"><span class="art" style="background:var(--sage)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><rect x="88" y="56" width="110" height="34" rx="16" fill="#F6F4EF"/><rect x="88" y="100" width="124" height="44" rx="16" fill="#F2E2A6"/><rect x="100" y="114" width="70" height="6" rx="3" fill="#16211C" opacity=".5"/><rect x="100" y="126" width="90" height="6" rx="3" fill="#16211C" opacity=".3"/><rect x="88" y="156" width="80" height="26" rx="13" fill="#F6F4EF"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Scam or Safe?</h3><p>Read six messages and spot what gives a scam away.</p></span></a>
-          <a class="tcard" href="#call"><span class="art" style="background:var(--mist)"><svg viewBox="0 0 300 220" aria-hidden="true"><rect x="70" y="24" width="160" height="180" rx="28" fill="#fff"/><circle cx="150" cy="70" r="20" fill="#F6F4EF"/><text x="150" y="76" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#56615B">FC</text><text x="150" y="116" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="15" font-weight="600" fill="#16211C">Fresh Cuts</text><text x="150" y="136" text-anchor="middle" font-family="Geist Mono,monospace" font-size="12" fill="#5F6B64">1:12</text><circle cx="150" cy="172" r="15" fill="#2F6450"/><path d="M143 172h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Make the Call</h3><p>Call a front desk and move an appointment.</p></span></a>
-          <a class="tcard" href="#laundry"><span class="art" style="background:var(--sand)"><svg viewBox="0 0 300 220" aria-hidden="true"><use href="#l-tshirt" x="18" y="14" width="88" height="88"/><use href="#l-jeans" x="106" y="14" width="88" height="88"/><use href="#l-bath" x="194" y="14" width="88" height="88"/><use href="#l-bk-light" x="20" y="116" width="84" height="66"/><use href="#l-bk-dark" x="108" y="116" width="84" height="66"/><use href="#l-bk-towel" x="196" y="116" width="84" height="66"/></svg></span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="meta"><h3>Laundry Sort-Out</h3><p>Sort a pile into darks, lights and towels, then read care labels.</p></span></a>
+          <ActCard id="tools" />
+          <ActCard id="budget" />
+          <ActCard id="scams" />
+          <ActCard id="call" />
+          <ActCard id="laundry" />
         </div>
       </div>
     </div>
@@ -119,7 +124,7 @@
         <details><summary>Couldn’t students just watch a video?</summary><div class="ans">Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.</div></details>
         <details><summary>How do you keep sessions safe?</summary><div class="ans">Everything is supervised and right for their age. Students never work on electrical, gas or other dangerous repairs, and every topic covers when to get an adult or a pro.</div></details>
         <details><summary>What will it cost?</summary><div class="ans">We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.</div></details>
-        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way.<a href="manuals/">See the manuals</a>. The five activities on this site are free to try now.</div></details>
+        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way.<a href={base + 'manuals/'}>See the manuals</a>. The five activities on this site are free to try now.</div></details>
       </div>
     </div>
   </section>
@@ -136,52 +141,7 @@
             <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Your feedback shapes what we teach</div>
           </div>
         </div>
-        <div id="formSlotHome"><div id="formHolder">
-<form class="interest" id="interestForm" novalidate aria-label="Interest list form" action="https://formspree.io/f/mgaaaeyp" method="POST">
-  <input type="hidden" name="_subject" value="Own Two Feet interest list">
-  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-  <div class="frow">
-    <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
-    <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
-  </div>
-  <div class="frow">
-    <div class="field"><label for="f-org">Organization <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
-    <div class="field"><label for="f-role">Your role</label>
-      <select id="f-role" name="role" aria-describedby="e-role"><option value="">Select</option><option>School staff (counselor, teacher, admin)</option><option>Community, youth or faith group</option><option>Parent or guardian</option><option>Mentor or volunteer</option><option>Other</option></select><span class="err" id="e-role"></span></div>
-  </div>
-  <fieldset class="field" aria-describedby="e-int">
-    <legend>I’m interested in</legend>
-    <div class="checks">
-      <label class="check"><input type="checkbox" name="interest" value="workshops"><span class="bx"></span>Workshops for my students</label>
-      <label class="check"><input type="checkbox" name="interest" value="family"><span class="bx"></span>Family days</label>
-      <label class="check"><input type="checkbox" name="interest" value="mentor"><span class="bx"></span>Volunteering</label>
-      <label class="check"><input type="checkbox" name="interest" value="updates"><span class="bx"></span>Just launch updates</label>
-    </div>
-    <span class="err" id="e-int"></span>
-  </fieldset>
-  <fieldset class="field" aria-describedby="e-pref">
-    <legend>If we offered these, which would fit you best? <span class="opt">(pick one)</span></legend>
-    <div class="checks">
-      <label class="check"><input type="radio" name="prefer" value="inperson"><span class="bx"></span>A live workshop at school</label>
-      <label class="check"><input type="radio" name="prefer" value="online"><span class="bx"></span>Monthly online activities</label>
-      <label class="check"><input type="radio" name="prefer" value="printables"><span class="bx"></span>Printable packs</label>
-      <label class="check"><input type="radio" name="prefer" value="kit"><span class="bx"></span>Monthly hands-on kit</label>
-      <label class="check"><input type="radio" name="prefer" value="unsure"><span class="bx"></span>Not sure yet</label>
-    </div>
-    <span class="err" id="e-pref"></span>
-  </fieldset>
-  <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
-  <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
-  <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
-  <div class="form-foot"><small>Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates. <a href="privacy.html">Privacy</a></small><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
-</form>
-<div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
-  <h3>You’re on the list. Thank you.</h3>
-  <p class="muted">We’ll email you when Own Two Feet launches. Here’s what you sent us.</p>
-  <dl id="formSummary"></dl>
-  <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">Start over</button>
-</div>
-</div></div>
+        <div id="formSlotHome"><InterestForm /></div>
       </div>
     </div>
   </section>

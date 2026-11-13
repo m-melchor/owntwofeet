@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Activities from '../../components/views/Activities.astro';
+import { base } from '../../base.js';
+---
+<Layout title="Activities" path="activities/" view="activities">
+<Activities />
+<script slot="scripts" is:inline src={base + 'js/activities.js'}></script>
+</Layout>

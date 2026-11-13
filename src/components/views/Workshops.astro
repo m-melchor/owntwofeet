@@ -1,5 +1,8 @@
+---
+import { base } from '../../base.js';
+---
 <!-- ================= WORKSHOPS ================= -->
-<div class="view" data-view="workshops" id="workshops" hidden>
+<div class="view" data-view="workshops" id="workshops">
   <section class="phead ctr"><div class="wrap"><div class="panel mist with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 20) rotate(-12 40 125)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(116 6)"><use href="#t-tape" width="90" height="270"/></g><g transform="translate(210 22) rotate(12 40 125)"><use href="#t-flat" width="80" height="250"/></g></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>Hands-on sessions, led in person</h1>
@@ -53,6 +56,6 @@
     </ol>
   </div></section>
 
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#activities">Explore Activities</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={base + '#interest'}>Join the Interest List</a><a class="btn btn-line" href={base + 'activities/'}>Explore Activities</a></div></div></div></section>
 </div>
 

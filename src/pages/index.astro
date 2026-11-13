@@ -1,15 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Home from '../components/views/Home.astro';
-import Workshops from '../components/views/Workshops.astro';
-import Activities from '../components/views/Activities.astro';
-import Story from '../components/views/Story.astro';
-import Involved from '../components/views/Involved.astro';
+import { base } from '../base.js';
+import { ORDER } from '../data/activities.js';
+import ws from '../components/views/Workshops.astro?raw';
+import ac from '../components/views/Activities.astro?raw';
+import st from '../components/views/Story.astro?raw';
+import inv from '../components/views/Involved.astro?raw';
+import tools from '../components/activities/Tools.astro?raw';
+import budget from '../components/activities/Budget.astro?raw';
+import scams from '../components/activities/Scams.astro?raw';
+import call from '../components/activities/Call.astro?raw';
+import laundry from '../components/activities/Laundry.astro?raw';
+// Old links like /owntwofeet/#workshops or #tools now live on their own pages.
+// Map every id on those pages to its new address so shared links keep working.
+const pages = { 'workshops/': ws, 'activities/': ac, 'story/': st, 'get-involved/': inv };
+const games = { tools, budget, scams, call, laundry };
+for (const id of ORDER) pages['activities/' + id + '/'] = games[id];
+const MOVED = {};
+for (const [p, src] of Object.entries(pages)) for (const m of src.matchAll(/\sid="([\w-]+)"/g)) MOVED[m[1]] = p + '#' + m[1];
+Object.assign(MOVED, { workshops: 'workshops/', activities: 'activities/', story: 'story/', involved: 'get-involved/' });
+for (const id of ORDER) MOVED[id] = 'activities/' + id + '/';
 ---
 <Layout>
+<script slot="head" is:inline define:vars={{ MOVED, base }}>
+(function(){var h=location.hash.slice(1);if(h==='home'){history.replaceState(null,'',location.pathname);return}if(MOVED[h])location.replace(base+MOVED[h])})();
+</script>
 <Home />
-<Workshops />
-<Activities />
-<Story />
-<Involved />
+<Fragment slot="scripts">
+<script is:inline src={base + 'js/gl.js'}></script>
+<script is:inline src={base + 'js/home.js'}></script>
+<script is:inline src={base + 'js/form.js'}></script>
+</Fragment>
 </Layout>

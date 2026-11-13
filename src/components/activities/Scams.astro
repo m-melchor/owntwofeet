@@ -1,0 +1,26 @@
+    <article class="activity" id="scams" aria-labelledby="scam-h">
+      <slot name="top" />
+      <div class="act-head">
+        <div class="t"><h2 id="scam-h">Scam or Safe? <span class="tdone done-chip" data-done="scams" hidden>Done</span></h2><p>Read each message and make the call. If it’s a scam, tap the words that give it away.</p></div>
+        <div class="act-tools"><div class="prog" id="scamProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><button class="reset" type="button" id="scamReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+      </div>
+      <div class="act-body scam">
+        <div class="phone-wrap">
+          <div class="phone" id="scamPhone" aria-label="Message preview">
+            <div class="bar" aria-hidden="true"><span>9:41</span><span id="scamCount">1 / 6</span></div>
+            <div class="from"><span class="av" id="scamAv" aria-hidden="true">?</span><div style="min-width:0"><b id="scamFrom">Unknown number</b><small id="scamChan">Text message</small></div></div>
+            <div class="bw"><p class="bubble" id="scamBody">CONGRATS!! You won a free GameStation 5. Claim in the next 10 min: gs5-prizes.win/claim. Just pay $4.99 shipping with a parent’s card.</p><span class="stamp" id="scamStamp" aria-hidden="true" hidden></span></div>
+            <div class="after" id="scamAfter"></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <span class="label">Your call</span>
+          <h3>Is this message safe, or is it a scam?</h3>
+          <div class="duo"><button class="btn btn-line" id="scamSafe" type="button">Looks safe</button><button class="btn btn-line" id="scamBad" type="button">It’s a scam</button></div>
+          <div class="fb" id="scamFb" aria-live="polite"></div>
+          <div class="push"><button class="btn btn-line" id="scamShow" type="button" hidden>Show what I missed</button><button class="btn btn-ink" id="scamNext" type="button" hidden>Next message</button></div>
+        </div>
+      </div>
+      <div class="practiced" id="pracScams" role="region" aria-label="What you practiced" hidden></div>
+      <slot name="end" />
+    </article>

@@ -1,0 +1,7 @@
+---
+import { base } from '../base.js';
+import { CARDS, GO_ICON } from '../data/activities.js';
+const { id, done = false } = Astro.props;
+const c = CARDS[id];
+---
+<a class="tcard" href={base + 'activities/' + id + '/'}><Fragment set:html={c.art} /><span class="go" aria-hidden="true"><Fragment set:html={GO_ICON} /></span><span class="meta"><h3 set:html={c.t} /><p set:html={c.d} />{done && <span class="tdone" data-done={id} hidden>Done</span>}</span></a>

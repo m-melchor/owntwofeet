@@ -1,5 +1,9 @@
+---
+import { base } from '../../base.js';
+import InterestForm from '../InterestForm.astro';
+---
 <!-- ================= GET INVOLVED ================= -->
-<div class="view" data-view="involved" id="involved" hidden>
+<div class="view" data-view="involved" id="involved">
   <section class="phead"><div class="wrap"><div class="panel sage">
     <h1 class="h-xl" tabindex="-1" data-focus>Help bring workshops to more students</h1>
     <p class="lede" style="color:#46504A">We’re just getting started, and the people who join now help decide what we build.</p>
@@ -15,7 +19,7 @@
   </div></section>
   <section><div class="wrap"><div class="panel white cta">
     <div class="side"><h2 class="h-lg">Tell us how you’d like to help</h2><p>Adults only, please. We’ll only use your info to send Own Two Feet updates.</p></div>
-    <div id="formSlotInvolved"></div>
+    <div id="formSlotInvolved"><InterestForm /></div>
   </div></div></section>
 </div>
 

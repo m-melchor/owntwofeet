@@ -1,5 +1,8 @@
+---
+import { base } from '../../base.js';
+---
 <!-- ================= STORY ================= -->
-<div class="view" data-view="story" id="story" hidden>
+<div class="view" data-view="story" id="story">
   <section class="phead ctr"><div class="wrap"><div class="panel peach with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><defs><g id="stFoot"><circle cx="24" cy="7" r="6"/><circle cx="33" cy="11.5" r="4"/><circle cx="38.5" cy="18" r="3.3"/><circle cx="41" cy="25" r="2.8"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)"/></g></defs><use href="#stFoot" fill="#16211C" opacity=".3" transform="translate(150 0) rotate(5) scale(-.8 .8)"/><use href="#stFoot" fill="#2F6450" opacity=".5" transform="translate(178 52) rotate(8) scale(.8)"/><use href="#stFoot" fill="#16211C" opacity=".7" transform="translate(146 106) rotate(5) scale(-.8 .8)"/><use href="#stFoot" fill="#2F6450" opacity=".85" transform="translate(182 158) rotate(8) scale(.8)"/><use href="#stFoot" fill="#16211C" transform="translate(142 212) rotate(5) scale(-.8 .8)"/></svg>
     <h1 class="h-xl" tabindex="-1" data-focus>We had to figure it out alone. They shouldn’t have to.</h1>
@@ -10,7 +13,7 @@
       <p>Some of us grew up without a dad around much. All of us watched parents and relatives work long hours to keep things going. <strong>A busy parent isn’t a missing parent.</strong> Sometimes everyone’s just busy, and a kid steps up and figures it out alone.</p>
       <p>So we asked a simple question: how many other boys are in the same spot? The problem isn’t that they can’t learn. It’s that someone may never have had the time to teach them.</p>
     </div>
-    <div class="panel sage" style="padding:clamp(26px,3vw,40px);display:grid;gap:14px"><h2 class="h-md">Still building</h2><p class="muted">Own Two Feet is a student venture. We’re writing our workshops now, and seven free topic manuals are ready to read. No workshops are running yet, and we’re not booking any.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><a class="btn btn-ink btn-sm" href="#interest">Join the Interest List</a><a class="btn btn-line btn-sm" href="manuals/">See the Manuals</a></div></div>
+    <div class="panel sage" style="padding:clamp(26px,3vw,40px);display:grid;gap:14px"><h2 class="h-md">Still building</h2><p class="muted">Own Two Feet is a student venture. We’re writing our workshops now, and seven free topic manuals are ready to read. No workshops are running yet, and we’re not booking any.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><a class="btn btn-ink btn-sm" href={base + '#interest'}>Join the Interest List</a><a class="btn btn-line btn-sm" href={base + 'manuals/'}>See the Manuals</a></div></div>
   </div></section>
 
   <section class="sec tight"><div class="wrap">
@@ -40,6 +43,6 @@
       <details class="value tint-4" open><summary><h3>Confidence, not judgment</h3></summary><p>No student is behind because of how his family works. Everyone starts somewhere.</p></details>
     </div>
   </div></section>
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="#interest">Join the Interest List</a><a class="btn btn-line" href="#workshops">See the Workshops</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={base + '#interest'}>Join the Interest List</a><a class="btn btn-line" href={base + 'workshops/'}>See the Workshops</a></div></div></div></section>
 </div>
 

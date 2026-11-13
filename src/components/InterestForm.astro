@@ -1,0 +1,49 @@
+---
+import { base } from '../base.js';
+---
+<div id="formHolder">
+<form class="interest" id="interestForm" novalidate aria-label="Interest list form" action="https://formspree.io/f/mgaaaeyp" method="POST">
+  <input type="hidden" name="_subject" value="Own Two Feet interest list">
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+  <div class="frow">
+    <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+    <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+  </div>
+  <div class="frow">
+    <div class="field"><label for="f-org">Organization <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
+    <div class="field"><label for="f-role">Your role</label>
+      <select id="f-role" name="role" aria-describedby="e-role"><option value="">Select</option><option>School staff (counselor, teacher, admin)</option><option>Community, youth or faith group</option><option>Parent or guardian</option><option>Mentor or volunteer</option><option>Other</option></select><span class="err" id="e-role"></span></div>
+  </div>
+  <fieldset class="field" aria-describedby="e-int">
+    <legend>I’m interested in</legend>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="interest" value="workshops"><span class="bx"></span>Workshops for my students</label>
+      <label class="check"><input type="checkbox" name="interest" value="family"><span class="bx"></span>Family days</label>
+      <label class="check"><input type="checkbox" name="interest" value="mentor"><span class="bx"></span>Volunteering</label>
+      <label class="check"><input type="checkbox" name="interest" value="updates"><span class="bx"></span>Just launch updates</label>
+    </div>
+    <span class="err" id="e-int"></span>
+  </fieldset>
+  <fieldset class="field" aria-describedby="e-pref">
+    <legend>If we offered these, which would fit you best? <span class="opt">(pick one)</span></legend>
+    <div class="checks">
+      <label class="check"><input type="radio" name="prefer" value="inperson"><span class="bx"></span>A live workshop at school</label>
+      <label class="check"><input type="radio" name="prefer" value="online"><span class="bx"></span>Monthly online activities</label>
+      <label class="check"><input type="radio" name="prefer" value="printables"><span class="bx"></span>Printable packs</label>
+      <label class="check"><input type="radio" name="prefer" value="kit"><span class="bx"></span>Monthly hands-on kit</label>
+      <label class="check"><input type="radio" name="prefer" value="unsure"><span class="bx"></span>Not sure yet</label>
+    </div>
+    <span class="err" id="e-pref"></span>
+  </fieldset>
+  <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
+  <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
+  <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
+  <div class="form-foot"><small>Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates. <a href={base + 'privacy.html'}>Privacy</a></small><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
+</form>
+<div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
+  <h3>You’re on the list. Thank you.</h3>
+  <p class="muted">We’ll email you when Own Two Feet launches. Here’s what you sent us.</p>
+  <dl id="formSummary"></dl>
+  <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">Start over</button>
+</div>
+</div>

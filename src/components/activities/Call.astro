@@ -1,0 +1,26 @@
+    <article class="activity" id="call" aria-labelledby="call-h">
+      <slot name="top" />
+      <div class="act-head">
+        <div class="t"><h2 id="call-h">Make the Call <span class="tdone done-chip" data-done="call" hidden>Done</span></h2><p id="callIntro">Something in your week changed. Call the front desk, say what you need, and pick a time that fits your week.</p></div>
+        <div class="act-tools"><button class="reset" type="button" id="callReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+      </div>
+      <div class="act-body scam callb">
+        <div class="phone-wrap">
+          <div class="phone" id="callPhone" aria-label="Phone call with Fresh Cuts">
+            <div class="bar" aria-hidden="true"><span>9:41</span><b id="callTime">0:00</b></div>
+            <div class="from"><span class="av" id="callAv" aria-hidden="true">FC</span><div style="min-width:0"><b id="callBiz">Fresh Cuts</b><small id="callSt">Connected</small></div></div>
+            <div class="tx" id="callTx" role="log" aria-live="polite" aria-label="The call so far"><p class="ln desk">Thanks for calling Fresh Cuts, this is Dana.</p></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label" id="callStep">Step 1 of 6</span><div class="prog" id="callProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+          <h3 id="callQ">Dana picks up. What do you say?</h3>
+          <div class="opts" id="callOpts"><button class="btn btn-line" type="button">Hi Dana, this is Sam.</button><button class="btn btn-line" type="button">Uh... hi.</button><button class="btn btn-line" type="button">Yeah, I need to change my haircut.</button></div>
+          <div class="fb" id="callFb" aria-live="polite"></div>
+          <div class="week" id="callWeek"><h4>Your week</h4><p>Practice now takes Thursday 4:00 to 6:00.</p><div><span>Thursday</span><b>Free after 6:00</b></div><div><span>Friday</span><b>Free after 3:30</b></div><div><span>Saturday</span><b>Free in the morning</b></div></div>
+          <div class="push"><button class="btn btn-ink" id="callNext" type="button" hidden>Next step</button><button class="btn btn-ink" id="callAgain" type="button" hidden>Play again</button></div>
+        </div>
+      </div>
+      <div class="practiced" id="pracCall" role="region" aria-label="What you practiced" hidden></div>
+      <slot name="end" />
+    </article>
