@@ -4,12 +4,15 @@ import '../../styles/manuals-index.css';
 import { getEntry } from 'astro:content';
 import { t } from '../../i18n/t.js';
 import art from '../../data/manual-art/index.svg?raw';
+import ART from '../../data/topic-art.js';
 
 const page = await getEntry('pages', 'en/manuals');
+// Each card has <span class="art" data-art="key"></span>; fill it with the same topic drawing as the Home tiles.
+const body = page.body.replace(/<span class="art" data-art="(\w+)"><\/span>/g, (m, k) => `<span class="art"><svg viewBox="0 0 48 48" aria-hidden="true">${ART[k]}</svg></span>`);
 ---
 <Sub title={page.data.title} description={page.data.description} mark="mx" small>
 <Fragment slot="art" set:html={art} />
-<Fragment set:html={page.body} />
+<Fragment set:html={body} />
 <Fragment slot="foot">
     <span>{t('site.name')} · {t('manual.listName')}</span>
     <a href="../" style="text-decoration:none">{t('site.backToSite')}</a>
