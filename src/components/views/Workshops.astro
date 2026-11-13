@@ -12,21 +12,21 @@ import { base } from '../../base.js';
   <section class="sec tight"><div class="wrap">
     <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Book us for a workshop, or run the activities yourself with a monthly plan. These are planned prices, and nothing is booking yet.</p></div>
     <div class="plans">
-    <div class="pc" id="plan-live">
-      <div class="pc-top"><span class="chip soon">Planned</span><h3>In person</h3><p>We come to you with the supplies. Up to 30 students per session.</p></div>
-      <div class="pc-cols">
-        <div class="pc-col"><h4>50-minute workshop</h4><p class="price">$200 <small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p></div>
-        <div class="pc-col"><h4>90-minute workshop</h4><p class="price">$300 <small>/ session</small></p><p>More hands-on time, or two topics in one session.</p></div>
+    <div class="pgroup" id="plan-live">
+      <div class="pg-head"><h3>In person</h3><p>We come to you with the supplies. Up to 30 students per session.</p></div>
+      <div class="pg-cards">
+        <article class="plan"><h4>50-minute workshop</h4><p class="price">$200<small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p><a class="btn btn-line btn-sm" href={base + '#interest'} data-pick="inperson">Join the Interest List</a></article>
+        <article class="plan"><h4>90-minute workshop</h4><p class="price">$300<small>/ session</small></p><p>More hands-on time, or two topics in one session.</p><a class="btn btn-line btn-sm" href={base + '#interest'} data-pick="inperson">Join the Interest List</a></article>
       </div>
-      <div class="pc-row"><h4>Series or family day</h4><p>Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p></div>
+      <p class="pg-foot"><b>Series or family day.</b> Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p>
     </div>
-    <div class="pc mo" id="plan-monthly">
-      <div class="pc-top"><span class="chip soon">Planned</span><h3>Monthly, online</h3><p>New activities and printable guides every month. You run them with your students, on your schedule.</p></div>
-      <div class="pc-cols">
-        <div class="pc-col"><h4>Teacher plan</h4><p class="price">$9.99 <small>/ month</small></p><p>For teachers, volunteers and community group leaders. Show proof, like a school ID or a letter from your group, and tell us why this rate fits you.</p></div>
-        <div class="pc-col"><h4>Team plan</h4><p class="price">$19.99 <small>/ month</small></p><p>One plan you share with up to two other teachers or staff at your school or group. About $6.66 each.</p></div>
+    <div class="pgroup" id="plan-monthly">
+      <div class="pg-head"><h3>Monthly, online</h3><p>New activities and printable guides every month. You run them with your students, on your schedule.</p></div>
+      <div class="pg-cards">
+        <article class="plan"><h4>Teacher plan</h4><p class="price">$9.99<small>/ month</small></p><p>For teachers, volunteers and group leaders who show proof.</p><a class="btn btn-line btn-sm" href={base + 'monthly-plan/#teacher'}>See the monthly plan</a></article>
+        <article class="plan"><h4>Team plan</h4><p class="price">$19.99<small>/ month</small></p><p>One plan shared by you and up to two other teachers or staff.</p><a class="btn btn-line btn-sm" href={base + 'monthly-plan/#team'}>See the monthly plan</a></article>
       </div>
-      <div class="pc-row"><h4>Who goes first</h4><p>Schools and groups that serve low-income families get the first spots.</p></div>
+      <p class="pg-foot"><b>Who goes first.</b> Schools and groups that serve low-income families get the first spots.</p>
     </div>
     </div>
   </div></section>

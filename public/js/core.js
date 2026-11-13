@@ -64,4 +64,6 @@ const lang=$('#lang');
 lang.addEventListener('toggle',()=>{if(lang.open)closeMenu()});
 mb.addEventListener('click',()=>{lang.open=false});
 document.addEventListener('click',e=>{if(lang.open&&!lang.contains(e.target))lang.open=false});
+/* a "Join" button with data-pick remembers its choice so the interest form on the next page can pick it */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(b)try{sessionStorage.setItem('otf-pick',b.dataset.pick)}catch(_){}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lang.open){lang.open=false;lang.querySelector('summary').focus()}});

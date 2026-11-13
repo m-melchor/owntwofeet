@@ -1,44 +1,72 @@
 ---
 import { base } from '../base.js';
+// Step 2 choices. `for` lists the roles that see each one (with no script, every choice shows).
+const ROLES = [
+  ['teacher', 'Teacher', 'Teacher'],
+  ['staff', 'School staff (counselor, admin)', 'School staff'],
+  ['group', 'Community, youth or faith group', 'Group leader'],
+  ['parent', 'Parent or guardian', 'Parent or guardian'],
+  ['volunteer', 'Mentor or volunteer', 'Volunteer'],
+  ['other', 'Other', 'Something else'],
+];
+const PREFS = [
+  ['inperson', 'An in-person workshop', 'teacher staff group parent other'],
+  ['teacher', 'Teacher plan, $9.99 a month', 'teacher staff group volunteer other'],
+  ['team', 'Team plan, $19.99 a month', 'teacher staff group other'],
+  ['printables', 'Printable guides', 'teacher staff group parent other'],
+  ['family', 'Family days', 'parent other'],
+  ['mentor', 'Volunteering with us', 'volunteer other'],
+  ['updates', 'Just launch updates', 'parent volunteer other'],
+  ['unsure', 'Not sure yet', 'teacher staff group parent volunteer other'],
+];
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
 ---
 <div id="formHolder">
 <form class="interest" id="interestForm" novalidate aria-label="Interest list form" action="https://formspree.io/f/mgaaaeyp" method="POST">
   <input type="hidden" name="_subject" value="Own Two Feet interest list">
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-  <div class="frow">
-    <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
-    <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
-  </div>
-  <div class="frow">
-    <div class="field"><label for="f-org">Organization <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
-    <div class="field"><label for="f-role">Your role</label>
-      <select id="f-role" name="role" aria-describedby="e-role"><option value="">Select</option><option>School staff (counselor, teacher, admin)</option><option>Community, youth or faith group</option><option>Parent or guardian</option><option>Mentor or volunteer</option><option>Other</option></select><span class="err" id="e-role"></span></div>
-  </div>
-  <fieldset class="field" aria-describedby="e-int">
-    <legend>I’m interested in</legend>
+  <div class="fprog" aria-hidden="true"><span id="fStepTxt">Step 1 of 4</span><span class="fdots"><i class="on"></i><i></i><i></i><i></i></span></div>
+
+  <fieldset class="field fstep on" data-step="1" aria-describedby="e-role">
+    <legend class="ftitle" tabindex="-1">Who are you?</legend>
     <div class="checks">
-      <label class="check"><input type="checkbox" name="interest" value="workshops"><span class="bx"></span>Workshops for my students</label>
-      <label class="check"><input type="checkbox" name="interest" value="family"><span class="bx"></span>Family days</label>
-      <label class="check"><input type="checkbox" name="interest" value="mentor"><span class="bx"></span>Volunteering</label>
-      <label class="check"><input type="checkbox" name="interest" value="updates"><span class="bx"></span>Just launch updates</label>
+      {ROLES.map(([k, v, label]) => <label class="check"><input type="radio" name="role" value={v} data-r={k}><span class="bx"></span>{label}</label>)}
     </div>
-    <span class="err" id="e-int"></span>
+    <span class="err" id="e-role"></span>
+    <div class="fnav"><span></span><button class="btn btn-ink btn-sm" type="button" data-go="2">Next</button></div>
   </fieldset>
-  <fieldset class="field" aria-describedby="e-pref">
-    <legend>If we offered these, which would fit you best? <span class="opt">(pick one)</span></legend>
+
+  <fieldset class="field fstep" data-step="2" aria-describedby="e-pref">
+    <legend class="ftitle" tabindex="-1">What fits you best?</legend>
     <div class="checks">
-      <label class="check"><input type="radio" name="prefer" value="inperson"><span class="bx"></span>A live workshop at school</label>
-      <label class="check"><input type="radio" name="prefer" value="online"><span class="bx"></span>Monthly online activities</label>
-      <label class="check"><input type="radio" name="prefer" value="printables"><span class="bx"></span>Printable packs</label>
-      <label class="check"><input type="radio" name="prefer" value="kit"><span class="bx"></span>Monthly hands-on kit</label>
-      <label class="check"><input type="radio" name="prefer" value="unsure"><span class="bx"></span>Not sure yet</label>
+      {PREFS.map(([k, label, roles]) => <label class="check" data-for={roles}><input type="radio" name="prefer" value={k}><span class="bx"></span>{label}</label>)}
     </div>
     <span class="err" id="e-pref"></span>
+    <div class="fnav"><button class="fback" type="button" data-go="1"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink btn-sm" type="button" data-go="3">Next</button></div>
   </fieldset>
-  <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
-  <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
-  <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
-  <div class="form-foot"><small>Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates. <a href={base + 'privacy.html'}>Privacy</a></small><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
+
+  <fieldset class="field fstep" data-step="3">
+    <legend class="ftitle" tabindex="-1">How do we reach you?</legend>
+    <div class="fbody">
+      <div class="frow">
+        <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+        <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+      </div>
+      <div class="field"><label for="f-org">School or group <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
+    </div>
+    <div class="fnav"><button class="fback" type="button" data-go="2"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink btn-sm" type="button" data-go="4">Next</button></div>
+  </fieldset>
+
+  <fieldset class="field fstep" data-step="4">
+    <legend class="ftitle" tabindex="-1">Last step</legend>
+    <div class="fbody">
+      <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
+      <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
+      <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
+    </div>
+    <div class="fnav"><button class="fback" type="button" data-go="3"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
+  </fieldset>
+  <p class="ffoot">Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates. <a href={base + 'privacy.html'}>Privacy</a></p>
 </form>
 <div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
   <h3>You’re on the list. Thank you.</h3>
