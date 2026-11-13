@@ -10,8 +10,8 @@ const MODS=[
  {k:'help',t:'Knowing when to ask',man:'manuals/help.html',d:'Recognizing when a job is too big or unsafe, and knowing exactly who to ask.',L:[['Handle, ask or call','Sorting situations by who should handle them.'],['Your people','Naming the adults you can go to at home, school and nearby.'],['Emergencies','When to leave, when to call 911, and what to say.']],st:'Scenario cards drawn from real household situations.',stop:'This one is part of every other topic too.',g:['Grades 3–8']},
  {k:'car',t:'Vehicle basics',later:1,d:'For older students, later on: dashboard lights, tire checks, and what to do if a car breaks down.',L:[['Read the dash','What common warning lights mean.'],['Tire check','Checking pressure and tread, with an adult.'],['Breakdown plan','Getting safe and getting help.']],st:'Coming later.',stop:'All vehicle work happens with an adult. Nothing under the hood without one.',g:['Older students','Preview']}
 ];
-/* ---------- topics: eight tiles, tap one to open its lessons below ---------- */
-const cxTiles=$$('#cxTiles .cx-tile'),cxPanel=$('#cxPanel');
+/* ---------- topics: eight tiles. Phones: tap one to open its lessons below. Desktop: a side list with one topic always open ---------- */
+const cxTiles=$$('#cxTiles .cx-tile'),cxPanel=$('#cxPanel'),cxWide=matchMedia('(min-width:900px)');
 let cxI=-1;
 function showMod(i,focus){
   cxI=(i+MODS.length)%MODS.length;const m=MODS[cxI];
@@ -25,10 +25,11 @@ function showMod(i,focus){
   if(focus)cxTiles[cxI].focus({preventScroll:true});
 }
 function closeMod(){cxI=-1;cxPanel.hidden=true;cxTiles.forEach(b=>b.setAttribute('aria-expanded','false'))}
-$('#cxTiles').addEventListener('click',e=>{const b=e.target.closest('.cx-tile');if(!b)return;const i=+b.dataset.i;if(i===cxI){closeMod();return}showMod(i);
+$('#cxTiles').addEventListener('click',e=>{const b=e.target.closest('.cx-tile');if(!b)return;const i=+b.dataset.i;if(i===cxI){if(!cxWide.matches)closeMod();return}showMod(i);if(cxWide.matches)return;
   const r=cxPanel.getBoundingClientRect();if(r.top>innerHeight-160)scrollTo({top:scrollY+r.top-110,behavior:RM?'auto':'smooth'})});
 cxPanel.addEventListener('click',e=>{const b=e.target.closest('[data-cx]');if(b)showMod(cxI+ +b.dataset.cx)});
-closeMod();
+if(cxWide.matches)showMod(0);else closeMod();
+cxWide.addEventListener('change',()=>{if(cxWide.matches&&cxI<0)showMod(0)});
 
 // Sideways rows get an arrow just below them: right while more is hidden, left (back to the start) once the end is reached
 function edgeArrows(row){if(!row)return;const sx=document.createElement('div'),hint=document.createElement('div');sx.className='sx';hint.className='sx-hint';row.before(sx);sx.append(row,hint);
