@@ -1,0 +1,102 @@
+{
+  "site": {
+    "name": "Own Two Feet",
+    "homeLabel": "Own Two Feet home",
+    "tag": "Everyday independence, taught in person.",
+    "copy": "© Own Two Feet. In development.",
+    "privacy": "Privacy",
+    "backToSite": "Back to the site"
+  },
+  "meta": {
+    "description": "Own Two Feet: live, in-person life-skills workshops for boys and young men, delivered with schools and community organizations.",
+    "ogTitle": "Own Two Feet: skills for life, taught side by side",
+    "ogDescription": "Hands-on life-skills workshops for boys and young men in grades 3 to 8, run with schools and community groups.",
+    "ogImageAlt": "The Own Two Feet badge next to the line: Skills for life, taught side by side."
+  },
+  "notice": {
+    "label": "Site status",
+    "lead": "Own Two Feet is in development.",
+    "rest": "No workshops are running yet. Join our interest list for launch updates.",
+    "cta": "Join the list"
+  },
+  "nav": {
+    "label": "Main",
+    "workshops": "Workshops",
+    "activities": "Activities",
+    "manuals": "Manuals",
+    "story": "Our Story",
+    "involved": "Get Involved",
+    "join": "Join the Interest List",
+    "menu": "Menu"
+  },
+  "lang": {
+    "label": "Language: English",
+    "code": "EN",
+    "current": "English",
+    "other": "Español"
+  },
+  "footer": {
+    "explore": "Explore",
+    "start": "Start here",
+    "interest": "Interest list",
+    "tools": "Tool Time",
+    "budget": "Saturday on $25",
+    "faq": "FAQ"
+  },
+  "help": {
+    "open": "Questions?",
+    "title": "Own Two Feet help",
+    "sub": "Common questions",
+    "close": "Close help",
+    "note": "Not a live chat."
+  },
+  "form": {
+    "label": "Interest list form",
+    "stepOf": "Step 1 of 4",
+    "who": "Who are you?",
+    "fits": "What fits you best?",
+    "reach": "How do we reach you?",
+    "last": "Last step",
+    "next": "Next",
+    "back": "Back",
+    "roles": {
+      "teacher": "Teacher",
+      "staff": "School staff",
+      "group": "Group leader",
+      "parent": "Parent or guardian",
+      "volunteer": "Volunteer",
+      "other": "Something else"
+    },
+    "prefs": {
+      "inperson": "An in-person workshop",
+      "teacher": "Teacher plan, $9.99 a month",
+      "team": "Team plan, $19.99 a month",
+      "printables": "Printable guides",
+      "family": "Family days",
+      "mentor": "Volunteering with us",
+      "updates": "Just launch updates",
+      "unsure": "Not sure yet"
+    },
+    "name": "Full name",
+    "email": "Email",
+    "org": "School or group",
+    "orgOpt": "(optional for parents)",
+    "orgHint": "School, program or group",
+    "msg": "Anything we should know?",
+    "optional": "(optional)",
+    "msgHint": "Grades, topics you care about, timing",
+    "adult": "I’m 18 or older and signing up as an adult contact.",
+    "errLead": "That didn’t go through.",
+    "errRest": "Your answers are still here. Check your connection and try again.",
+    "send": "Join the Interest List",
+    "foot": "Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates.",
+    "doneTitle": "You’re on the list. Thank you.",
+    "doneText": "We’ll email you when Own Two Feet launches. Here’s what you sent us.",
+    "again": "Start over"
+  },
+  "manual": {
+    "allLessons": "All lessons",
+    "allManuals": "All manuals",
+    "listName": "Manuals"
+  }
+}

@@ -1,0 +1,12 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="st" x1="0" x2="1"><stop offset="0" stop-color="#9AA3AC"/><stop offset=".5" stop-color="#D9DEE2"/><stop offset="1" stop-color="#A3ACB4"/></linearGradient>
+<linearGradient id="wd" x1="0" x2="1"><stop offset="0" stop-color="#C39A70"/><stop offset=".5" stop-color="#DDBB92"/><stop offset="1" stop-color="#BF956A"/></linearGradient>
+<symbol id="t-hammer" viewBox="0 0 80 200"><rect x="34.5" y="40" width="11" height="150" rx="5.5" fill="url(#wd)"/><rect x="32" y="128" width="16" height="64" rx="8" fill="#2B3540"/><path d="M10 22h50a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H22C14 48 6 40 4 30c-.6-3 1.8-8 6-8z" fill="url(#st)"/><rect x="60" y="20" width="14" height="30" rx="4" fill="#A3ACB4"/></symbol>
+<symbol id="t-phillips" viewBox="0 0 80 200"><rect x="26" y="10" width="28" height="76" rx="12" fill="#7FA893"/><rect x="33" y="84" width="14" height="10" rx="2" fill="#6B7680"/><rect x="37.5" y="92" width="5" height="84" fill="url(#st)"/><path d="M37.5 176h5l-2.5 15z" fill="#9AA3AC"/></symbol>
+<symbol id="t-flat" viewBox="0 0 80 200"><rect x="26" y="10" width="28" height="76" rx="12" fill="#86A3BF"/><rect x="33" y="84" width="14" height="10" rx="2" fill="#6B7680"/><rect x="37.5" y="92" width="5" height="84" fill="url(#st)"/><path d="M36 176h8l1 13h-10z" fill="#9AA3AC"/></symbol>
+<symbol id="t-wrench" viewBox="0 0 80 200"><path d="M22 18a22 22 0 0 0 6 40l4 6v114a8 8 0 0 0 16 0V64l4-6a22 22 0 0 0 6-40v22H46V14H34v26H22z" fill="url(#st)"/><circle cx="40" cy="176" r="4" fill="#6B7680"/></symbol>
+<symbol id="t-tape" viewBox="0 0 80 200"><rect x="6" y="30" width="68" height="68" rx="18" fill="#E5C27E"/><circle cx="40" cy="64" r="15" fill="#2B3540"/><circle cx="40" cy="64" r="5" fill="#E5C27E"/><rect x="52" y="94" width="12" height="86" fill="#F0E2B6"/><path d="M52 104h6M52 114h4M52 124h6M52 134h4M52 144h6M52 154h4M52 164h6" stroke="#2B3540" stroke-width="1.4"/><rect x="49" y="178" width="18" height="6" rx="1.5" fill="#9AA3AC"/></symbol>
+<symbol id="t-level" viewBox="0 0 80 200"><rect x="25" y="8" width="30" height="184" rx="6" fill="#8FB09B"/><rect x="30" y="86" width="20" height="28" rx="6" fill="#2B3540"/><rect x="33" y="91" width="14" height="18" rx="7" fill="#DDE9B0"/><circle cx="40" cy="100" r="4" fill="#fff"/><circle cx="40" cy="24" r="5.5" fill="#2B3540"/><circle cx="40" cy="176" r="5.5" fill="#2B3540"/></symbol>
+</defs>
+</svg>

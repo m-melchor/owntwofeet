@@ -1,77 +1,79 @@
 ---
 import { base } from '../base.js';
+import { t } from '../i18n/t.js';
 // Step 2 choices. `for` lists the roles that see each one (with no script, every choice shows).
+// The role value is what Formspree receives, so it stays in English in every language; labels come from the dictionary.
 const ROLES = [
-  ['teacher', 'Teacher', 'Teacher'],
-  ['staff', 'School staff (counselor, admin)', 'School staff'],
-  ['group', 'Community, youth or faith group', 'Group leader'],
-  ['parent', 'Parent or guardian', 'Parent or guardian'],
-  ['volunteer', 'Mentor or volunteer', 'Volunteer'],
-  ['other', 'Other', 'Something else'],
+  ['teacher', 'Teacher'],
+  ['staff', 'School staff (counselor, admin)'],
+  ['group', 'Community, youth or faith group'],
+  ['parent', 'Parent or guardian'],
+  ['volunteer', 'Mentor or volunteer'],
+  ['other', 'Other'],
 ];
 const PREFS = [
-  ['inperson', 'An in-person workshop', 'teacher staff group parent other'],
-  ['teacher', 'Teacher plan, $9.99 a month', 'teacher staff group volunteer other'],
-  ['team', 'Team plan, $19.99 a month', 'teacher staff group other'],
-  ['printables', 'Printable guides', 'teacher staff group parent other'],
-  ['family', 'Family days', 'parent other'],
-  ['mentor', 'Volunteering with us', 'volunteer other'],
-  ['updates', 'Just launch updates', 'parent volunteer other'],
-  ['unsure', 'Not sure yet', 'teacher staff group parent volunteer other'],
+  ['inperson', 'teacher staff group parent other'],
+  ['teacher', 'teacher staff group volunteer other'],
+  ['team', 'teacher staff group other'],
+  ['printables', 'teacher staff group parent other'],
+  ['family', 'parent other'],
+  ['mentor', 'volunteer other'],
+  ['updates', 'parent volunteer other'],
+  ['unsure', 'teacher staff group parent volunteer other'],
 ];
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
 ---
 <div id="formHolder">
-<form class="interest" id="interestForm" novalidate aria-label="Interest list form" action="https://formspree.io/f/mgaaaeyp" method="POST">
+<form class="interest" id="interestForm" novalidate aria-label={t('form.label')} action="https://formspree.io/f/mgaaaeyp" method="POST">
   <input type="hidden" name="_subject" value="Own Two Feet interest list">
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-  <div class="fprog" aria-hidden="true"><span id="fStepTxt">Step 1 of 4</span><span class="fdots"><i class="on"></i><i></i><i></i><i></i></span></div>
+  <div class="fprog" aria-hidden="true"><span id="fStepTxt">{t('form.stepOf')}</span><span class="fdots"><i class="on"></i><i></i><i></i><i></i></span></div>
 
   <fieldset class="field fstep on" data-step="1" aria-describedby="e-role">
-    <legend class="ftitle" tabindex="-1">Who are you?</legend>
+    <legend class="ftitle" tabindex="-1">{t('form.who')}</legend>
     <div class="checks">
-      {ROLES.map(([k, v, label]) => <label class="check"><input type="radio" name="role" value={v} data-r={k}><span class="bx"></span>{label}</label>)}
+      {ROLES.map(([k, v]) => <label class="check"><input type="radio" name="role" value={v} data-r={k}><span class="bx"></span>{t('form.roles.' + k)}</label>)}
     </div>
     <span class="err" id="e-role"></span>
-    <div class="fnav"><span></span><button class="btn btn-ink btn-sm" type="button" data-go="2">Next</button></div>
+    <div class="fnav"><span></span><button class="btn btn-ink btn-sm" type="button" data-go="2">{t('form.next')}</button></div>
   </fieldset>
 
   <fieldset class="field fstep" data-step="2" aria-describedby="e-pref">
-    <legend class="ftitle" tabindex="-1">What fits you best?</legend>
+    <legend class="ftitle" tabindex="-1">{t('form.fits')}</legend>
     <div class="checks">
-      {PREFS.map(([k, label, roles]) => <label class="check" data-for={roles}><input type="radio" name="prefer" value={k}><span class="bx"></span>{label}</label>)}
+      {PREFS.map(([k, roles]) => <label class="check" data-for={roles}><input type="radio" name="prefer" value={k}><span class="bx"></span>{t('form.prefs.' + k)}</label>)}
     </div>
     <span class="err" id="e-pref"></span>
-    <div class="fnav"><button class="fback" type="button" data-go="1"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink btn-sm" type="button" data-go="3">Next</button></div>
+    <div class="fnav"><button class="fback" type="button" data-go="1"><Fragment set:html={arrow} />{t('form.back')}</button><button class="btn btn-ink btn-sm" type="button" data-go="3">{t('form.next')}</button></div>
   </fieldset>
 
   <fieldset class="field fstep" data-step="3">
-    <legend class="ftitle" tabindex="-1">How do we reach you?</legend>
+    <legend class="ftitle" tabindex="-1">{t('form.reach')}</legend>
     <div class="fbody">
       <div class="frow">
-        <div class="field"><label for="f-name">Full name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
-        <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+        <div class="field"><label for="f-name">{t('form.name')}</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+        <div class="field"><label for="f-email">{t('form.email')}</label><input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
       </div>
-      <div class="field"><label for="f-org">School or group <span class="opt">(optional for parents)</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder="School, program or group"></div>
+      <div class="field"><label for="f-org">{t('form.org')} <span class="opt">{t('form.orgOpt')}</span></label><input type="text" id="f-org" name="org" autocomplete="organization" placeholder={t('form.orgHint')}></div>
     </div>
-    <div class="fnav"><button class="fback" type="button" data-go="2"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink btn-sm" type="button" data-go="4">Next</button></div>
+    <div class="fnav"><button class="fback" type="button" data-go="2"><Fragment set:html={arrow} />{t('form.back')}</button><button class="btn btn-ink btn-sm" type="button" data-go="4">{t('form.next')}</button></div>
   </fieldset>
 
   <fieldset class="field fstep" data-step="4">
-    <legend class="ftitle" tabindex="-1">Last step</legend>
+    <legend class="ftitle" tabindex="-1">{t('form.last')}</legend>
     <div class="fbody">
-      <div class="field"><label for="f-msg">Anything we should know? <span class="opt">(optional)</span></label><textarea id="f-msg" name="msg" placeholder="Grades, topics you care about, timing"></textarea></div>
-      <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">I’m 18 or older and signing up as an adult contact.</label><span class="err" id="e-adult"></span></div>
-      <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>That didn’t go through.</b> Your answers are still here. Check your connection and try again.</span></div>
+      <div class="field"><label for="f-msg">{t('form.msg')} <span class="opt">{t('form.optional')}</span></label><textarea id="f-msg" name="msg" placeholder={t('form.msgHint')}></textarea></div>
+      <div class="field"><label class="agree"><input type="checkbox" id="f-adult" name="adult" aria-describedby="e-adult">{t('form.adult')}</label><span class="err" id="e-adult"></span></div>
+      <div class="demo-flag" id="formErr" role="alert" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span><b>{t('form.errLead')}</b> {t('form.errRest')}</span></div>
     </div>
-    <div class="fnav"><button class="fback" type="button" data-go="3"><Fragment set:html={arrow} />Back</button><button class="btn btn-ink" type="submit" id="formSend">Join the Interest List</button></div>
+    <div class="fnav"><button class="fback" type="button" data-go="3"><Fragment set:html={arrow} />{t('form.back')}</button><button class="btn btn-ink" type="submit" id="formSend">{t('form.send')}</button></div>
   </fieldset>
-  <p class="ffoot">Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates. <a href={base + 'privacy.html'}>Privacy</a></p>
+  <p class="ffoot">{t('form.foot')} <a href={base + 'privacy.html'}>{t('site.privacy')}</a></p>
 </form>
 <div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
-  <h3>You’re on the list. Thank you.</h3>
-  <p class="muted">We’ll email you when Own Two Feet launches. Here’s what you sent us.</p>
+  <h3>{t('form.doneTitle')}</h3>
+  <p class="muted">{t('form.doneText')}</p>
   <dl id="formSummary"></dl>
-  <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">Start over</button>
+  <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">{t('form.again')}</button>
 </div>
 </div>

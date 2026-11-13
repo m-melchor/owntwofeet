@@ -1,0 +1,16 @@
+---
+import Sub from '../layouts/Sub.astro';
+import '../styles/privacy.css';
+import { getEntry } from 'astro:content';
+import { base } from '../base.js';
+import { t } from '../i18n/t.js';
+
+const page = await getEntry('pages', 'en/privacy');
+---
+<Sub title={page.data.title} description={page.data.description} canonical={Astro.site + base.slice(1) + 'privacy.html'} mark="pv" small>
+<Fragment set:html={page.body} />
+<Fragment slot="foot">
+    <span>{t('site.copy')}</span>
+    <a href={base} style="text-decoration:none">{t('site.backToSite')}</a>
+</Fragment>
+</Sub>

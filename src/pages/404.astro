@@ -1,0 +1,22 @@
+---
+import Sub from '../layouts/Sub.astro';
+import '../styles/notfound.css';
+import { getEntry } from 'astro:content';
+import { base } from '../base.js';
+import { t } from '../i18n/t.js';
+
+// GitHub Pages shows this page for any missing address, at any depth,
+// so the base tag keeps the relative links in the body pointing at the site.
+const page = await getEntry('pages', 'en/404');
+---
+<Sub title={page.data.title} robots="noindex" mono={false} mark="nf" small mainId="">
+<base slot="head" href={base}>
+<Fragment set:html={page.body} />
+<Fragment slot="foot">
+    <span>{t('site.copy')}</span>
+    <a href={base + 'privacy.html'} style="text-decoration:none">{t('site.privacy')}</a>
+</Fragment>
+<script slot="end" is:inline>
+(function(){var p=location.pathname;if(!p||p==='/'||p==='/owntwofeet/')return;var h=document.getElementById('hint');document.getElementById('path').textContent=p;h.hidden=false})();
+</script>
+</Sub>

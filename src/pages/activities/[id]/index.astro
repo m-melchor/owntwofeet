@@ -1,12 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Tools from '../../components/activities/Tools.astro';
-import Budget from '../../components/activities/Budget.astro';
-import Scams from '../../components/activities/Scams.astro';
-import Call from '../../components/activities/Call.astro';
-import Laundry from '../../components/activities/Laundry.astro';
-import { base } from '../../base.js';
-import { ORDER, NAMES, CARDS } from '../../data/activities.js';
+import Layout from '../../../layouts/Layout.astro';
+import Tools from '../../../components/activities/Tools.astro';
+import Budget from '../../../components/activities/Budget.astro';
+import Scams from '../../../components/activities/Scams.astro';
+import Call from '../../../components/activities/Call.astro';
+import Laundry from '../../../components/activities/Laundry.astro';
+import { base } from '../../../base.js';
+import { ORDER, NAMES, CARDS } from '../../../data/activities.js';
 export function getStaticPaths() {
   return ORDER.map((id, i) => ({ params: { id }, props: { nx: ORDER[i + 1] || null } }));
 }

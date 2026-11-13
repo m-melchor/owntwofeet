@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+﻿import { defineConfig } from 'astro/config';
 
 // GitHub Pages serves this repo at m-melchor.github.io/owntwofeet/
 export default defineConfig({
@@ -6,4 +6,6 @@ export default defineConfig({
   base: '/owntwofeet',
   // Keep the HTML exactly as written while the old page is being ported.
   compressHTML: false,
+  // Page files keep their names: privacy.astro -> privacy.html, manuals/money -> manuals/money.html, workshops/index.astro -> workshops/.
+  build: { format: 'preserve' },
 });

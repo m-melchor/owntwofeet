@@ -1,0 +1,26 @@
+---
+import Sub from '../../layouts/Sub.astro';
+import '../../styles/manual.css';
+import { getCollection } from 'astro:content';
+import { base } from '../../base.js';
+import { t } from '../../i18n/t.js';
+
+export async function getStaticPaths() {
+  const all = await getCollection('manuals', (e) => e.id.startsWith('en/'));
+  return all.map((entry) => ({ params: { slug: entry.id.slice(3) }, props: { entry } }));
+}
+
+const art = import.meta.glob('../../data/manual-art/*.svg', { query: '?raw', import: 'default', eager: true });
+const { entry } = Astro.props;
+const { slug } = Astro.params;
+const d = entry.data;
+---
+<Sub title={d.name + ': ' + t('site.name')} description={d.description} mark={d.mark} back={base + 'workshops/'} data-m={slug} data-names={JSON.stringify({ home: d.name, ...d.names })}>
+<Fragment slot="art" set:html={art[`../../data/manual-art/${slug}.svg`]} />
+<Fragment set:html={entry.body} />
+<Fragment slot="foot">
+    <span>{t('site.name')} · {d.name}</span>
+    <span style="display:flex;gap:18px"><a href="#home" style="text-decoration:none">{t('manual.allLessons')}</a><a href="./" style="text-decoration:none">{t('manual.allManuals')}</a></span>
+</Fragment>
+<script slot="end" is:inline src={base + 'js/manual.js'}></script>
+</Sub>
