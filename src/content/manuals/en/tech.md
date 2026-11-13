@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Restart, update, check","lesson2":"Lesson 2: Locks 
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Tech &amp; online safety</h1>
       <p class="lede">Fixing common device problems, protecting your accounts and spotting scams before they cost you. Three short lessons, things to try at home, and one rule that never changes: if money, threats or secrets come up, you stop and tell an adult.</p>
       <div class="hero-tools" aria-hidden="true">

@@ -4,7 +4,7 @@ description: "Free, friendly life-skills manuals for grades 3 to 8, one per Own 
 ---
   <section class="hero">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manuals · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Free manuals</h1>
       <p class="lede">One free manual for every Own Two Feet topic, written to the student and backed by sources. Read them on a phone, or print them for home or class. Seven are ready. Vehicle basics is on the way.</p>
       <div class="hero-tools" aria-hidden="true">

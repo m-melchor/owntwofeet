@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Read the label","lesson2":"Lesson 2: Run a load","l
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Personal care</h1>
       <p class="lede">Daily routines and doing laundry from start to finish. Three short lessons, things to try at home, and one rule that never changes: ask an adult before you use bleach or strong cleaners, and check with them on hot water and the dryer.</p>
       <div class="hero-tools" aria-hidden="true">

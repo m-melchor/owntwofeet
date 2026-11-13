@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Needs and wants","lesson2":"Lesson 2: Compare and c
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Money</h1>
       <p class="lede">Needs versus wants, comparing prices, and setting a little aside. Three short lessons and things to try at home. One rule never changes: if anyone asks you for card numbers, passwords or gift cards, stop and check with an adult.</p>
       <div class="hero-tools" aria-hidden="true">

@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Clean start","lesson2":"Lesson 2: Read a recipe","l
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Simple cooking</h1>
       <p class="lede">Kitchen safety, following a recipe, making a simple meal, and cleaning up. Three short lessons, things to try at home, and one rule that never changes: stoves, ovens, sharp knives and hot oil always have an adult standing next to you.</p>
       <div class="hero-tools" aria-hidden="true">

@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Meet your toolbox","lesson2":"Lesson 2: Small fixes
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Home &amp; tools</h1>
       <p class="lede">Using basic hand tools safely and handling the small fixes every home needs. Three short lessons, things to try at home, and one rule that never changes: when a job is too big, you stop and get an adult.</p>
       <div class="hero-tools" aria-hidden="true">

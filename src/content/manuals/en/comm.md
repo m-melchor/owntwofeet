@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: First impressions","lesson2":"Lesson 2: Make the ca
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Communication</h1>
       <p class="lede">Introducing yourself, making a phone call and disagreeing respectfully. Three short lessons and things to try at home. One rule never changes: if any conversation feels unsafe, walk away and find a trusted adult.</p>
       <div class="hero-tools" aria-hidden="true">

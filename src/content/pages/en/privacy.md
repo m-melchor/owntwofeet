@@ -4,7 +4,6 @@ description: "What the Own Two Feet site collects, what it does with it, and how
 ---
   <section class="hero">
     <div class="wrap">
-      <p class="kick">Own Two Feet · Privacy</p>
       <h1 class="h1">Privacy</h1>
       <p class="lede">This site collects very little, and we say exactly what. Here is what happens to anything you give us, in plain words.</p>
 

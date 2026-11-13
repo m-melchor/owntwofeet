@@ -6,7 +6,7 @@ names: {"lesson1":"Lesson 1: Handle, ask or call","lesson2":"Lesson 2: Your peop
 ---
   <section class="hero" id="home" data-screen="home" tabindex="-1">
     <div class="wrap">
-      <div class="kick"><span class="chip">Preview</span><span class="series">Own Two Feet manual · Grades 3 to 8</span></div>
+      <div class="kick"><span class="chip">Preview</span></div>
       <h1 class="h1">Knowing when to ask</h1>
       <p class="lede">Some jobs are too big or too risky to do alone. This manual helps you sort what you can handle, what to ask an adult about, and when to call for help. Three short lessons and things to try at home. Asking is a skill, and it is a strong one.</p>
       <div class="hero-tools" aria-hidden="true">
