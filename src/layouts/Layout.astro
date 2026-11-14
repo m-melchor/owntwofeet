@@ -1,4 +1,11 @@
 ---
+// Fonts and the 3D library are served from our own site (no Google Fonts, no CDN).
+import '@fontsource/geist/400.css';
+import '@fontsource/geist/500.css';
+import '@fontsource/geist/600.css';
+import '@fontsource/geist-mono/500.css';
+import '@fontsource/young-serif/400.css';
+import threeUrl from 'three/build/three.min.js?url';
 import '../styles/site.css';
 import Symbols from '../components/Symbols.astro';
 import Header from '../components/Header.astro';
@@ -13,7 +20,7 @@ const ORIGIN = 'https://m-melchor.github.io';
 const enPath = base + path, esPath = base + 'es/' + path;
 const url = ORIGIN + (lang === 'es' ? esPath : enPath);
 ---
-<!doctype html><html lang={lang === 'es' ? 'es-MX' : 'en'} data-base={home} data-twin={twinPath(Astro.url.pathname)}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style is:inline>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style><title>{title ? title + " | " + t('site.name') : t('site.name')}</title>
+<!doctype html><html lang={lang === 'es' ? 'es-MX' : 'en'} data-base={home} data-twin={twinPath(Astro.url.pathname)} data-three={threeUrl}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style is:inline>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style><title>{title ? title + " | " + t('site.name') : t('site.name')}</title>
 <link rel="canonical" href={url}>
 <link rel="alternate" hreflang="en" href={ORIGIN + enPath}>
 <link rel="alternate" hreflang="es" href={ORIGIN + esPath}>
@@ -36,10 +43,6 @@ const url = ORIGIN + (lang === 'es' ? esPath : enPath);
 <meta name="description" content={t('meta.description')}>
 <script is:inline>document.documentElement.classList.add('js')</script>
 {lang === 'en' && <script is:inline>/* someone who picked Spanish before and comes back from another site lands on the Spanish page */try{if(localStorage.getItem('otf-lang')==='es'&&(!document.referrer||new URL(document.referrer).origin!==location.origin))location.replace(document.documentElement.dataset.twin+location.hash)}catch(e){}</script>}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Young+Serif&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Young+Serif&display=swap"></noscript>
 <!-- Visit counter (GoatCounter: free, no cookies). Each page view is counted by the router below, so #workshops etc. show up as their own pages. -->
 <script is:inline data-goatcounter="https://owntwofeet.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="https://gc.zgo.at/count.js"></script>
 <slot name="head" />

@@ -67,9 +67,7 @@ description: "Qué recoge el sitio de Own Two Feet, qué hacemos con eso y cómo
       <h2>Otros servicios que usa el sitio</h2>
       <p>Al abrir una página de este sitio, su navegador también se conecta con algunos servicios que son normales en los sitios web. Cada uno puede ver los datos comunes de una visita, como su dirección IP y el tipo de navegador, y tiene su propia política de privacidad:</p>
       <ul>
-        <li><strong>GitHub Pages</strong> aloja el sitio.</li>
-        <li><strong>Google Fonts</strong> da los tipos de letra.</li>
-        <li><strong>cdnjs (Cloudflare)</strong> da la pequeña librería que dibuja las herramientas en 3D en la página de inicio y en Hora de herramientas.</li>
+        <li><strong>GitHub Pages</strong> aloja el sitio, incluidos sus tipos de letra y la pequeña librería que dibuja las herramientas en 3D en la página de inicio y en Hora de herramientas. Nada en la página se carga de un servicio de fuentes o de código.</li>
       </ul>
       <p>No usamos redes de anuncios, botones de redes sociales ni ningún rastreador aparte del contador de visitas de arriba.</p>
     </section>

@@ -10,9 +10,15 @@ const { t, lang, home } = useT(Astro);
 const ORIGIN = 'https://m-melchor.github.io';
 const here = Astro.url.pathname, twin = twinPath(here);
 const enPath = lang === 'es' ? twin : here, esPath = lang === 'es' ? here : twin;
+// Fonts are served from our own site. A face is only downloaded when a page uses it.
+import '@fontsource/geist/400.css';
+import '@fontsource/geist/500.css';
+import '@fontsource/geist/600.css';
+import '@fontsource/geist-mono/500.css';
+import '@fontsource/young-serif/400.css';
 import '../styles/sprog.css';
-const { title, description, canonical, robots, mono = true, mark, small = false, back = home, mainId = 'top', ...bodyAttrs } = Astro.props;
-const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${mono ? '&family=Geist+Mono:wght@500' : ''}&family=Young+Serif&display=swap`;
+// mono is no longer needed (each font file only loads when used); kept here so it doesn't land on <body>.
+const { title, description, canonical, robots, mono, mark, small = false, back = home, mainId = 'top', ...bodyAttrs } = Astro.props;
 ---
 <!doctype html><html lang={lang === 'es' ? 'es-MX' : 'en'}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <slot name="head" />
@@ -24,9 +30,6 @@ const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${
 {!robots && <><link rel="alternate" hreflang="en" href={ORIGIN + enPath}><link rel="alternate" hreflang="es" href={ORIGIN + esPath}><link rel="alternate" hreflang="x-default" href={ORIGIN + enPath}></>}
 <link rel="icon" href={base + 'apple-touch-icon.png'}>
 <link rel="apple-touch-icon" href={base + 'apple-touch-icon.png'}>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href={fonts}>
 </head>
 <body {...bodyAttrs}>
 <slot name="art" />

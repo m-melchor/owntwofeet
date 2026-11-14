@@ -38,5 +38,5 @@ function setupRenderer(THREE,host){const r=new THREE.WebGLRenderer({antialias:tr
 let threeP=null;
 function loadThree(){
   if(window.THREE)return Promise.resolve(window.THREE);
-  if(!threeP)threeP=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';s.async=true;s.onload=()=>window.THREE?res(window.THREE):rej(new Error('three missing'));s.onerror=()=>rej(new Error('three failed'));document.head.appendChild(s)});
+  if(!threeP)threeP=new Promise((res,rej)=>{const s=document.createElement('script');s.src=document.documentElement.dataset.three;s.async=true;s.onload=()=>window.THREE?res(window.THREE):rej(new Error('three missing'));s.onerror=()=>rej(new Error('three failed'));document.head.appendChild(s)});
   return threeP}

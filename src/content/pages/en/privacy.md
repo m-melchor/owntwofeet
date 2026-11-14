@@ -67,9 +67,7 @@ description: "What the Own Two Feet site collects, what it does with it, and how
       <h2>Other services the site uses</h2>
       <p>Loading a page on this site also talks to a few services that are standard for websites. Each one can see the normal details of a web request, like your IP address and browser type, and has its own privacy policy:</p>
       <ul>
-        <li><strong>GitHub Pages</strong> hosts the site.</li>
-        <li><strong>Google Fonts</strong> serves the typefaces.</li>
-        <li><strong>cdnjs (Cloudflare)</strong> serves the small library that draws the 3D tools on the home page and in Tool Time.</li>
+        <li><strong>GitHub Pages</strong> hosts the site, including its typefaces and the small library that draws the 3D tools on the home page and in Tool Time. Nothing on the page loads from a font or code service.</li>
       </ul>
       <p>We do not use advertising networks, social media buttons, or any tracker beyond the visit counter above.</p>
     </section>
