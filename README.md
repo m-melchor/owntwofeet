@@ -12,7 +12,7 @@ Built by Dane, Jewell and Marco (ENT 3315 venture project, Baylor University).
 |---|---|
 | `index.html` | The whole site in one file: HTML, CSS and JavaScript |
 | `privacy.html` | The privacy page: what the form collects, how visits are counted, how to ask for deletion |
-| `es.html` | One-page Spanish version for parents and school staff, with its own copy of the interest form |
+| `es.html` | Old Spanish address; it now sends visitors to the full Spanish site at `/es/` |
 | `404.html` | The page GitHub Pages shows for a missing link, with buttons back to the site |
 | `manuals/` | One free manual per topic, each its own page, listed on `manuals/index.html` |
 | `sitemap.xml` | The list of pages for search engines, with the English and Spanish pages linked as translations |

@@ -4,8 +4,12 @@
 // foot (inside the footer), head (extra head tags), end (scripts after the footer).
 import Mark from '../components/Mark.astro';
 import { base } from '../base.js';
-import { useT } from '../i18n/t.js';
+import { useT, twinPath } from '../i18n/t.js';
 const { t, lang, home } = useT(Astro);
+// Language twins for search engines (not on noindex pages like 404).
+const ORIGIN = 'https://m-melchor.github.io';
+const here = Astro.url.pathname, twin = twinPath(here);
+const enPath = lang === 'es' ? twin : here, esPath = lang === 'es' ? here : twin;
 import '../styles/sprog.css';
 const { title, description, canonical, robots, mono = true, mark, small = false, back = home, mainId = 'top', ...bodyAttrs } = Astro.props;
 const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${mono ? '&family=Geist+Mono:wght@500' : ''}&family=Young+Serif&display=swap`;
@@ -17,6 +21,7 @@ const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${
 {description && <meta name="description" content={description}>}
 <meta name="theme-color" content="#F6F4EF">
 {canonical && <link rel="canonical" href={canonical}>}
+{!robots && <><link rel="alternate" hreflang="en" href={ORIGIN + enPath}><link rel="alternate" hreflang="es" href={ORIGIN + esPath}><link rel="alternate" hreflang="x-default" href={ORIGIN + enPath}></>}
 <link rel="icon" href={base + 'apple-touch-icon.png'}>
 <link rel="apple-touch-icon" href={base + 'apple-touch-icon.png'}>
 <link rel="preconnect" href="https://fonts.googleapis.com">
