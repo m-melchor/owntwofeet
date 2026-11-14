@@ -1,0 +1,39 @@
+{
+  "hc": {
+    "hi": "Hi! What do you want to know? Tap a question below.",
+    "questions": "Questions",
+    "more": "More questions",
+    "all": "All questions",
+    "a": {
+      "what": { "q": "What is Own Two Feet?", "a": "Own Two Feet is a student venture planning live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.", "go": "How workshops work" },
+      "status": { "q": "Are workshops running yet?", "a": "Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.", "go": "Join the interest list" },
+      "who": { "q": "Who is it for?", "a": "Boys and young men in grades 3 to 8. Activities are matched to their age, and topics for older students come later.", "go": "See age groups" },
+      "modules": { "q": "What do students learn?", "a": "Eight topics: home and tools, tech and online safety, personal care, simple cooking, money, communication, knowing when to ask for help, and car basics later on. Schools pick the ones they want.", "go": "See the topics" },
+      "session": { "q": "What happens in a session?", "a": "50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.", "go": "See a session" },
+      "host": { "q": "Can my school get a workshop?", "a": "Not yet, since we’re not booking. Join the interest list and pick “An in-person workshop.” Once we launch, you’d provide a room, up to 30 students and an adult who knows them. We’d bring everything else.", "go": "Join the interest list" },
+      "cost": { "q": "How much will it cost?", "a": "We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.", "go": "See planned prices" },
+      "video": { "q": "Couldn’t students just watch a video?", "a": "Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop." },
+      "safe": { "q": "How do you keep it safe?", "a": "Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro." },
+      "parents": { "q": "I’m a parent. How can I help?", "a": "Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.", "go": "Get involved" },
+      "try": { "q": "Can I try an activity?", "a": "Yes! There are five you can try right now: Tool Time, Saturday on $25, Scam or Safe?, Make the Call and Laundry Sort-Out.", "go": "Open activities" },
+      "person": { "q": "Can I talk to a person?", "a": "This chat can only answer the questions listed here. To reach our team, join the interest list and put your question in the notes box. We’ll get back to you.", "go": "Leave a note" }
+    }
+  },
+  "formjs": {
+    "pickRole": "Pick the one that fits you best.",
+    "pickPref": "Pick one. “Not sure yet” is fine.",
+    "name": "Enter your name.",
+    "emailEmpty": "Enter an email address.",
+    "emailBad": "Check the email for a typo, like name@school.org.",
+    "adult": "The list is for adults. Please confirm you’re 18 or older.",
+    "step": "Step {n} of 4",
+    "sending": "Sending…",
+    "send": "Join the Interest List",
+    "attention": "One answer needs attention.",
+    "failed": "That didn’t go through. Try again.",
+    "sent": "Sent. You’re on the list.",
+    "picked": "We picked that for you in the form.",
+    "notGiven": "Not given",
+    "labels": { "Name": "Name", "Email": "Email", "Organization": "Organization", "Role": "Role", "Best fit": "Best fit" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "actpage": {
+    "h1": "Practice a little right now",
+    "lede": "Five short activities you can try now.",
+    "planned": "These are planned for workshops. You can’t play them yet.",
+    "ctaH": "Want this for your students someday?",
+    "ctaP": "Join the interest list and tell us about your students. We’ll email you when we launch.",
+    "join": "Join the Interest List",
+    "workshops": "See the Workshops"
+  },
+  "actpv": {
+    "more": "{n} more activities on the way",
+    "practice": "What students practice",
+    "items": [
+      { "t": "Password Builder", "s": "Coming soon", "d": "Turn a silly sentence into a strong passphrase you can remember.", "b": ["Why short passwords get guessed", "Building a four-word passphrase", "Never sharing, even with friends"] },
+      { "t": "Snack Lab", "s": "Coming soon", "d": "Follow a recipe card to build a no-stove snack, then clean the station.", "b": ["Clean hands, clean surface", "Measuring from a recipe", "Cleanup as part of cooking"] },
+      { "t": "Shutoff Finder", "s": "Coming soon", "d": "Find the water shutoffs in a home and practice what to do first in a leak.", "b": ["Where shutoff valves live", "Which way to turn", "Who to tell, right away"] },
+      { "t": "Dashboard Basics", "s": "Preview", "d": "Coming later: what warning lights mean and when to pull over.", "b": ["Warning light colors", "Tire checks with an adult", "Who to call in a breakdown"] }
+    ]
+  }
+}

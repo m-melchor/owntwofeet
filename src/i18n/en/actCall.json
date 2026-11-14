@@ -1,0 +1,100 @@
+{
+  "actCall": {
+    "introStatic": "Something in your week changed. Call the front desk, say what you need, and pick a time that fits your week.",
+    "introTail": "Call the front desk, say what you need, and pick a time that fits your week.",
+    "phoneLabel": "Phone call with {biz}",
+    "txLabel": "The call so far",
+    "greet": "Thanks for calling {biz}, this is {who}.",
+    "connected": "Connected",
+    "onHold": "On hold",
+    "onCall": "On the call",
+    "holdMsg": "On hold for a moment...",
+    "callEnded": "Call ended",
+    "newText": "New text message",
+    "weekH": "Your week",
+    "stepOf": "Step {i} of {n}",
+    "reset": "Make the Call reset.",
+    "goodFb": "That’s what a good call sounds like.",
+    "tryNext": "Try this next time.",
+    "happy": "{who} sounds happy to help",
+    "fixed": "{who} fixed it for you",
+    "confused": "{who} sounds confused",
+    "putOff": "{who} sounds put off",
+    "next": "Next step",
+    "seeHow": "See how it went",
+    "playAgain": "Play again",
+    "howQ": "How the call went",
+    "outOf": " / {n} clear",
+    "callDone": "Call done. Now try it with clearer lines.",
+    "stayed": "You stayed on the call and kept going",
+    "tryNextB": "Try next time:",
+    "jot": "Jot down your plan before you call: who you are, why, and when you’re free.",
+    "withPro": " with {pro}",
+    "ct": "Here are the times I have: {t0}, {t1}, or {t2}.",
+    "hold": ["Okay, let me check the book. One moment.", "~~", "Thanks for waiting. {ct}"],
+    "calls": [
+      {
+        "biz": "Fresh Cuts", "av": "FC", "who": "Dana", "obj": "her", "me": "Sam", "thing": "haircut", "thingA": "a haircut", "pro": "Marcus",
+        "had": "Thursday at 4:00", "why": "my team added a practice then", "whyShort": "you have practice", "want": "a later time this week",
+        "t0": "Thursday at 5:30", "t1": "Friday at 3:00", "t2": "Saturday at 10:00",
+        "good": "Saturday at 10:00", "Good": "Saturday at 10:00", "goodDay": "Saturday", "goodFree": "Saturday morning", "goodFreeCap": "Saturday morning",
+        "clash": "Thursday at 5:30", "Clash": "Thursday at 5:30", "clashDay": "Thursday", "clashWhy": "practice runs until 6:00", "clashWith": "practice, which runs until 6:00",
+        "intro": "Your haircut clashes with a new practice.",
+        "week": ["Practice now takes Thursday 4:00 to 6:00.", ["Thursday", "Free after 6:00"], ["Friday", "Free after 3:30"], ["Saturday", "Free in the morning"]],
+        "confirm": "Fresh Cuts: Sam is booked Saturday at 10:00 with Marcus. See you then!"
+      },
+      {
+        "biz": "Bright Smiles Dental", "av": "BS", "who": "Priya", "obj": "her", "me": "Sam", "thing": "dentist checkup", "thingA": "a dentist checkup", "pro": "Dr. Lee",
+        "had": "Friday at 3:30", "why": "my class has a field trip that day", "whyShort": "you have a field trip", "want": "another day next week",
+        "t0": "Monday at 3:45", "t1": "Wednesday at 4:00", "t2": "Friday at 5:00",
+        "good": "Wednesday at 4:00", "Good": "Wednesday at 4:00", "goodDay": "Wednesday", "goodFree": "Wednesday after school", "goodFreeCap": "Wednesday after school",
+        "clash": "Monday at 3:45", "Clash": "Monday at 3:45", "clashDay": "Monday", "clashWhy": "soccer runs 3:30 to 5:00", "clashWith": "soccer, which runs 3:30 to 5:00",
+        "intro": "Your dentist checkup lands on the day of a class field trip.",
+        "week": ["The field trip takes all of Friday.", ["Monday", "Soccer 3:30 to 5:00"], ["Wednesday", "Free after 3:30"], ["Friday", "Field trip until 6:00"]],
+        "confirm": "Bright Smiles Dental: Sam is booked Wednesday at 4:00 with Dr. Lee. Reply C to cancel."
+      },
+      {
+        "biz": "Westside Rec Center", "av": "WR", "who": "Theo", "obj": "him", "me": "Sam", "thing": "swim lesson", "thingA": "a swim lesson", "pro": "Coach Bea",
+        "had": "Saturday at 9:00", "why": "my cousin’s birthday party is that morning", "whyShort": "you have a party", "want": "a different time this week",
+        "t0": "Tuesday at 4:30", "t1": "Thursday at 5:00", "t2": "Saturday at 1:00",
+        "good": "Saturday at 1:00", "Good": "Saturday at 1:00", "goodDay": "Saturday", "goodFree": "Saturday afternoon", "goodFreeCap": "Saturday afternoon",
+        "clash": "Tuesday at 4:30", "Clash": "Tuesday at 4:30", "clashDay": "Tuesday", "clashWhy": "piano runs 4:00 to 5:00", "clashWith": "piano, which runs 4:00 to 5:00",
+        "intro": "Your swim lesson clashes with your cousin’s birthday party.",
+        "week": ["The party runs Saturday 9:00 to noon.", ["Tuesday", "Piano 4:00 to 5:00"], ["Thursday", "Homework club until 5:30"], ["Saturday", "Free after noon"]],
+        "confirm": "Westside Rec Center: Sam is booked for a swim lesson Saturday at 1:00 with Coach Bea."
+      }
+    ],
+    "st": [
+      { "q": "{who} picks up. What do you say?", "s": "Said who you were", "n": "Start with hello and your name.", "c": [
+        { "y": "good", "t": "Hi {who}, this is {me}.", "r": ["Hi {me}! How can I help you?"] },
+        { "y": "vague", "t": "Uh... hi.", "r": ["Hello? Sorry, who is this?", "~You tell {obj} you’re {me}.", "Hi {me}. How can I help you?"], "tip": "Say your name right away. It helps {who} find your visit." },
+        { "y": "off", "t": "Yeah, I need to change my {thing}.", "r": ["Okay... who is this, so I can look you up?", "~You tell {obj} you’re {me}.", "Thanks, {me}. What’s going on?"], "tip": "Start with hello and your name. It’s friendlier, and it helps {who} look you up." }
+      ] },
+      { "q": "Tell {obj} why you’re calling.", "s": "Said why you were calling", "n": "Say why you’re calling in one clear sentence.", "c": [
+        { "y": "good", "t": "I have {thingA} {had}, but {why}. I need to move it.", "r": ["Oh, got it. I see you {had}{P}.", "What would you like to do?"] },
+        { "y": "vague", "t": "Um, I have a thing. It’s about my appointment.", "r": ["Okay... which appointment? What’s the thing?", "~You explain it’s your {had} {thing} and {whyShort}.", "Oh, I see you {had}{P}. What would you like to do?"], "tip": "Say the day, the time and the problem in one sentence. Then {who} knows what you need." },
+        { "y": "off", "t": "Your schedule is messed up. Fix my appointment.", "r": ["Oh! Sorry about that. Which appointment is it?", "~You explain it’s your {had} {thing} and your own plans changed.", "Okay, I see you {had}{P}. What would you like to do?"], "tip": "Nothing is wrong with their schedule. Yours changed. Say that calmly and {who} will help." }
+      ] },
+      { "q": "Ask for a new time.", "s": "Asked for a new time politely", "n": "Ask politely, and say please.", "c": [
+        { "y": "good", "t": "Could I move it to {want}, please?", "r": ["@hold"] },
+        { "y": "vague", "t": "Uh, can I change it?", "r": ["Change it to what? I need a day or a time.", "~You say you want {want}.", "@hold"], "tip": "Tell {who} what you want: {want}. “Change it” can mean a lot of things." },
+        { "y": "off", "t": "Just give me a new time. I’m busy.", "r": ["Okay, okay.", "@hold"], "tip": "Please makes a big difference. A kind voice gets help faster, even when you’re in a hurry." }
+      ] },
+      { "q": "{who} read out some times. Which one do you take?", "s": "Picked a time that fits your week", "n": "Check Your week before you pick a time.", "c": [
+        { "y": "good", "t": "{Good} works. I’m free {goodFree}.", "r": ["{Good}. Perfect, that one’s open. I’ll put you down."] },
+        { "y": "clash", "t": "{Clash}, please.", "r": ["{Clash}, okay.", "~Wait. Your week says {clashWhy}. You ask for {good} instead.", "No problem. {Good} is open. I’ll put you down."], "tip": "{Clash} clashes with {clashWith}. Check Your week first. {goodFreeCap} is free." },
+        { "y": "off", "t": "Whichever. I don’t care.", "r": ["Um, okay. {Good} is open, so I’ll put you down for that."], "tip": "Pick a time yourself. {who} can’t see your week, and a time that clashes would mean another call." }
+      ] },
+      { "q": "Say it back to be sure.", "s": "Repeated the day and time back", "n": "Repeat the day and time back before you hang up.", "c": [
+        { "y": "good", "t": "So that’s {good}, not {clashDay}. Is that right?", "r": ["Yes, that’s right. {Good}, with {pro}.", "Anything else I can help with?"] },
+        { "y": "vague", "t": "Okay, cool. So it’s all set?", "r": ["Yep, all set. That’s {good}.", "Anything else I can help with?"], "tip": "Say the day and time back yourself. It catches mix-ups, like {clashDay} instead of {goodDay}." },
+        { "y": "off", "t": "Fine. Just don’t mess it up this time.", "r": ["Oh. I won’t. You’re down for {good}.", "Anything else I can help with?"], "tip": "Saying the day and time back is how you check. Blaming the desk makes the call feel tense." }
+      ] },
+      { "q": "Time to wrap up the call.", "s": "Ended with a thank you", "n": "End with a thank you.", "c": [
+        { "y": "good", "t": "No, that’s all. Thank you, {who}! See you {goodDay}.", "r": ["You’re welcome, {me}! See you {good}. Bye!"] },
+        { "y": "vague", "t": "Uh, no. Bye.", "r": ["Okay. Bye now."], "tip": "A quick thank you ends the call on a good note." },
+        { "y": "off", "t": "Nope. Okay, bye.", "r": ["...Bye."], "tip": "Say thank you before you hang up. It only takes a second, and people remember it." }
+      ] }
+    ]
+  }
+}

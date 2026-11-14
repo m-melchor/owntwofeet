@@ -1,0 +1,21 @@
+{
+  "actpage": {
+    "h1": "Practique un poco ahora mismo",
+    "lede": "Cinco actividades cortas que puede probar ahora.",
+    "planned": "Están planeadas para los talleres. Todavía no se pueden jugar.",
+    "ctaH": "¿Quiere esto para sus estudiantes algún día?",
+    "ctaP": "Únase a la lista de interés y cuéntenos de sus estudiantes. Le escribimos cuando empecemos.",
+    "join": "Unirme a la lista de interés",
+    "workshops": "Ver los talleres"
+  },
+  "actpv": {
+    "more": "{n} actividades más en camino",
+    "practice": "Lo que practican los estudiantes",
+    "items": [
+      { "t": "Creador de contraseñas", "s": "Muy pronto", "d": "Convierta una frase chistosa en una contraseña larga y segura que se pueda recordar.", "b": ["Por qué se adivinan las contraseñas cortas", "Armar una frase de cuatro palabras", "Nunca compartirla, ni con amigos"] },
+      { "t": "Laboratorio de botanas", "s": "Muy pronto", "d": "Siga una tarjeta de receta para preparar una botana sin estufa y luego limpie el lugar.", "b": ["Manos limpias, superficie limpia", "Medir con una receta", "La limpieza como parte de cocinar"] },
+      { "t": "Encuentra las llaves de paso", "s": "Muy pronto", "d": "Encuentre las llaves de paso del agua en una casa y practique qué hacer primero en una fuga.", "b": ["Dónde están las llaves de paso", "Hacia qué lado girarlas", "A quién avisar, de inmediato"] },
+      { "t": "Básicos del tablero", "s": "Vista previa", "d": "Más adelante: qué significan las luces de advertencia y cuándo hay que orillarse.", "b": ["Colores de las luces de advertencia", "Revisar las llantas con un adulto", "A quién llamar si se descompone el auto"] }
+    ]
+  }
+}

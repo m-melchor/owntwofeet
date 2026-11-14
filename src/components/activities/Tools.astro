@@ -1,24 +1,31 @@
+---
+import { useT } from '../../i18n/t.js';
+import JsText from '../JsText.astro';
+const { t } = useT(Astro);
+const ids = ['hammer', 'phillips', 'tape', 'wrench', 'flat', 'level'];
+---
+    <JsText name="actTools" />
     <article class="activity" id="tools" aria-labelledby="tools-h">
       <slot name="top" />
       <div class="act-head">
-        <div class="t"><h2 id="tools-h">Tool Time <span class="tdone done-chip" data-done="tools" hidden>Done</span></h2><p>Learn six hand tools, match each one to a job, practice knowing when to stop and get help, then use a tape measure and a level.</p></div>
+        <div class="t"><h2 id="tools-h">{t('acts.names.tools')} <span class="tdone done-chip" data-done="tools" hidden>{t('acts.done')}</span></h2><p>{t('actTools.intro')}</p></div>
         <div class="act-tools">
-          <div class="modes" role="tablist" aria-label="Tool Time modes" id="ttModes">
-            <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">Explore</button>
-            <button class="mode" role="tab" aria-selected="false" data-mode="match" id="m-match" tabindex="-1">Match the job</button>
-            <button class="mode" role="tab" aria-selected="false" data-mode="pro" id="m-pro" tabindex="-1">Fix or call?</button>
-            <button class="mode" role="tab" aria-selected="false" data-mode="use" id="m-use" tabindex="-1">Use it</button>
+          <div class="modes" role="tablist" aria-label={t('actTools.modesLabel')} id="ttModes">
+            <button class="mode" role="tab" aria-selected="true" data-mode="explore" id="m-explore">{t('actTools.modes.explore')}</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="match" id="m-match" tabindex="-1">{t('actTools.modes.match')}</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="pro" id="m-pro" tabindex="-1">{t('actTools.modes.pro')}</button>
+            <button class="mode" role="tab" aria-selected="false" data-mode="use" id="m-use" tabindex="-1">{t('actTools.modes.use')}</button>
           </div>
-          <button class="reset" type="button" id="ttReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+          <button class="reset" type="button" id="ttReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>{t('acts.reset')}</button>
         </div>
       </div>
       <div class="act-body">
         <div class="bench" id="benchWrap">
           <div>
-            <div class="wall" id="wall"><div class="fb2d" id="fb2d"><button type="button" data-tool="hammer" aria-label="Claw hammer" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-hammer"></use></svg></button><button type="button" data-tool="phillips" aria-label="Phillips screwdriver" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-phillips"></use></svg></button><button type="button" data-tool="tape" aria-label="Tape measure" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-tape"></use></svg></button><button type="button" data-tool="wrench" aria-label="Adjustable wrench" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-wrench"></use></svg></button><button type="button" data-tool="flat" aria-label="Flathead screwdriver" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-flat"></use></svg></button><button type="button" data-tool="level" aria-label="Level" tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href="#t-level"></use></svg></button></div><span class="hint" id="wallHint">Click a tool to pick it up</span></div>
-            <div class="tray" id="tray" role="group" aria-label="Tools"><button type="button" data-tool="hammer">Hammer</button><button type="button" data-tool="phillips">Phillips</button><button type="button" data-tool="tape">Tape measure</button><button type="button" data-tool="wrench">Wrench</button><button type="button" data-tool="flat">Flathead</button><button type="button" data-tool="level">Level</button></div>
+            <div class="wall" id="wall"><div class="fb2d" id="fb2d">{ids.map((id) => <button type="button" data-tool={id} aria-label={t('actTools.tools.' + id + '.name')} tabindex="-1"><svg viewBox="0 0 80 200" aria-hidden="true"><use href={'#t-' + id}></use></svg></button>)}</div><span class="hint" id="wallHint">{t('actTools.hintExplore')}</span></div>
+            <div class="tray" id="tray" role="group" aria-label={t('actTools.trayLabel')}>{ids.map((id) => <button type="button" data-tool={id}>{t('actTools.tray.' + id)}</button>)}</div>
           </div>
-          <div class="side-card" id="ttSide" aria-live="polite"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">0 of 6 explored</span><div class="prog" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div><h3>Pick up a tool to learn about it.</h3><p>Click any tool on the wall or in the row below. Check out all six, then try the challenge.</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">Skip to the challenge</button></div></div>
+          <div class="side-card" id="ttSide" aria-live="polite"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label">{t('actTools.explored').replace('{n}', '0')}</span><div class="prog" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div><h3>{t('actTools.pickTitle')}</h3><p>{t('actTools.pickP')}</p><div class="push"><button class="btn btn-line btn-sm" type="button" data-go="match">{t('actTools.skip')}</button></div></div>
         </div>
         <div class="pro" id="proWrap" hidden>
           <div class="scene" id="proScene"></div>
@@ -29,6 +36,6 @@
           <div class="side-card" id="useSide" aria-live="polite"></div>
         </div>
       </div>
-      <div class="practiced" id="pracTools" role="region" aria-label="What you practiced" hidden></div>
+      <div class="practiced" id="pracTools" role="region" aria-label={t('acts.practiced')} hidden></div>
       <slot name="end" />
     </article>

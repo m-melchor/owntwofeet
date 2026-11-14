@@ -1,0 +1,42 @@
+{
+  "acts": {
+    "names": { "tools": "Hora de herramientas", "budget": "Un sábado con $25", "scams": "¿Estafa o seguro?", "call": "Haz la llamada", "laundry": "A separar la ropa" },
+    "cards": {
+      "tools": "Conoce seis herramientas de mano en 3D, únelas con sus trabajos y decide cuándo pedir ayuda.",
+      "budget": "Cubre lo necesario, cumple una promesa y no te pases del presupuesto.",
+      "scams": "Lee seis mensajes y descubre qué delata a una estafa.",
+      "call": "Llama a una recepción y cambia una cita.",
+      "laundry": "Separa una pila en ropa oscura, ropa clara y toallas, y luego lee las etiquetas de cuidado."
+    },
+    "art": { "left": "Te queda", "av": "CF", "biz": "Cortes Frescos" },
+    "done": "Listo",
+    "reset": "Reiniciar",
+    "back": "Volver a las actividades",
+    "nextAct": "Siguiente actividad",
+    "lastOne": "Esa fue la última",
+    "seeAll": "Ver todas las actividades",
+    "practiced": "Lo que practicaste",
+    "join": "Unirme a la lista de interés",
+    "next": "Siguiente:",
+    "finished": "Terminaste {n}. Mira abajo lo que practicaste.",
+    "win": {
+      "scam": ["Estafa detectada.", "Buen ojo.", "A ti no se te escapa nada.", "Le viste el truco."],
+      "safe": ["Sí, ese es de verdad.", "Buen ojo. Ese está bien.", "Correcto. Aquí no hay nada raro."],
+      "miss": ["Mira otra vez.", "Esta vez no.", "Es un caso difícil."],
+      "tool": ["Esa es.", "Perfecto.", "La herramienta correcta para el trabajo."],
+      "pro": ["Buena decisión.", "Muy bien pensado.", "Justo eso."],
+      "use": ["Exacto.", "Lo leíste bien.", "Qué buena medición."],
+      "call": ["Claro y directo.", "Así se hace.", "Claro como el agua."],
+      "sort": ["Canasta correcta.", "Buen acomodo.", "Va en el montón correcto."],
+      "label": ["Buena lectura.", "Descifraste la etiqueta.", "Bien en las dos."],
+      "budget": ["Tu sábado funciona.", "Tu plan aguanta.", "Lo lograste."]
+    },
+    "prac": {
+      "tools": ["Leer una cinta métrica hasta 1/8 de pulgada", "Elegir la herramienta correcta para cada trabajo", "Saber cuándo detenerte y avisar a un adulto"],
+      "budget": ["Pagar las necesidades y las promesas antes que los gustos", "Cambiar tu plan cuando pasa algo inesperado", "Ahorrar un poquito para la próxima semana"],
+      "scams": ["Detectar un plazo con prisa", "Revisar un enlace antes de tocarlo", "Avisar a un adulto de confianza"],
+      "call": ["Decir quién eres y por qué llamas", "Elegir una hora que cabe en tu semana", "Repetir los datos para confirmar"],
+      "laundry": ["Separar ropa oscura, ropa clara y toallas", "Leer la etiqueta de cuidado antes de lavar", "Elegir la temperatura correcta del agua"]
+    }
+  }
+}

@@ -1,6 +1,7 @@
 ---
 import { base } from '../base.js';
 import { useT } from '../i18n/t.js';
+import JsText from './JsText.astro';
 const { t, lang, home } = useT(Astro);
 // Step 2 choices. `for` lists the roles that see each one (with no script, every choice shows).
 // The role value is what Formspree receives, so it stays in English in every language; labels come from the dictionary.
@@ -79,3 +80,4 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
   <button class="btn btn-line btn-sm" type="button" id="formAgain" style="justify-self:start">{t('form.again')}</button>
 </div>
 </div>
+<JsText name="formjs" />

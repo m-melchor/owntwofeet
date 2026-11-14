@@ -21,6 +21,8 @@ for (const id of ORDER) pages['activities/' + id + '/'] = games[id];
 const { home } = useT(Astro);
 const MOVED = {};
 for (const [p, src] of Object.entries(pages)) for (const m of src.matchAll(/\sid="([\w-]+)"/g)) MOVED[m[1]] = p + '#' + m[1];
+// The budget wants are built from a list, so the scan above cannot see their ids.
+for (const w of ['movie', 'snack', 'arcade', 'case']) MOVED['b-' + w] = 'activities/budget/#b-' + w;
 Object.assign(MOVED, { workshops: 'workshops/', activities: 'activities/', story: 'story/', involved: 'get-involved/' });
 for (const id of ORDER) MOVED[id] = 'activities/' + id + '/';
 ---

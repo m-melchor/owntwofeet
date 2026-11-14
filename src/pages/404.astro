@@ -3,12 +3,14 @@ import Sub from '../layouts/Sub.astro';
 import '../styles/notfound.css';
 import { getEntry } from 'astro:content';
 import { base } from '../base.js';
-import { useT } from '../i18n/t.js';
-const { t, lang, home } = useT(Astro);
+import { t } from '../i18n/t.js';
 
-// GitHub Pages shows this page for any missing address, at any depth,
-// so the base tag keeps the relative links in the body pointing at the site.
+// GitHub Pages shows this one page for any missing address, at any depth and in both languages,
+// so the base tag keeps the relative links in the body pointing at the site, and a missing
+// address under es/ swaps in the Spanish words (kept in a template so English stays as is).
 const page = await getEntry('pages', 'en/404');
+const es = await getEntry('pages', 'es/404');
+const ES = { title: es.data.title, home: base + 'es/', back: t('site.backToSite', 'es'), copy: t('site.copy', 'es'), privacy: t('site.privacy', 'es') };
 ---
 <Sub title={page.data.title} robots="noindex" mono={false} mark="nf" small mainId="">
 <base slot="head" href={base}>
@@ -17,7 +19,12 @@ const page = await getEntry('pages', 'en/404');
     <span>{t('site.copy')}</span>
     <a href={base + 'privacy.html'} style="text-decoration:none">{t('site.privacy')}</a>
 </Fragment>
-<script slot="end" is:inline>
-(function(){var p=location.pathname;if(!p||p==='/'||p==='/owntwofeet/')return;var h=document.getElementById('hint');document.getElementById('path').textContent=p;h.hidden=false})();
+<template slot="end" id="es404" set:html={es.body}></template>
+<script slot="end" is:inline define:vars={{ ES }}>
+(function(){var d=document,p=location.pathname;
+if(p.indexOf(ES.home)===0){d.documentElement.lang='es-MX';d.title=ES.title;d.querySelector('main').innerHTML=d.getElementById('es404').innerHTML;
+var b=d.querySelector('header .back');d.querySelector('header .brand').href=b.href=ES.home;b.lastChild.textContent=ES.back;
+var f=d.querySelector('footer.site-foot .wrap');f.children[0].textContent=ES.copy;f.children[1].textContent=ES.privacy;f.children[1].href=ES.home+'privacy.html'}
+if(!p||p==='/'||p==='/owntwofeet/'||p===ES.home)return;var h=d.getElementById('hint');d.getElementById('path').textContent=p;h.hidden=false})();
 </script>
 </Sub>

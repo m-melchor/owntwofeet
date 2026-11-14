@@ -54,6 +54,7 @@ description: "What the Own Two Feet site collects, what it does with it, and how
     <section>
       <h2>What stays on your device</h2>
       <p>When you finish an activity (Tool Time, Saturday on $25, Scam or Safe, Make the Call or Laundry Sort-Out), your browser remembers that with a small note stored on your device, so the Done mark survives a reload. It never leaves your device and we cannot see it. Clearing your browser data removes it.</p>
+      <p>If you switch the site to English or Español, your browser remembers that choice the same way, so the site opens in your language next time.</p>
       <p>The activities and manuals never ask for your name, email or anything else.</p>
     </section>
 
@@ -76,7 +77,7 @@ description: "What the Own Two Feet site collects, what it does with it, and how
     <section>
       <h2>Changes</h2>
       <p>If any of this changes, we update this page and the date below. Big changes, like a new service that handles your information, get a line in our next email too.</p>
-      <p class="stamp">Last updated October 26, 2026</p>
+      <p class="stamp">Last updated November 13, 2026</p>
     </section>
   </div>
 

@@ -1,26 +1,36 @@
+---
+import { useT } from '../../i18n/t.js';
+import JsText from '../JsText.astro';
+const { t } = useT(Astro);
+const c0 = 'actCall.calls.0.';
+const V = { biz: t(c0 + 'biz'), who: t(c0 + 'who'), me: t(c0 + 'me'), thing: t(c0 + 'thing') };
+const f = (k) => t('actCall.' + k).replace(/\{(\w+)\}/g, (_, x) => V[x]);
+const week = [1, 2, 3].map((i) => [t(c0 + 'week.' + i + '.0'), t(c0 + 'week.' + i + '.1')]);
+---
+    <JsText name="actCall" />
     <article class="activity" id="call" aria-labelledby="call-h">
       <slot name="top" />
       <div class="act-head">
-        <div class="t"><h2 id="call-h">Make the Call <span class="tdone done-chip" data-done="call" hidden>Done</span></h2><p id="callIntro">Something in your week changed. Call the front desk, say what you need, and pick a time that fits your week.</p></div>
-        <div class="act-tools"><button class="reset" type="button" id="callReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+        <div class="t"><h2 id="call-h">{t('acts.names.call')} <span class="tdone done-chip" data-done="call" hidden>{t('acts.done')}</span></h2><p id="callIntro">{t('actCall.introStatic')}</p></div>
+        <div class="act-tools"><button class="reset" type="button" id="callReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>{t('acts.reset')}</button></div>
       </div>
       <div class="act-body scam callb">
         <div class="phone-wrap">
-          <div class="phone" id="callPhone" aria-label="Phone call with Fresh Cuts">
+          <div class="phone" id="callPhone" aria-label={f('phoneLabel')}>
             <div class="bar" aria-hidden="true"><span>9:41</span><b id="callTime">0:00</b></div>
-            <div class="from"><span class="av" id="callAv" aria-hidden="true">FC</span><div style="min-width:0"><b id="callBiz">Fresh Cuts</b><small id="callSt">Connected</small></div></div>
-            <div class="tx" id="callTx" role="log" aria-live="polite" aria-label="The call so far"><p class="ln desk">Thanks for calling Fresh Cuts, this is Dana.</p></div>
+            <div class="from"><span class="av" id="callAv" aria-hidden="true">{t(c0 + 'av')}</span><div style="min-width:0"><b id="callBiz">{V.biz}</b><small id="callSt">{t('actCall.connected')}</small></div></div>
+            <div class="tx" id="callTx" role="log" aria-live="polite" aria-label={t('actCall.txLabel')}><p class="ln desk">{f('greet')}</p></div>
           </div>
         </div>
         <div class="side-card">
-          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label" id="callStep">Step 1 of 6</span><div class="prog" id="callProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
-          <h3 id="callQ">Dana picks up. What do you say?</h3>
-          <div class="opts" id="callOpts"><button class="btn btn-line" type="button">Hi Dana, this is Sam.</button><button class="btn btn-line" type="button">Uh... hi.</button><button class="btn btn-line" type="button">Yeah, I need to change my haircut.</button></div>
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="label" id="callStep">{t('actCall.stepOf').replace('{i}', '1').replace('{n}', '6')}</span><div class="prog" id="callProg" aria-hidden="true"><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+          <h3 id="callQ">{f('st.0.q')}</h3>
+          <div class="opts" id="callOpts"><button class="btn btn-line" type="button">{f('st.0.c.0.t')}</button><button class="btn btn-line" type="button">{f('st.0.c.1.t')}</button><button class="btn btn-line" type="button">{f('st.0.c.2.t')}</button></div>
           <div class="fb" id="callFb" aria-live="polite"></div>
-          <div class="week" id="callWeek"><h4>Your week</h4><p>Practice now takes Thursday 4:00 to 6:00.</p><div><span>Thursday</span><b>Free after 6:00</b></div><div><span>Friday</span><b>Free after 3:30</b></div><div><span>Saturday</span><b>Free in the morning</b></div></div>
-          <div class="push"><button class="btn btn-ink" id="callNext" type="button" hidden>Next step</button><button class="btn btn-ink" id="callAgain" type="button" hidden>Play again</button></div>
+          <div class="week" id="callWeek"><h4>{t('actCall.weekH')}</h4><p>{t(c0 + 'week.0')}</p>{week.map(([d, w]) => <div><span>{d}</span><b>{w}</b></div>)}</div>
+          <div class="push"><button class="btn btn-ink" id="callNext" type="button" hidden>{t('actCall.next')}</button><button class="btn btn-ink" id="callAgain" type="button" hidden>{t('actCall.playAgain')}</button></div>
         </div>
       </div>
-      <div class="practiced" id="pracCall" role="region" aria-label="What you practiced" hidden></div>
+      <div class="practiced" id="pracCall" role="region" aria-label={t('acts.practiced')} hidden></div>
       <slot name="end" />
     </article>

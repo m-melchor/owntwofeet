@@ -4,17 +4,20 @@ import { useT } from '../../i18n/t.js';
 const { t, lang, home } = useT(Astro);
 import ActCard from '../ActCard.astro';
 import InterestForm from '../InterestForm.astro';
-// The eight topic tiles, each with small bare art (48x48). Their lessons live in public/js/home.js (MODS) and open below the tiles on a tap.
+import JsText from '../JsText.astro';
+// The eight topic tiles, each with small bare art (48x48). Their lessons live in src/i18n/*/home.json (mods.list) and open below the tiles on a tap. public/js/home.js reads the same text.
 import ART from '../../data/topic-art.js';
+const MODL = t('mods.list');
+const M = MODL[0];
 const TOPICS = [
-  { k: 'home', t: 'Home & tools', art: ART.home },
-  { k: 'tech', t: 'Tech & online safety', art: ART.tech },
-  { k: 'care', t: 'Personal care', art: ART.care },
-  { k: 'cook', t: 'Simple cooking', art: ART.cook },
-  { k: 'money', t: 'Money', art: ART.money },
-  { k: 'comm', t: 'Communication', art: ART.comm },
-  { k: 'help', t: 'Knowing when to ask', art: ART.help },
-  { k: 'car', t: 'Vehicle basics', later: true, art: ART.car }
+  { k: 'home', t: MODL[0].t, art: ART.home },
+  { k: 'tech', t: MODL[1].t, art: ART.tech },
+  { k: 'care', t: MODL[2].t, art: ART.care },
+  { k: 'cook', t: MODL[3].t, art: ART.cook },
+  { k: 'money', t: MODL[4].t, art: ART.money },
+  { k: 'comm', t: MODL[5].t, art: ART.comm },
+  { k: 'help', t: MODL[6].t, art: ART.help },
+  { k: 'car', t: MODL[7].t, later: true, art: ART.car }
 ];
 ---
 <!-- ================= HOME ================= -->
@@ -24,20 +27,20 @@ const TOPICS = [
     <div class="wrap">
       <div class="hero-card">
         <div class="hero-copy">
-          <h1 class="h-xl" tabindex="-1" data-focus>Skills for life, taught <em>side by side.</em></h1>
-          <p class="lede" style="color:#46504A">Hands-on workshops for schools and community groups. Boys and young men learn everyday skills by actually doing them, with a mentor right there to help.</p>
+          <h1 class="h-xl" tabindex="-1" data-focus set:html={t('home.h1')}></h1>
+          <p class="lede" style="color:#46504A">{t('home.lede')}</p>
           <div class="acts">
-            <a class="btn btn-ink" href={home + '#interest'}>Join the Interest List</a>
-            <a class="btn btn-line" href={home + 'activities/'}>Explore Activities</a>
+            <a class="btn btn-ink" href={home + '#interest'}>{t('home.join')}</a>
+            <a class="btn btn-line" href={home + 'activities/'}>{t('home.explore')}</a>
           </div>
-          <p class="hero-price"><span>Planned for grades 3 to 8, up to 30 students.</span> <span><b>$200</b> for 50 minutes or <b>$300</b> for 90 minutes, per session. Monthly online plans from <b>$9.99</b>. Not booking yet.</span></p>
+          <p class="hero-price"><span>{t('home.price1')}</span> <span set:html={t('home.price2')}></span></p>
         </div>
-        <div class="stage-hero" id="heroStage" role="img" aria-label="Rendered hand tools resting on a workbench: hammer, screwdrivers, wrench, tape measure and level">
+        <div class="stage-hero" id="heroStage" role="img" aria-label={t('home.stage')}>
           <div class="fallback" id="heroFallback" aria-hidden="true">
             <svg viewBox="0 0 600 420"><g transform="translate(40 40)"><use href="#t-hammer" width="120" height="320"/></g><g transform="translate(160 70) rotate(-8 40 120)"><use href="#t-phillips" width="90" height="260"/></g><g transform="translate(250 50)"><use href="#t-tape" width="120" height="300"/></g><g transform="translate(370 60) rotate(6 40 120)"><use href="#t-wrench" width="90" height="280"/></g><g transform="translate(470 30)"><use href="#t-level" width="100" height="340"/></g></svg>
           </div>
-          <div class="float f1" aria-hidden="true"><b>Grades 3–8</b><span>Elementary &amp; middle school</span></div>
-          <div class="float f2" aria-hidden="true"><b>Learn by doing</b><span>Every session is hands-on</span></div>
+          <div class="float f1" aria-hidden="true"><b>{t('home.f1b')}</b><span>{t('home.f1s')}</span></div>
+          <div class="float f2" aria-hidden="true"><b>{t('home.f2b')}</b><span>{t('home.f2s')}</span></div>
         </div>
       </div>
     </div>
@@ -45,21 +48,21 @@ const TOPICS = [
 
   <section class="doors-sec" aria-labelledby="path-h">
     <div class="wrap">
-      <h2 class="sr-only" id="path-h">Where to start</h2>
+      <h2 class="sr-only" id="path-h">{t('home.startH')}</h2>
       <div class="doors stg">
-        <a class="door" href={home + 'workshops/'}><span class="door-art" style="background:var(--mist)"><svg viewBox="0 0 200 120" aria-hidden="true"><g transform="translate(46 8) rotate(-10 20 52)"><use href="#t-hammer" width="36" height="104"/></g><g transform="translate(84 10)"><use href="#t-phillips" width="32" height="100"/></g><g transform="translate(120 8) rotate(10 18 52)"><use href="#t-wrench" width="34" height="104"/></g></svg></span><span class="meta"><h3>In-person workshops</h3><p>Planned prices and how a class period runs.</p></span></a>
-        <a class="door" href={home + 'monthly-plan/'}><span class="door-art" style="background:var(--butter)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="62" y="14" width="76" height="92" rx="8" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5"/><path d="M62 34h76" stroke="#16211C" stroke-width="2.5"/><path d="M80 8v14M120 8v14" stroke="#16211C" stroke-width="3" stroke-linecap="round"/><g fill="#16211C" opacity=".18"><rect x="72" y="44" width="12" height="12" rx="2"/><rect x="94" y="44" width="12" height="12" rx="2"/><rect x="116" y="44" width="12" height="12" rx="2"/><rect x="72" y="66" width="12" height="12" rx="2"/><rect x="116" y="66" width="12" height="12" rx="2"/><rect x="72" y="88" width="12" height="10" rx="2"/><rect x="94" y="88" width="12" height="10" rx="2"/></g><rect x="92" y="64" width="16" height="16" rx="3" fill="#2F6450"/><path d="M96 72l3 3 5-6" fill="none" stroke="#FCFBF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="meta"><h3>Monthly plan</h3><p>Run our activities yourself, from $9.99 a month.</p></span></a>
-        <a class="door" href={home + 'activities/'}><span class="door-art" style="background:var(--peach)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="70" y="6" width="60" height="108" rx="12" fill="#16211C"/><rect x="75" y="16" width="50" height="88" rx="6" fill="#FCFBF8"/><rect x="80" y="26" width="32" height="14" rx="7" fill="#DDE7F0"/><rect x="88" y="46" width="32" height="14" rx="7" fill="#2F6450"/><rect x="80" y="66" width="26" height="14" rx="7" fill="#DDE7F0"/><path d="M84 92h32" stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".25"/></svg></span><span class="meta"><h3>Try an activity</h3><p>Five short ones, free to play now.</p></span></a>
-        <a class="door" href={home + 'manuals/'}><span class="door-art" style="background:var(--sage)"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M100 26c-14-10-34-12-52-8v80c18-4 38-2 52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26c14-10 34-12 52-8v80c-18-4-38-2-52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26v80" stroke="#16211C" stroke-width="2.5"/><g stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".3"><path d="M60 40h28M60 52h28M60 64h22M112 40h28M112 52h28M112 64h22"/></g><path d="M112 76h20" stroke="#2F6450" stroke-width="3" stroke-linecap="round"/></svg></span><span class="meta"><h3>Free manuals</h3><p>Seven topics, ready to read and print.</p></span></a>
+        <a class="door" href={home + 'workshops/'}><span class="door-art" style="background:var(--mist)"><svg viewBox="0 0 200 120" aria-hidden="true"><g transform="translate(46 8) rotate(-10 20 52)"><use href="#t-hammer" width="36" height="104"/></g><g transform="translate(84 10)"><use href="#t-phillips" width="32" height="100"/></g><g transform="translate(120 8) rotate(10 18 52)"><use href="#t-wrench" width="34" height="104"/></g></svg></span><span class="meta"><h3>{t('home.d1h')}</h3><p>{t('home.d1p')}</p></span></a>
+        <a class="door" href={home + 'monthly-plan/'}><span class="door-art" style="background:var(--butter)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="62" y="14" width="76" height="92" rx="8" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5"/><path d="M62 34h76" stroke="#16211C" stroke-width="2.5"/><path d="M80 8v14M120 8v14" stroke="#16211C" stroke-width="3" stroke-linecap="round"/><g fill="#16211C" opacity=".18"><rect x="72" y="44" width="12" height="12" rx="2"/><rect x="94" y="44" width="12" height="12" rx="2"/><rect x="116" y="44" width="12" height="12" rx="2"/><rect x="72" y="66" width="12" height="12" rx="2"/><rect x="116" y="66" width="12" height="12" rx="2"/><rect x="72" y="88" width="12" height="10" rx="2"/><rect x="94" y="88" width="12" height="10" rx="2"/></g><rect x="92" y="64" width="16" height="16" rx="3" fill="#2F6450"/><path d="M96 72l3 3 5-6" fill="none" stroke="#FCFBF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="meta"><h3>{t('home.d2h')}</h3><p>{t('home.d2p')}</p></span></a>
+        <a class="door" href={home + 'activities/'}><span class="door-art" style="background:var(--peach)"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="70" y="6" width="60" height="108" rx="12" fill="#16211C"/><rect x="75" y="16" width="50" height="88" rx="6" fill="#FCFBF8"/><rect x="80" y="26" width="32" height="14" rx="7" fill="#DDE7F0"/><rect x="88" y="46" width="32" height="14" rx="7" fill="#2F6450"/><rect x="80" y="66" width="26" height="14" rx="7" fill="#DDE7F0"/><path d="M84 92h32" stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".25"/></svg></span><span class="meta"><h3>{t('home.d3h')}</h3><p>{t('home.d3p')}</p></span></a>
+        <a class="door" href={home + 'manuals/'}><span class="door-art" style="background:var(--sage)"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M100 26c-14-10-34-12-52-8v80c18-4 38-2 52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26c14-10 34-12 52-8v80c-18-4-38-2-52 8z" fill="#FCFBF8" stroke="#16211C" stroke-width="2.5" stroke-linejoin="round"/><path d="M100 26v80" stroke="#16211C" stroke-width="2.5"/><g stroke="#16211C" stroke-width="2" stroke-linecap="round" opacity=".3"><path d="M60 40h28M60 52h28M60 64h22M112 40h28M112 52h28M112 64h22"/></g><path d="M112 76h20" stroke="#2F6450" stroke-width="3" stroke-linecap="round"/></svg></span><span class="meta"><h3>{t('home.d4h')}</h3><p>{t('home.d4p')}</p></span></a>
       </div>
     </div>
   </section>
 
   <section class="sec tight" aria-labelledby="prob-h">
     <div class="wrap problem reveal">
-      <h2 class="big" id="prob-h">Young men are expected to fix things, stay safe online and handle money. <em>Many were never shown how.</em></h2>
-      <p class="why">A video shows the steps, but it can’t tell you what you did wrong or when to stop. Parents working long hours can’t be there for every little lesson, and that’s not their fault. And boys are often told to tough it out, so they figure things out alone.</p>
-      <a class="btn btn-line btn-sm" href={home + 'story/'}>Read why we started <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <h2 class="big" id="prob-h" set:html={t('home.probH')}></h2>
+      <p class="why">{t('home.why')}</p>
+      <a class="btn btn-line btn-sm" href={home + 'story/'}>{t('home.readWhy')} <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 
@@ -67,18 +70,18 @@ const TOPICS = [
     <div class="wrap">
       <div class="panel sage reveal">
         <div class="sec-head">
-          <h2 class="h-lg" id="cur-h">Eight topics for everyday life</h2>
-          <p class="lede" style="color:#46504A">Schools pick the topics that fit their students. Every lesson includes a demo, hands-on practice, and when to ask for help.</p>
+          <h2 class="h-lg" id="cur-h">{t('home.curH')}</h2>
+          <p class="lede" style="color:#46504A">{t('home.curLede')}</p>
         </div>
         <div class="cx">
         <div class="cx-tiles" id="cxTiles">
-          {TOPICS.map((t, i) => (
-            <button class="cx-tile" type="button" id={'cxt-' + t.k} aria-expanded="false" aria-controls="cxPanel" data-i={i}><span class="art"><svg viewBox="0 0 48 48" aria-hidden="true" set:html={t.art} /></span><span class="nm">{t.t}</span>{t.later && <span class="st">Later</span>}<span class="pl" aria-hidden="true"></span></button>
+          {TOPICS.map((tp, i) => (
+            <button class="cx-tile" type="button" id={'cxt-' + tp.k} aria-expanded="false" aria-controls="cxPanel" data-i={i}><span class="art"><svg viewBox="0 0 48 48" aria-hidden="true" set:html={tp.art} /></span><span class="nm">{tp.t}</span>{tp.later && <span class="st">{t('mods.ui.laterTile')}</span>}<span class="pl" aria-hidden="true"></span></button>
           ))}
         </div>
-        <div class="cx-panel" role="region" id="cxPanel" aria-labelledby="cxt-home" hidden><div class="cx-head"><div><h3>Home &amp; tools</h3><p>Using basic hand tools safely and handling the small fixes every home needs.</p></div><a class="btn btn-line btn-sm" href={home + 'manuals/home-tools.html'}>Read the free manual</a></div>
-  <div class="cx-body"><div class="cx-lessons"><span class="label">Lessons</span><div class="lesson"><span class="n">1</span><b>Meet your toolbox</b><span class="ds">What each common hand tool is for, and how to hold it.</span></div><div class="lesson"><span class="n">2</span><b>Small fixes</b><span class="ds">Tighten a loose handle, hang something level, change a light bulb.</span></div><div class="lesson"><span class="n">3</span><b>When water goes wrong</b><span class="ds">Find the shutoff valve and what to do first during a leak.</span></div></div>
-  <div class="cx-side"><div class="callout"><span class="label">Hands-on practice</span><p>A practice board with screws, nails, a level and a shutoff valve.</p></div><div class="callout stop"><span class="label">Know when to stop</span><p>Breakers, wiring, gas or anything sparking: step back and get an adult or a professional.</p></div></div></div></div>
+        <div class="cx-panel" role="region" id="cxPanel" aria-labelledby="cxt-home" hidden><div class="cx-head"><div><h3>{M.t}</h3><p>{M.d}</p></div><a class="btn btn-line btn-sm" href={home + 'manuals/home-tools.html'}>{t('mods.ui.man')}</a></div>
+  <div class="cx-body"><div class="cx-lessons"><span class="label">{t('mods.ui.lessons')}</span>{M.L.map((l, j) => <div class="lesson"><span class="n">{j + 1}</span><b>{l[0]}</b><span class="ds">{l[1]}</span></div>)}</div>
+  <div class="cx-side"><div class="callout"><span class="label">{t('mods.ui.hands')}</span><p>{M.st}</p></div><div class="callout stop"><span class="label">{t('mods.ui.stop')}</span><p>{M.stop}</p></div></div></div></div>
         </div>
       </div>
     </div>
@@ -87,8 +90,8 @@ const TOPICS = [
   <section class="sec tight try" aria-labelledby="try-h">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-lg" id="try-h">Try an activity</h2>
-        <p class="lede">Five short activities that give you a feel for what students do in a workshop.</p>
+        <h2 class="h-lg" id="try-h">{t('home.tryH')}</h2>
+        <p class="lede">{t('home.tryLede')}</p>
       </div>
       <div class="stg trow" id="actRow">
         <ActCard id="tools" />
@@ -102,12 +105,12 @@ const TOPICS = [
 
   <section class="sec tight" aria-labelledby="faq-h" id="faq">
     <div class="wrap faqwrap">
-      <div><h2 class="h-lg" id="faq-h">Good to know</h2></div>
+      <div><h2 class="h-lg" id="faq-h">{t('home.faqH')}</h2></div>
       <div class="stg faq">
-        <details><summary>Are workshops running yet?</summary><div class="ans">Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.</div></details>
-        <details><summary>Who are the workshops for?</summary><div class="ans">Boys and young men in elementary and middle school. Activities are matched to their age. Topics for older students, like car basics, come later.</div></details>
-        <details><summary>What will it cost?</summary><div class="ans">We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a <a href={home + 'monthly-plan/'}>monthly online plan</a>: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.</div></details>
-        <details><summary>Will there be manuals?</summary><div class="ans">Yes. We’re writing a free manual for each topic that teachers, parents and students can use at home or in class. Seven are ready to read and print. Vehicle basics is on the way. <a href={home + 'manuals/'}>See the manuals</a>. The five activities on this site are free to try now.</div></details>
+        <details><summary>{t('home.q1')}</summary><div class="ans">{t('home.a1')}</div></details>
+        <details><summary>{t('home.q2')}</summary><div class="ans">{t('home.a2')}</div></details>
+        <details><summary>{t('home.q3')}</summary><div class="ans">{t('home.a3a')}<a href={home + 'monthly-plan/'}>{t('home.a3link')}</a>{t('home.a3b')}</div></details>
+        <details><summary>{t('home.q4')}</summary><div class="ans">{t('home.a4a')}<a href={home + 'manuals/'}>{t('home.a4link')}</a>{t('home.a4b')}</div></details>
       </div>
     </div>
   </section>
@@ -116,15 +119,16 @@ const TOPICS = [
     <div class="wrap">
       <div class="panel sage cta reveal">
         <div class="side">
-          <h2 class="h-lg" id="interest-h">Bring Own Two Feet to your students</h2>
-          <p>For adults: teachers, counselors, community leaders, parents and guardians.</p>
+          <h2 class="h-lg" id="interest-h">{t('home.ctaH')}</h2>
+          <p>{t('home.ctaP')}</p>
           <div class="note">
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>We’ll only email about our launch</div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Your feedback shapes what we teach</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>{t('home.n1')}</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>{t('home.n2')}</div>
           </div>
         </div>
         <div id="formSlotHome"><InterestForm /></div>
       </div>
     </div>
   </section>
+<JsText name="mods" />
 </div>

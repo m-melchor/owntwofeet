@@ -1,0 +1,42 @@
+{
+  "acts": {
+    "names": { "tools": "Tool Time", "budget": "Saturday on $25", "scams": "Scam or Safe?", "call": "Make the Call", "laundry": "Laundry Sort-Out" },
+    "cards": {
+      "tools": "Check out six hand tools in 3D, match them to jobs, then decide when to call for help.",
+      "budget": "Cover needs, keep a promise, stay on budget.",
+      "scams": "Read six messages and spot what gives a scam away.",
+      "call": "Call a front desk and move an appointment.",
+      "laundry": "Sort a pile into darks, lights and towels, then read care labels."
+    },
+    "art": { "left": "Left to spend", "av": "FC", "biz": "Fresh Cuts" },
+    "done": "Done",
+    "reset": "Reset",
+    "back": "Back to activities",
+    "nextAct": "Next activity",
+    "lastOne": "That was the last one",
+    "seeAll": "See all activities",
+    "practiced": "What you practiced",
+    "join": "Join the Interest List",
+    "next": "Next:",
+    "finished": "{n} finished. See what you practiced below.",
+    "win": {
+      "scam": ["Scam spotted.", "Nice catch.", "Nothing gets past you.", "You saw right through it."],
+      "safe": ["Yep, that one’s real.", "Good eye. That one’s fine.", "Right. Nothing fishy here."],
+      "miss": ["Look again.", "Not this time.", "Tricky one."],
+      "tool": ["That’s the one.", "Nailed it.", "Right tool, right job."],
+      "pro": ["Right call.", "Smart move.", "That’s exactly it."],
+      "use": ["Dead on.", "You read it right.", "Nice measuring."],
+      "call": ["Nice and clear.", "That’s how it’s done.", "Clear as day."],
+      "sort": ["Right basket.", "Nice sort.", "Into the right pile."],
+      "label": ["Nice reading.", "You cracked the label.", "Right on both."],
+      "budget": ["Your Saturday works.", "Your plan holds up.", "You made it work."]
+    },
+    "prac": {
+      "tools": ["Reading a tape measure to the nearest 1/8 inch", "Matching the right tool to the job", "Knowing when to stop and get an adult"],
+      "budget": ["Paying for needs and promises before wants", "Changing your plan when something unexpected happens", "Saving a little for next week"],
+      "scams": ["Spotting a rushed deadline", "Checking a link before you tap", "Telling a trusted adult"],
+      "call": ["Saying who you are and why you’re calling", "Picking a time that fits your week", "Repeating details back to confirm"],
+      "laundry": ["Sorting darks, lights and towels", "Reading a care label before you wash", "Picking the right water temperature"]
+    }
+  }
+}

@@ -3,13 +3,16 @@ import { base } from '../../base.js';
 import { useT } from '../../i18n/t.js';
 const { t, lang, home } = useT(Astro);
 import ActCard from '../ActCard.astro';
+import JsText from '../JsText.astro';
+const PV = t('actpv.items');
+const PVI = [0, 2, 3, 4];
 ---
 <!-- ================= ACTIVITIES ================= -->
 <div class="view" data-view="activities" id="activities">
   <section class="phead ctr"><div class="wrap"><div class="panel butter with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 22) rotate(-14 45 135)"><use href="#t-hammer" width="90" height="270"/></g><g transform="translate(124 6)"><use href="#t-level" width="80" height="285"/></g><g transform="translate(206 22) rotate(12 40 130)"><use href="#t-wrench" width="80" height="260"/></g></svg>
-    <h1 class="h-xl" tabindex="-1" data-focus>Practice a little right now</h1>
-    <p class="lede" style="color:#46504A">Five short activities you can try now.</p>
+    <h1 class="h-xl" tabindex="-1" data-focus>{t('actpage.h1')}</h1>
+    <p class="lede" style="color:#46504A">{t('actpage.lede')}</p>
   </div></div></section>
 
   <section id="actPicker"><div class="wrap">
@@ -21,10 +24,11 @@ import ActCard from '../ActCard.astro';
       <ActCard id="laundry" done />
     </div>
     <details class="more" id="previews" open>
-      <summary id="prev-h">4 more activities on the way</summary>
-      <div class="more-in"><p>These are planned for workshops. You can’t play them yet.</p>
-      <div class="stg previews" id="previewGrid"><article class="pv" style="--i: 0;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Password Builder</h3><p>Turn a silly sentence into a strong passphrase you can remember.</p><details><summary>What students practice</summary><ul><li>Why short passwords get guessed</li><li>Building a four-word passphrase</li><li>Never sharing, even with friends</li></ul></details></article><article class="pv" style="--i: 2;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Snack Lab</h3><p>Follow a recipe card to build a no-stove snack, then clean the station.</p><details><summary>What students practice</summary><ul><li>Clean hands, clean surface</li><li>Measuring from a recipe</li><li>Cleanup as part of cooking</li></ul></details></article><article class="pv" style="--i: 3;"><div class="top"><span class="chip soon">Coming soon</span></div><h3>Shutoff Finder</h3><p>Find the water shutoffs in a home and practice what to do first in a leak.</p><details><summary>What students practice</summary><ul><li>Where shutoff valves live</li><li>Which way to turn</li><li>Who to tell, right away</li></ul></details></article><article class="pv" style="--i: 4;"><div class="top"><span class="chip soon">Preview</span></div><h3>Dashboard Basics</h3><p>Coming later: what warning lights mean and when to pull over.</p><details><summary>What students practice</summary><ul><li>Warning light colors</li><li>Tire checks with an adult</li><li>Who to call in a breakdown</li></ul></details></article></div></div>
+      <summary id="prev-h">{t('actpv.more').replace('{n}', PV.length)}</summary>
+      <div class="more-in"><p>{t('actpage.planned')}</p>
+      <div class="stg previews" id="previewGrid">{PV.map((p, k) => <article class="pv" style={`--i: ${PVI[k]};`}><div class="top"><span class="chip soon">{p.s}</span></div><h3>{p.t}</h3><p>{p.d}</p><details><summary>{t('actpv.practice')}</summary><ul>{p.b.map((x) => <li>{x}</li>)}</ul></details></article>)}</div></div>
     </details>
   </div></section>
-  <section class="act-cta"><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={home + '#interest'}>Join the Interest List</a><a class="btn btn-line" href={home + 'workshops/'}>See the Workshops</a></div></div></div></section>
+  <section class="act-cta"><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">{t('actpage.ctaH')}</h2><p class="muted">{t('actpage.ctaP')}</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={home + '#interest'}>{t('actpage.join')}</a><a class="btn btn-line" href={home + 'workshops/'}>{t('actpage.workshops')}</a></div></div></div></section>
+<JsText name="actpv" />
 </div>

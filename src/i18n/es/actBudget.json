@@ -1,0 +1,73 @@
+{
+  "actBudget": {
+    "intro": "Planea un sábado en el centro comunitario. Cubre lo que necesitas, cumple la promesa que hiciste y no te pases del presupuesto.",
+    "needsLg": "Cómo llegar (necesario)",
+    "lunchLg": "Comida (elige una)",
+    "promiseLg": "Una promesa que hiciste",
+    "wantsLg": "Gustos (opcional)",
+    "saveLg": "Ahorra para la próxima semana (opcional)",
+    "curveLg": "Un amigo te pide",
+    "bus": { "n": "Pasaje de ida y vuelta en camión", "s": "Al centro comunitario y de regreso" },
+    "taco": { "n": "Comida en el camión de tacos", "s": "Dos tacos y un refresco" },
+    "packed": { "n": "Lunch de casa", "s": "Sándwich, fruta y agua" },
+    "prm": [
+      { "n": "Tarjeta y un regalito", "s": "El cumpleaños de tu hermana es el domingo", "f": "Prometiste un regalo de cumpleaños. Planéalo antes que los gustos." },
+      { "n": "Pagarle a Diego", "s": "Le pediste prestados $6 para comer la semana pasada", "f": "Prometiste pagarle a Diego. Planéalo antes que los gustos." },
+      { "n": "Cooperar para el regalo del entrenador", "s": "Todo el equipo dijo que lo haría", "f": "Prometiste cooperar para el regalo del entrenador. Planéalo antes que los gustos." }
+    ],
+    "wnt": [
+      { "n": "Boleto de cine", "s": "Función de la tarde con amigos" },
+      { "n": "Botana del cine", "s": "Palomitas y un refresco" },
+      { "n": "Fichas del arcade", "s": "Unos 20 minutos de juegos" },
+      { "n": "Funda para el celular", "s": "La tuya todavía sirve bien" },
+      { "n": "Cómic nuevo", "s": "El siguiente de la serie" },
+      { "n": "Raspado gigante", "s": "De la tiendita de la esquina" },
+      { "n": "Calcomanías de patineta", "s": "Un paquete de cinco" }
+    ],
+    "save": [
+      { "n": "No ahorrar nada", "s": "Gasta o guarda lo que sobre" },
+      { "n": "Ahorrar un poco", "s": "Sepáralo primero" },
+      { "n": "Ahorrar más", "s": "Para empezar mejor" }
+    ],
+    "yourBudget": "Tu presupuesto",
+    "spent": "Gastado",
+    "saving": "Ahorrando para la próxima semana",
+    "left": "Sobra",
+    "curveball": "Imprevisto",
+    "check": "Revisar mi plan",
+    "cb": {
+      "bus": "El pasaje subió $1. Ahora ida y vuelta cuesta $5.",
+      "movie": "La película cuesta $2 más de lo que pensabas. Ahora el boleto cuesta $11.",
+      "arcade": "Buenas noticias. Las fichas del arcade están en oferta. Ahora cuestan $3.",
+      "loan": "Un amigo te pide prestados $5 y promete devolvértelos la próxima semana. Tú decides si prestas. El dinero que prestas es dinero que no puedes gastar."
+    },
+    "loanN": "Prestarle $5 a tu amigo",
+    "loanS": "Dice que te los devuelve la próxima semana",
+    "liveSpent": "Gastado {n}.",
+    "liveSaving": " Ahorrando {n}.",
+    "liveOver": "Te pasaste por {n}",
+    "liveLeft": "Te sobran {n}",
+    "rideT": "Transporte cubierto",
+    "rideF": "Agrega el pasaje. Sin él, no puedes llegar.",
+    "lunchT": "Comida planeada",
+    "lunchF": "Elige una comida. Llevar lunch de casa ahorra $5.",
+    "promiseT": "Promesa cumplida",
+    "withinT": "Dentro de {n}",
+    "overF": "Te pasaste por {n}. Quita un gusto{a}{b}.",
+    "overA": " o lleva lunch de casa",
+    "overB": " o ahorra un poco menos",
+    "bonusSaved": "Apartaste {n} para la próxima semana. ¡Eso es ganar!",
+    "bonusKept": "Te sobraron {n} sin gastar. Eso también cuenta.",
+    "bonusNext": "La próxima vez, trata de apartar $3 para la próxima semana.",
+    "curveH": "Tu plan funciona. Ahora viene un imprevisto.",
+    "curveP": "Lee el cuadro de Imprevisto, cambia tu plan si hace falta y vuelve a revisar.",
+    "lent": "Prestaste $5. Es tu decisión. Recuerda que ese dinero no es tuyo para gastar hasta que te lo devuelvan.",
+    "kept": "Te quedaste con tus $5. Decir que no también es una buena decisión.",
+    "summary": "Gastaste {sp}{saved}, te sobran {left}. Primero fueron lo necesario y las promesas.",
+    "savedPart": ", ahorraste {n}",
+    "carry": "pasan a la próxima semana",
+    "nothing": "Esta vez no pasa nada a la próxima semana. Apartar unos dólares la próxima vez cambiaría eso.",
+    "almost": "Casi. Arregla esto:",
+    "reset": "Presupuesto reiniciado."
+  }
+}

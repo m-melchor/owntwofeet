@@ -2,7 +2,11 @@
 const SITE=document.documentElement.dataset.base||'/';
 /* page language: English at the site root, Spanish under es/ (SITE already points at the right one for page links) */
 const LANG=document.documentElement.lang.slice(0,2)==='es'?'es':'en';
+/* words for scripts, in the page's language: TXT('help') reads the JSON that <JsText name="help"> put in the page */
+const TXT=n=>JSON.parse(document.getElementById('txt-'+n).textContent);
 document.documentElement.classList.add('js');
+/* fill {name} slots in a sentence from TXT */
+const fmt=(s,o)=>String(s).replace(/\{(\w+)\}/g,(_,k)=>o[k]);
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -15,29 +19,24 @@ const I={
 };
 function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2600)}
 /* win moments: a headline that changes each time, a pop, and a small burst of bits on a right answer; a shake on a miss */
-const WIN={scam:['Scam spotted.','Nice catch.','Nothing gets past you.','You saw right through it.'],safe:['Yep, that one’s real.','Good eye. That one’s fine.','Right. Nothing fishy here.'],miss:['Look again.','Not this time.','Tricky one.'],tool:['That’s the one.','Nailed it.','Right tool, right job.'],pro:['Right call.','Smart move.','That’s exactly it.'],use:['Dead on.','You read it right.','Nice measuring.'],call:['Nice and clear.','That’s how it’s done.','Clear as day.'],sort:['Right basket.','Nice sort.','Into the right pile.'],label:['Nice reading.','You cracked the label.','Right on both.'],budget:['Your Saturday works.','Your plan holds up.','You made it work.']};
-const say=k=>WIN[k][Math.floor(Math.random()*WIN[k].length)];
+/* the phrases live in the "acts" words group (win.scam, win.safe, ...) */
+const say=k=>{const w=TXT('acts').win[k];return w[Math.floor(Math.random()*w.length)]};
 const BITS=['var(--accent)','var(--ink)','#9FC2A0','#E9A98B','#8FB0CC'];
 function react(fb,big){if(!fb)return;fb.classList.remove('pop');void fb.offsetWidth;fb.classList.add('pop');if(RM||!fb.classList.contains('ok'))return;
   const b=document.createElement('span');b.className='burst';b.setAttribute('aria-hidden','true');const n=big?18:12;let h='';
   for(let i=0;i<n;i++){const a=(-90+(Math.random()*150-75))*Math.PI/180,d=70+Math.random()*(big?110:70);h+=`<i style="--c:${BITS[i%BITS.length]};--x:${(Math.cos(a)*d).toFixed(0)}px;--y:${(Math.sin(a)*d).toFixed(0)}px;--r:${(Math.random()*360-180).toFixed(0)}deg;animation-delay:${(Math.random()*.12).toFixed(2)}s"></i>`}
   b.innerHTML=h;fb.appendChild(b);setTimeout(()=>b.remove(),1300)}
 /* finished activities: only these ids are stored on this device (key otf-done); storage may be blocked */
-const DONE_KEY='otf-done',ACT={tools:['Tool Time','pracTools'],budget:['Saturday on $25','pracBudget'],scams:['Scam or Safe?','pracScams'],call:['Make the Call','pracCall'],laundry:['Laundry Sort-Out','pracLaundry']},ORDER=['tools','budget','scams','call','laundry'];
+const DONE_KEY='otf-done',ACT={tools:'pracTools',budget:'pracBudget',scams:'pracScams',call:'pracCall',laundry:'pracLaundry'},ORDER=['tools','budget','scams','call','laundry'];
 const doneMem=new Set();
 function doneRead(){try{const a=JSON.parse(localStorage.getItem(DONE_KEY));return Array.isArray(a)?a.filter(x=>x in ACT):[]}catch(e){return []}}
 function paintDone(){$$('[data-done]').forEach(c=>c.hidden=!doneMem.has(c.dataset.done))}
 doneRead().forEach(x=>doneMem.add(x));paintDone();
 function doneSet(id){doneMem.add(id);const a=doneRead();if(!a.includes(id)){a.push(id);try{localStorage.setItem(DONE_KEY,JSON.stringify(a))}catch(e){}}paintDone()}
-const PRAC={tools:['Reading a tape measure to the nearest 1/8 inch','Matching the right tool to the job','Knowing when to stop and get an adult'],
- budget:['Paying for needs and promises before wants','Changing your plan when something unexpected happens','Saving a little for next week'],
- scams:['Spotting a rushed deadline','Checking a link before you tap','Telling a trusted adult'],
- call:['Saying who you are and why you’re calling','Picking a time that fits your week','Repeating details back to confirm'],
- laundry:['Sorting darks, lights and towels','Reading a care label before you wash','Picking the right water temperature']};
-function pracHide(id){$('#'+ACT[id][1]).hidden=true}
-function finish(id){doneSet(id);const el=$('#'+ACT[id][1]),i=ORDER.indexOf(id),nx=ORDER.slice(1).map((_,k)=>ORDER[(i+k+1)%ORDER.length]).find(x=>!doneMem.has(x));
-  el.innerHTML=`<div class="pc"><h3>What you practiced</h3><ul class="results">${PRAC[id].map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul></div><div class="pbtns"><button class="btn btn-ink" type="button" data-pnext="${nx||'activities'}">${nx?'Next: '+ACT[nx][0]:'See all activities'}</button><a class="btn btn-line" href="${SITE}#interest">Join the Interest List</a></div>`;countEvent('activity-done/'+id);
-  el.hidden=false;toast(`${ACT[id][0]} finished. See what you practiced below.`)}
+function pracHide(id){$('#'+ACT[id]).hidden=true}
+function finish(id){const A=TXT('acts');doneSet(id);const el=$('#'+ACT[id]),i=ORDER.indexOf(id),nx=ORDER.slice(1).map((_,k)=>ORDER[(i+k+1)%ORDER.length]).find(x=>!doneMem.has(x));
+  el.innerHTML=`<div class="pc"><h3>${A.practiced}</h3><ul class="results">${A.prac[id].map(s=>`<li class="pass">${I.check}<span>${s}</span></li>`).join('')}</ul></div><div class="pbtns"><button class="btn btn-ink" type="button" data-pnext="${nx||'activities'}">${nx?A.next+' '+A.names[nx]:A.seeAll}</button><a class="btn btn-line" href="${SITE}#interest">${A.join}</a></div>`;countEvent('activity-done/'+id);
+  el.hidden=false;toast(fmt(A.finished,{n:A.names[id]}))}
 /* finished-activity buttons go to the next activity page (or back to the picker) */
 $$('.practiced').forEach(p=>p.addEventListener('click',e=>{const b=e.target.closest('[data-pnext]');if(b)location.href=SITE+'activities/'+(b.dataset.pnext==='activities'?'':b.dataset.pnext+'/')}));
 /* which page this is: the view wrapper names it, an activity page also holds one activity */

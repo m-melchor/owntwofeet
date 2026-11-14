@@ -12,36 +12,26 @@ if(location.hash)requestAnimationFrame(()=>goHash(location.hash.slice(1),false))
 /* ---------- help chat (preset answers, nothing sent anywhere) ---------- */
 (function(){
   const trig=$$('[data-hc]'),box=$('#hc'),log=$('#hcLog'),opts=$('#hcOpts');
-  const A={
-   what:{q:'What is Own Two Feet?',a:'Own Two Feet is a student venture planning live, in-person workshops where boys and young men practice everyday skills: basic tools, online safety, money, simple cooking, communication and knowing when to ask for help.',go:[SITE+'workshops/','How workshops work'],next:['who','video','cost']},
-   status:{q:'Are workshops running yet?',a:'Not yet. Own Two Feet is a student venture that’s still in development, so no workshops are running or booking. Join the interest list and we’ll email you when we launch.',go:[SITE+'#interest','Join the interest list'],next:['host','what']},
-   who:{q:'Who is it for?',a:'Boys and young men in grades 3 to 8. Activities are matched to their age, and topics for older students come later.',go:[SITE+'workshops/','See age groups'],next:['safe','modules']},
-   modules:{q:'What do students learn?',a:'Eight topics: home and tools, tech and online safety, personal care, simple cooking, money, communication, knowing when to ask for help, and car basics later on. Schools pick the ones they want.',go:[SITE+'#cur-h','See the topics'],next:['session','try']},
-   session:{q:'What happens in a session?',a:'50 or 90 minutes: start with a real-life situation, watch a mentor do it, practice it yourself, then wrap up with when to ask for help and a card to take home.',go:[SITE+'workshops/#ses-h','See a session'],next:['safe','host']},
-   host:{q:'Can my school get a workshop?',a:'Not yet, since we’re not booking. Join the interest list and pick “An in-person workshop.” Once we launch, you’d provide a room, up to 30 students and an adult who knows them. We’d bring everything else.',go:[SITE+'#interest','Join the interest list'],next:['cost','safe']},
-   cost:{q:'How much will it cost?',a:'We plan to charge $200 for a 50-minute workshop and $300 for a 90-minute one, per session, for up to 30 students. We bring the supplies. Or run our activities yourself with a monthly online plan: $9.99 a month for a teacher or volunteer who shows proof, or $19.99 a month for a team of three. These are planned prices, and nothing is booking yet.',go:[SITE+'workshops/','See planned prices'],next:['host','status']},
-   video:{q:'Couldn’t students just watch a video?',a:'Videos can show the steps. In a workshop, a real person explains why, fixes mistakes right away, and talks about when to stop.',next:['session','safe']},
-   safe:{q:'How do you keep it safe?',a:'Everything is supervised and right for their age. No electrical, gas or dangerous repairs, and every topic covers when to stop and get an adult or a pro.',next:['session','who']},
-   parents:{q:'I’m a parent. How can I help?',a:'Join the interest list as a parent or guardian to hear about family workshop days, or suggest skills you’d like covered.',go:[SITE+'get-involved/','Get involved'],next:['what','status']},
-   try:{q:'Can I try an activity?',a:'Yes! There are five you can try right now: Tool Time, Saturday on $25, Scam or Safe?, Make the Call and Laundry Sort-Out.',go:[SITE+'activities/','Open activities'],next:['modules','what']},
-   person:{q:'Can I talk to a person?',a:'This chat can only answer the questions listed here. To reach our team, join the interest list and put your question in the notes box. We’ll get back to you.',go:[SITE+'#interest','Leave a note'],next:['what','host']}
-  };
+  const HT=TXT('hc');
+  // text lives in src/i18n/*/chat.json; links and follow-up questions stay here
+  const AX={what:[SITE+'workshops/',['who','video','cost']],status:[SITE+'#interest',['host','what']],who:[SITE+'workshops/',['safe','modules']],modules:[SITE+'#cur-h',['session','try']],session:[SITE+'workshops/#ses-h',['safe','host']],host:[SITE+'#interest',['cost','safe']],cost:[SITE+'workshops/',['host','status']],video:[0,['session','safe']],safe:[0,['session','who']],parents:[SITE+'get-involved/',['what','status']],try:[SITE+'activities/',['modules','what']],person:[SITE+'#interest',['what','host']]};
+  const A={};for(const k in AX){const x=HT.a[k];A[k]={q:x.q,a:x.a,next:AX[k][1]};if(AX[k][0])A[k].go=[AX[k][0],x.go]}
   const START=['what','status','who','host','cost','try','person'];
   let started=false,busy=false;
   const scrollEnd=()=>{log.scrollTop=log.scrollHeight};
   function add(cls,html){const d=document.createElement('div');d.className='hc-msg '+cls;d.innerHTML=html;log.appendChild(d);scrollEnd();return d}
-  function options(keys,label){opts.innerHTML=`<span class="lbl">${label}</span>`+keys.map(k=>`<button class="hc-opt" type="button" data-k="${k}">${A[k].q}</button>`).join('')+(keys===START?'':'<button class="hc-opt alt" type="button" data-k="__menu">All questions</button>')}
+  function options(keys,label){opts.innerHTML=`<span class="lbl">${label}</span>`+keys.map(k=>`<button class="hc-opt" type="button" data-k="${k}">${A[k].q}</button>`).join('')+(keys===START?'':'<button class="hc-opt alt" type="button" data-k="__menu">'+HT.all+'</button>')}
   function ask(k){if(busy)return;
-    if(k==='__menu'){options(START,'Questions');opts.querySelector('button')?.focus();return}
+    if(k==='__menu'){options(START,HT.questions);opts.querySelector('button')?.focus();return}
     const it=A[k];busy=true;add('me',esc(it.q));opts.innerHTML='';
     const t=document.createElement('div');t.className='hc-typing';t.innerHTML='<i></i><i></i><i></i>';t.setAttribute('aria-hidden','true');log.appendChild(t);scrollEnd();
-    setTimeout(()=>{t.remove();add('bot',esc(it.a)+(it.go?`<br><a class="go" href="${it.go[0]}" data-hcgo>${it.go[1]}</a>`:''));options(it.next,'More questions');busy=false},RM?0:650);
+    setTimeout(()=>{t.remove();add('bot',esc(it.a)+(it.go?`<br><a class="go" href="${it.go[0]}" data-hcgo>${it.go[1]}</a>`:''));options(it.next,HT.more);busy=false},RM?0:650);
   }
   /* opened from the Questions button in the header (desktop) or in the menu (phones); on desktop the panel drops from under the header */
   const hdr=$('#siteHeader');let opener=null;
   const setX=v=>trig.forEach(b=>b.setAttribute('aria-expanded',v));
   function open(e){opener=e&&e.currentTarget||null;closeMenu();box.style.setProperty('--hc-top',Math.max(12,hdr.getBoundingClientRect().bottom+10)+'px');box.hidden=false;setX('true');
-    if(!started){started=true;add('bot','Hi! What do you want to know? Tap a question below.');options(START,'Questions')}
+    if(!started){started=true;add('bot',HT.hi);options(START,HT.questions)}
     setTimeout(()=>(opts.querySelector('button')||$('#hcX')).focus(),RM?0:200)}
   function close(){box.hidden=true;setX('false');const o=opener&&opener.offsetParent?opener:$('.hc-open');if(o&&o.offsetParent)o.focus()}
   trig.forEach(b=>b.addEventListener('click',e=>box.hidden?open(e):close()));$('#hcX').addEventListener('click',close);

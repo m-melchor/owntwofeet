@@ -3,6 +3,7 @@
 
 ---
 import { useT } from '../i18n/t.js';
+import JsText from './JsText.astro';
 const { t, lang, home } = useT(Astro);
 ---
 <section class="hc" id="hc" hidden role="dialog" aria-modal="false" aria-labelledby="hcTitle">
@@ -12,4 +13,5 @@ const { t, lang, home } = useT(Astro);
   <p class="hc-note">{t('help.note')}</p>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<JsText name="hc" />
 

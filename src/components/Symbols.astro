@@ -1,3 +1,7 @@
+---
+import { useT } from '../i18n/t.js';
+const { t } = useT(Astro);
+---
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -24,7 +28,7 @@
   <symbol id="l-bk-towel" viewBox="0 0 140 110"><rect x="6" y="8" width="128" height="14" rx="7" fill="#4D8593"/><path d="M14 22h112l-10 76q-1 6-7 6H31q-6 0-7-6z" fill="#6FA8B6"/><g fill="#52899A"><rect x="24" y="34" width="12" height="9" rx="4.5"/><rect x="44" y="34" width="12" height="9" rx="4.5"/><rect x="64" y="34" width="12" height="9" rx="4.5"/><rect x="84" y="34" width="12" height="9" rx="4.5"/><rect x="104" y="34" width="12" height="9" rx="4.5"/><rect x="24" y="54" width="12" height="9" rx="4.5"/><rect x="44" y="54" width="12" height="9" rx="4.5"/><rect x="64" y="54" width="12" height="9" rx="4.5"/><rect x="84" y="54" width="12" height="9" rx="4.5"/><rect x="104" y="54" width="12" height="9" rx="4.5"/><rect x="31" y="74" width="12" height="9" rx="4.5"/><rect x="53" y="74" width="12" height="9" rx="4.5"/><rect x="75" y="74" width="12" height="9" rx="4.5"/><rect x="97" y="74" width="12" height="9" rx="4.5"/></g></symbol>
 </svg>
 
-<p class="nojs-note">This viewer is blocking the page’s scripts, so menus and activities won’t work here. Open the file in Chrome or Safari for the full site.</p>
+<p class="nojs-note">{t('site.nojs')}</p>
 <a class="skip" href="#main">Skip to content</a>
 <div class="sprog" id="sprog" aria-hidden="true"><i class="trail"></i><i class="fill"></i></div>
 <div class="sdots" id="sdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>

@@ -8,7 +8,8 @@ import Laundry from '../../../components/activities/Laundry.astro';
 import { base } from '../../../base.js';
 import { useT } from '../../../i18n/t.js';
 const { t, lang, home } = useT(Astro);
-import { ORDER, NAMES, CARDS } from '../../../data/activities.js';
+import { ORDER, artOf } from '../../../data/activities.js';
+import JsText from '../../../components/JsText.astro';
 export function getStaticPaths() {
   return ORDER.map((id, i) => ({ params: { id }, props: { nx: ORDER[i + 1] || null } }));
 }
@@ -18,18 +19,18 @@ const Game = { tools: Tools, budget: Budget, scams: Scams, call: Call, laundry: 
 const prev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
 const next = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 ---
-<Layout title={NAMES[id]} path={'activities/' + id + '/'} view="activities">
+<Layout title={t('acts.names.' + id)} path={'activities/' + id + '/'} view="activities">
 <div class="view" data-view="activities" id="activities">
   <section id="actScreens"><div class="wrap">
     <Game>
-      <a slot="top" class="act-back" href={home + 'activities/'}><Fragment set:html={prev} />Back to activities</a>
+      <a slot="top" class="act-back" href={home + 'activities/'}><Fragment set:html={prev} />{t('acts.back')}</a>
       {nx
-        ? <a slot="end" class="act-next" href={home + 'activities/' + nx + '/'}><Fragment set:html={CARDS[nx].art} /><span class="nx"><small>Next activity</small><b>{NAMES[nx]}</b></span><Fragment set:html={next} /></a>
-        : <a slot="end" class="act-next end" href={home + 'activities/'}><span class="nx"><small>That was the last one</small><b>See all activities</b></span><Fragment set:html={next} /></a>}
+        ? <a slot="end" class="act-next" href={home + 'activities/' + nx + '/'}><Fragment set:html={artOf(nx, t)} /><span class="nx"><small>{t('acts.nextAct')}</small><b>{t('acts.names.' + nx)}</b></span><Fragment set:html={next} /></a>
+        : <a slot="end" class="act-next end" href={home + 'activities/'}><span class="nx"><small>{t('acts.lastOne')}</small><b>{t('acts.seeAll')}</b></span><Fragment set:html={next} /></a>}
     </Game>
   </div></section>
 </div>
-<Fragment slot="scripts">
+<Fragment slot="scripts"><JsText name="acts" />
 {id === 'tools' && <script is:inline src={base + 'js/gl.js'}></script>}
 <script is:inline src={base + 'js/' + id + '.js'}></script>
 </Fragment>

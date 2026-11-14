@@ -7,21 +7,20 @@ import InterestForm from '../InterestForm.astro';
 <!-- ================= GET INVOLVED ================= -->
 <div class="view" data-view="involved" id="involved">
   <section class="phead"><div class="wrap"><div class="panel sage">
-    <h1 class="h-xl" tabindex="-1" data-focus>Help bring workshops to more students</h1>
-    <p class="lede" style="color:#46504A">We’re just getting started, and the people who join now help decide what we build.</p>
+    <h1 class="h-xl" tabindex="-1" data-focus>{t('involved.h1')}</h1>
+    <p class="lede" style="color:#46504A">{t('involved.lede')}</p>
   </div></div></section>
   <section class="sec tight"><div class="wrap">
-    <h2 class="sr-only">Ways to help</h2>
+    <h2 class="sr-only">{t('involved.ways')}</h2>
     <div class="stg paths">
-      <div class="path"><h3>Schools &amp; counselors</h3><p>Tell us you’d want workshops for your students and which topics matter most. We’ll email you when we launch.</p><button class="btn btn-ink btn-sm" type="button" data-pick="inperson">I’d want this at my school</button></div>
-      <div class="path"><h3>Community organizations</h3><p>Youth programs, churches, rec centers and nonprofits that serve boys and young men.</p><button class="btn btn-ink btn-sm" type="button" data-pick="inperson">Host in our community</button></div>
-      <div class="path"><h3>Parents &amp; guardians</h3><p>Stay in the loop, suggest skills you’d like covered, and hear about family days.</p><button class="btn btn-ink btn-sm" type="button" data-pick="family">Keep me updated</button></div>
-      <div class="path"><span class="chip soon" style="justify-self:start">Coming later</span><h3>Mentors &amp; volunteers</h3><p>Adults who are handy and care about kids. We’ll share details when we launch.</p><button class="btn btn-ink btn-sm" type="button" data-pick="mentor">I’d like to volunteer</button></div>
+      <div class="path"><h3>{t('involved.p1h')}</h3><p>{t('involved.p1p')}</p><button class="btn btn-ink btn-sm" type="button" data-pick="inperson">{t('involved.p1b')}</button></div>
+      <div class="path"><h3>{t('involved.p2h')}</h3><p>{t('involved.p2p')}</p><button class="btn btn-ink btn-sm" type="button" data-pick="inperson">{t('involved.p2b')}</button></div>
+      <div class="path"><h3>{t('involved.p3h')}</h3><p>{t('involved.p3p')}</p><button class="btn btn-ink btn-sm" type="button" data-pick="family">{t('involved.p3b')}</button></div>
+      <div class="path"><span class="chip soon" style="justify-self:start">{t('involved.later')}</span><h3>{t('involved.p4h')}</h3><p>{t('involved.p4p')}</p><button class="btn btn-ink btn-sm" type="button" data-pick="mentor">{t('involved.p4b')}</button></div>
     </div>
   </div></section>
   <section><div class="wrap"><div class="panel white cta">
-    <div class="side"><h2 class="h-lg">Tell us how you’d like to help</h2><p>Adults only, please. We’ll only use your info to send Own Two Feet updates.</p></div>
+    <div class="side"><h2 class="h-lg">{t('involved.formH')}</h2><p>{t('involved.formP')}</p></div>
     <div id="formSlotInvolved"><InterestForm /></div>
   </div></div></section>
 </div>
-

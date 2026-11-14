@@ -1,6 +1,6 @@
 "use strict";
 /* ---------- form: four steps, one open at a time; with no script every step shows and the form posts as is ---------- */
-const holder=$('#formHolder');
+const FT=TXT('formjs'),holder=$('#formHolder');
 const form=$('#interestForm',holder),done=$('#formDone',holder);
 const PREF={inperson:'An in-person workshop',teacher:'Teacher plan, $9.99 a month',team:'Team plan, $19.99 a month',printables:'Printable guides',family:'Family days',mentor:'Volunteering with us',updates:'Just launch updates',unsure:'Not sure yet'};
 const INT={inperson:'Workshops for my students',teacher:'Monthly plan',team:'Monthly plan',printables:'Printable guides',family:'Family days',mentor:'Volunteering',updates:'Just launch updates',unsure:'Not sure yet'};
@@ -12,14 +12,14 @@ function setErr(id,m,inp){$('#'+id,holder).textContent=m;if(inp)inp.setAttribute
 function fitPrefs(){const r=roleIn(),k=r&&r.dataset.r;$$('[data-for]',form).forEach(l=>{const show=!k||l.dataset.for.split(' ').includes(k);l.hidden=!show;if(!show)$('input',l).checked=false})}
 // checks one step, shows its errors, and returns the first field to fix (or null)
 function check(n){
-  if(n===1){const r=roleIn();setErr('e-role',r?'':'Pick the one that fits you best.');return r?null:$('input[name=role]',form)}
-  if(n===2){const p=prefIn();setErr('e-pref',p?'':'Pick one. “Not sure yet” is fine.');return p?null:$('label:not([hidden]) input[name=prefer]',form)}
+  if(n===1){const r=roleIn();setErr('e-role',r?'':FT.pickRole);return r?null:$('input[name=role]',form)}
+  if(n===2){const p=prefIn();setErr('e-pref',p?'':FT.pickPref);return p?null:$('label:not([hidden]) input[name=prefer]',form)}
   if(n===3){const nm=$('#f-name',form),em=$('#f-email',form),ev=em.value.trim();let first=null;
-    if(nm.value.trim().length<2){setErr('e-name','Enter your name.',nm);first=nm}else setErr('e-name','',nm);
-    if(!ev){setErr('e-email','Enter an email address.',em);first=first||em}else if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){setErr('e-email','Check the email for a typo, like name@school.org.',em);first=first||em}else setErr('e-email','',em);
+    if(nm.value.trim().length<2){setErr('e-name',FT.name,nm);first=nm}else setErr('e-name','',nm);
+    if(!ev){setErr('e-email',FT.emailEmpty,em);first=first||em}else if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){setErr('e-email',FT.emailBad,em);first=first||em}else setErr('e-email','',em);
     return first}
-  const ad=$('#f-adult',form);if(!ad.checked){setErr('e-adult','The list is for adults. Please confirm you’re 18 or older.',ad);return ad}setErr('e-adult','',ad);return null}
-function go(n,focus=true){cur=n;steps.forEach(s=>s.classList.toggle('on',+s.dataset.step===n));stepTxt.textContent=`Step ${n} of 4`;dots.forEach((d,i)=>d.classList.toggle('on',i<n));
+  const ad=$('#f-adult',form);if(!ad.checked){setErr('e-adult',FT.adult,ad);return ad}setErr('e-adult','',ad);return null}
+function go(n,focus=true){cur=n;steps.forEach(s=>s.classList.toggle('on',+s.dataset.step===n));stepTxt.textContent=FT.step.replace('{n}',n);dots.forEach((d,i)=>d.classList.toggle('on',i<n));
   if(!focus)return;$('.ftitle',steps[n-1]).focus({preventScroll:true});const b=form.getBoundingClientRect();if(b.top<70||b.top>innerHeight*.7)form.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})}
 function next(){const bad=check(cur);if(bad){bad.focus();return}go(cur+1)}
 form.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const n=+b.dataset.go;n>cur?next():go(n)});
@@ -32,21 +32,23 @@ const send=$('#formSend',form),ferr=$('#formErr',form);let sending=false;
 form.addEventListener('submit',async e=>{e.preventDefault();if(sending)return;
   if(cur<4){next();return} // Enter in a text box moves on instead of sending
   tried=true;ferr.hidden=true;
-  for(let n=1;n<=4;n++){const bad=check(n);if(bad){go(n,false);bad.focus();toast('One answer needs attention.');return}}
+  for(let n=1;n<=4;n++){const bad=check(n);if(bad){go(n,false);bad.focus();toast(FT.attention);return}}
   const p=prefIn().value,data={Name:$('#f-name',form).value.trim(),Email:$('#f-email',form).value.trim(),Organization:$('#f-org',form).value.trim()||'Not given',Role:roleIn().value,'Best fit':PREF[p]};
+  // what the thank-you list shows: English shows the values sent, Spanish shows the labels the person saw
+  const shown=LANG==='es'?{...data,Organization:$('#f-org',form).value.trim()||FT.notGiven,Role:roleIn().closest('label').textContent.trim(),'Best fit':prefIn().closest('label').textContent.trim()}:data;
   const fd=new FormData(form);fd.set('interest',INT[p]);fd.set('prefer',PREF[p]);fd.set('adult','Yes, 18 or older');
-  sending=true;send.disabled=true;send.textContent='Sending…';
+  sending=true;send.disabled=true;send.textContent=FT.sending;
   try{const res=await fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!res.ok)throw new Error('status '+res.status)}
-  catch(err){sending=false;send.disabled=false;send.textContent='Join the Interest List';ferr.hidden=false;toast('That didn’t go through. Try again.');return}
-  sending=false;send.disabled=false;send.textContent='Join the Interest List';countEvent('signup-sent');
-  $('#formSummary',holder).innerHTML=Object.entries(data).map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)}</dd>`).join('');form.hidden=true;done.hidden=false;done.focus();toast('Sent. You’re on the list.')});
+  catch(err){sending=false;send.disabled=false;send.textContent=FT.send;ferr.hidden=false;toast(FT.failed);return}
+  sending=false;send.disabled=false;send.textContent=FT.send;countEvent('signup-sent');
+  $('#formSummary',holder).innerHTML=Object.entries(shown).map(([k,x])=>`<dt>${FT.labels[k]}</dt><dd>${esc(x)}</dd>`).join('');form.hidden=true;done.hidden=false;done.focus();toast(FT.sent)});
 $('#formAgain',holder).addEventListener('click',()=>{tried=false;form.reset();fitPrefs();ferr.hidden=true;$$('[aria-invalid]',form).forEach(i=>i.removeAttribute('aria-invalid'));$$('.err',form).forEach(x=>x.textContent='');done.hidden=true;form.hidden=false;go(1)});
 /* a "Join" button with data-pick (a plan or a path) picks that choice in the form; core.js keeps it for one page change */
 function applyPick(k){try{k=k||sessionStorage.getItem('otf-pick');sessionStorage.removeItem('otf-pick')}catch(e){}
   const p=k&&$(`input[name=prefer][value="${k}"]`,form);if(!p||!done.hidden)return false;
   const auto={family:'parent',mentor:'volunteer'}[k];if(!roleIn()&&auto)$(`input[data-r="${auto}"]`,form).checked=true;
   fitPrefs();if(!p.closest('label').hidden)p.checked=true;go(roleIn()?(prefIn()?3:2):1,false);return true}
-if(applyPick())toast('We picked that for you in the form.');
-document.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(!b||(b.tagName==='A'&&b.pathname!==location.pathname)||!applyPick(b.dataset.pick))return;toast('We picked that for you in the form.');
+if(applyPick())toast(FT.picked);
+document.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(!b||(b.tagName==='A'&&b.pathname!==location.pathname)||!applyPick(b.dataset.pick))return;toast(FT.picked);
   if(b.tagName==='BUTTON'){holder.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});setTimeout(()=>$('.ftitle',steps[cur-1]).focus({preventScroll:true}),RM?0:450)}});
 go(1,false);

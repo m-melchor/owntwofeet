@@ -1,13 +1,8 @@
 "use strict";
 /* ---------- 3D tool models ---------- */
-const TOOLS=[
- {id:'hammer',name:'Claw hammer',use:'Drives nails in. The curved claw pulls them out.',grip:'Hold near the end of the handle. Start with light taps.',safe:'Keep your other hand clear and wear eye protection.'},
- {id:'phillips',name:'Phillips screwdriver',use:'Turns screws with a + shaped slot.',grip:'Push in firmly while you turn so it doesn’t slip.',safe:'Righty-tighty, lefty-loosey. Keep your free hand out of its path.'},
- {id:'tape',name:'Tape measure',use:'Measures length, width and height in inches and feet.',grip:'Hook the end on the edge, pull the tape straight.',safe:'Let it roll back slowly. A fast snap-back can pinch fingers.'},
- {id:'wrench',name:'Adjustable wrench',use:'Grips nuts and bolts of different sizes.',grip:'Roll the little wheel until the jaw is snug on the nut.',safe:'Pull toward you rather than pushing, so your knuckles stay safe if it slips.'},
- {id:'flat',name:'Flathead screwdriver',use:'Turns screws with one straight slot.',grip:'Match the blade width to the slot.',safe:'It isn’t a pry bar. Prying can snap the tip.'},
- {id:'level',name:'Level',use:'Shows if something is straight. Bubble centered means level.',grip:'Rest it flat on the top edge of what you’re checking.',safe:'For heavy items like shelves, have a partner hold while you check.'}
-];
+/* tool words (name, use, grip, safe) come from the "actTools" group, which only the Tool Time page carries */
+const TL=document.getElementById('txt-actTools')?TXT('actTools'):null;
+const TOOLS=['hammer','phillips','tape','wrench','flat','level'].map(id=>({id,...(TL?TL.tools[id]:{})}));
 const T=Object.fromEntries(TOOLS.map(t=>[t.id,t]));
 function hasGL(){try{const c=document.createElement('canvas');return !!(window.WebGLRenderingContext&&(c.getContext('webgl')||c.getContext('experimental-webgl')))}catch(e){return false}}
 function makeTools(THREE){

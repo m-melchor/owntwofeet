@@ -1,30 +1,38 @@
+---
+import { useT } from '../../i18n/t.js';
+import JsText from '../JsText.astro';
+const { t } = useT(Astro);
+const wants = [['movie', 9], ['snack', 6], ['arcade', 5], ['case', 12]];
+const saves = [['0', 0], ['3', 3], ['5', 5]];
+---
+    <JsText name="actBudget" />
     <article class="activity" id="budget" aria-labelledby="budget-h">
       <slot name="top" />
       <div class="act-head">
-        <div class="t"><h2 id="budget-h">Saturday on $25 <span class="tdone done-chip" data-done="budget" hidden>Done</span></h2><p>Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.</p></div>
-        <div class="act-tools"><button class="reset" type="button" id="budReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Reset</button></div>
+        <div class="t"><h2 id="budget-h">{t('acts.names.budget')} <span class="tdone done-chip" data-done="budget" hidden>{t('acts.done')}</span></h2><p>{t('actBudget.intro')}</p></div>
+        <div class="act-tools"><button class="reset" type="button" id="budReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>{t('acts.reset')}</button></div>
       </div>
       <div class="act-body budget">
         <form id="budForm" onsubmit="return false">
-          <fieldset class="bgroup"><legend class="label">Getting there (needed)</legend><div class="items" id="bNeeds"><label class="item"><input type="checkbox" value="bus" id="b-bus"><span class="nm">Round-trip bus fare<small>Rec center and back</small></span><span class="pr">$4</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">Lunch (pick one)</legend><div class="items" id="bLunch"><label class="item"><input type="radio" name="lunch" value="taco" id="b-taco"><span class="nm">Taco truck lunch<small>Two tacos and a drink</small></span><span class="pr">$7</span></label><label class="item"><input type="radio" name="lunch" value="packed" id="b-packed"><span class="nm">Packed lunch from home<small>Sandwich, fruit, water</small></span><span class="pr">$2</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">A promise you made</legend><div class="items" id="bPromise"><label class="item"><input type="checkbox" value="promise" id="b-promise"><span class="nm">Card and small gift<small>Your sister’s birthday is Sunday</small></span><span class="pr">$8</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">Wants (optional)</legend><div class="items" id="bWants"><label class="item"><input type="checkbox" value="movie" id="b-movie"><span class="nm">Movie ticket<small>Matinee with friends</small></span><span class="pr">$9</span></label><label class="item"><input type="checkbox" value="snack" id="b-snack"><span class="nm">Movie snacks<small>Popcorn and a drink</small></span><span class="pr">$6</span></label><label class="item"><input type="checkbox" value="arcade" id="b-arcade"><span class="nm">Arcade tokens<small>About 20 minutes of games</small></span><span class="pr">$5</span></label><label class="item"><input type="checkbox" value="case" id="b-case"><span class="nm">New phone case<small>Yours still works fine</small></span><span class="pr">$12</span></label></div></fieldset>
-          <fieldset class="bgroup"><legend class="label">Save for next week (optional)</legend><div class="items three" id="bSaveItems"><label class="item sv"><input type="radio" name="save" value="0" checked><span class="nm">Save nothing<small>Spend or keep the rest</small></span><span class="pr">$0</span></label><label class="item sv"><input type="radio" name="save" value="3"><span class="nm">Save a little<small>Set it aside first</small></span><span class="pr">$3</span></label><label class="item sv"><input type="radio" name="save" value="5"><span class="nm">Save more<small>A bigger head start</small></span><span class="pr">$5</span></label></div></fieldset>
-          <fieldset class="bgroup" id="bCurve" hidden><legend class="label" id="bCurveLg">A friend asks</legend><div class="items" id="bCurveItems"></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">{t('actBudget.needsLg')}</legend><div class="items" id="bNeeds"><label class="item"><input type="checkbox" value="bus" id="b-bus"><span class="nm">{t('actBudget.bus.n')}<small>{t('actBudget.bus.s')}</small></span><span class="pr">$4</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">{t('actBudget.lunchLg')}</legend><div class="items" id="bLunch"><label class="item"><input type="radio" name="lunch" value="taco" id="b-taco"><span class="nm">{t('actBudget.taco.n')}<small>{t('actBudget.taco.s')}</small></span><span class="pr">$7</span></label><label class="item"><input type="radio" name="lunch" value="packed" id="b-packed"><span class="nm">{t('actBudget.packed.n')}<small>{t('actBudget.packed.s')}</small></span><span class="pr">$2</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">{t('actBudget.promiseLg')}</legend><div class="items" id="bPromise"><label class="item"><input type="checkbox" value="promise" id="b-promise"><span class="nm">{t('actBudget.prm.0.n')}<small>{t('actBudget.prm.0.s')}</small></span><span class="pr">$8</span></label></div></fieldset>
+          <fieldset class="bgroup"><legend class="label">{t('actBudget.wantsLg')}</legend><div class="items" id="bWants">{wants.map(([id, p], i) => <label class="item"><input type="checkbox" value={id} id={'b-' + id}><span class="nm">{t('actBudget.wnt.' + i + '.n')}<small>{t('actBudget.wnt.' + i + '.s')}</small></span><span class="pr">${p}</span></label>)}</div></fieldset>
+          <fieldset class="bgroup"><legend class="label">{t('actBudget.saveLg')}</legend><div class="items three" id="bSaveItems">{saves.map(([v, p], i) => <label class="item sv"><input type="radio" name="save" value={v} checked={i === 0}><span class="nm">{t('actBudget.save.' + i + '.n')}<small>{t('actBudget.save.' + i + '.s')}</small></span><span class="pr">${p}</span></label>)}</div></fieldset>
+          <fieldset class="bgroup" id="bCurve" hidden><legend class="label" id="bCurveLg">{t('actBudget.curveLg')}</legend><div class="items" id="bCurveItems"></div></fieldset>
         </form>
-        <aside class="wallet" aria-label="Your budget">
-          <div class="row"><span class="muted">Spent</span><b id="bSpent">$0</b></div>
+        <aside class="wallet" aria-label={t('actBudget.yourBudget')}>
+          <div class="row"><span class="muted">{t('actBudget.spent')}</span><b id="bSpent">$0</b></div>
           <div class="meter" id="bMeter" aria-hidden="true"><div class="fill" id="bFill"></div></div>
           <div class="scale" aria-hidden="true"><span>$0</span><span>$25</span></div>
-          <div class="row" style="font-size:15px" id="bSaveRow" hidden><span class="muted">Saving for next week</span><span id="bSave" style="font-weight:600">$0</span></div>
-          <div class="row" style="font-size:15px"><span class="muted">Left</span><span id="bLeft" style="font-weight:600">$25</span></div>
-          <div class="curve" id="bCurveCard" hidden><h3>Curveball</h3><p id="bCurveTxt"></p></div>
+          <div class="row" style="font-size:15px" id="bSaveRow" hidden><span class="muted">{t('actBudget.saving')}</span><span id="bSave" style="font-weight:600">$0</span></div>
+          <div class="row" style="font-size:15px"><span class="muted">{t('actBudget.left')}</span><span id="bLeft" style="font-weight:600">$25</span></div>
+          <div class="curve" id="bCurveCard" hidden><h3>{t('actBudget.curveball')}</h3><p id="bCurveTxt"></p></div>
           <p class="sr-only" id="bLive" aria-live="polite"></p>
-          <button class="btn btn-ink" id="bCheck" type="button">Check my plan</button>
+          <button class="btn btn-ink" id="bCheck" type="button">{t('actBudget.check')}</button>
           <div id="bResult" aria-live="polite"></div>
         </aside>
       </div>
-      <div class="practiced" id="pracBudget" role="region" aria-label="What you practiced" hidden></div>
+      <div class="practiced" id="pracBudget" role="region" aria-label={t('acts.practiced')} hidden></div>
       <slot name="end" />
     </article>

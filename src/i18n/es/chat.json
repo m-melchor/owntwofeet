@@ -1,0 +1,39 @@
+{
+  "hc": {
+    "hi": "¡Hola! ¿Qué le gustaría saber? Toque una pregunta de abajo.",
+    "questions": "Preguntas",
+    "more": "Más preguntas",
+    "all": "Todas las preguntas",
+    "a": {
+      "what": { "q": "¿Qué es Own Two Feet?", "a": "Own Two Feet es un proyecto de estudiantes que planea talleres presenciales en vivo donde niños y jóvenes practican habilidades de todos los días: herramientas básicas, seguridad en línea, dinero, cocina sencilla, comunicación y saber cuándo pedir ayuda.", "go": "Cómo funcionan los talleres" },
+      "status": { "q": "¿Ya hay talleres en marcha?", "a": "Todavía no. Own Two Feet es un proyecto de estudiantes que sigue en desarrollo, así que no hay talleres en marcha ni se reserva ninguno. Únase a la lista de interés y le escribimos cuando empecemos.", "go": "Unirme a la lista de interés" },
+      "who": { "q": "¿Para quién es?", "a": "Para niños y jóvenes de 3.º a 8.º grado. Las actividades se ajustan a su edad, y los temas para estudiantes mayores vienen después.", "go": "Ver los grupos por edad" },
+      "modules": { "q": "¿Qué aprenden los estudiantes?", "a": "Ocho temas: casa y herramientas, tecnología y seguridad en línea, cuidado personal, cocina sencilla, dinero, comunicación, saber cuándo pedir ayuda y, más adelante, básicos del auto. Las escuelas eligen los que quieren.", "go": "Ver los temas" },
+      "session": { "q": "¿Qué pasa en una sesión?", "a": "50 o 90 minutos: se empieza con una situación de la vida real, se ve cómo lo hace un mentor, se practica uno mismo y se termina con cuándo pedir ayuda y una tarjeta para llevar a casa.", "go": "Ver una sesión" },
+      "host": { "q": "¿Mi escuela puede tener un taller?", "a": "Todavía no, porque no estamos reservando. Únase a la lista de interés y elija “Un taller presencial”. Cuando empecemos, usted pondría un salón, hasta 30 estudiantes y un adulto que los conozca. Nosotros traeríamos todo lo demás.", "go": "Unirme a la lista de interés" },
+      "cost": { "q": "¿Cuánto costará?", "a": "Planeamos cobrar $200 por un taller de 50 minutos y $300 por uno de 90 minutos, por sesión, para hasta 30 estudiantes. Nosotros traemos los materiales. O haga nuestras actividades usted mismo con un plan mensual en línea: $9.99 al mes para un maestro o voluntario que muestre comprobante, o $19.99 al mes para un equipo de tres. Son precios planeados y todavía no se reserva nada.", "go": "Ver los precios planeados" },
+      "video": { "q": "¿No podrían los estudiantes ver un video?", "a": "Los videos pueden mostrar los pasos. En un taller, una persona de verdad explica por qué, corrige los errores al momento y habla de cuándo parar." },
+      "safe": { "q": "¿Cómo lo mantienen seguro?", "a": "Todo es supervisado y adecuado para su edad. No hay reparaciones eléctricas, de gas ni peligrosas, y cada tema incluye cuándo parar y buscar a un adulto o a un profesional." },
+      "parents": { "q": "Soy papá o mamá. ¿Cómo puedo ayudar?", "a": "Únase a la lista de interés como mamá, papá o tutor para enterarse de los días de taller para familias, o sugiera habilidades que le gustaría que cubramos.", "go": "Participar" },
+      "try": { "q": "¿Puedo probar una actividad?", "a": "¡Sí! Hay cinco que puede probar ahora mismo: Hora de herramientas, Un sábado con $25, ¿Estafa o seguro?, Haz la llamada y A separar la ropa.", "go": "Abrir las actividades" },
+      "person": { "q": "¿Puedo hablar con una persona?", "a": "Este chat solo puede contestar las preguntas de esta lista. Para comunicarse con nuestro equipo, únase a la lista de interés y escriba su pregunta en el cuadro de notas. Le responderemos.", "go": "Dejar una nota" }
+    }
+  },
+  "formjs": {
+    "pickRole": "Elija la opción que mejor le queda.",
+    "pickPref": "Elija una. “Todavía no sé” está bien.",
+    "name": "Escriba su nombre.",
+    "emailEmpty": "Escriba un correo electrónico.",
+    "emailBad": "Revise el correo por si hay un error, por ejemplo nombre@escuela.org.",
+    "adult": "La lista es para adultos. Confirme que tiene 18 años o más.",
+    "step": "Paso {n} de 4",
+    "sending": "Enviando…",
+    "send": "Unirme a la lista de interés",
+    "attention": "Hay una respuesta que revisar.",
+    "failed": "No se envió. Inténtelo otra vez.",
+    "sent": "Enviado. Ya está en la lista.",
+    "picked": "Elegimos eso por usted en el formulario.",
+    "notGiven": "No indicado",
+    "labels": { "Name": "Nombre", "Email": "Correo electrónico", "Organization": "Escuela o grupo", "Role": "Quién es", "Best fit": "Lo que le queda mejor" }
+  }
+}

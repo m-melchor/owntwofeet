@@ -1,0 +1,73 @@
+{
+  "actBudget": {
+    "intro": "Plan a Saturday at the rec center. Cover what you need, keep the promise you made, and stay inside the budget.",
+    "needsLg": "Getting there (needed)",
+    "lunchLg": "Lunch (pick one)",
+    "promiseLg": "A promise you made",
+    "wantsLg": "Wants (optional)",
+    "saveLg": "Save for next week (optional)",
+    "curveLg": "A friend asks",
+    "bus": { "n": "Round-trip bus fare", "s": "Rec center and back" },
+    "taco": { "n": "Taco truck lunch", "s": "Two tacos and a drink" },
+    "packed": { "n": "Packed lunch from home", "s": "Sandwich, fruit, water" },
+    "prm": [
+      { "n": "Card and small gift", "s": "Your sister’s birthday is Sunday", "f": "You promised a birthday gift. Plan for it before wants." },
+      { "n": "Pay Diego back", "s": "You borrowed $6 for lunch last week", "f": "You promised to pay Diego back. Plan for it before wants." },
+      { "n": "Chip in for the coach’s gift", "s": "The whole team said they would", "f": "You promised to chip in for the coach’s gift. Plan for it before wants." }
+    ],
+    "wnt": [
+      { "n": "Movie ticket", "s": "Matinee with friends" },
+      { "n": "Movie snacks", "s": "Popcorn and a drink" },
+      { "n": "Arcade tokens", "s": "About 20 minutes of games" },
+      { "n": "New phone case", "s": "Yours still works fine" },
+      { "n": "New comic book", "s": "The next one in the series" },
+      { "n": "Giant slushie", "s": "From the corner store" },
+      { "n": "Skate stickers", "s": "A pack of five" }
+    ],
+    "save": [
+      { "n": "Save nothing", "s": "Spend or keep the rest" },
+      { "n": "Save a little", "s": "Set it aside first" },
+      { "n": "Save more", "s": "A bigger head start" }
+    ],
+    "yourBudget": "Your budget",
+    "spent": "Spent",
+    "saving": "Saving for next week",
+    "left": "Left",
+    "curveball": "Curveball",
+    "check": "Check my plan",
+    "cb": {
+      "bus": "The bus fare went up $1. Round trip is now $5.",
+      "movie": "The movie costs $2 more than you thought. The ticket is now $11.",
+      "arcade": "Good news. Arcade tokens are on sale. They are now $3.",
+      "loan": "A friend asks to borrow $5 and promises to pay you back next week. Lending is your choice. Money you lend is money you can’t spend."
+    },
+    "loanN": "Lend $5 to your friend",
+    "loanS": "They say they will pay you back next week",
+    "liveSpent": "Spent {n}.",
+    "liveSaving": " Saving {n}.",
+    "liveOver": "Over by {n}",
+    "liveLeft": "{n} left",
+    "rideT": "Ride covered",
+    "rideF": "Add bus fare. Without it, you can’t get there.",
+    "lunchT": "Lunch planned",
+    "lunchF": "Pick a lunch. Packing one saves $5.",
+    "promiseT": "Promise kept",
+    "withinT": "Within {n}",
+    "overF": "You’re {n} over. Drop a want{a}{b}.",
+    "overA": " or pack lunch",
+    "overB": " or save a little less",
+    "bonusSaved": "You set aside {n} for next week. That’s a win.",
+    "bonusKept": "You kept {n} unspent. That counts too.",
+    "bonusNext": "Next time, try setting aside $3 for next week.",
+    "curveH": "Your plan works. Now a curveball.",
+    "curveP": "Read the Curveball box, change your plan if you need to, then check again.",
+    "lent": "You lent $5. That’s your choice. Remember it isn’t yours to spend until it comes back.",
+    "kept": "You kept your $5. Saying no is a fair choice too.",
+    "summary": "{sp} spent{saved}, {left} unspent. Needs and promises came first.",
+    "savedPart": ", {n} saved",
+    "carry": "carries over to next week",
+    "nothing": "Nothing carries over this time. A few dollars set aside next time would.",
+    "almost": "Almost. Fix these:",
+    "reset": "Budget reset."
+  }
+}

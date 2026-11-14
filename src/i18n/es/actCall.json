@@ -1,0 +1,100 @@
+{
+  "actCall": {
+    "introStatic": "Algo cambió en tu semana. Llama a la recepción, di qué necesitas y elige una hora que quepa en tu semana.",
+    "introTail": "Llama a la recepción, di qué necesitas y elige una hora que quepa en tu semana.",
+    "phoneLabel": "Llamada con {biz}",
+    "txLabel": "La llamada hasta ahora",
+    "greet": "Gracias por llamar a {biz}, habla {who}.",
+    "connected": "Conectado",
+    "onHold": "En espera",
+    "onCall": "En la llamada",
+    "holdMsg": "En espera un momento...",
+    "callEnded": "Llamada terminada",
+    "newText": "Mensaje de texto nuevo",
+    "weekH": "Tu semana",
+    "stepOf": "Paso {i} de {n}",
+    "reset": "Juego reiniciado.",
+    "goodFb": "Así suena una buena llamada.",
+    "tryNext": "Inténtalo así la próxima vez.",
+    "happy": "{who} te ayuda con gusto",
+    "fixed": "{who} te lo arregló",
+    "confused": "{who} no entiende bien",
+    "putOff": "A {who} no le gustó el tono",
+    "next": "Siguiente paso",
+    "seeHow": "Ver cómo te fue",
+    "playAgain": "Jugar otra vez",
+    "howQ": "Cómo te fue en la llamada",
+    "outOf": " / {n} claras",
+    "callDone": "Llamada terminada. Ahora inténtalo con frases más claras.",
+    "stayed": "Te quedaste en la llamada y seguiste",
+    "tryNextB": "Para la próxima:",
+    "jot": "Anota tu plan antes de llamar: quién eres, por qué llamas y cuándo estás libre.",
+    "withPro": " con {pro}",
+    "ct": "Estos son los horarios que tengo: {t0}, {t1} o {t2}.",
+    "hold": ["Ok, déjame revisar la agenda. Un momento.", "~~", "Gracias por esperar. {ct}"],
+    "calls": [
+      {
+        "biz": "Fresh Cuts", "av": "FC", "who": "Dana", "obj": "", "me": "Sam", "thing": "corte de pelo", "thingA": "un corte de pelo", "pro": "Marcus",
+        "had": "el jueves a las 4:00", "why": "mi equipo agregó una práctica a esa hora", "whyShort": "tienes práctica", "want": "una hora más tarde esta semana",
+        "t0": "el jueves a las 5:30", "t1": "el viernes a las 3:00", "t2": "el sábado a las 10:00",
+        "good": "el sábado a las 10:00", "Good": "El sábado a las 10:00", "goodDay": "el sábado", "goodFree": "el sábado por la mañana", "goodFreeCap": "El sábado por la mañana",
+        "clash": "el jueves a las 5:30", "Clash": "El jueves a las 5:30", "clashDay": "el jueves", "clashWhy": "la práctica dura hasta las 6:00", "clashWith": "la práctica, que dura hasta las 6:00",
+        "intro": "Tu corte de pelo choca con una práctica nueva.",
+        "week": ["Ahora la práctica es los jueves de 4:00 a 6:00.", ["Jueves", "Libre después de las 6:00"], ["Viernes", "Libre después de las 3:30"], ["Sábado", "Libre por la mañana"]],
+        "confirm": "Fresh Cuts: Sam tiene cita el sábado a las 10:00 con Marcus. ¡Nos vemos!"
+      },
+      {
+        "biz": "Bright Smiles Dental", "av": "BS", "who": "Priya", "obj": "", "me": "Sam", "thing": "revisión dental", "thingA": "una revisión dental", "pro": "el Dr. Lee",
+        "had": "el viernes a las 3:30", "why": "mi clase tiene una excursión ese día", "whyShort": "tienes una excursión", "want": "otro día la próxima semana",
+        "t0": "el lunes a las 3:45", "t1": "el miércoles a las 4:00", "t2": "el viernes a las 5:00",
+        "good": "el miércoles a las 4:00", "Good": "El miércoles a las 4:00", "goodDay": "el miércoles", "goodFree": "el miércoles después de la escuela", "goodFreeCap": "El miércoles después de la escuela",
+        "clash": "el lunes a las 3:45", "Clash": "El lunes a las 3:45", "clashDay": "el lunes", "clashWhy": "el fútbol dura de 3:30 a 5:00", "clashWith": "el fútbol, que dura de 3:30 a 5:00",
+        "intro": "Tu revisión dental cae el mismo día que una excursión de tu clase.",
+        "week": ["La excursión dura todo el viernes.", ["Lunes", "Fútbol de 3:30 a 5:00"], ["Miércoles", "Libre después de las 3:30"], ["Viernes", "Excursión hasta las 6:00"]],
+        "confirm": "Bright Smiles Dental: Sam tiene cita el miércoles a las 4:00 con el Dr. Lee. Responde C para cancelar."
+      },
+      {
+        "biz": "Westside Rec Center", "av": "WR", "who": "Theo", "obj": "", "me": "Sam", "thing": "clase de natación", "thingA": "una clase de natación", "pro": "la entrenadora Bea",
+        "had": "el sábado a las 9:00", "why": "mi primo tiene su fiesta de cumpleaños esa mañana", "whyShort": "tienes una fiesta", "want": "otro horario esta semana",
+        "t0": "el martes a las 4:30", "t1": "el jueves a las 5:00", "t2": "el sábado a la 1:00",
+        "good": "el sábado a la 1:00", "Good": "El sábado a la 1:00", "goodDay": "el sábado", "goodFree": "el sábado por la tarde", "goodFreeCap": "El sábado por la tarde",
+        "clash": "el martes a las 4:30", "Clash": "El martes a las 4:30", "clashDay": "el martes", "clashWhy": "el piano dura de 4:00 a 5:00", "clashWith": "el piano, que dura de 4:00 a 5:00",
+        "intro": "Tu clase de natación choca con la fiesta de cumpleaños de tu primo.",
+        "week": ["La fiesta es el sábado de 9:00 a mediodía.", ["Martes", "Piano de 4:00 a 5:00"], ["Jueves", "Club de tarea hasta las 5:30"], ["Sábado", "Libre después del mediodía"]],
+        "confirm": "Westside Rec Center: Sam tiene su clase de natación el sábado a la 1:00 con la entrenadora Bea."
+      }
+    ],
+    "st": [
+      { "q": "{who} contesta. ¿Qué dices?", "s": "Dijiste quién eras", "n": "Empieza con un saludo y tu nombre.", "c": [
+        { "y": "good", "t": "Hola {who}, habla {me}.", "r": ["¡Hola {me}! ¿En qué te puedo ayudar?"] },
+        { "y": "vague", "t": "Eh... hola.", "r": ["¿Bueno? Perdón, ¿quién habla?", "~Le dices que eres {me}.", "Hola {me}. ¿En qué te puedo ayudar?"], "tip": "Di tu nombre de inmediato. Así {who} encuentra tu cita." },
+        { "y": "off", "t": "Sí, necesito cambiar mi {thing}.", "r": ["Ok... ¿quién habla? Es para buscarte.", "~Le dices que eres {me}.", "Gracias, {me}. ¿Qué pasó?"], "tip": "Empieza con un saludo y tu nombre. Es más amable y ayuda a {who} a buscarte." }
+      ] },
+      { "q": "Dile por qué llamas.", "s": "Dijiste por qué llamabas", "n": "Di por qué llamas en una frase clara.", "c": [
+        { "y": "good", "t": "Tengo {thingA} {had}, pero {why}. Necesito cambiar la cita.", "r": ["Ah, ya entendí. Veo que tienes cita {had}{P}.", "¿Qué te gustaría hacer?"] },
+        { "y": "vague", "t": "Eh, tengo una cosa. Es sobre mi cita.", "r": ["Ok... ¿qué cita? ¿Cuál es la cosa?", "~Le explicas que tu {thing} es {had} y que {whyShort}.", "Ah, veo que tienes cita {had}{P}. ¿Qué te gustaría hacer?"], "tip": "Di el día, la hora y el problema en una sola frase. Así {who} sabe qué necesitas." },
+        { "y": "off", "t": "Su calendario está mal. Arreglen mi cita.", "r": ["¡Ay! Perdón. ¿Cuál es la cita?", "~Le explicas que tu {thing} es {had} y que tus planes cambiaron.", "Ok, veo que tienes cita {had}{P}. ¿Qué te gustaría hacer?"], "tip": "No hay nada mal en su calendario. El tuyo cambió. Dilo con calma y {who} te va a ayudar." }
+      ] },
+      { "q": "Pide una hora nueva.", "s": "Pediste una hora nueva con educación", "n": "Pide con educación y di por favor.", "c": [
+        { "y": "good", "t": "¿Podría mover la cita a {want}, por favor?", "r": ["@hold"] },
+        { "y": "vague", "t": "Eh, ¿puedo cambiarla?", "r": ["¿Cambiarla a qué? Necesito un día o una hora.", "~Dices que quieres {want}.", "@hold"], "tip": "Dile a {who} qué quieres: {want}. “Cambiarla” puede significar muchas cosas." },
+        { "y": "off", "t": "Solo dame una hora nueva. Tengo prisa.", "r": ["Ok, ok.", "@hold"], "tip": "Un por favor hace una gran diferencia. Una voz amable consigue ayuda más rápido, aunque tengas prisa." }
+      ] },
+      { "q": "{who} leyó unas horas. ¿Cuál eliges?", "s": "Elegiste una hora que cabe en tu semana", "n": "Revisa Tu semana antes de elegir una hora.", "c": [
+        { "y": "good", "t": "{Good} me funciona. Estoy libre {goodFree}.", "r": ["{Good}. Perfecto, ese horario está libre. Te anoto."] },
+        { "y": "clash", "t": "{Clash}, por favor.", "r": ["{Clash}, ok.", "~Espera. Tu semana dice que {clashWhy}. Mejor pides {good}.", "Sin problema. {Good} está libre. Te anoto."], "tip": "{Clash} choca con {clashWith}. Revisa primero Tu semana. {goodFreeCap} estás libre." },
+        { "y": "off", "t": "Cualquiera. No me importa.", "r": ["Eh, ok. {Good} está libre, así que te anoto para ese horario."], "tip": "Elige tú la hora. {who} no puede ver tu semana, y una hora que choca significaría otra llamada." }
+      ] },
+      { "q": "Repítelo para estar seguro.", "s": "Repetiste el día y la hora", "n": "Repite el día y la hora antes de colgar.", "c": [
+        { "y": "good", "t": "Entonces es {good}, no {clashDay}. ¿Es correcto?", "r": ["Sí, es correcto. {Good}, con {pro}.", "¿Algo más en lo que te pueda ayudar?"] },
+        { "y": "vague", "t": "Ok, qué bien. ¿Entonces ya quedó?", "r": ["Sí, ya quedó. Es {good}.", "¿Algo más en lo que te pueda ayudar?"], "tip": "Repite tú el día y la hora. Así se atrapan los errores, como {clashDay} en vez de {goodDay}." },
+        { "y": "off", "t": "Bueno. Ahora sí no se equivoquen.", "r": ["Ah. No me voy a equivocar. Quedas anotado para {good}.", "¿Algo más en lo que te pueda ayudar?"], "tip": "Repetir el día y la hora es la forma de revisar. Culpar a la recepción hace que la llamada se sienta tensa." }
+      ] },
+      { "q": "Hora de terminar la llamada.", "s": "Terminaste con un gracias", "n": "Termina con un gracias.", "c": [
+        { "y": "good", "t": "No, eso es todo. ¡Gracias, {who}! Nos vemos {goodDay}.", "r": ["¡De nada, {me}! Nos vemos {good}. ¡Adiós!"] },
+        { "y": "vague", "t": "Eh, no. Adiós.", "r": ["Ok. Adiós."], "tip": "Un gracias rápido termina la llamada con buena onda." },
+        { "y": "off", "t": "No. Ok, adiós.", "r": ["...Adiós."], "tip": "Di gracias antes de colgar. Toma un segundo, y la gente lo recuerda." }
+      ] }
+    ]
+  }
+}

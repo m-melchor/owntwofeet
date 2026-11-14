@@ -7,68 +7,68 @@ const { t, lang, home } = useT(Astro);
 <div class="view" data-view="workshops" id="workshops">
   <section class="phead ctr"><div class="wrap"><div class="panel mist with-art">
     <svg class="phead-art" viewBox="0 0 320 300" aria-hidden="true"><g transform="translate(36 20) rotate(-12 40 125)"><use href="#t-phillips" width="80" height="250"/></g><g transform="translate(116 6)"><use href="#t-tape" width="90" height="270"/></g><g transform="translate(210 22) rotate(12 40 125)"><use href="#t-flat" width="80" height="250"/></g></svg>
-    <h1 class="h-xl" tabindex="-1" data-focus>Hands-on sessions, led in person</h1>
-    <p class="lede" style="color:#46504A">Each workshop covers one topic with hands-on practice. Here’s how we plan to run them once we launch. Nothing is running or booking yet.</p>
+    <h1 class="h-xl" tabindex="-1" data-focus>{t('workshops.h1')}</h1>
+    <p class="lede" style="color:#46504A">{t('workshops.lede')}</p>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg">Planned prices</h2><p class="lede">Book us for a workshop, or run the activities yourself with a monthly plan. These are planned prices, and nothing is booking yet.</p></div>
+    <div class="sec-head"><h2 class="h-lg">{t('workshops.priceH')}</h2><p class="lede">{t('workshops.priceLede')}</p></div>
     <div class="plans">
     <div class="pgroup" id="plan-live">
-      <div class="pg-head"><h3>In person</h3><p>We come to you with the supplies. Up to 30 students per session.</p></div>
+      <div class="pg-head"><h3>{t('workshops.inPersonH')}</h3><p>{t('workshops.inPersonP')}</p></div>
       <div class="pg-cards">
-        <article class="plan"><h4>50-minute workshop</h4><p class="price">$200<small>/ session</small></p><p>One topic, hands-on. Fits in a class period or after school.</p><a class="btn btn-line btn-sm" href={home + '#interest'} data-pick="inperson">Join the Interest List</a></article>
-        <article class="plan"><h4>90-minute workshop</h4><p class="price">$300<small>/ session</small></p><p>More hands-on time, or two topics in one session.</p><a class="btn btn-line btn-sm" href={home + '#interest'} data-pick="inperson">Join the Interest List</a></article>
+        <article class="plan"><h4>{t('workshops.w50')}</h4><p class="price">$200<small>{t('workshops.perSession')}</small></p><p>{t('workshops.w50p')}</p><a class="btn btn-line btn-sm" href={home + '#interest'} data-pick="inperson">{t('workshops.join')}</a></article>
+        <article class="plan"><h4>{t('workshops.w90')}</h4><p class="price">$300<small>{t('workshops.perSession')}</small></p><p>{t('workshops.w90p')}</p><a class="btn btn-line btn-sm" href={home + '#interest'} data-pick="inperson">{t('workshops.join')}</a></article>
       </div>
-      <p class="pg-foot"><b>Series or family day.</b> Several topics over a few weeks, or a day where students and families learn together. Priced per session.</p>
+      <p class="pg-foot"><Fragment set:html={t('workshops.series')} /></p>
     </div>
     <div class="pgroup" id="plan-monthly">
-      <div class="pg-head"><h3>Monthly, online</h3><p>New activities and printable guides every month. You run them with your students, on your schedule.</p></div>
+      <div class="pg-head"><h3>{t('workshops.monthlyH')}</h3><p>{t('workshops.monthlyP')}</p></div>
       <div class="pg-cards">
-        <article class="plan"><h4>Teacher plan</h4><p class="price">$9.99<small>/ month</small></p><p>For teachers, volunteers and group leaders who show proof.</p><a class="btn btn-line btn-sm" href={home + 'monthly-plan/#teacher'}>See the monthly plan</a></article>
-        <article class="plan"><h4>Team plan</h4><p class="price">$19.99<small>/ month</small></p><p>One plan shared by you and up to two other teachers or staff.</p><a class="btn btn-line btn-sm" href={home + 'monthly-plan/#team'}>See the monthly plan</a></article>
+        <article class="plan"><h4>{t('workshops.teacherPlan')}</h4><p class="price">$9.99<small>{t('workshops.perMonth')}</small></p><p>{t('workshops.teacherP')}</p><a class="btn btn-line btn-sm" href={home + 'monthly-plan/#teacher'}>{t('workshops.seePlan')}</a></article>
+        <article class="plan"><h4>{t('workshops.teamPlan')}</h4><p class="price">$19.99<small>{t('workshops.perMonth')}</small></p><p>{t('workshops.teamP')}</p><a class="btn btn-line btn-sm" href={home + 'monthly-plan/#team'}>{t('workshops.seePlan')}</a></article>
       </div>
-      <p class="pg-foot"><b>Who goes first.</b> Schools and groups that serve low-income families get the first spots.</p>
+      <p class="pg-foot"><Fragment set:html={t('workshops.first')} /></p>
     </div>
     </div>
   </div></section>
 
   <section class="sec tight" id="sesPin" aria-labelledby="ses-h"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg" id="ses-h">One class period, four parts</h2><p class="lede">Here’s the 50-minute version, which fits in a class period or after school. The 90-minute one adds more practice time.</p></div>
+    <div class="sec-head"><h2 class="h-lg" id="ses-h">{t('workshops.sesH')}</h2><p class="lede">{t('workshops.sesLede')}</p></div>
     <div class="ptime" aria-hidden="true"><i style="flex:5;background:var(--peach)"></i><i style="flex:10;background:var(--mist)"></i><i style="flex:25;background:var(--sage)"></i><i style="flex:10;background:var(--butter)"></i></div>
     <ol class="parts">
-      <li class="part" style="--c:var(--peach)"><span class="label">5 minutes</span><h3>Open</h3><p><b>Start with real life.</b> Students talk about a time they ran into the problem or saw someone handle it. It gets everyone thinking before anyone picks up a tool.</p></li>
-      <li class="part" style="--c:var(--mist)"><span class="label">10 minutes</span><h3>Show</h3><p><b>Watch it done.</b> A mentor shows the skill step by step, explains why each step matters, and points out common mistakes.</p></li>
-      <li class="part" style="--c:var(--sage)"><span class="label">25 minutes</span><h3>Practice</h3><p><b>Try it yourself.</b> Students practice in small groups with real tools and materials while mentors help. Mistakes are expected.</p></li>
-      <li class="part" style="--c:var(--butter)"><span class="label">10 minutes</span><h3>Debrief</h3><p><b>Wrap up.</b> We talk about what was hard, when to stop and ask for help, and who to ask. Everyone takes home a card with the steps.</p></li>
+      <li class="part" style="--c:var(--peach)"><span class="label">{t('workshops.min5')}</span><h3>{t('workshops.open')}</h3><p><Fragment set:html={t('workshops.openP')} /></p></li>
+      <li class="part" style="--c:var(--mist)"><span class="label">{t('workshops.min10')}</span><h3>{t('workshops.show')}</h3><p><Fragment set:html={t('workshops.showP')} /></p></li>
+      <li class="part" style="--c:var(--sage)"><span class="label">{t('workshops.min25')}</span><h3>{t('workshops.practice')}</h3><p><Fragment set:html={t('workshops.practiceP')} /></p></li>
+      <li class="part" style="--c:var(--butter)"><span class="label">{t('workshops.min10')}</span><h3>{t('workshops.debrief')}</h3><p><Fragment set:html={t('workshops.debriefP')} /></p></li>
     </ol>
   </div></section>
 
   <section><div class="wrap"><div class="panel sand">
-    <div class="sec-head"><h2 class="h-lg">Matched to their age</h2><p class="lede" style="color:#46504A">Same topics, adjusted to what each age can safely do.</p></div>
+    <div class="sec-head"><h2 class="h-lg">{t('workshops.ageH')}</h2><p class="lede" style="color:#46504A">{t('workshops.ageLede')}</p></div>
     <div class="agewrap">
-      <div class="modes fit" role="tablist" aria-label="Age groups" id="ageTabs">
-        <button class="mode" type="button" role="tab" id="agt-1" aria-controls="agp-1" aria-selected="true" tabindex="0">Grades 3 to 5</button>
-        <button class="mode" type="button" role="tab" id="agt-2" aria-controls="agp-2" aria-selected="false" tabindex="-1">Grades 6 to 8</button>
-        <button class="mode" type="button" role="tab" id="agt-3" aria-controls="agp-3" aria-selected="false" tabindex="-1">Older students</button>
+      <div class="modes fit" role="tablist" aria-label={t('workshops.ageLabel')} id="ageTabs">
+        <button class="mode" type="button" role="tab" id="agt-1" aria-controls="agp-1" aria-selected="true" tabindex="0">{t('workshops.tab1')}</button>
+        <button class="mode" type="button" role="tab" id="agt-2" aria-controls="agp-2" aria-selected="false" tabindex="-1">{t('workshops.tab2')}</button>
+        <button class="mode" type="button" role="tab" id="agt-3" aria-controls="agp-3" aria-selected="false" tabindex="-1">{t('workshops.tab3')}</button>
       </div>
       <div class="agep">
-        <article class="tier on" role="tabpanel" id="agp-1" aria-labelledby="agt-1"><h3>Elementary, grades 3 to 5</h3><p>Short, simple tasks with lots of moving around.</p><ul><li>Name tools and what they’re for</li><li>Spot a “you won a prize” message</li><li>Practice asking for help, out loud</li></ul></article>
-        <article class="tier" role="tabpanel" id="agp-2" aria-labelledby="agt-2"><h3>Middle school, grades 6 to 8</h3><p>More on their own, and more real-life decisions.</p><ul><li>Tighten a screw, hang something level</li><li>Lock down an account</li><li>Plan and track a weekend budget</li></ul></article>
-        <article class="tier" role="tabpanel" id="agp-3" aria-labelledby="agt-3"><span class="chip soon" style="justify-self:start">Preview</span><h3>Older students</h3><p>Planned for later, after we launch for grades 3 to 8.</p><ul><li>Vehicle basics with an adult</li><li>Budgeting a first paycheck</li><li>Workplace communication</li></ul></article>
+        <article class="tier on" role="tabpanel" id="agp-1" aria-labelledby="agt-1"><h3>{t('workshops.t1h')}</h3><p>{t('workshops.t1p')}</p><ul>{t('workshops.t1l').map((x) => <li>{x}</li>)}</ul></article>
+        <article class="tier" role="tabpanel" id="agp-2" aria-labelledby="agt-2"><h3>{t('workshops.t2h')}</h3><p>{t('workshops.t2p')}</p><ul>{t('workshops.t2l').map((x) => <li>{x}</li>)}</ul></article>
+        <article class="tier" role="tabpanel" id="agp-3" aria-labelledby="agt-3"><span class="chip soon" style="justify-self:start">{t('workshops.preview')}</span><h3>{t('workshops.t3h')}</h3><p>{t('workshops.t3p')}</p><ul>{t('workshops.t3l').map((x) => <li>{x}</li>)}</ul></article>
       </div>
     </div>
   </div></div></section>
 
   <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg">Who does what</h2></div>
+    <div class="sec-head"><h2 class="h-lg">{t('workshops.whoH')}</h2></div>
     <ol class="steps">
-      <li class="step"><span class="sn" aria-hidden="true">1</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18M6 10v9M18 10v9M9 15h6M7 10V6h10v4"/></svg><h3>The host provides</h3><p>A room with tables, a group of students, and an adult who knows them and stays for the session.</p></div></li>
-      <li class="step"><span class="sn" aria-hidden="true">2</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M9 9V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V9M3 14h18M11 13v3h2v-3"/></svg><h3>We bring</h3><p>Lesson plans, tools, supplies, safety rules and take-home cards.</p></div></li>
-      <li class="step"><span class="sn" aria-hidden="true">3</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg><h3>We lead</h3><p>Our team runs the session with your staff in the room.</p></div></li>
+      <li class="step"><span class="sn" aria-hidden="true">1</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18M6 10v9M18 10v9M9 15h6M7 10V6h10v4"/></svg><h3>{t('workshops.host')}</h3><p>{t('workshops.hostP')}</p></div></li>
+      <li class="step"><span class="sn" aria-hidden="true">2</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M9 9V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V9M3 14h18M11 13v3h2v-3"/></svg><h3>{t('workshops.bring')}</h3><p>{t('workshops.bringP')}</p></div></li>
+      <li class="step"><span class="sn" aria-hidden="true">3</span><div class="sb"><svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg><h3>{t('workshops.lead')}</h3><p>{t('workshops.leadP')}</p></div></li>
     </ol>
   </div></section>
 
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Want this for your students someday?</h2><p class="muted">Join the interest list and tell us about your students. We’ll email you when we launch.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={home + '#interest'}>Join the Interest List</a><a class="btn btn-line" href={home + 'activities/'}>Explore Activities</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">{t('workshops.ctaH')}</h2><p class="muted">{t('workshops.ctaP')}</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href={home + '#interest'}>{t('workshops.join')}</a><a class="btn btn-line" href={home + 'activities/'}>{t('workshops.explore')}</a></div></div></div></section>
 </div>
 

@@ -5,7 +5,8 @@
     "tag": "Independencia de todos los días, enseñada en persona.",
     "copy": "© 2026 Own Two Feet. En desarrollo.",
     "privacy": "Privacidad",
-    "backToSite": "Volver al sitio"
+    "backToSite": "Volver al sitio",
+    "nojs": "Este visor está bloqueando los scripts de la página, así que los menús y las actividades no funcionan aquí. Abra el archivo en Chrome o Safari para ver el sitio completo."
   },
   "meta": {
     "description": "Own Two Feet: talleres presenciales de habilidades para la vida para niños y jóvenes, junto con escuelas y grupos comunitarios.",
@@ -26,7 +27,7 @@
     "manuals": "Manuales",
     "story": "Nuestra historia",
     "involved": "Participe",
-    "join": "Unirme a la lista de interés",
+    "join": "Unirme a la lista",
     "menu": "Menú",
     "monthly": "Plan mensual"
   },

@@ -1,0 +1,9 @@
+---
+// Words a plain script needs, in the page's language: <JsText name="help" /> puts the "help" group
+// as JSON in the page, and the script reads it with TXT('help') (defined in public/js/core.js).
+import { useT } from '../i18n/t.js';
+const { name } = Astro.props;
+const { t } = useT(Astro);
+const json = JSON.stringify(t(name)).replace(/</g, '\u003c');
+---
+<script is:inline type="application/json" id={'txt-' + name} set:html={json}></script>
