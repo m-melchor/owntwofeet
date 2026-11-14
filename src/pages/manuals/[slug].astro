@@ -3,7 +3,8 @@ import Sub from '../../layouts/Sub.astro';
 import '../../styles/manual.css';
 import { getCollection } from 'astro:content';
 import { base } from '../../base.js';
-import { t } from '../../i18n/t.js';
+import { useT } from '../../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 
 export async function getStaticPaths() {
   const all = await getCollection('manuals', (e) => e.id.startsWith('en/'));
@@ -15,7 +16,7 @@ const { entry } = Astro.props;
 const { slug } = Astro.params;
 const d = entry.data;
 ---
-<Sub title={d.name + ': ' + t('site.name')} description={d.description} mark={d.mark} back={base + 'workshops/'} data-m={slug} data-names={JSON.stringify({ home: d.name, ...d.names })}>
+<Sub title={d.name + ': ' + t('site.name')} description={d.description} mark={d.mark} back={home + 'workshops/'} data-m={slug} data-names={JSON.stringify({ home: d.name, ...d.names })}>
 <Fragment slot="art" set:html={art[`../../data/manual-art/${slug}.svg`]} />
 <Fragment set:html={entry.body} />
 <Fragment slot="foot">

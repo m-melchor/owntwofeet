@@ -5,15 +5,20 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import HelpChat from '../components/HelpChat.astro';
 import { base } from '../base.js';
-import { t } from '../i18n/t.js';
+import { useT, twinPath } from '../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 // title: page name (Home leaves it out). path: the page's path after the base, for canonical links. view: which nav item is current.
 const { title, path = '', view = 'home' } = Astro.props;
-const url = 'https://m-melchor.github.io' + base + path;
+const ORIGIN = 'https://m-melchor.github.io';
+const enPath = base + path, esPath = base + 'es/' + path;
+const url = ORIGIN + (lang === 'es' ? esPath : enPath);
 ---
-<!doctype html><html lang="en" data-base={base}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style is:inline>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style><title>{title ? title + " | " + t('site.name') : t('site.name')}</title>
+<!doctype html><html lang={lang === 'es' ? 'es-MX' : 'en'} data-base={home} data-twin={twinPath(Astro.url.pathname)}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style is:inline>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style><title>{title ? title + " | " + t('site.name') : t('site.name')}</title>
 <link rel="canonical" href={url}>
-<link rel="alternate" hreflang="en" href={url}>
-<link rel="alternate" hreflang="es" href="https://m-melchor.github.io/owntwofeet/es.html">
+<link rel="alternate" hreflang="en" href={ORIGIN + enPath}>
+<link rel="alternate" hreflang="es" href={ORIGIN + esPath}>
+<link rel="alternate" hreflang="x-default" href={ORIGIN + enPath}>
+<meta property="og:locale" content={lang === 'es' ? 'es_MX' : 'en_US'}>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content={t('site.name')}>
 <meta property="og:title" content={t('meta.ogTitle')}>
@@ -30,6 +35,7 @@ const url = 'https://m-melchor.github.io' + base + path;
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20220%22%3E%3Ccircle%20cx%3D%22110%22%20cy%3D%22110%22%20r%3D%22106%22%20fill%3D%22%23D9E6D8%22/%3E%3Cg%20transform%3D%22translate%2851%2036%29%20scale%281.25%29%22%3E%3Cg%20transform%3D%22translate%2840%2020%29%20scale%28-1%201%29%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%227%22%20r%3D%226%22%20fill%3D%22%2316211C%22/%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%2211.5%22%20r%3D%224%22%20fill%3D%22%2316211C%22/%3E%3Ccircle%20cx%3D%2238.5%22%20cy%3D%2218%22%20r%3D%223.3%22%20fill%3D%22%2316211C%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2225%22%20r%3D%222.8%22%20fill%3D%22%2316211C%22/%3E%3Cpath%20d%3D%22M21%202C33%203%2038%2015%2037%2030C36%2043%2031%2051%2030%2061C29%2071%2032%2079%2030%2089C28%2098%2013%2098%2011%2089C9%2079%2013%2071%2011%2061C9%2050%203%2041%204%2028C5%2013%2010%201%2021%202Z%22%20transform%3D%22translate%281%2018%29%20scale%28.86%29%22%20fill%3D%22%2316211C%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2852%200%29%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%227%22%20r%3D%226%22%20fill%3D%22%232F6450%22/%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%2211.5%22%20r%3D%224%22%20fill%3D%22%232F6450%22/%3E%3Ccircle%20cx%3D%2238.5%22%20cy%3D%2218%22%20r%3D%223.3%22%20fill%3D%22%232F6450%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2225%22%20r%3D%222.8%22%20fill%3D%22%232F6450%22/%3E%3Cpath%20d%3D%22M21%202C33%203%2038%2015%2037%2030C36%2043%2031%2051%2030%2061C29%2071%2032%2079%2030%2089C28%2098%2013%2098%2011%2089C9%2079%2013%2071%2011%2061C9%2050%203%2041%204%2028C5%2013%2010%201%2021%202Z%22%20transform%3D%22translate%281%2018%29%20scale%28.86%29%22%20fill%3D%22%232F6450%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <meta name="description" content={t('meta.description')}>
 <script is:inline>document.documentElement.classList.add('js')</script>
+{lang === 'en' && <script is:inline>/* someone who picked Spanish before and comes back from another site lands on the Spanish page */try{if(localStorage.getItem('otf-lang')==='es'&&(!document.referrer||new URL(document.referrer).origin!==location.origin))location.replace(document.documentElement.dataset.twin+location.hash)}catch(e){}</script>}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Young+Serif&display=swap" media="print" onload="this.media='all'">

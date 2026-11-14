@@ -4,12 +4,13 @@
 // foot (inside the footer), head (extra head tags), end (scripts after the footer).
 import Mark from '../components/Mark.astro';
 import { base } from '../base.js';
-import { t } from '../i18n/t.js';
+import { useT } from '../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 import '../styles/sprog.css';
-const { title, description, canonical, robots, mono = true, mark, small = false, back = base, mainId = 'top', ...bodyAttrs } = Astro.props;
+const { title, description, canonical, robots, mono = true, mark, small = false, back = home, mainId = 'top', ...bodyAttrs } = Astro.props;
 const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${mono ? '&family=Geist+Mono:wght@500' : ''}&family=Young+Serif&display=swap`;
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html lang={lang === 'es' ? 'es-MX' : 'en'}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <slot name="head" />
 <title>{title}</title>
 {robots && <meta name="robots" content={robots}>}
@@ -26,7 +27,7 @@ const fonts = `https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600${
 <slot name="art" />
 <header class="site">
   <div class="wrap">
-    <a class="brand" href={base}>
+    <a class="brand" href={home}>
       <Mark id={mark} small={small} />
       <span>{t('site.name')}</span>
     </a>

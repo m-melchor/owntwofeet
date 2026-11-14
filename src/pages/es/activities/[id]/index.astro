@@ -1,0 +1,8 @@
+---
+import Page from '../../../activities/[id]/index.astro';
+import { ORDER } from '../../../../data/activities.js';
+export function getStaticPaths() {
+  return ORDER.map((id, i) => ({ params: { id }, props: { nx: ORDER[i + 1] || null } }));
+}
+---
+<Page {...Astro.props} />

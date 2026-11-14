@@ -6,6 +6,8 @@ import Scams from '../../../components/activities/Scams.astro';
 import Call from '../../../components/activities/Call.astro';
 import Laundry from '../../../components/activities/Laundry.astro';
 import { base } from '../../../base.js';
+import { useT } from '../../../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 import { ORDER, NAMES, CARDS } from '../../../data/activities.js';
 export function getStaticPaths() {
   return ORDER.map((id, i) => ({ params: { id }, props: { nx: ORDER[i + 1] || null } }));
@@ -20,10 +22,10 @@ const next = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 <div class="view" data-view="activities" id="activities">
   <section id="actScreens"><div class="wrap">
     <Game>
-      <a slot="top" class="act-back" href={base + 'activities/'}><Fragment set:html={prev} />Back to activities</a>
+      <a slot="top" class="act-back" href={home + 'activities/'}><Fragment set:html={prev} />Back to activities</a>
       {nx
-        ? <a slot="end" class="act-next" href={base + 'activities/' + nx + '/'}><Fragment set:html={CARDS[nx].art} /><span class="nx"><small>Next activity</small><b>{NAMES[nx]}</b></span><Fragment set:html={next} /></a>
-        : <a slot="end" class="act-next end" href={base + 'activities/'}><span class="nx"><small>That was the last one</small><b>See all activities</b></span><Fragment set:html={next} /></a>}
+        ? <a slot="end" class="act-next" href={home + 'activities/' + nx + '/'}><Fragment set:html={CARDS[nx].art} /><span class="nx"><small>Next activity</small><b>{NAMES[nx]}</b></span><Fragment set:html={next} /></a>
+        : <a slot="end" class="act-next end" href={home + 'activities/'}><span class="nx"><small>That was the last one</small><b>See all activities</b></span><Fragment set:html={next} /></a>}
     </Game>
   </div></section>
 </div>

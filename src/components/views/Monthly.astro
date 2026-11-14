@@ -1,5 +1,7 @@
 ---
 import { base } from '../../base.js';
+import { useT } from '../../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
 ---
 <!-- ================= MONTHLY PLAN ================= -->
@@ -12,7 +14,7 @@ const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
   <section class="sec tight"><div class="wrap">
     <div class="sec-head"><h2 class="h-lg">What you get each month</h2></div>
     <div class="mp-get">
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><h3>New activities</h3><p>Hands-on activities you run with your students, in class or after school.</p><a class="btn btn-line btn-sm" href={base + 'activities/'}>Try one now</a></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><h3>New activities</h3><p>Hands-on activities you run with your students, in class or after school.</p><a class="btn btn-line btn-sm" href={home + 'activities/'}>Try one now</a></div>
       <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><h3>Printable guides</h3><p>Guides you can print and use with your students.</p></div>
     </div>
   </div></section>
@@ -23,13 +25,13 @@ const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       <article class="plan" id="teacher"><h3>Teacher plan</h3><p class="price">$9.99<small>/ month</small></p>
         <div class="plan-body"><p>For teachers, volunteers and community group leaders. Show proof and tell us why this rate fits you.</p>
           <ul><li><Fragment set:html={tick} />A school ID</li><li><Fragment set:html={tick} />Or a letter from your group</li></ul></div>
-        <a class="btn btn-ink btn-sm" href={base + '#interest'} data-pick="teacher">Join the Interest List</a></article>
+        <a class="btn btn-ink btn-sm" href={home + '#interest'} data-pick="teacher">Join the Interest List</a></article>
       <article class="plan" id="team"><h3>Team plan</h3><p class="price">$19.99<small>/ month</small></p>
         <div class="plan-body"><p>One plan you share with up to two other teachers or staff at your school or group.</p>
           <ul><li><Fragment set:html={tick} />Three people on one plan</li><li><Fragment set:html={tick} />About $6.66 each</li></ul></div>
-        <a class="btn btn-ink btn-sm" href={base + '#interest'} data-pick="team">Join the Interest List</a></article>
+        <a class="btn btn-ink btn-sm" href={home + '#interest'} data-pick="team">Join the Interest List</a></article>
     </div>
   </div></section>
 
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Who goes first</h2><p class="muted">Schools and groups that serve low-income families get the first spots.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-line" href={base + 'workshops/'}>See the Workshops</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">Who goes first</h2><p class="muted">Schools and groups that serve low-income families get the first spots.</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-line" href={home + 'workshops/'}>See the Workshops</a></div></div></div></section>
 </div>

@@ -2,8 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Involved from '../../components/views/Involved.astro';
 import { base } from '../../base.js';
+import { useT } from '../../i18n/t.js';
+const { t } = useT(Astro);
 ---
-<Layout title="Get Involved" path="get-involved/" view="involved">
+<Layout title={t('nav.involved')} path="get-involved/" view="involved">
 <Involved />
 <script slot="scripts" is:inline src={base + 'js/form.js'}></script>
 </Layout>

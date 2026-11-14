@@ -1,0 +1,104 @@
+{
+  "site": {
+    "name": "Own Two Feet",
+    "homeLabel": "Inicio de Own Two Feet",
+    "tag": "Independencia de todos los días, enseñada en persona.",
+    "copy": "© 2026 Own Two Feet. En desarrollo.",
+    "privacy": "Privacidad",
+    "backToSite": "Volver al sitio"
+  },
+  "meta": {
+    "description": "Own Two Feet: talleres presenciales de habilidades para la vida para niños y jóvenes, junto con escuelas y grupos comunitarios.",
+    "ogTitle": "Own Two Feet: habilidades para la vida, aprendidas lado a lado",
+    "ogDescription": "Talleres prácticos de habilidades para la vida para niños y jóvenes de 3.º a 8.º grado, con escuelas y grupos comunitarios.",
+    "ogImageAlt": "El logo de Own Two Feet junto a la frase: Skills for life, taught side by side."
+  },
+  "notice": {
+    "label": "Estado del sitio",
+    "lead": "Own Two Feet está en desarrollo.",
+    "rest": "Todavía no hay talleres. Únase a la lista de interés para recibir avisos del lanzamiento.",
+    "cta": "Unirme a la lista"
+  },
+  "nav": {
+    "label": "Principal",
+    "workshops": "Talleres",
+    "activities": "Actividades",
+    "manuals": "Manuales",
+    "story": "Nuestra historia",
+    "involved": "Participe",
+    "join": "Unirme a la lista de interés",
+    "menu": "Menú",
+    "monthly": "Plan mensual"
+  },
+  "lang": {
+    "label": "Idioma: español",
+    "code": "ES",
+    "current": "Español",
+    "other": "English"
+  },
+  "footer": {
+    "explore": "Explorar",
+    "start": "Para empezar",
+    "interest": "Lista de interés",
+    "tools": "Hora de herramientas",
+    "budget": "Un sábado con $25",
+    "faq": "Preguntas"
+  },
+  "help": {
+    "open": "¿Preguntas?",
+    "title": "Ayuda de Own Two Feet",
+    "sub": "Preguntas frecuentes",
+    "close": "Cerrar ayuda",
+    "note": "No es un chat en vivo."
+  },
+  "form": {
+    "label": "Formulario de la lista de interés",
+    "stepOf": "Paso 1 de 4",
+    "who": "¿Quién es usted?",
+    "fits": "¿Qué le queda mejor?",
+    "reach": "¿Cómo lo contactamos?",
+    "last": "Último paso",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "roles": {
+      "teacher": "Maestro o maestra",
+      "staff": "Personal de escuela",
+      "group": "Líder de un grupo",
+      "parent": "Mamá, papá o tutor",
+      "volunteer": "Voluntario",
+      "other": "Otra cosa"
+    },
+    "prefs": {
+      "inperson": "Un taller presencial",
+      "teacher": "Plan para maestros, $9.99 al mes",
+      "team": "Plan de equipo, $19.99 al mes",
+      "printables": "Guías para imprimir",
+      "family": "Días para familias",
+      "mentor": "Ser voluntario con nosotros",
+      "updates": "Solo avisos del lanzamiento",
+      "unsure": "Todavía no sé"
+    },
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "org": "Escuela o grupo",
+    "orgOpt": "(opcional para papás)",
+    "orgHint": "Escuela, programa o grupo",
+    "msg": "¿Algo que debamos saber?",
+    "optional": "(opcional)",
+    "msgHint": "Grados, temas que le interesan, fechas",
+    "adult": "Tengo 18 años o más y me registro como adulto de contacto.",
+    "errLead": "No se envió.",
+    "errRest": "Sus respuestas siguen aquí. Revise su conexión e inténtelo otra vez.",
+    "send": "Unirme a la lista de interés",
+    "foot": "Estudiantes: pídanle a su mamá, papá, maestro o consejero que se registre por ustedes. Usamos sus respuestas solo para contestarle y avisarle del lanzamiento.",
+    "doneTitle": "Listo. Ya está en la lista. Gracias.",
+    "doneText": "Le escribimos cuando Own Two Feet empiece. Esto es lo que nos mandó.",
+    "again": "Empezar de nuevo",
+    "subject": "Own Two Feet interest list (español)"
+  },
+  "manual": {
+    "allLessons": "Todas las lecciones",
+    "allManuals": "Todos los manuales",
+    "listName": "Manuales"
+  }
+}

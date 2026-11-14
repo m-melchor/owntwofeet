@@ -27,7 +27,8 @@
     "story": "Our Story",
     "involved": "Get Involved",
     "join": "Join the Interest List",
-    "menu": "Menu"
+    "menu": "Menu",
+    "monthly": "Monthly Plan"
   },
   "lang": {
     "label": "Language: English",
@@ -92,7 +93,8 @@
     "foot": "Students: ask a parent, teacher or counselor to sign up for you. We use your answers only to reply and send launch updates.",
     "doneTitle": "You’re on the list. Thank you.",
     "doneText": "We’ll email you when Own Two Feet launches. Here’s what you sent us.",
-    "again": "Start over"
+    "again": "Start over",
+    "subject": "Own Two Feet interest list"
   },
   "manual": {
     "allLessons": "All lessons",

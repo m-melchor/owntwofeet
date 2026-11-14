@@ -1,6 +1,7 @@
 ---
 import { base } from '../base.js';
-import { t } from '../i18n/t.js';
+import { useT } from '../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 // Step 2 choices. `for` lists the roles that see each one (with no script, every choice shows).
 // The role value is what Formspree receives, so it stays in English in every language; labels come from the dictionary.
 const ROLES = [
@@ -25,7 +26,8 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 ---
 <div id="formHolder">
 <form class="interest" id="interestForm" novalidate aria-label={t('form.label')} action="https://formspree.io/f/mgaaaeyp" method="POST">
-  <input type="hidden" name="_subject" value="Own Two Feet interest list">
+  <input type="hidden" name="_subject" value={t('form.subject')}>
+  {lang === 'es' && <input type="hidden" name="idioma" value="español">}
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
   <div class="fprog" aria-hidden="true"><span id="fStepTxt">{t('form.stepOf')}</span><span class="fdots"><i class="on"></i><i></i><i></i><i></i></span></div>
 
@@ -68,7 +70,7 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
     </div>
     <div class="fnav"><button class="fback" type="button" data-go="3"><Fragment set:html={arrow} />{t('form.back')}</button><button class="btn btn-ink" type="submit" id="formSend">{t('form.send')}</button></div>
   </fieldset>
-  <p class="ffoot">{t('form.foot')} <a href={base + 'privacy.html'}>{t('site.privacy')}</a></p>
+  <p class="ffoot">{t('form.foot')} <a href={home + 'privacy.html'}>{t('site.privacy')}</a></p>
 </form>
 <div class="fdone panel-focus" id="formDone" hidden tabindex="-1">
   <h3>{t('form.doneTitle')}</h3>

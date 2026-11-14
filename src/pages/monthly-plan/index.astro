@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Monthly from '../../components/views/Monthly.astro';
+import { useT } from '../../i18n/t.js';
+const { t } = useT(Astro);
 ---
-<Layout title="Monthly Plan" path="monthly-plan/" view="workshops">
+<Layout title={t('nav.monthly')} path="monthly-plan/" view="workshops">
 <Monthly />
 </Layout>

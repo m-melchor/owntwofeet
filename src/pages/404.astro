@@ -3,7 +3,8 @@ import Sub from '../layouts/Sub.astro';
 import '../styles/notfound.css';
 import { getEntry } from 'astro:content';
 import { base } from '../base.js';
-import { t } from '../i18n/t.js';
+import { useT } from '../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 
 // GitHub Pages shows this page for any missing address, at any depth,
 // so the base tag keeps the relative links in the body pointing at the site.

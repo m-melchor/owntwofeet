@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Home from '../components/views/Home.astro';
 import { base } from '../base.js';
+import { useT } from '../i18n/t.js';
 import { ORDER } from '../data/activities.js';
 import ws from '../components/views/Workshops.astro?raw';
 import ac from '../components/views/Activities.astro?raw';
@@ -17,13 +18,14 @@ import laundry from '../components/activities/Laundry.astro?raw';
 const pages = { 'workshops/': ws, 'activities/': ac, 'story/': st, 'get-involved/': inv };
 const games = { tools, budget, scams, call, laundry };
 for (const id of ORDER) pages['activities/' + id + '/'] = games[id];
+const { home } = useT(Astro);
 const MOVED = {};
 for (const [p, src] of Object.entries(pages)) for (const m of src.matchAll(/\sid="([\w-]+)"/g)) MOVED[m[1]] = p + '#' + m[1];
 Object.assign(MOVED, { workshops: 'workshops/', activities: 'activities/', story: 'story/', involved: 'get-involved/' });
 for (const id of ORDER) MOVED[id] = 'activities/' + id + '/';
 ---
 <Layout>
-<script slot="head" is:inline define:vars={{ MOVED, base }}>
+<script slot="head" is:inline define:vars={{ MOVED, base: home }}>
 (function(){var h=location.hash.slice(1);if(h==='home'){history.replaceState(null,'',location.pathname);return}if(MOVED[h])location.replace(base+MOVED[h])})();
 </script>
 <Home />

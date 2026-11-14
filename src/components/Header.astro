@@ -1,37 +1,38 @@
 ---
 import { base } from '../base.js';
-import { t } from '../i18n/t.js';
+import { useT, twinPath } from '../i18n/t.js';
+const { t, lang, home } = useT(Astro);
 const { view } = Astro.props;
 const cur = (v) => (v === view ? 'page' : undefined);
 ---
 <div class="notice" role="region" aria-label={t('notice.label')}>
-  <div class="wrap"><span><b>{t('notice.lead')}</b> {t('notice.rest')}</span><a href={base + '#interest'}>{t('notice.cta')}</a></div>
+  <div class="wrap"><span><b>{t('notice.lead')}</b> {t('notice.rest')}</span><a href={home + '#interest'}>{t('notice.cta')}</a></div>
 </div>
 
 <header class="site" id="siteHeader">
   <div class="wrap">
-    <a class="brand" href={base}>
+    <a class="brand" href={home}>
       <svg class="mark" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="hdrT" d="M30 110a80 80 0 0 1 160 0"/><path id="hdrB" d="M24 110a86 86 0 0 0 172 0"/></defs><circle cx="110" cy="110" r="106" fill="#D9E6D8"/><circle cx="110" cy="110" r="64" fill="#FFFFFF"/><text font-family="Geist, system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing="5" fill="#16211C"><textPath href="#hdrT" startOffset="50%" text-anchor="middle">OWN TWO FEET</textPath></text><text font-family="Geist, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="4" fill="#46504A"><textPath href="#hdrB" startOffset="50%" text-anchor="middle">LIFE SKILLS · HANDS ON</textPath></text><circle cx="40" cy="110" r="3" fill="#2F6450"/><circle cx="180" cy="110" r="3" fill="#2F6450"/><g transform="translate(70 64) scale(.82)"><g transform="translate(40 20) scale(-1 1)"><circle cx="24" cy="7" r="6" fill="#16211C"/><circle cx="33" cy="11.5" r="4" fill="#16211C"/><circle cx="38.5" cy="18" r="3.3" fill="#16211C"/><circle cx="41" cy="25" r="2.8" fill="#16211C"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#16211C"/></g><g transform="translate(52 0)"><circle cx="24" cy="7" r="6" fill="#2F6450"/><circle cx="33" cy="11.5" r="4" fill="#2F6450"/><circle cx="38.5" cy="18" r="3.3" fill="#2F6450"/><circle cx="41" cy="25" r="2.8" fill="#2F6450"/><path d="M21 2C33 3 38 15 37 30C36 43 31 51 30 61C29 71 32 79 30 89C28 98 13 98 11 89C9 79 13 71 11 61C9 50 3 41 4 28C5 13 10 1 21 2Z" transform="translate(1 18) scale(.86)" fill="#2F6450"/></g></g></svg>
       <span>{t('site.name')}</span>
     </a>
     <nav class="nav" id="nav" data-open="false" aria-label={t('nav.label')}>
-      <a href={base + 'workshops/'} aria-current={cur('workshops')}>{t('nav.workshops')}</a>
-      <a href={base + 'activities/'} aria-current={cur('activities')}>{t('nav.activities')}</a>
-      <a href={base + 'manuals/'}>{t('nav.manuals')}</a>
-      <a href={base + 'story/'} aria-current={cur('story')}>{t('nav.story')}</a>
-      <a href={base + 'get-involved/'} aria-current={cur('involved')}>{t('nav.involved')}</a>
+      <a href={home + 'workshops/'} aria-current={cur('workshops')}>{t('nav.workshops')}</a>
+      <a href={home + 'activities/'} aria-current={cur('activities')}>{t('nav.activities')}</a>
+      <a href={home + 'manuals/'}>{t('nav.manuals')}</a>
+      <a href={home + 'story/'} aria-current={cur('story')}>{t('nav.story')}</a>
+      <a href={home + 'get-involved/'} aria-current={cur('involved')}>{t('nav.involved')}</a>
       <button class="nav-q" type="button" data-hc aria-expanded="false" aria-controls="hc">{t('help.open')}</button>
-      <a class="btn btn-ink" href={base + '#interest'}>{t('nav.join')}</a>
+      <a class="btn btn-ink" href={home + '#interest'}>{t('nav.join')}</a>
     </nav>
     <details class="lang" id="lang">
       <summary aria-label={t('lang.label')}><svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span aria-hidden="true">{t('lang.code')}</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
       <div class="lang-menu">
         <span class="cur" aria-current="true">{t('lang.current')}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-        <a href={base + 'es.html'} lang="es-MX" hreflang="es">{t('lang.other')}</a>
+        <a href={twinPath(Astro.url.pathname)} lang={lang === 'es' ? 'en' : 'es-MX'} hreflang={lang === 'es' ? 'en' : 'es'} data-setlang={lang === 'es' ? 'en' : 'es'}>{t('lang.other')}</a>
       </div>
     </details>
     <button class="hc-open" type="button" data-hc aria-expanded="false" aria-controls="hc" aria-label={t('help.open')}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4 20l1.1-4.3A7.5 7.5 0 1 1 20 12.5z"/><path d="M10 10.2a2.2 2.2 0 1 1 3 2c-.6.3-1 .8-1 1.4M12 16.4v.1"/></svg><span>{t('help.open')}</span></button>
-    <a class="btn btn-ink btn-sm cta-desk" href={base + '#interest'}>{t('nav.join')}</a>
+    <a class="btn btn-ink btn-sm cta-desk" href={home + '#interest'}>{t('nav.join')}</a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>{t('nav.menu')}</button>
   </div>
 </header>

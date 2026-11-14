@@ -1,0 +1,11 @@
+---
+import Page from '../../manuals/[slug].astro';
+import { getCollection } from 'astro:content';
+// Each manual uses its Spanish text (es/<slug>.md) when it exists, else the English one.
+export async function getStaticPaths() {
+  const all = await getCollection('manuals');
+  const es = new Map(all.filter((e) => e.id.startsWith('es/')).map((e) => [e.id.slice(3), e]));
+  return all.filter((e) => e.id.startsWith('en/')).map((e) => ({ params: { slug: e.id.slice(3) }, props: { entry: es.get(e.id.slice(3)) || e } }));
+}
+---
+<Page {...Astro.props} />

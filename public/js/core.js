@@ -1,5 +1,7 @@
 "use strict";
 const SITE=document.documentElement.dataset.base||'/';
+/* page language: English at the site root, Spanish under es/ (SITE already points at the right one for page links) */
+const LANG=document.documentElement.lang.slice(0,2)==='es'?'es':'en';
 document.documentElement.classList.add('js');
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -50,7 +52,7 @@ if('IntersectionObserver' in window&&!RM){const io=new IntersectionObserver(es=>
 
 /* ---------- visit counter ---------- */
 /* visit counter: one count per view shown; waits for the GoatCounter script on first load, does nothing if it's blocked */
-function countVisit(view){const go=()=>window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:'/'+view,title:view});window.goatcounter&&window.goatcounter.count?go():addEventListener('load',go,{once:true})}
+function countVisit(view){const go=()=>window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:'/'+(LANG==='es'?'es/':'')+view,title:view});window.goatcounter&&window.goatcounter.count?go():addEventListener('load',go,{once:true})}
 /* funnel events for the smoke test: activity finished, sign-up sent (only after Formspree answers OK) */
 function countEvent(name){try{window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:name,title:name,event:true})}catch(e){}}
 countVisit(curAct?'activities/'+curAct:curView);
@@ -67,3 +69,5 @@ document.addEventListener('click',e=>{if(lang.open&&!lang.contains(e.target))lan
 /* a "Join" button with data-pick remembers its choice so the interest form on the next page can pick it */
 document.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(b)try{sessionStorage.setItem('otf-pick',b.dataset.pick)}catch(_){}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lang.open){lang.open=false;lang.querySelector('summary').focus()}});
+/* language links (switcher and footer) go to the same page in the other language, keep the spot on the page and remember the choice */
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-setlang]');if(!a)return;try{localStorage.setItem('otf-lang',a.dataset.setlang)}catch(_){}if(location.hash.length>1){e.preventDefault();location.href=a.getAttribute('href')+location.hash}});

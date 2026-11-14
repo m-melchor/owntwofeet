@@ -2,8 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Workshops from '../../components/views/Workshops.astro';
 import { base } from '../../base.js';
+import { useT } from '../../i18n/t.js';
+const { t } = useT(Astro);
 ---
-<Layout title="Workshops" path="workshops/" view="workshops">
+<Layout title={t('nav.workshops')} path="workshops/" view="workshops">
 <Workshops />
 <script slot="scripts" is:inline src={base + 'js/workshops.js'}></script>
 </Layout>
