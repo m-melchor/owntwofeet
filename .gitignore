@@ -3,3 +3,5 @@ dist/
 .astro/
 *.log
 p_*.tmp.mjs
+test-results/
+playwright-report/
