@@ -55,7 +55,8 @@
       "stop": "Saber cuándo parar",
       "foot": "{i} de {n}. Las escuelas pueden elegir cualquier tema, en cualquier orden.",
       "prev": "Tema anterior",
-      "next": "Tema siguiente"
+      "next": "Tema siguiente",
+      "back": "Todos los temas"
     },
     "list": [
       { "t": "Casa y herramientas", "d": "Usar herramientas manuales básicas con seguridad y hacer las reparaciones pequeñas que toda casa necesita.",

@@ -208,6 +208,31 @@ html:not(.js) #cxPanel[hidden]{display:block!important}
 .cx-nav{display:flex;gap:8px}
 @media (min-width:900px) and (max-width:1199px){.cx-body{grid-template-columns:1fr}.cx-side{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){.cx-body{grid-template-columns:1fr}.cx-head{grid-template-columns:1fr}}
+.cx-top,.cx-art,.cx-foot .cx-man{display:none}
+/* phones: one topic is its own full-screen view */
+.cx-lock,.cx-lock body{overflow:hidden}
+.cx-panel.sheet{position:fixed;inset:0;z-index:200;border-radius:0;box-shadow:none;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;background:var(--bg)}
+.sheet .cx-top{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1;padding:6px 16px 6px 8px;padding-top:calc(6px + env(safe-area-inset-top));background:var(--bg)}
+.cx-back{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 8px;border:0;background:none;font:500 16px var(--sans);color:var(--ink);cursor:pointer}
+.cx-back svg{width:18px;height:18px}
+.cx-count{font:500 13px var(--mono);color:var(--ink-2)}
+.sheet .cx-head{padding:8px 20px 18px;display:block}
+.sheet .cx-head>div{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:14px;align-items:center}
+.sheet .cx-art{display:block;width:56px;height:56px}
+.sheet .cx-art svg{width:100%;height:100%;display:block}
+.sheet .cx-head h3{font-size:32px;line-height:1.1}
+.sheet .cx-head p{grid-column:1/-1;font-size:16.5px;margin-top:12px}
+.sheet .cx-head .cx-man{display:none}
+.sheet .cx-body{background:var(--surface);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:16px 12px 14px;gap:10px;flex:1 0 auto}
+.sheet .cx-lessons{padding:0 8px}
+.sheet .lesson{padding:10px 0}
+.sheet .cx-side{gap:10px}
+.sheet .callout{padding:16px 18px;border-radius:18px;gap:6px}
+.sheet .cx-foot{position:sticky;bottom:0;background:var(--surface);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));flex-wrap:nowrap}
+.sheet .cx-foot>.muted{display:none}
+.sheet .cx-foot .cx-man{display:block;flex:1;min-width:0}
+.sheet .cx-foot .cx-man .btn{width:100%;justify-content:center}
+@media (prefers-reduced-motion:no-preference){.cx-panel.sheet.in{animation:cxUp .35s var(--ease) both}@keyframes cxUp{from{opacity:0;transform:translateY(28px)}}}
 @media (prefers-reduced-motion:no-preference){.cx-panel.swap .cx-head,.cx-panel.swap .cx-body{animation:fade .45s var(--ease) both}.cx-panel.swap .cx-body{animation-delay:.05s}}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 

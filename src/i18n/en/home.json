@@ -55,7 +55,8 @@
       "stop": "Know when to stop",
       "foot": "{i} of {n}. Schools can pick any topics, in any order.",
       "prev": "Previous topic",
-      "next": "Next topic"
+      "next": "Next topic",
+      "back": "All topics"
     },
     "list": [
       { "t": "Home & tools", "d": "Using basic hand tools safely and handling the small fixes every home needs.",

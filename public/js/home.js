@@ -11,19 +11,28 @@ function showMod(i,focus){
   cxI=(i+MODS.length)%MODS.length;const m=MODS[cxI];
   cxTiles.forEach((b,j)=>b.setAttribute('aria-expanded',String(j===cxI)));
   cxPanel.hidden=false;cxPanel.setAttribute('aria-labelledby','cxt-'+m.k);
-  cxPanel.innerHTML=`<div class="cx-head"><div><h3>${m.t}</h3><p>${m.d}</p></div>${m.man?`<a class="btn btn-line btn-sm" href="${m.man}">${MU.man}</a>`:m.later?`<span class="chip soon">${MU.later}</span>`:''}</div>
+  const man=m.man?`<a class="btn btn-line btn-sm" href="${m.man}">${MU.man}</a>`:m.later?`<span class="chip soon">${MU.later}</span>`:'';
+  cxPanel.innerHTML=`<div class="cx-top"><button class="cx-back" type="button" data-close>${I.prev}<span>${MU.back}</span></button><span class="cx-count">${cxI+1} / ${MODS.length}</span></div>
+  <div class="cx-head"><div><span class="cx-art"><svg viewBox="0 0 48 48" aria-hidden="true">${cxTiles[cxI].querySelector('.art svg').innerHTML}</svg></span><h3>${m.t}</h3><p>${m.d}</p></div><div class="cx-man">${man}</div></div>
   <div class="cx-body"><div class="cx-lessons"><span class="label">${MU.lessons}</span>${m.L.map((l,j)=>`<div class="lesson"><span class="n">${j+1}</span><b>${l[0]}</b><span class="ds">${l[1]}</span></div>`).join('')}</div>
   <div class="cx-side"><div class="callout"><span class="label">${MU.hands}</span><p>${m.st}</p></div><div class="callout stop"><span class="label">${MU.stop}</span><p>${m.stop}</p></div></div></div>
-  <div class="cx-foot"><span class="muted" style="font-size:14.5px">${MU.foot.replace('{i}',cxI+1).replace('{n}',MODS.length)}</span><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="${MU.prev}">${I.prev}</button><button class="icon-btn" type="button" data-cx="1" aria-label="${MU.next}">${I.next}</button></div></div>`;
+  <div class="cx-foot"><span class="muted" style="font-size:14.5px">${MU.foot.replace('{i}',cxI+1).replace('{n}',MODS.length)}</span><div class="cx-man">${man}</div><div class="cx-nav"><button class="icon-btn" type="button" data-cx="-1" aria-label="${MU.prev}">${I.prev}</button><button class="icon-btn" type="button" data-cx="1" aria-label="${MU.next}">${I.next}</button></div></div>`;
   cxPanel.classList.remove('swap');void cxPanel.offsetWidth;cxPanel.classList.add('swap');
+  cxPanel.scrollTop=0;
   if(focus)cxTiles[cxI].focus({preventScroll:true});
 }
 function closeMod(){cxI=-1;cxPanel.hidden=true;cxTiles.forEach(b=>b.setAttribute('aria-expanded','false'))}
-$('#cxTiles').addEventListener('click',e=>{const b=e.target.closest('.cx-tile');if(!b)return;const i=+b.dataset.i;if(i===cxI){if(!cxWide.matches)closeMod();return}showMod(i);if(cxWide.matches)return;
-  const r=cxPanel.getBoundingClientRect();if(r.top>innerHeight-160)scrollTo({top:scrollY+r.top-110,behavior:RM?'auto':'smooth'})});
-cxPanel.addEventListener('click',e=>{const b=e.target.closest('[data-cx]');if(b)showMod(cxI+ +b.dataset.cx)});
+/* phones: a topic opens as its own full-screen view; Back, Escape or the phone's back gesture closes it */
+const isSheet=()=>cxPanel.classList.contains('sheet');
+const cxHome=cxPanel.parentNode;
+function openSheet(i){showMod(i);document.body.append(cxPanel);cxPanel.classList.add('sheet','in');document.documentElement.classList.add('cx-lock');history.pushState({cx:1},'');cxPanel.querySelector('.cx-back').focus({preventScroll:true})}
+function endSheet(){if(!isSheet())return;const k=cxI;cxPanel.classList.remove('sheet','in');cxHome.append(cxPanel);document.documentElement.classList.remove('cx-lock');closeMod();if(cxTiles[k])cxTiles[k].focus({preventScroll:true})}
+addEventListener('popstate',endSheet);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isSheet())history.back()});
+$('#cxTiles').addEventListener('click',e=>{const b=e.target.closest('.cx-tile');if(!b)return;const i=+b.dataset.i;if(cxWide.matches){if(i!==cxI)showMod(i);return}openSheet(i)});
+cxPanel.addEventListener('click',e=>{if(e.target.closest('[data-close]')){history.back();return}const b=e.target.closest('[data-cx]');if(b)showMod(cxI+ +b.dataset.cx)});
 if(cxWide.matches)showMod(0);else closeMod();
-cxWide.addEventListener('change',()=>{if(cxWide.matches&&cxI<0)showMod(0)});
+cxWide.addEventListener('change',()=>{if(cxWide.matches){if(isSheet()){cxPanel.classList.remove('sheet','in');cxHome.append(cxPanel);document.documentElement.classList.remove('cx-lock');history.back()}if(cxI<0)showMod(0)}});
 
 // Sideways rows get an arrow just below them: right while more is hidden, left (back to the start) once the end is reached
 function edgeArrows(row){if(!row)return;const sx=document.createElement('div'),hint=document.createElement('div');sx.className='sx';hint.className='sx-hint';row.before(sx);sx.append(row,hint);
