@@ -11,17 +11,9 @@ const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <p class="lede" style="color:#46504A">{t('monthly.lede')}</p>
   </div></div></section>
 
-  <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg">{t('monthly.getH')}</h2></div>
-    <div class="mp-get">
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><h3>{t('monthly.g1h')}</h3><p>{t('monthly.g1p')}</p><a class="btn btn-line btn-sm" href={home + 'activities/'}>{t('monthly.g1b')}</a></div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><h3>{t('monthly.g2h')}</h3><p>{t('monthly.g2p')}</p></div>
-    </div>
-  </div></section>
-
-  <section class="sec tight"><div class="wrap">
-    <div class="sec-head"><h2 class="h-lg">{t('monthly.pickH')}</h2></div>
-    <div class="pg-cards mp-plans">
+  <section class="sec tight"><div class="wrap mp">
+    <h2 class="h-lg mp-h">{t('monthly.pickH')}</h2>
+    <div class="mp-plans">
       <article class="plan" id="teacher"><h3>{t('monthly.teacher')}</h3><p class="price">$9.99<small>{t('monthly.perMonth')}</small></p>
         <div class="plan-body"><p>{t('monthly.teacherP')}</p>
           <ul><li><Fragment set:html={tick} />{t('monthly.tl1')}</li><li><Fragment set:html={tick} />{t('monthly.tl2')}</li></ul></div>
@@ -31,7 +23,15 @@ const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
           <ul><li><Fragment set:html={tick} />{t('monthly.ml1')}</li><li><Fragment set:html={tick} />{t('monthly.ml2')}</li></ul></div>
         <a class="btn btn-ink btn-sm" href={home + '#interest'} data-pick="team">{t('monthly.join')}</a></article>
     </div>
+
+    <div class="mp-get">
+      <h2 class="h-md">{t('monthly.getH')}</h2>
+      <div class="mp-get-row">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><h3>{t('monthly.g1h')}</h3><p>{t('monthly.g1p')}</p><a class="btn btn-line btn-sm" href={home + 'activities/'}>{t('monthly.g1b')}</a></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><h3>{t('monthly.g2h')}</h3><p>{t('monthly.g2p')}</p><a class="btn btn-line btn-sm" href={home + 'manuals/'}>{t('monthly.g2b')}</a></div>
+      </div>
+    </div>
   </div></section>
 
-  <section><div class="wrap"><div class="panel sage" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center"><div style="display:grid;gap:12px;max-width:560px"><h2 class="h-md">{t('monthly.firstH')}</h2><p class="muted">{t('monthly.firstP')}</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-line" href={home + 'workshops/'}>{t('monthly.workshops')}</a></div></div></div></section>
+  <section><div class="wrap"><div class="panel sage mp-first"><h2 class="h-md">{t('monthly.firstH')}</h2><p>{t('monthly.firstP')}</p><a class="btn btn-line" href={home + 'workshops/'}>{t('monthly.workshops')}</a></div></div></section>
 </div>

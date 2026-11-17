@@ -33,7 +33,14 @@ const TOPICS = [
             <a class="btn btn-ink" href={home + '#interest'}>{t('home.join')}</a>
             <a class="btn btn-line" href={home + 'activities/'}>{t('home.explore')}</a>
           </div>
-          <p class="hero-price"><span>{t('home.price1')}</span> <span set:html={t('home.price2')}></span></p>
+          <div class="hero-price">
+            <ul>
+              <li><b>$200</b><span>{t('home.p50')}</span></li>
+              <li><b>$300</b><span>{t('home.p90')}</span></li>
+              <li><b>$9.99</b><span>{t('home.pMonth')}</span></li>
+            </ul>
+            <p>{t('home.pNote')}</p>
+          </div>
         </div>
         <div class="stage-hero" id="heroStage" role="img" aria-label={t('home.stage')}>
           <div class="fallback" id="heroFallback" aria-hidden="true">
